@@ -2,6 +2,8 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Hero from './sections/Hero';
 import About from './sections/About';
+import Projects from './sections/Projects';
+import Contact from './sections/Contact';
 
 function App() {
   return (
@@ -10,7 +12,8 @@ function App() {
       <main>
         <Hero />
         <About />
-        {/* Projects and Contact sections will be added here */}
+        <Projects />
+        <Contact />
       </main>
       <Footer />
     </div>
