@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import GlassCard from '../components/GlassCard';
 import NeonButton from '../components/NeonButton';
+import ProjectModal from '../components/ProjectModal';
 import { fetchProjects } from '../services/api';
 
 export default function Projects() {
@@ -10,6 +11,7 @@ export default function Projects() {
   const [categories, setCategories] = useState(['All']);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(null);
 
   useEffect(() => {
     async function loadProjects() {
@@ -98,7 +100,8 @@ export default function Projects() {
             {filteredProjects.map((project) => (
               <GlassCard 
                 key={project.id} 
-                className="group flex flex-col justify-between hover:border-primary/40 hover:-translate-y-1 transition-all duration-300"
+                onClick={() => setSelectedProject(project)}
+                className="group flex flex-col justify-between hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 cursor-pointer relative"
               >
                 <div>
                   {/* Visual Represent (Premium Glow / Image container) */}
@@ -109,13 +112,24 @@ export default function Projects() {
                     {/* Glow Spot */}
                     <div className="absolute w-24 h-24 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/40 group-hover:scale-150 transition-all duration-500"></div>
                     
-                    <span className="font-mono text-xs text-gray-500 z-10 select-none uppercase tracking-widest">{project.category}</span>
+                    {/* Inspect hint overlay */}
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-xs">
+                      <span className="font-mono text-xs text-primary bg-primary/20 border border-primary/40 px-3 py-1.5 rounded-full flex items-center gap-1.5">
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                        Inspect Details
+                      </span>
+                    </div>
+
+                    <span className="font-mono text-xs text-gray-500 z-10 select-none uppercase tracking-widest group-hover:opacity-20 transition-opacity">{project.category}</span>
                   </div>
 
                   <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
                     {project.title}
                   </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                  <p className="text-gray-400 text-sm leading-relaxed mb-6 line-clamp-2">
                     {project.description}
                   </p>
                 </div>
@@ -131,8 +145,8 @@ export default function Projects() {
                   </div>
 
                   {/* Action links */}
-                  <div className="flex items-center justify-between pt-4 border-t border-white/5">
-                    {project.github_url && (
+                  <div className="flex items-center justify-between pt-4 border-t border-white/5" onClick={(e) => e.stopPropagation()}>
+                    {project.github_url ? (
                       <a 
                         href={project.github_url} 
                         target="_blank" 
@@ -144,7 +158,8 @@ export default function Projects() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                         </svg>
                       </a>
-                    )}
+                    ) : <div></div>}
+                    
                     {project.live_url ? (
                       <a 
                         href={project.live_url} 
@@ -167,6 +182,15 @@ export default function Projects() {
           </div>
         )}
       </div>
+
+      {/* Project Detail Modal */}
+      {selectedProject && (
+        <ProjectModal 
+          project={selectedProject} 
+          onClose={() => setSelectedProject(null)} 
+        />
+      )}
     </section>
   );
 }
+
