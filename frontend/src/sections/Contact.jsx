@@ -40,7 +40,7 @@ export default function Contact() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-4 mb-12">
           <h2 className="text-3xl md:text-4xl font-bold">
-            <span className="text-primary font-mono text-xl mr-2">03.</span>
+            <span className="text-primary font-mono text-xl mr-2">04.</span>
             Get In Touch
           </h2>
           <div className="h-px bg-white/10 flex-grow max-w-xs"></div>

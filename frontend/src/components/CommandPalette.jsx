@@ -30,6 +30,13 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
       action: () => scrollToSection('projects')
     },
     {
+      id: 'nav-experience',
+      category: 'Navigation',
+      label: 'Go to Experience & Journey',
+      shortcut: 'EXPERIENCE',
+      action: () => scrollToSection('experience')
+    },
+    {
       id: 'nav-contact',
       category: 'Navigation',
       label: 'Go to Contact Section',
