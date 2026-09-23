@@ -1,8 +1,54 @@
 import { useState, useEffect } from 'react';
 import GlassCard from '../components/GlassCard';
-import NeonButton from '../components/NeonButton';
 import ProjectModal from '../components/ProjectModal';
 import { fetchProjects } from '../services/api';
+
+const MOCK_PROJECTS = [
+  {
+    id: '1',
+    title: 'DevPulse Realtime Analytics',
+    category: 'Fullstack',
+    description: 'High-concurrency developer telemetry platform with live WebSocket streaming, microsecond metrics parsing, and interactive glass charts.',
+    long_description: 'DevPulse is a fullstack monitoring solution engineered for cloud-native microservices. It ingests thousands of metrics per second, presenting real-time system health, error traces, and latency distribution through a reactive React dashboard.',
+    tech_stack: ['React 19', 'Node.js', 'Express', 'PostgreSQL', 'TailwindCSS', 'WebSockets'],
+    github_url: 'https://github.com',
+    live_url: 'https://example.com',
+    gradient: 'from-purple-600/30 to-cyan-500/30'
+  },
+  {
+    id: '2',
+    title: 'Nova Headless E-Commerce',
+    category: 'Fullstack',
+    description: 'Ultra-fast headless commerce platform featuring dynamic cart state management, Stripe payment processing, and inventory synchronization.',
+    long_description: 'Nova Commerce provides enterprise-grade online shopping experiences. Built with Next.js App Router and PostgreSQL backend, it delivers sub-100ms page loads and full PCI-compliant checkout workflow.',
+    tech_stack: ['Next.js', 'PostgreSQL', 'Express.js', 'Stripe API', 'TailwindCSS'],
+    github_url: 'https://github.com',
+    live_url: 'https://example.com',
+    gradient: 'from-cyan-600/30 to-blue-500/30'
+  },
+  {
+    id: '3',
+    title: 'CyberAuth Key Vault',
+    category: 'Backend',
+    description: 'Zero-trust API gateway & secret management microservice with JWT authentication, rate limiting, and encrypted storage.',
+    long_description: 'A secure backend service designed for identity management and key rotation. Includes automated rate limiting, bcrypt key hashing, and role-based access control (RBAC) middleware.',
+    tech_stack: ['Node.js', 'Express', 'PostgreSQL', 'JWT', 'Docker'],
+    github_url: 'https://github.com',
+    live_url: null,
+    gradient: 'from-emerald-600/30 to-teal-500/30'
+  },
+  {
+    id: '4',
+    title: 'AI Prompt Studio & Workspace',
+    category: 'Frontend',
+    description: 'Interactive playground for prompt engineering with live token counter, side-by-side output comparison, and export utilities.',
+    long_description: 'Designed for AI developers to test and evaluate LLM prompts in real time. Features dynamic model preset selection, variable injection, and visual output diffing.',
+    tech_stack: ['React', 'TypeScript', 'TailwindCSS', 'Figma', 'Vite'],
+    github_url: 'https://github.com',
+    live_url: 'https://example.com',
+    gradient: 'from-amber-500/30 to-rose-500/30'
+  }
+];
 
 export default function Projects() {
   const [projects, setProjects] = useState([]);
@@ -10,7 +56,6 @@ export default function Projects() {
   const [activeCategory, setActiveCategory] = useState('All');
   const [categories, setCategories] = useState(['All']);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [selectedProject, setSelectedProject] = useState(null);
 
   useEffect(() => {
@@ -18,19 +63,22 @@ export default function Projects() {
       try {
         setLoading(true);
         const response = await fetchProjects();
-        if (response.success) {
+        if (response.success && response.data && response.data.length > 0) {
           setProjects(response.data);
           setFilteredProjects(response.data);
-          
-          // Extract unique categories
           const cats = ['All', ...new Set(response.data.map(p => p.category))];
           setCategories(cats);
         } else {
-          throw new Error(response.message || 'Failed to fetch projects');
+          // Use mock project data fallback
+          setProjects(MOCK_PROJECTS);
+          setFilteredProjects(MOCK_PROJECTS);
+          setCategories(['All', 'Fullstack', 'Backend', 'Frontend']);
         }
       } catch (err) {
-        console.error(err);
-        setError(err.message);
+        console.warn('API fetch failed, falling back to curated mock project data:', err.message);
+        setProjects(MOCK_PROJECTS);
+        setFilteredProjects(MOCK_PROJECTS);
+        setCategories(['All', 'Fullstack', 'Backend', 'Frontend']);
       } finally {
         setLoading(false);
       }
@@ -48,29 +96,36 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="py-24 relative overflow-hidden">
-      {/* Subtle Glow background */}
-      <div className="absolute top-1/3 right-1/10 w-[400px] h-[400px] bg-secondary/10 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
-      
+    <section id="projects" className="py-28 relative overflow-hidden bg-grid-pattern">
+      {/* Glow highlight */}
+      <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[140px] -z-10 pointer-events-none" />
+
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-4 mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold">
-            <span className="text-primary font-mono text-xl mr-2">02.</span>
-            My Projects
-          </h2>
-          <div className="h-px bg-white/10 flex-grow max-w-xs"></div>
+        
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-14">
+          <div>
+            <div className="flex items-center gap-3">
+              <span className="font-mono text-purple-400 text-sm font-semibold tracking-wider uppercase">02. Showcase</span>
+              <div className="h-[1px] w-12 bg-purple-400/40"></div>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-1">Featured Projects</h2>
+          </div>
+          <p className="text-slate-400 text-sm font-mono max-w-xs">
+            // Selected software systems, fullstack platforms, and APIs.
+          </p>
         </div>
 
-        {/* Category Filters */}
-        <div className="flex flex-wrap gap-2 mb-12">
+        {/* Categories */}
+        <div className="flex flex-wrap gap-2 mb-10">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => handleCategoryChange(cat)}
-              className={`px-4 py-2 rounded-full text-sm font-mono transition-all duration-300 border cursor-pointer ${
+              className={`px-4 py-2 rounded-xl text-xs font-mono transition-all duration-300 border cursor-pointer ${
                 activeCategory === cat
-                  ? 'bg-primary/20 text-primary border-primary/50 shadow-[0_0_15px_rgba(139,92,246,0.3)]'
-                  : 'bg-transparent text-gray-400 border-white/5 hover:text-white hover:border-white/20'
+                  ? 'bg-purple-600/30 text-white border-purple-500/50 shadow-[0_0_20px_rgba(139,92,246,0.3)] font-semibold'
+                  : 'bg-white/5 text-slate-400 border-white/5 hover:text-white hover:border-white/20'
               }`}
             >
               {cat}
@@ -78,102 +133,97 @@ export default function Projects() {
           ))}
         </div>
 
-        {/* Loading State */}
+        {/* Loading Spinner */}
         {loading && (
           <div className="flex flex-col items-center justify-center py-20">
-            <div className="w-12 h-12 border-4 border-primary/30 border-t-primary rounded-full animate-spin mb-4"></div>
-            <p className="text-gray-400 font-mono">Loading assets from mainframe...</p>
-          </div>
-        )}
-
-        {/* Error State */}
-        {error && (
-          <div className="text-center py-20 glass rounded-2xl border-red-500/20 max-w-xl mx-auto">
-            <p className="text-red-400 font-mono mb-4">⚠️ Database error: {error}</p>
-            <p className="text-gray-400 text-sm">Please make sure database server is running and seeded.</p>
+            <div className="w-10 h-10 border-4 border-purple-500/20 border-t-purple-500 rounded-full animate-spin mb-4"></div>
+            <p className="text-slate-400 font-mono text-xs">Loading projects from system network...</p>
           </div>
         )}
 
         {/* Projects Grid */}
-        {!loading && !error && (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {!loading && (
+          <div className="grid md:grid-cols-2 gap-8">
             {filteredProjects.map((project) => (
               <GlassCard 
                 key={project.id} 
                 onClick={() => setSelectedProject(project)}
-                className="group flex flex-col justify-between hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 cursor-pointer relative"
+                className="group flex flex-col justify-between hover:border-purple-500/40 transition-all duration-300 cursor-pointer relative"
               >
                 <div>
-                  {/* Visual Represent (Premium Glow / Image container) */}
-                  <div className="relative h-48 w-full rounded-xl mb-6 overflow-hidden bg-gradient-to-br from-dark-surface to-dark border border-white/5 flex items-center justify-center">
-                    {/* Abstract Grid background */}
-                    <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none"></div>
+                  {/* Banner mockup container */}
+                  <div className={`relative h-48 sm:h-52 w-full rounded-xl mb-6 overflow-hidden bg-gradient-to-br ${project.gradient || 'from-purple-900/40 to-cyan-900/40'} border border-white/10 flex items-center justify-center`}>
                     
-                    {/* Glow Spot */}
-                    <div className="absolute w-24 h-24 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/40 group-hover:scale-150 transition-all duration-500"></div>
+                    {/* Grid backdrop */}
+                    <div className="absolute inset-0 bg-dots-pattern opacity-40 pointer-events-none" />
                     
-                    {/* Inspect hint overlay */}
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-xs">
-                      <span className="font-mono text-xs text-primary bg-primary/20 border border-primary/40 px-3 py-1.5 rounded-full flex items-center gap-1.5">
-                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    {/* Floating title tag */}
+                    <div className="z-10 text-center px-6 transform group-hover:scale-105 transition-transform duration-500">
+                      <span className="font-mono text-[10px] text-cyan-300 uppercase tracking-widest bg-black/50 border border-white/10 px-3 py-1 rounded-full backdrop-blur-md">
+                        {project.category}
+                      </span>
+                      <h4 className="text-xl font-bold text-white mt-3 group-hover:text-cyan-300 transition-colors">
+                        {project.title}
+                      </h4>
+                    </div>
+
+                    {/* Inspect hover banner */}
+                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-xs">
+                      <span className="font-mono text-xs text-white bg-purple-600/40 border border-purple-400/50 px-4 py-2 rounded-full flex items-center gap-2 shadow-lg">
+                        <svg className="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                         </svg>
-                        Inspect Details
+                        Inspect System Architecture
                       </span>
                     </div>
-
-                    <span className="font-mono text-xs text-gray-500 z-10 select-none uppercase tracking-widest group-hover:opacity-20 transition-opacity">{project.category}</span>
                   </div>
 
-                  <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed mb-6 line-clamp-2">
+                  <p className="text-slate-300 text-sm leading-relaxed mb-6 line-clamp-2">
                     {project.description}
                   </p>
                 </div>
 
                 <div>
-                  {/* Tech Stack */}
-                  <div className="flex flex-wrap gap-2 mb-6">
+                  {/* Tech stack pills */}
+                  <div className="flex flex-wrap gap-1.5 mb-6">
                     {project.tech_stack.map((tech, idx) => (
-                      <span key={idx} className="font-mono text-xs text-secondary bg-secondary/5 px-2.5 py-1 rounded">
+                      <span key={idx} className="font-mono text-[11px] text-cyan-300 bg-cyan-500/10 border border-cyan-500/20 px-2.5 py-1 rounded-md">
                         {tech}
                       </span>
                     ))}
                   </div>
 
-                  {/* Action links */}
-                  <div className="flex items-center justify-between pt-4 border-t border-white/5" onClick={(e) => e.stopPropagation()}>
+                  {/* Links */}
+                  <div className="flex items-center justify-between pt-4 border-t border-white/10" onClick={(e) => e.stopPropagation()}>
                     {project.github_url ? (
                       <a 
                         href={project.github_url} 
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className="text-gray-400 hover:text-white transition-colors flex items-center gap-1.5 text-sm font-mono"
+                        className="text-slate-400 hover:text-white transition-colors flex items-center gap-1.5 text-xs font-mono"
                       >
-                        <span>Source</span>
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <span>GitHub Repo</span>
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                         </svg>
                       </a>
-                    ) : <div></div>}
-                    
+                    ) : <div />}
+
                     {project.live_url ? (
                       <a 
                         href={project.live_url} 
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className="text-primary hover:text-primary/80 transition-colors flex items-center gap-1.5 text-sm font-mono font-semibold"
+                        className="text-purple-400 hover:text-purple-300 transition-colors flex items-center gap-1.5 text-xs font-mono font-semibold"
                       >
-                        <span>Demo</span>
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <span>Live Preview</span>
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                         </svg>
                       </a>
                     ) : (
-                      <span className="text-gray-600 text-xs font-mono">Production offline</span>
+                      <span className="text-slate-500 text-xs font-mono">Service internal</span>
                     )}
                   </div>
                 </div>
@@ -181,6 +231,7 @@ export default function Projects() {
             ))}
           </div>
         )}
+
       </div>
 
       {/* Project Detail Modal */}

@@ -6,34 +6,37 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
   const [toastMessage, setToastMessage] = useState('');
   const inputRef = useRef(null);
 
-  // Define commands list
   const commands = [
     {
       id: 'nav-hero',
       category: 'Navigation',
       label: 'Go to Home (Hero)',
       shortcut: 'HERO',
+      icon: '🏠',
       action: () => scrollToSection('hero')
     },
     {
       id: 'nav-about',
       category: 'Navigation',
-      label: 'Go to About Me',
+      label: 'Go to About Me & Tech Stack',
       shortcut: 'ABOUT',
+      icon: '👤',
       action: () => scrollToSection('about')
     },
     {
       id: 'nav-projects',
       category: 'Navigation',
-      label: 'Go to Projects Showcase',
+      label: 'Go to Featured Projects Showcase',
       shortcut: 'PROJECTS',
+      icon: '💻',
       action: () => scrollToSection('projects')
     },
     {
       id: 'nav-experience',
       category: 'Navigation',
       label: 'Go to Experience & Journey',
-      shortcut: 'EXPERIENCE',
+      shortcut: 'EXP',
+      icon: '🚀',
       action: () => scrollToSection('experience')
     },
     {
@@ -41,35 +44,30 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
       category: 'Navigation',
       label: 'Go to Contact Section',
       shortcut: 'CONTACT',
+      icon: '✉️',
       action: () => scrollToSection('contact')
     },
     {
       id: 'act-email',
-      category: 'Quick Actions',
+      category: 'Actions',
       label: 'Copy Email Address to Clipboard',
       shortcut: 'COPY',
+      icon: '📋',
       action: () => handleCopyEmail()
     },
     {
       id: 'act-github',
-      category: 'Quick Actions',
+      category: 'Actions',
       label: 'Open GitHub Profile',
       shortcut: 'GITHUB',
+      icon: '🐙',
       action: () => {
         window.open('https://github.com', '_blank');
         onClose();
       }
-    },
-    {
-      id: 'act-resume',
-      category: 'Quick Actions',
-      label: 'Download Curriculum Vitae (CV)',
-      shortcut: 'CV',
-      action: () => handleDownloadCV()
     }
   ];
 
-  // Filter commands by search query
   const filteredCommands = commands.filter((cmd) =>
     cmd.label.toLowerCase().includes(query.toLowerCase()) ||
     cmd.category.toLowerCase().includes(query.toLowerCase())
@@ -89,19 +87,11 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
     setTimeout(() => onClose(), 1200);
   };
 
-  const handleDownloadCV = () => {
-    showToast('⚡ Initiating CV download...');
-    setTimeout(() => {
-      onClose();
-    }, 1200);
-  };
-
   const showToast = (msg) => {
     setToastMessage(msg);
     setTimeout(() => setToastMessage(''), 2500);
   };
 
-  // Keyboard shortcut listener for Ctrl+K / Cmd+K
   useEffect(() => {
     const handleKeyDown = (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
@@ -118,11 +108,9 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose, onOpen]);
 
-  // Handle modal internal keyboard navigation
   useEffect(() => {
     if (!isOpen) return;
 
-    // Focus input on open
     setTimeout(() => inputRef.current?.focus(), 50);
     document.body.style.overflow = 'hidden';
 
@@ -150,7 +138,6 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
     };
   }, [isOpen, selectedIndex, filteredCommands, onClose]);
 
-  // Reset selected index when query changes
   useEffect(() => {
     setSelectedIndex(0);
   }, [query]);
@@ -159,31 +146,31 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-start justify-center pt-20 sm:pt-28 p-4 bg-black/80 backdrop-blur-md transition-opacity duration-300"
+      className="fixed inset-0 z-50 flex items-start justify-center pt-20 sm:pt-28 p-4 bg-black/80 backdrop-blur-lg transition-opacity duration-300 animate-fadeIn"
       onClick={onClose}
     >
       <div 
-        className="glass border border-white/20 rounded-2xl max-w-xl w-full overflow-hidden shadow-[0_0_60px_rgba(139,92,246,0.25)] text-left cursor-default transition-all duration-300 relative"
+        className="glass-card border border-white/20 rounded-2xl max-w-xl w-full overflow-hidden shadow-[0_20px_60px_rgba(139,92,246,0.3)] text-left cursor-default transition-all duration-300 relative"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Search Bar Input */}
-        <div className="flex items-center px-4 py-3.5 border-b border-white/10 bg-white/5">
-          <span className="font-mono text-primary text-lg mr-3 select-none">{'>_'}</span>
+        {/* Search Input */}
+        <div className="flex items-center px-4 py-4 border-b border-white/10 bg-black/40">
+          <span className="font-mono text-purple-400 text-lg mr-3 select-none">{'>_'}</span>
           <input
             ref={inputRef}
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Type a command or search section... (e.g. Projects, CV)"
-            className="w-full bg-transparent text-white placeholder-gray-500 focus:outline-none font-mono text-sm"
+            placeholder="Type a command or section name... (e.g. Projects, Copy)"
+            className="w-full bg-transparent text-white placeholder-slate-500 focus:outline-none font-mono text-xs sm:text-sm"
           />
-          <kbd className="hidden sm:inline-block font-mono text-[10px] text-gray-400 bg-white/10 px-2 py-0.5 rounded border border-white/10">
+          <kbd className="hidden sm:inline-block font-mono text-[10px] text-slate-400 bg-white/10 px-2 py-0.5 rounded border border-white/10">
             ESC
           </kbd>
         </div>
 
-        {/* Command List Results */}
-        <div className="max-h-80 overflow-y-auto p-2 divide-y divide-white/5">
+        {/* Command Results */}
+        <div className="max-h-80 overflow-y-auto p-2 space-y-1">
           {filteredCommands.length > 0 ? (
             filteredCommands.map((cmd, idx) => {
               const isSelected = idx === selectedIndex;
@@ -194,41 +181,42 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
                   onMouseEnter={() => setSelectedIndex(idx)}
                   className={`flex items-center justify-between px-4 py-3 rounded-xl transition-all cursor-pointer ${
                     isSelected 
-                      ? 'bg-primary/20 border border-primary/40 text-white shadow-[0_0_15px_rgba(139,92,246,0.2)]' 
-                      : 'text-gray-300 hover:bg-white/5 border border-transparent'
+                      ? 'bg-purple-600/30 border border-purple-500/40 text-white shadow-[0_0_15px_rgba(139,92,246,0.25)]' 
+                      : 'text-slate-300 hover:bg-white/5 border border-transparent'
                   }`}
                 >
                   <div className="flex items-center gap-3">
-                    <span className="font-mono text-xs text-gray-500 uppercase">{cmd.category}</span>
-                    <span className="font-sans text-sm font-medium">{cmd.label}</span>
+                    <span className="text-base">{cmd.icon}</span>
+                    <span className="font-sans text-xs sm:text-sm font-medium">{cmd.label}</span>
                   </div>
-                  <span className="font-mono text-[11px] text-primary/80 bg-primary/10 px-2 py-0.5 rounded">
+                  <span className="font-mono text-[10px] text-cyan-300 bg-cyan-500/10 border border-cyan-500/20 px-2 py-0.5 rounded">
                     {cmd.shortcut}
                   </span>
                 </div>
               );
             })
           ) : (
-            <div className="py-8 text-center font-mono text-sm text-gray-500">
+            <div className="py-8 text-center font-mono text-xs text-slate-500">
               No matching commands found for "{query}"
             </div>
           )}
         </div>
 
         {/* Footer info & Toast feedback */}
-        <div className="flex items-center justify-between px-4 py-2.5 bg-black/40 border-t border-white/5 text-[11px] font-mono text-gray-500">
+        <div className="flex items-center justify-between px-4 py-2.5 bg-black/60 border-t border-white/10 text-[11px] font-mono text-slate-500">
           <div className="flex items-center gap-3">
-            <span><kbd className="text-gray-400 bg-white/10 px-1 rounded">↑↓</kbd> navigate</span>
-            <span><kbd className="text-gray-400 bg-white/10 px-1 rounded">↵</kbd> select</span>
+            <span><kbd className="text-slate-300 bg-white/10 px-1 rounded">↑↓</kbd> navigate</span>
+            <span><kbd className="text-slate-300 bg-white/10 px-1 rounded">↵</kbd> select</span>
           </div>
 
           {toastMessage ? (
-            <span className="text-emerald font-semibold animate-pulse">{toastMessage}</span>
+            <span className="text-emerald-400 font-semibold animate-pulse">{toastMessage}</span>
           ) : (
-            <span>Portfolio CLI v1.0</span>
+            <span>Portfolio CLI v2.0</span>
           )}
         </div>
       </div>
     </div>
   );
 }
+
