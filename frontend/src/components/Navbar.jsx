@@ -15,6 +15,7 @@ export default function Navbar({ onOpenCommandPalette }) {
 
   const navLinks = [
     { name: 'About', href: '#about' },
+    { name: 'Architecture', href: '#architecture' },
     { name: 'Projects', href: '#projects' },
     { name: 'Experience', href: '#experience' },
     { name: 'Contact', href: '#contact' },

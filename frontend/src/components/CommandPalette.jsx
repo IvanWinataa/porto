@@ -24,6 +24,14 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
       action: () => scrollToSection('about')
     },
     {
+      id: 'nav-architecture',
+      category: 'Navigation',
+      label: 'Go to System Architecture Flow',
+      shortcut: 'ARCH',
+      icon: '⚙️',
+      action: () => scrollToSection('architecture')
+    },
+    {
       id: 'nav-projects',
       category: 'Navigation',
       label: 'Go to Featured Projects Showcase',
