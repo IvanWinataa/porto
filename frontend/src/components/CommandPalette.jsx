@@ -24,6 +24,14 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
       action: () => scrollToSection('about')
     },
     {
+      id: 'nav-skills',
+      category: 'Navigation',
+      label: 'Go to Competency Radar Chart',
+      shortcut: 'SKILLS',
+      icon: '📊',
+      action: () => scrollToSection('skills')
+    },
+    {
       id: 'nav-architecture',
       category: 'Navigation',
       label: 'Go to System Architecture Flow',

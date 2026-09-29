@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Hero from './sections/Hero';
 import About from './sections/About';
+import SkillRadar from './sections/SkillRadar';
 import Architecture from './sections/Architecture';
 import Projects from './sections/Projects';
 import Experience from './sections/Experience';
@@ -18,6 +19,7 @@ function App() {
       <main>
         <Hero />
         <About />
+        <SkillRadar />
         <Architecture />
         <Projects />
         <Experience />
