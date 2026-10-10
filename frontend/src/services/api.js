@@ -25,7 +25,20 @@ export const sendContactMessage = async (payload) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
   });
-  const data = await response.json();
+
+  let data;
+  try {
+    data = await response.json();
+  } catch {
+    throw new Error(response.ok
+      ? 'The server returned an invalid response. Please try again later.'
+      : 'Unable to send your message right now. Please try again later.');
+  }
+
+  if (!data || typeof data !== 'object') {
+    throw new Error('The server returned an invalid response. Please try again later.');
+  }
+
   if (!response.ok) throw new Error(data.message || 'Failed to send message');
   return data;
 };

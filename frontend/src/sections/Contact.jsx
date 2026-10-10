@@ -14,6 +14,7 @@ export default function Contact() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    if (status.message) setStatus({ success: null, message: '' });
   };
 
   const handleCopyEmail = () => {
@@ -36,13 +37,11 @@ export default function Contact() {
         throw new Error(response.message || 'Something went wrong');
       }
     } catch (error) {
-      // In case backend endpoint is not active, simulate success gracefully for UX test
-      console.warn('Backend API submission error, fallback UX handling:', error.message);
-      setStatus({ 
-        success: true, 
-        message: 'Thank you! Your message has been recorded into the transmission queue.' 
-      });
-      setFormData({ name: '', email: '', message: '' });
+      console.error('Contact message submission failed:', error);
+      const message = error instanceof TypeError
+        ? 'Unable to reach the server. Your message is still here—please try again later.'
+        : error.message || 'We could not send your message. Please try again.';
+      setStatus({ success: false, message });
     } finally {
       setLoading(false);
     }
@@ -161,6 +160,7 @@ export default function Contact() {
                       id="name"
                       name="name"
                       required
+                      maxLength={100}
                       value={formData.name}
                       onChange={handleChange}
                       className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-purple-500/60 focus:shadow-[0_0_20px_rgba(139,92,246,0.25)] transition-all text-sm font-sans"
@@ -177,6 +177,7 @@ export default function Contact() {
                       id="email"
                       name="email"
                       required
+                      maxLength={254}
                       value={formData.email}
                       onChange={handleChange}
                       className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-purple-500/60 focus:shadow-[0_0_20px_rgba(139,92,246,0.25)] transition-all text-sm font-sans"
@@ -199,6 +200,7 @@ export default function Contact() {
                     name="message"
                     required
                     rows="5"
+                    maxLength={5000}
                     value={formData.message}
                     onChange={handleChange}
                     className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-purple-500/60 focus:shadow-[0_0_20px_rgba(139,92,246,0.25)] transition-all text-sm resize-none font-sans"
@@ -207,7 +209,10 @@ export default function Contact() {
                 </div>
 
                 {status.message && (
-                  <div className={`p-4 rounded-xl border text-xs font-mono animate-fadeIn ${
+                  <div
+                    role={status.success ? 'status' : 'alert'}
+                    aria-live={status.success ? 'polite' : 'assertive'}
+                    className={`p-4 rounded-xl border text-xs font-mono animate-fadeIn ${
                     status.success 
                       ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300' 
                       : 'bg-red-500/10 border-red-500/30 text-red-400'

@@ -6,11 +6,17 @@ const db = require('../config/db');
  */
 const createMessage = async (req, res) => {
   try {
-    const { name, email, message } = req.body;
+    const body = req.body && typeof req.body === 'object' ? req.body : {};
+    const name = typeof body.name === 'string' ? body.name.trim() : '';
+    const email = typeof body.email === 'string' ? body.email.trim().toLowerCase() : '';
+    const message = typeof body.message === 'string' ? body.message.trim() : '';
 
-    // Basic validation
     if (!name || !email || !message) {
       return res.status(400).json({ success: false, message: 'All fields (name, email, message) are required.' });
+    }
+
+    if (name.length > 100 || email.length > 254 || message.length > 5000) {
+      return res.status(400).json({ success: false, message: 'Name, email, or message exceeds the allowed length.' });
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -20,7 +26,7 @@ const createMessage = async (req, res) => {
 
     const result = await db.query(
       'INSERT INTO messages (name, email, message) VALUES ($1, $2, $3) RETURNING id, created_at',
-      [name.trim(), email.trim().toLowerCase(), message.trim()]
+      [name, email, message]
     );
 
     res.status(201).json({
