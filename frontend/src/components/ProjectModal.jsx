@@ -1,20 +1,64 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import NeonButton from './NeonButton';
 
 export default function ProjectModal({ project, onClose }) {
+  const dialogRef = useRef(null);
+  const closeButtonRef = useRef(null);
+  const onCloseRef = useRef(onClose);
+
   useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
+
+  useEffect(() => {
+    const previouslyFocused = document.activeElement;
+    const previousOverflow = document.body.style.overflow;
+    const focusFrame = window.requestAnimationFrame(() => closeButtonRef.current?.focus());
+
+    document.body.style.overflow = 'hidden';
+
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') {
+        onCloseRef.current();
+        return;
+      }
+
+      if (e.key !== 'Tab') return;
+
+      const focusableElements = [...(dialogRef.current?.querySelectorAll(
+        'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      ) || [])].filter((element) => element.getClientRects().length > 0);
+
+      if (focusableElements.length === 0) {
+        e.preventDefault();
+        dialogRef.current?.focus();
+        return;
+      }
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+      const focusIsOutsideDialog = !dialogRef.current?.contains(document.activeElement);
+
+      if (e.shiftKey && (document.activeElement === firstElement || focusIsOutsideDialog)) {
+        e.preventDefault();
+        lastElement.focus();
+      } else if (!e.shiftKey && (document.activeElement === lastElement || focusIsOutsideDialog)) {
+        e.preventDefault();
+        firstElement.focus();
+      }
     };
 
     document.addEventListener('keydown', handleKeyDown);
-    document.body.style.overflow = 'hidden';
 
     return () => {
+      window.cancelAnimationFrame(focusFrame);
       document.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = previousOverflow;
+      if (previouslyFocused instanceof HTMLElement && previouslyFocused.isConnected) {
+        previouslyFocused.focus();
+      }
     };
-  }, [onClose]);
+  }, []);
 
   if (!project) return null;
 
@@ -25,12 +69,19 @@ export default function ProjectModal({ project, onClose }) {
     >
       <div 
         className="glass-card border border-white/20 rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 relative shadow-[0_20px_60px_rgba(139,92,246,0.3)] text-left cursor-default transition-all duration-300"
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="project-dialog-title"
+        aria-describedby="project-dialog-description"
+        tabIndex={-1}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button 
+          ref={closeButtonRef}
           onClick={onClose}
-          className="absolute top-6 right-6 text-slate-400 hover:text-white bg-white/10 hover:bg-white/20 rounded-full p-2.5 transition-colors cursor-pointer border border-white/10"
+          className="absolute top-6 right-6 text-slate-400 hover:text-white bg-white/10 hover:bg-white/20 rounded-full p-2.5 transition-colors cursor-pointer border border-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
           aria-label="Close modal"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -43,7 +94,7 @@ export default function ProjectModal({ project, onClose }) {
           <span className="font-mono text-xs text-cyan-300 bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 rounded-full uppercase tracking-wider">
             {project.category}
           </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold mt-3 text-white">
+          <h2 id="project-dialog-title" className="text-2xl sm:text-3xl font-extrabold mt-3 text-white">
             {project.title}
           </h2>
         </div>
@@ -65,7 +116,7 @@ export default function ProjectModal({ project, onClose }) {
         <div className="space-y-6 mb-8">
           <div>
             <h3 className="text-xs font-mono uppercase tracking-widest text-slate-400 mb-2">// System Overview</h3>
-            <p className="text-slate-300 leading-relaxed text-sm sm:text-base">
+            <p id="project-dialog-description" className="text-slate-300 leading-relaxed text-sm sm:text-base">
               {project.long_description || project.description}
             </p>
           </div>

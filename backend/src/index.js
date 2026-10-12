@@ -8,6 +8,14 @@ const contactRoutes = require('./routes/contactRoutes');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+if (process.env.TRUST_PROXY_HOPS) {
+  const trustProxyHops = Number(process.env.TRUST_PROXY_HOPS);
+  if (!Number.isInteger(trustProxyHops) || trustProxyHops < 1) {
+    throw new Error('TRUST_PROXY_HOPS must be a positive integer.');
+  }
+  app.set('trust proxy', trustProxyHops);
+}
+
 // ---- Middleware ----
 const allowedOrigins = [
   process.env.FRONTEND_URL,

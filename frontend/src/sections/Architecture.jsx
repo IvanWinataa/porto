@@ -185,9 +185,11 @@ return result.rows;`
                     <div key={node.id} className="relative">
                       
                       {/* Interactive Card Node */}
-                      <div
+                      <button
+                        type="button"
                         onClick={() => setSelectedNodeId(node.id)}
-                        className={`p-4 rounded-xl border transition-all duration-300 cursor-pointer flex items-center justify-between gap-4 ${
+                        aria-pressed={isSelected}
+                        className={`w-full text-left p-4 rounded-xl border transition-all duration-300 cursor-pointer flex items-center justify-between gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#05070F] ${
                           isSelected 
                             ? 'bg-purple-600/20 border-purple-400 shadow-[0_0_25px_rgba(139,92,246,0.3)] scale-[1.02]' 
                             : 'bg-white/5 border-white/10 hover:border-white/30 hover:bg-white/10'
@@ -212,7 +214,7 @@ return result.rows;`
                           <div className="text-slate-300 font-medium">{node.latency}</div>
                           <div className="text-[10px] text-slate-500">{node.protocol}</div>
                         </div>
-                      </div>
+                      </button>
 
                       {/* Animated Flow Connector Arrow */}
                       {index < nodes.length - 1 && (

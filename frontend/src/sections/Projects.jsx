@@ -122,6 +122,7 @@ export default function Projects() {
             <button
               key={cat}
               onClick={() => handleCategoryChange(cat)}
+              aria-pressed={activeCategory === cat}
               className={`px-4 py-2 rounded-xl text-xs font-mono transition-all duration-300 border cursor-pointer ${
                 activeCategory === cat
                   ? 'bg-purple-600/30 text-white border-purple-500/50 shadow-[0_0_20px_rgba(139,92,246,0.3)] font-semibold'
@@ -147,8 +148,7 @@ export default function Projects() {
             {filteredProjects.map((project) => (
               <GlassCard 
                 key={project.id} 
-                onClick={() => setSelectedProject(project)}
-                className="group flex flex-col justify-between hover:border-purple-500/40 transition-all duration-300 cursor-pointer relative"
+                className="group flex flex-col justify-between hover:border-purple-500/40 transition-all duration-300 relative"
               >
                 <div>
                   {/* Banner mockup container */}
@@ -167,16 +167,6 @@ export default function Projects() {
                       </h4>
                     </div>
 
-                    {/* Inspect hover banner */}
-                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-xs">
-                      <span className="font-mono text-xs text-white bg-purple-600/40 border border-purple-400/50 px-4 py-2 rounded-full flex items-center gap-2 shadow-lg">
-                        <svg className="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                        </svg>
-                        Inspect System Architecture
-                      </span>
-                    </div>
                   </div>
 
                   <p className="text-slate-300 text-sm leading-relaxed mb-6 line-clamp-2">
@@ -195,36 +185,50 @@ export default function Projects() {
                   </div>
 
                   {/* Links */}
-                  <div className="flex items-center justify-between pt-4 border-t border-white/10" onClick={(e) => e.stopPropagation()}>
-                    {project.github_url ? (
-                      <a 
-                        href={project.github_url} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="text-slate-400 hover:text-white transition-colors flex items-center gap-1.5 text-xs font-mono"
-                      >
-                        <span>GitHub Repo</span>
-                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                        </svg>
-                      </a>
-                    ) : <div />}
+                  <div className="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-white/10">
+                    <button
+                      type="button"
+                      onClick={() => setSelectedProject(project)}
+                      aria-haspopup="dialog"
+                      className="text-purple-300 hover:text-white transition-colors flex items-center gap-1.5 text-xs font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded"
+                    >
+                      <span>View Details</span>
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
 
-                    {project.live_url ? (
-                      <a 
-                        href={project.live_url} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="text-purple-400 hover:text-purple-300 transition-colors flex items-center gap-1.5 text-xs font-mono font-semibold"
-                      >
-                        <span>Live Preview</span>
-                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
-                      </a>
-                    ) : (
-                      <span className="text-slate-500 text-xs font-mono">Service internal</span>
-                    )}
+                    <div className="flex flex-wrap items-center gap-4">
+                      {project.github_url && (
+                        <a 
+                          href={project.github_url} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="text-slate-400 hover:text-white transition-colors flex items-center gap-1.5 text-xs font-mono"
+                        >
+                          <span>GitHub Repo</span>
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                          </svg>
+                        </a>
+                      )}
+
+                      {project.live_url ? (
+                        <a 
+                          href={project.live_url} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="text-purple-400 hover:text-purple-300 transition-colors flex items-center gap-1.5 text-xs font-mono font-semibold"
+                        >
+                          <span>Live Preview</span>
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </a>
+                      ) : (
+                        <span className="text-slate-500 text-xs font-mono">Service internal</span>
+                      )}
+                    </div>
                   </div>
                 </div>
               </GlassCard>

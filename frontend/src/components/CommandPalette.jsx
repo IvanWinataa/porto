@@ -5,6 +5,8 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [toastMessage, setToastMessage] = useState('');
   const inputRef = useRef(null);
+  const dialogRef = useRef(null);
+  const previousFocusRef = useRef(null);
 
   const commands = [
     {
@@ -127,12 +129,49 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
   useEffect(() => {
     if (!isOpen) return;
 
-    setTimeout(() => inputRef.current?.focus(), 50);
+    previousFocusRef.current = document.activeElement;
+    const previousOverflow = document.body.style.overflow;
+    const focusTimer = window.setTimeout(() => inputRef.current?.focus(), 0);
     document.body.style.overflow = 'hidden';
+
+    return () => {
+      window.clearTimeout(focusTimer);
+      document.body.style.overflow = previousOverflow;
+      const previousFocus = previousFocusRef.current;
+      if (previousFocus instanceof HTMLElement && previousFocus.isConnected) {
+        previousFocus.focus();
+      }
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (!isOpen) return;
 
     const handleModalKey = (e) => {
       if (e.key === 'Escape') {
         onClose();
+      } else if (e.key === 'Tab') {
+        const focusableElements = [...(dialogRef.current?.querySelectorAll(
+          'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        ) || [])].filter((element) => element.getClientRects().length > 0);
+
+        if (focusableElements.length === 0) {
+          e.preventDefault();
+          dialogRef.current?.focus();
+          return;
+        }
+
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+        const focusIsOutsideDialog = !dialogRef.current?.contains(document.activeElement);
+
+        if (e.shiftKey && (document.activeElement === firstElement || focusIsOutsideDialog)) {
+          e.preventDefault();
+          lastElement.focus();
+        } else if (!e.shiftKey && (document.activeElement === lastElement || focusIsOutsideDialog)) {
+          e.preventDefault();
+          firstElement.focus();
+        }
       } else if (e.key === 'ArrowDown') {
         e.preventDefault();
         setSelectedIndex((prev) => (prev + 1) % (filteredCommands.length || 1));
@@ -148,10 +187,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
     };
 
     window.addEventListener('keydown', handleModalKey);
-    return () => {
-      window.removeEventListener('keydown', handleModalKey);
-      document.body.style.overflow = 'unset';
-    };
+    return () => window.removeEventListener('keydown', handleModalKey);
   }, [isOpen, selectedIndex, filteredCommands, onClose]);
 
   useEffect(() => {
@@ -167,6 +203,12 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
     >
       <div 
         className="glass-card border border-white/20 rounded-2xl max-w-xl w-full overflow-hidden shadow-[0_20px_60px_rgba(139,92,246,0.3)] text-left cursor-default transition-all duration-300 relative"
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Command palette"
+        aria-describedby="command-palette-help"
+        tabIndex={-1}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search Input */}
@@ -177,8 +219,14 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
+            role="combobox"
+            aria-label="Search commands"
+            aria-autocomplete="list"
+            aria-expanded="true"
+            aria-controls="command-palette-results"
+            aria-activedescendant={filteredCommands[selectedIndex] ? `command-option-${filteredCommands[selectedIndex].id}` : undefined}
             placeholder="Type a command or section name... (e.g. Projects, Copy)"
-            className="w-full bg-transparent text-white placeholder-slate-500 focus:outline-none font-mono text-xs sm:text-sm"
+            className="w-full bg-transparent text-white placeholder-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded font-mono text-xs sm:text-sm"
           />
           <kbd className="hidden sm:inline-block font-mono text-[10px] text-slate-400 bg-white/10 px-2 py-0.5 rounded border border-white/10">
             ESC
@@ -186,13 +234,16 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
         </div>
 
         {/* Command Results */}
-        <div className="max-h-80 overflow-y-auto p-2 space-y-1">
+        <div id="command-palette-results" role="listbox" aria-label="Commands" className="max-h-80 overflow-y-auto p-2 space-y-1">
           {filteredCommands.length > 0 ? (
             filteredCommands.map((cmd, idx) => {
               const isSelected = idx === selectedIndex;
               return (
                 <div
                   key={cmd.id}
+                  id={`command-option-${cmd.id}`}
+                  role="option"
+                  aria-selected={isSelected}
                   onClick={() => cmd.action()}
                   onMouseEnter={() => setSelectedIndex(idx)}
                   className={`flex items-center justify-between px-4 py-3 rounded-xl transition-all cursor-pointer ${
@@ -202,24 +253,24 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
                   }`}
                 >
                   <div className="flex items-center gap-3">
-                    <span className="text-base">{cmd.icon}</span>
+                    <span aria-hidden="true" className="text-base">{cmd.icon}</span>
                     <span className="font-sans text-xs sm:text-sm font-medium">{cmd.label}</span>
                   </div>
-                  <span className="font-mono text-[10px] text-cyan-300 bg-cyan-500/10 border border-cyan-500/20 px-2 py-0.5 rounded">
+                  <span aria-hidden="true" className="font-mono text-[10px] text-cyan-300 bg-cyan-500/10 border border-cyan-500/20 px-2 py-0.5 rounded">
                     {cmd.shortcut}
                   </span>
                 </div>
               );
             })
           ) : (
-            <div className="py-8 text-center font-mono text-xs text-slate-500">
+            <div role="status" className="py-8 text-center font-mono text-xs text-slate-500">
               No matching commands found for "{query}"
             </div>
           )}
         </div>
 
         {/* Footer info & Toast feedback */}
-        <div className="flex items-center justify-between px-4 py-2.5 bg-black/60 border-t border-white/10 text-[11px] font-mono text-slate-500">
+        <div id="command-palette-help" className="flex items-center justify-between px-4 py-2.5 bg-black/60 border-t border-white/10 text-[11px] font-mono text-slate-500">
           <div className="flex items-center gap-3">
             <span><kbd className="text-slate-300 bg-white/10 px-1 rounded">↑↓</kbd> navigate</span>
             <span><kbd className="text-slate-300 bg-white/10 px-1 rounded">↵</kbd> select</span>
