@@ -190,6 +190,7 @@ export default function Projects() {
                       type="button"
                       onClick={() => setSelectedProject(project)}
                       aria-haspopup="dialog"
+                      aria-label={`View details for ${project.title}`}
                       className="text-purple-300 hover:text-white transition-colors flex items-center gap-1.5 text-xs font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded"
                     >
                       <span>View Details</span>

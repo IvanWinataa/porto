@@ -172,6 +172,8 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
           e.preventDefault();
           firstElement.focus();
         }
+      } else if (document.activeElement !== inputRef.current) {
+        return;
       } else if (e.key === 'ArrowDown') {
         e.preventDefault();
         setSelectedIndex((prev) => (prev + 1) % (filteredCommands.length || 1));
@@ -231,6 +233,16 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
           <kbd className="hidden sm:inline-block font-mono text-[10px] text-slate-400 bg-white/10 px-2 py-0.5 rounded border border-white/10">
             ESC
           </kbd>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close command palette"
+            className="ml-2 p-1 rounded text-slate-400 hover:text-white hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+          >
+            <svg aria-hidden="true" className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
         </div>
 
         {/* Command Results */}
@@ -277,7 +289,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
           </div>
 
           {toastMessage ? (
-            <span className="text-emerald-400 font-semibold animate-pulse">{toastMessage}</span>
+            <span role="status" aria-live="polite" className="text-emerald-400 font-semibold animate-pulse">{toastMessage}</span>
           ) : (
             <span>Portfolio CLI v2.0</span>
           )}

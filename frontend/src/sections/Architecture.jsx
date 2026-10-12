@@ -189,31 +189,32 @@ return result.rows;`
                         type="button"
                         onClick={() => setSelectedNodeId(node.id)}
                         aria-pressed={isSelected}
+                        aria-label={`Select ${node.title} details`}
                         className={`w-full text-left p-4 rounded-xl border transition-all duration-300 cursor-pointer flex items-center justify-between gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#05070F] ${
                           isSelected 
                             ? 'bg-purple-600/20 border-purple-400 shadow-[0_0_25px_rgba(139,92,246,0.3)] scale-[1.02]' 
                             : 'bg-white/5 border-white/10 hover:border-white/30 hover:bg-white/10'
                         } ${isStepActive ? 'ring-2 ring-amber-400 shadow-[0_0_30px_rgba(245,158,11,0.5)]' : ''}`}
                       >
-                        <div className="flex items-center gap-3.5">
-                          <div className="w-10 h-10 rounded-lg bg-black/40 border border-white/10 flex items-center justify-center text-xl shrink-0">
+                        <span className="flex items-center gap-3.5">
+                          <span aria-hidden="true" className="w-10 h-10 rounded-lg bg-black/40 border border-white/10 flex items-center justify-center text-xl shrink-0">
                             {node.icon}
-                          </div>
-                          <div>
-                            <div className="flex items-center gap-2">
-                              <h4 className="font-bold text-white text-sm sm:text-base">{node.title}</h4>
+                          </span>
+                          <span>
+                            <span className="flex items-center gap-2">
+                              <span className="font-bold text-white text-sm sm:text-base">{node.title}</span>
                               <span className="font-mono text-[10px] text-cyan-300 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20">
                                 {node.badge}
                               </span>
-                            </div>
-                            <p className="text-xs text-slate-400 font-mono mt-0.5">{node.subtitle}</p>
-                          </div>
-                        </div>
+                            </span>
+                            <span className="block text-xs text-slate-400 font-mono mt-0.5">{node.subtitle}</span>
+                          </span>
+                        </span>
 
-                        <div className="text-right font-mono text-xs hidden sm:block shrink-0">
-                          <div className="text-slate-300 font-medium">{node.latency}</div>
-                          <div className="text-[10px] text-slate-500">{node.protocol}</div>
-                        </div>
+                        <span className="text-right font-mono text-xs hidden sm:block shrink-0">
+                          <span className="block text-slate-300 font-medium">{node.latency}</span>
+                          <span className="block text-[10px] text-slate-500">{node.protocol}</span>
+                        </span>
                       </button>
 
                       {/* Animated Flow Connector Arrow */}
