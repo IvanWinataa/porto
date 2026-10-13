@@ -70,6 +70,32 @@ function includesAny(text, keywords) {
   return keywords.some((keyword) => text.includes(normalize(keyword)));
 }
 
+function getAnswerAction(question) {
+  const query = normalize(question);
+
+  if (/^(hai|halo|hello|hi|assalamualaikum|pagi|siang|sore|malam)\b/.test(query)) {
+    return null;
+  }
+
+  if (includesAny(query, experienceKeywords)) {
+    return { href: '#experience', label: 'Lihat pengalaman kerja' };
+  }
+
+  if (includesAny(query, projectKeywords) && !includesAny(query, skillTopics.flatMap((topic) => topic.keywords))) {
+    return { href: '#projects', label: 'Lihat proyek' };
+  }
+
+  if (skillTopics.some((topic) => includesAny(query, topic.keywords)) || includesAny(query, allSkillKeywords)) {
+    return { href: '#skills', label: 'Lihat bagian Skills' };
+  }
+
+  if (includesAny(query, ['kontak', 'contact', 'email', 'hubungi', 'menghubungi'])) {
+    return { href: '#contact', label: 'Buka bagian Contact' };
+  }
+
+  return null;
+}
+
 function answerQuestion(question) {
   const query = normalize(question);
 
@@ -201,11 +227,12 @@ export default function SkillChatbot() {
   const submitQuestion = (question = input) => {
     const trimmedQuestion = question.trim();
     if (!trimmedQuestion) return;
+    const answer = answerQuestion(trimmedQuestion);
 
     setMessages((currentMessages) => [
       ...currentMessages,
       { id: `user-${Date.now()}`, role: 'user', text: trimmedQuestion },
-      { id: `assistant-${Date.now()}`, role: 'assistant', text: answerQuestion(trimmedQuestion) }
+      { id: `assistant-${Date.now()}`, role: 'assistant', text: answer, action: getAnswerAction(trimmedQuestion) }
     ]);
     setInput('');
   };
@@ -250,13 +277,26 @@ export default function SkillChatbot() {
           <div className="flex-1 space-y-3 overflow-y-auto p-3" aria-live="polite" aria-relevant="additions text">
             {messages.map((message) => (
               <div key={message.id} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <p className={`max-w-[90%] whitespace-pre-wrap rounded-2xl px-3 py-2.5 text-xs leading-relaxed ${
-                  message.role === 'user'
-                    ? 'rounded-br-md bg-purple-600/50 text-white'
-                    : 'rounded-bl-md border border-white/10 bg-white/5 text-slate-200'
-                }`}>
-                  {message.text}
-                </p>
+                <div className={`flex max-w-[90%] flex-col gap-2 ${message.role === 'user' ? 'items-end' : 'items-start'}`}>
+                  <p className={`whitespace-pre-wrap rounded-2xl px-3 py-2.5 text-xs leading-relaxed ${
+                    message.role === 'user'
+                      ? 'rounded-br-md bg-purple-600/50 text-white'
+                      : 'rounded-bl-md border border-white/10 bg-white/5 text-slate-200'
+                  }`}>
+                    {message.text}
+                  </p>
+                  {message.action && (
+                    <a
+                      href={message.action.href}
+                      className="inline-flex items-center gap-1 rounded-lg border border-cyan-400/20 bg-cyan-400/5 px-2.5 py-1.5 text-[11px] font-medium text-cyan-200 transition-colors hover:border-cyan-300/40 hover:bg-cyan-400/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+                    >
+                      {message.action.label}
+                      <svg aria-hidden="true" className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h14m-7-7 7 7-7 7" />
+                      </svg>
+                    </a>
+                  )}
+                </div>
               </div>
             ))}
 
