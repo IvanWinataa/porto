@@ -9,6 +9,7 @@ import Projects from './sections/Projects';
 import Experience from './sections/Experience';
 import Contact from './sections/Contact';
 import CommandPalette from './components/CommandPalette';
+import SkillChatbot from './components/SkillChatbot';
 
 function App() {
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
@@ -32,6 +33,7 @@ function App() {
         onClose={() => setIsCommandPaletteOpen(false)} 
         onOpen={() => setIsCommandPaletteOpen(true)} 
       />
+      <SkillChatbot />
     </div>
   )
 }
