@@ -52,11 +52,33 @@ const MOCK_PROJECTS = [
 
 export default function Projects() {
   const [projects, setProjects] = useState([]);
-  const [filteredProjects, setFilteredProjects] = useState([]);
   const [activeCategory, setActiveCategory] = useState('All');
+  const [activeTechnology, setActiveTechnology] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
   const [categories, setCategories] = useState(['All']);
   const [loading, setLoading] = useState(true);
   const [selectedProject, setSelectedProject] = useState(null);
+
+  const technologies = [...new Set(projects.flatMap((project) => project.tech_stack || []))]
+    .sort((first, second) => first.localeCompare(second));
+
+  const searchTerms = searchQuery.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
+  const filteredProjects = projects.filter((project) => {
+    const projectTechnologies = project.tech_stack || [];
+    const searchableText = [
+      project.title,
+      project.category,
+      project.description,
+      project.long_description,
+      ...projectTechnologies
+    ].filter(Boolean).join(' ').toLocaleLowerCase();
+
+    const matchesSearch = searchTerms.every((term) => searchableText.includes(term));
+    const matchesCategory = activeCategory === 'All' || project.category === activeCategory;
+    const matchesTechnology = activeTechnology === 'All' || projectTechnologies.includes(activeTechnology);
+
+    return matchesSearch && matchesCategory && matchesTechnology;
+  });
 
   useEffect(() => {
     async function loadProjects() {
@@ -65,19 +87,16 @@ export default function Projects() {
         const response = await fetchProjects();
         if (response.success && response.data && response.data.length > 0) {
           setProjects(response.data);
-          setFilteredProjects(response.data);
           const cats = ['All', ...new Set(response.data.map(p => p.category))];
           setCategories(cats);
         } else {
           // Use mock project data fallback
           setProjects(MOCK_PROJECTS);
-          setFilteredProjects(MOCK_PROJECTS);
           setCategories(['All', 'Fullstack', 'Backend', 'Frontend']);
         }
       } catch (err) {
         console.warn('API fetch failed, falling back to curated mock project data:', err.message);
         setProjects(MOCK_PROJECTS);
-        setFilteredProjects(MOCK_PROJECTS);
         setCategories(['All', 'Fullstack', 'Backend', 'Frontend']);
       } finally {
         setLoading(false);
@@ -85,15 +104,6 @@ export default function Projects() {
     }
     loadProjects();
   }, []);
-
-  const handleCategoryChange = (category) => {
-    setActiveCategory(category);
-    if (category === 'All') {
-      setFilteredProjects(projects);
-    } else {
-      setFilteredProjects(projects.filter(p => p.category === category));
-    }
-  };
 
   return (
     <section id="projects" className="py-28 relative overflow-hidden bg-grid-pattern">
@@ -116,12 +126,52 @@ export default function Projects() {
           </p>
         </div>
 
+        {/* Search and technology filter */}
+        <div className="grid gap-4 sm:grid-cols-[minmax(0,1fr)_16rem] mb-6">
+          <div>
+            <label htmlFor="project-search" className="mb-2 block font-mono text-[11px] uppercase tracking-wider text-slate-400">
+              Search projects
+            </label>
+            <div className="relative">
+              <svg aria-hidden="true" className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="7" strokeWidth="2" />
+                <path strokeLinecap="round" strokeWidth="2" d="m16 16 4 4" />
+              </svg>
+              <input
+                id="project-search"
+                type="search"
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
+                placeholder="Name, description, or technology..."
+                className="w-full rounded-xl border border-white/10 bg-black/30 py-3 pl-10 pr-4 text-sm text-white placeholder:text-slate-500 focus:border-cyan-400/50 focus:outline-none focus:ring-2 focus:ring-cyan-400/20"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label htmlFor="project-technology-filter" className="mb-2 block font-mono text-[11px] uppercase tracking-wider text-slate-400">
+              Filter by technology
+            </label>
+            <select
+              id="project-technology-filter"
+              value={activeTechnology}
+              onChange={(event) => setActiveTechnology(event.target.value)}
+              className="w-full rounded-xl border border-white/10 bg-[#0D111D] px-3 py-3 text-sm text-slate-200 focus:border-cyan-400/50 focus:outline-none focus:ring-2 focus:ring-cyan-400/20"
+            >
+              <option value="All">All technologies</option>
+              {technologies.map((technology) => (
+                <option key={technology} value={technology}>{technology}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+
         {/* Categories */}
-        <div className="flex flex-wrap gap-2 mb-10">
+        <div className="mb-4 flex flex-wrap gap-2">
           {categories.map((cat) => (
             <button
               key={cat}
-              onClick={() => handleCategoryChange(cat)}
+              onClick={() => setActiveCategory(cat)}
               aria-pressed={activeCategory === cat}
               className={`px-4 py-2 rounded-xl text-xs font-mono transition-all duration-300 border cursor-pointer ${
                 activeCategory === cat
@@ -134,6 +184,12 @@ export default function Projects() {
           ))}
         </div>
 
+        {!loading && (
+          <p className="mb-6 font-mono text-[11px] text-slate-500" aria-live="polite">
+            Showing {filteredProjects.length} of {projects.length} projects
+          </p>
+        )}
+
         {/* Loading Spinner */}
         {loading && (
           <div className="flex flex-col items-center justify-center py-20">
@@ -143,7 +199,7 @@ export default function Projects() {
         )}
 
         {/* Projects Grid */}
-        {!loading && (
+        {!loading && filteredProjects.length > 0 && (
           <div className="grid md:grid-cols-2 gap-8">
             {filteredProjects.map((project) => (
               <GlassCard 
@@ -234,6 +290,24 @@ export default function Projects() {
                 </div>
               </GlassCard>
             ))}
+          </div>
+        )}
+
+        {!loading && filteredProjects.length === 0 && (
+          <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-12 text-center">
+            <p className="text-sm font-semibold text-white">No matching projects found</p>
+            <p className="mt-2 text-xs text-slate-400">Try another search term or clear the selected filters.</p>
+            <button
+              type="button"
+              onClick={() => {
+                setSearchQuery('');
+                setActiveTechnology('All');
+                setActiveCategory('All');
+              }}
+              className="mt-5 rounded-lg border border-purple-400/30 bg-purple-500/10 px-4 py-2 text-xs font-medium text-purple-200 transition-colors hover:bg-purple-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+            >
+              Clear filters
+            </button>
           </div>
         )}
 
