@@ -104,6 +104,8 @@ function answerQuestion(question) {
 export default function SkillChatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
+  const [launcherOffset, setLauncherOffset] = useState({ x: 0, y: 0 });
+  const [panelOffset, setPanelOffset] = useState({ x: 0, y: 0 });
   const [messages, setMessages] = useState([
     {
       id: 'welcome',
@@ -114,6 +116,61 @@ export default function SkillChatbot() {
   const inputRef = useRef(null);
   const launcherRef = useRef(null);
   const endOfMessagesRef = useRef(null);
+  const dragRef = useRef(null);
+  const suppressLauncherClickRef = useRef(false);
+
+  const startDrag = (target, event) => {
+    if (event.button !== 0) return;
+    if (target === 'panel' && event.target.closest('button, a, input, textarea')) return;
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    const offset = target === 'launcher' ? launcherOffset : panelOffset;
+    dragRef.current = {
+      target,
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+      offset,
+      rect,
+      hasMoved: false
+    };
+    event.currentTarget.setPointerCapture?.(event.pointerId);
+  };
+
+  const moveDrag = (event) => {
+    const drag = dragRef.current;
+    if (!drag || drag.pointerId !== event.pointerId) return;
+
+    const deltaX = event.clientX - drag.startX;
+    const deltaY = event.clientY - drag.startY;
+    if (!drag.hasMoved && Math.hypot(deltaX, deltaY) < 5) return;
+
+    drag.hasMoved = true;
+    const minDeltaX = 8 - drag.rect.left;
+    const maxDeltaX = window.innerWidth - 8 - drag.rect.right;
+    const minDeltaY = 8 - drag.rect.top;
+    const maxDeltaY = window.innerHeight - 8 - drag.rect.bottom;
+    const nextOffset = {
+      x: drag.offset.x + Math.min(maxDeltaX, Math.max(minDeltaX, deltaX)),
+      y: drag.offset.y + Math.min(maxDeltaY, Math.max(minDeltaY, deltaY))
+    };
+
+    if (drag.target === 'launcher') {
+      setLauncherOffset(nextOffset);
+    } else {
+      setPanelOffset(nextOffset);
+    }
+  };
+
+  const endDrag = (event) => {
+    const drag = dragRef.current;
+    if (!drag || drag.pointerId !== event.pointerId) return;
+
+    if (drag.target === 'launcher' && drag.hasMoved) {
+      suppressLauncherClickRef.current = true;
+    }
+    dragRef.current = null;
+  };
 
   const closeChat = useCallback(() => {
     setIsOpen(false);
@@ -154,19 +211,29 @@ export default function SkillChatbot() {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex flex-col items-end gap-3">
+    <div
+      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex flex-col items-end gap-3"
+      onPointerMove={moveDrag}
+      onPointerUp={endDrag}
+      onPointerCancel={endDrag}
+    >
       {isOpen && (
         <section
           id="skill-chatbot-panel"
           role="dialog"
           aria-modal="false"
           aria-labelledby="skill-chatbot-title"
+          style={{ transform: `translate3d(${panelOffset.x}px, ${panelOffset.y}px, 0)` }}
           className="glass-card flex h-[min(34rem,calc(100dvh-7rem))] w-[min(23rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-white/15 shadow-[0_20px_60px_rgba(0,0,0,0.55)]"
         >
-          <header className="flex items-center justify-between border-b border-white/10 bg-black/30 px-4 py-3">
+          <header
+            onPointerDown={(event) => startDrag('panel', event)}
+            title="Seret header untuk memindahkan chat"
+            className="flex cursor-grab touch-none select-none items-center justify-between border-b border-white/10 bg-black/30 px-4 py-3 active:cursor-grabbing"
+          >
             <div>
               <h2 id="skill-chatbot-title" className="text-sm font-bold text-white">Asisten Portofolio</h2>
-              <p className="mt-0.5 text-[11px] text-slate-400">Jawaban berdasarkan konten situs</p>
+              <p className="mt-0.5 text-[11px] text-slate-400">Seret header untuk memindahkan</p>
             </div>
             <button
               type="button"
@@ -250,8 +317,17 @@ export default function SkillChatbot() {
         type="button"
         aria-expanded={isOpen}
         aria-controls={isOpen ? 'skill-chatbot-panel' : undefined}
-        onClick={() => setIsOpen((open) => !open)}
-        className="group flex h-14 items-center gap-2 rounded-full border border-purple-300/30 bg-purple-600 px-4 text-sm font-semibold text-white shadow-[0_8px_30px_rgba(139,92,246,0.4)] transition hover:-translate-y-0.5 hover:bg-purple-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#05070F]"
+        onPointerDown={(event) => startDrag('launcher', event)}
+        onClick={(event) => {
+          if (suppressLauncherClickRef.current) {
+            suppressLauncherClickRef.current = false;
+            event.preventDefault();
+            return;
+          }
+          setIsOpen((open) => !open);
+        }}
+        style={{ transform: `translate3d(${launcherOffset.x}px, ${launcherOffset.y}px, 0)` }}
+        className="group flex h-14 touch-none cursor-grab items-center gap-2 rounded-full border border-purple-300/30 bg-purple-600 px-4 text-sm font-semibold text-white shadow-[0_8px_30px_rgba(139,92,246,0.4)] transition-colors hover:bg-purple-500 active:cursor-grabbing focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#05070F]"
       >
         <svg aria-hidden="true" className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M8 10h8M8 14h5m-7 6 1.7-3.4A8 8 0 1 1 20 12a8 8 0 0 1-8 8H6Z" />
