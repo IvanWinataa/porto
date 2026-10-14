@@ -2,8 +2,10 @@ import { useState } from 'react';
 import GlassCard from '../components/GlassCard';
 import NeonButton from '../components/NeonButton';
 import { sendContactMessage } from '../services/api';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Contact() {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState({ success: null, message: '' });
@@ -31,16 +33,16 @@ export default function Contact() {
     try {
       const response = await sendContactMessage(formData);
       if (response.success) {
-        setStatus({ success: true, message: response.message || 'Message transmitted successfully! I will reply shortly.' });
+        setStatus({ success: true, message: response.message || t('Message sent successfully! I will reply shortly.', 'Pesan berhasil dikirim! Saya akan segera membalas.') });
         setFormData({ name: '', email: '', message: '' });
       } else {
-        throw new Error(response.message || 'Something went wrong');
+        throw new Error(response.message || t('Something went wrong.', 'Terjadi kesalahan.'));
       }
     } catch (error) {
       console.error('Contact message submission failed:', error);
       const message = error instanceof TypeError
-        ? 'Unable to reach the server. Your message is still here—please try again later.'
-        : error.message || 'We could not send your message. Please try again.';
+        ? t('Unable to reach the server. Your message is still here - please try again later.', 'Server tidak dapat dijangkau. Pesan Anda masih tersimpan di formulir - silakan coba lagi nanti.')
+        : error.message || t('We could not send your message. Please try again.', 'Pesan tidak dapat dikirim. Silakan coba lagi.');
       setStatus({ success: false, message });
     } finally {
       setLoading(false);
@@ -58,13 +60,13 @@ export default function Contact() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-16">
           <div>
             <div className="flex items-center gap-3">
-              <span className="font-mono text-purple-400 text-sm font-semibold tracking-wider uppercase">04. Connection</span>
+              <span className="font-mono text-purple-400 text-sm font-semibold tracking-wider uppercase">04. {t('Connection', 'Kontak')}</span>
               <div className="h-[1px] w-12 bg-purple-400/40"></div>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-1">Get In Touch</h2>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-1">{t('Get In Touch', 'Hubungi Saya')}</h2>
           </div>
           <p className="text-slate-400 text-sm font-mono max-w-xs">
-            // Open for remote roles, freelancing, & architecture consults.
+            // {t('Open for remote roles, freelancing, & architecture consults.', 'Terbuka untuk pekerjaan jarak jauh, freelance, dan konsultasi arsitektur.')}
           </p>
         </div>
 
@@ -74,10 +76,10 @@ export default function Contact() {
           <div className="lg:col-span-5 space-y-6">
             
             <GlassCard className="space-y-6">
-              <h3 className="text-xl font-bold text-white">Let's craft something exceptional</h3>
+              <h3 className="text-xl font-bold text-white">{t("Let's craft something exceptional", 'Mari wujudkan sesuatu yang istimewa')}</h3>
               
               <p className="text-slate-300 leading-relaxed text-sm">
-                Whether you have a project opportunity, architecture inquiry, or simply want to connect, feel free to reach out. I respond promptly to all messages.
+                {t('Whether you have a project opportunity, architecture inquiry, or simply want to connect, feel free to reach out. I respond promptly to all messages.', 'Jika Anda memiliki tawaran proyek, pertanyaan tentang arsitektur, atau sekadar ingin terhubung, silakan kirim pesan. Saya akan membalas secepatnya.')}
               </p>
 
               {/* Direct Info List */}
@@ -90,7 +92,7 @@ export default function Contact() {
                       ✉️
                     </div>
                     <div>
-                      <div className="font-mono text-[10px] text-slate-400 uppercase tracking-wider">Direct Email</div>
+                      <div className="font-mono text-[10px] text-slate-400 uppercase tracking-wider">{t('Direct Email', 'Email Langsung')}</div>
                       <div className="text-slate-200 text-xs font-mono truncate">{emailAddress}</div>
                     </div>
                   </div>
@@ -99,7 +101,7 @@ export default function Contact() {
                     onClick={handleCopyEmail}
                     className="font-mono text-[11px] text-cyan-300 bg-cyan-500/10 hover:bg-cyan-500/20 px-3 py-1.5 rounded-lg border border-cyan-500/30 transition-all cursor-pointer shrink-0"
                   >
-                    {emailCopied ? '✓ Copied' : 'Copy'}
+                    {emailCopied ? t('Copied', 'Tersalin') : t('Copy', 'Salin')}
                   </button>
                 </div>
 
@@ -109,8 +111,8 @@ export default function Contact() {
                     📍
                   </div>
                   <div>
-                    <div className="font-mono text-[10px] text-slate-400 uppercase tracking-wider">Location & Availability</div>
-                    <div className="text-slate-200 text-xs font-mono">Worldwide / Remote (UTC+7)</div>
+                    <div className="font-mono text-[10px] text-slate-400 uppercase tracking-wider">{t('Location & Availability', 'Lokasi & Ketersediaan')}</div>
+                    <div className="text-slate-200 text-xs font-mono">{t('Worldwide / Remote (UTC+7)', 'Seluruh Dunia / Jarak Jauh (UTC+7)')}</div>
                   </div>
                 </div>
 
@@ -153,7 +155,7 @@ export default function Contact() {
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-xs font-mono uppercase tracking-widest text-slate-400 mb-2">
-                      Your Name
+                      {t('Your Name', 'Nama Anda')}
                     </label>
                     <input
                       type="text"
@@ -170,7 +172,7 @@ export default function Contact() {
 
                   <div>
                     <label htmlFor="email" className="block text-xs font-mono uppercase tracking-widest text-slate-400 mb-2">
-                      Your Email
+                      {t('Your Email', 'Email Anda')}
                     </label>
                     <input
                       type="email"
@@ -189,10 +191,10 @@ export default function Contact() {
                 <div>
                   <div className="flex justify-between items-center mb-2">
                     <label htmlFor="message" className="block text-xs font-mono uppercase tracking-widest text-slate-400">
-                      Project Details / Message
+                      {t('Project Details / Message', 'Detail Proyek / Pesan')}
                     </label>
                     <span className="font-mono text-[10px] text-slate-500">
-                      {formData.message.length} chars
+                      {formData.message.length} {t('chars', 'karakter')}
                     </span>
                   </div>
                   <textarea
@@ -204,7 +206,7 @@ export default function Contact() {
                     value={formData.message}
                     onChange={handleChange}
                     className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-purple-500/60 focus:shadow-[0_0_20px_rgba(139,92,246,0.25)] transition-all text-sm resize-none font-sans"
-                    placeholder="Describe your project, timeline, or inquiry..."
+                    placeholder={t('Describe your project, timeline, or inquiry...', 'Jelaskan proyek, linimasa, atau pertanyaan Anda...')}
                   />
                 </div>
 
@@ -226,7 +228,7 @@ export default function Contact() {
                   disabled={loading}
                   className="w-full py-3.5 text-sm"
                 >
-                  {loading ? 'Transmitting Data...' : 'Send Direct Message'}
+                  {loading ? t('Sending message...', 'Mengirim pesan...') : t('Send Direct Message', 'Kirim Pesan')}
                 </NeonButton>
               </form>
             </GlassCard>

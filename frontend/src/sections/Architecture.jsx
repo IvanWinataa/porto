@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import GlassCard from '../components/GlassCard';
 import NeonButton from '../components/NeonButton';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Architecture() {
+  const { t } = useLanguage();
   const [selectedNodeId, setSelectedNodeId] = useState('frontend');
   const [simulating, setSimulating] = useState(false);
   const [simulationStep, setSimulationStep] = useState(0);
@@ -12,17 +14,26 @@ export default function Architecture() {
       id: 'frontend',
       title: 'React 19 Frontend',
       subtitle: 'Client Interface Layer',
+      subtitleId: 'Lapisan Antarmuka Klien',
       icon: '⚛️',
       color: 'border-[#61DAFB] text-[#61DAFB]',
       badge: 'Client Side',
+      badgeId: 'Sisi Klien',
       latency: '< 1 ms',
       protocol: 'HTTPS / TLS 1.3',
       description: 'Single Page Application built with React 19, Vite, and TailwindCSS. Utilizes Glassmorphism design tokens, optimistic state updates, and command palette navigation.',
+      descriptionId: 'Single Page Application yang dibangun dengan React 19, Vite, dan TailwindCSS. Menggunakan token desain Glassmorphism, pembaruan state optimistis, dan navigasi command palette.',
       specifications: [
         'Component-driven architecture',
         'Command Palette Keyboard Shortcuts (⌘K)',
         'Responsive layout & mobile drawers',
         'Client-side state & API fetching'
+      ],
+      specificationsId: [
+        'Arsitektur berbasis komponen',
+        'Pintasan keyboard Command Palette (⌘K)',
+        'Tata letak responsif dan panel menu seluler',
+        'State sisi klien dan pengambilan data API'
       ],
       codeSnippet: `// Client API invocation
 const response = await fetch('/api/projects', {
@@ -34,17 +45,26 @@ const { data } = await response.json();`
       id: 'gateway',
       title: 'Express API Gateway',
       subtitle: 'REST Dispatcher Layer',
+      subtitleId: 'Lapisan Pengatur REST',
       icon: '⚡',
       color: 'border-purple-400 text-purple-400',
       badge: 'Node.js Runtime',
+      badgeId: 'Runtime Node.js',
       latency: '~4 ms',
       protocol: 'HTTP/2 REST',
       description: 'Central entry point handling routing, CORS headers, rate limiting, and request logging across all application endpoints.',
+      descriptionId: 'Titik masuk utama yang menangani routing, header CORS, pembatasan laju, dan pencatatan permintaan di seluruh endpoint aplikasi.',
       specifications: [
         'Non-blocking async I/O loop',
         'Modular route handlers (/api/projects, /api/contact)',
         'CORS security middleware',
         'Centralized error handling'
+      ],
+      specificationsId: [
+        'Loop I/O asinkron non-blocking',
+        'Handler rute modular (/api/projects, /api/contact)',
+        'Middleware keamanan CORS',
+        'Penanganan error terpusat'
       ],
       codeSnippet: `// Express REST Gateway Route
 const router = require('express').Router();
@@ -55,17 +75,26 @@ router.post('/api/contact', contactController.sendMessage);`
       id: 'security',
       title: 'Security & Validation',
       subtitle: 'Middleware Guard Layer',
+      subtitleId: 'Lapisan Proteksi Middleware',
       icon: '🛡️',
       color: 'border-amber-400 text-amber-400',
       badge: 'Middleware',
+      badgeId: 'Middleware',
       latency: '~2 ms',
       protocol: 'Regex & JWT Guard',
       description: 'Sanitizes incoming payloads, enforces email validation regex patterns, prevents SQL injection via parameterized parameters, and manages CORS origin policies.',
+      descriptionId: 'Membersihkan payload masuk, memvalidasi email dengan pola regex, mencegah SQL injection melalui parameter, dan mengatur kebijakan origin CORS.',
       specifications: [
         'Strict regex email pattern verification',
         'SQL injection defense via $1, $2 placeholders',
         'Payload length & dynamic sanitization',
         'Structured HTTP status error codes'
+      ],
+      specificationsId: [
+        'Verifikasi email dengan pola regex yang ketat',
+        'Perlindungan SQL injection melalui placeholder $1, $2',
+        'Panjang payload dan sanitasi dinamis',
+        'Kode error HTTP yang terstruktur'
       ],
       codeSnippet: `// Input Sanitization Middleware
 const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
@@ -77,17 +106,26 @@ if (!name || !email || !emailRegex.test(email)) {
       id: 'database',
       title: 'PostgreSQL DB Engine',
       subtitle: 'Persistence Data Layer',
+      subtitleId: 'Lapisan Persistensi Data',
       icon: '🐘',
       color: 'border-cyan-400 text-cyan-400',
       badge: 'Database Pool',
+      badgeId: 'Pool Database',
       latency: '~6 ms',
       protocol: 'TCP / SQL Protocol',
       description: 'Relational data store managed via a PostgreSQL client connection pool. Stores project showcases, categories, system metadata, and contact transmissions.',
+      descriptionId: 'Penyimpanan data relasional yang dikelola melalui connection pool klien PostgreSQL. Menyimpan proyek, kategori, metadata sistem, dan pesan kontak.',
       specifications: [
         'Pooled database connection client (`pg.Pool`)',
         'ACID compliant transactional safety',
         'Indexed queries ordered by featured state',
         'Environment variable credential isolation'
+      ],
+      specificationsId: [
+        'Klien koneksi database dengan pool (`pg.Pool`)',
+        'Keamanan transaksi sesuai ACID',
+        'Query terindeks berdasarkan status featured',
+        'Kredensial diisolasi melalui environment variable'
       ],
       codeSnippet: `// PostgreSQL Query Execution
 const query = 'SELECT * FROM projects ORDER BY featured DESC, created_at DESC';
@@ -135,10 +173,10 @@ return result.rows;`
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-14">
           <div>
             <div className="flex items-center gap-3">
-              <span className="font-mono text-cyan-400 text-sm font-semibold tracking-wider uppercase">Architecture Flow</span>
+              <span className="font-mono text-cyan-400 text-sm font-semibold tracking-wider uppercase">{t('Architecture Flow', 'Alur Arsitektur')}</span>
               <div className="h-[1px] w-12 bg-cyan-400/40"></div>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-1">System Architecture</h2>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-1">{t('System Architecture', 'Arsitektur Sistem')}</h2>
           </div>
           
           {/* Simulation Trigger Button */}
@@ -151,7 +189,7 @@ return result.rows;`
             >
               <span className="flex items-center gap-2">
                 <span className={`w-2 h-2 rounded-full ${simulating ? 'bg-amber-400 animate-ping' : 'bg-amber-300'}`} />
-                <span>{simulating ? `Transmitting Step ${simulationStep}/4...` : 'Simulate Request Pulse'}</span>
+                <span>{simulating ? t(`Transmitting Step ${simulationStep}/4...`, `Mengirim tahap ${simulationStep}/4...`) : t('Simulate Request Pulse', 'Simulasikan Alur Permintaan')}</span>
               </span>
             </NeonButton>
           </div>
@@ -169,9 +207,9 @@ return result.rows;`
               <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6 font-mono text-xs text-slate-400">
                 <span className="flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-                  Live Topology Graph
+                  {t('Live Topology Graph', 'Graf Topologi Langsung')}
                 </span>
-                <span>Total Latency: <strong className="text-cyan-300">~12ms</strong></span>
+                <span>{t('Total Latency', 'Latensi Total')}: <strong className="text-cyan-300">~12ms</strong></span>
               </div>
 
               {/* Stacked Flow Nodes */}
@@ -189,7 +227,7 @@ return result.rows;`
                         type="button"
                         onClick={() => setSelectedNodeId(node.id)}
                         aria-pressed={isSelected}
-                        aria-label={`Select ${node.title} details`}
+                        aria-label={t(`Select ${node.title} details`, `Pilih detail ${node.title}`)}
                         className={`w-full text-left p-4 rounded-xl border transition-all duration-300 cursor-pointer flex items-center justify-between gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#05070F] ${
                           isSelected 
                             ? 'bg-purple-600/20 border-purple-400 shadow-[0_0_25px_rgba(139,92,246,0.3)] scale-[1.02]' 
@@ -204,10 +242,10 @@ return result.rows;`
                             <span className="flex items-center gap-2">
                               <span className="font-bold text-white text-sm sm:text-base">{node.title}</span>
                               <span className="font-mono text-[10px] text-cyan-300 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20">
-                                {node.badge}
+                                {t(node.badge, node.badgeId)}
                               </span>
                             </span>
-                            <span className="block text-xs text-slate-400 font-mono mt-0.5">{node.subtitle}</span>
+                            <span className="block text-xs text-slate-400 font-mono mt-0.5">{t(node.subtitle, node.subtitleId)}</span>
                           </span>
                         </span>
 
@@ -238,7 +276,7 @@ return result.rows;`
               {/* Status Simulation Bar */}
               <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between font-mono text-xs text-slate-400">
                 <span className="flex items-center gap-2">
-                  <span className="text-purple-400">⚡ Request Flow:</span> 
+                  <span className="text-purple-400">⚡ {t('Request Flow:', 'Alur Permintaan')}</span>{' '}
                   Client ➔ Router ➔ Guard ➔ DB
                 </span>
                 <span className="text-emerald-400 font-semibold">200 OK</span>
@@ -256,30 +294,30 @@ return result.rows;`
               {/* Header Inspector */}
               <div className="flex items-start justify-between pb-4 border-b border-white/10">
                 <div>
-                  <span className="font-mono text-[10px] text-purple-400 uppercase tracking-widest">// NODE INSPECTION PANEL</span>
+                  <span className="font-mono text-[10px] text-purple-400 uppercase tracking-widest">// {t('NODE INSPECTION PANEL', 'PANEL INSPEKSI NODE')}</span>
                   <h3 className="text-xl font-bold text-white mt-1 flex items-center gap-2">
                     <span>{currentNode.icon}</span>
                     <span>{currentNode.title}</span>
                   </h3>
                 </div>
                 <span className="font-mono text-xs text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 px-2.5 py-1 rounded-full">
-                  {currentNode.badge}
+                  {t(currentNode.badge, currentNode.badgeId)}
                 </span>
               </div>
 
               {/* Description */}
               <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                {currentNode.description}
+                {t(currentNode.description, currentNode.descriptionId)}
               </p>
 
               {/* Specifications List */}
               <div>
-                <h5 className="font-mono text-xs uppercase tracking-wider text-slate-400 mb-2.5">// Layer Capabilities</h5>
+                <h5 className="font-mono text-xs uppercase tracking-wider text-slate-400 mb-2.5">// {t('Layer Capabilities', 'Kapabilitas Lapisan')}</h5>
                 <ul className="space-y-2">
                   {currentNode.specifications.map((spec, idx) => (
                     <li key={idx} className="flex items-center gap-2 text-xs text-slate-300">
                       <span className="text-cyan-400 font-mono">▸</span>
-                      <span>{spec}</span>
+                      <span>{t(spec, currentNode.specificationsId[idx])}</span>
                     </li>
                   ))}
                 </ul>
@@ -288,7 +326,7 @@ return result.rows;`
               {/* Code Snippet */}
               <div>
                 <div className="flex justify-between items-center mb-2 font-mono text-[11px] text-slate-400">
-                  <span>Implementation Pattern</span>
+                  <span>{t('Implementation Pattern', 'Pola Implementasi')}</span>
                   <span className="text-purple-400">JavaScript ES6</span>
                 </div>
                 <div className="p-3.5 rounded-xl bg-black/60 border border-white/10 font-mono text-xs text-slate-300 overflow-x-auto leading-relaxed">
@@ -299,11 +337,11 @@ return result.rows;`
               {/* Performance Telemetry */}
               <div className="grid grid-cols-2 gap-3 pt-2 border-t border-white/10 font-mono text-xs">
                 <div className="p-2.5 rounded-lg bg-white/5 border border-white/5">
-                  <div className="text-[10px] text-slate-500 uppercase">Est. Latency</div>
+                  <div className="text-[10px] text-slate-500 uppercase">{t('Est. Latency', 'Perkiraan Latensi')}</div>
                   <div className="text-cyan-300 font-bold mt-0.5">{currentNode.latency}</div>
                 </div>
                 <div className="p-2.5 rounded-lg bg-white/5 border border-white/5">
-                  <div className="text-[10px] text-slate-500 uppercase">Protocol Guard</div>
+                  <div className="text-[10px] text-slate-500 uppercase">{t('Protocol Guard', 'Proteksi Protokol')}</div>
                   <div className="text-purple-300 font-bold mt-0.5">{currentNode.protocol}</div>
                 </div>
               </div>

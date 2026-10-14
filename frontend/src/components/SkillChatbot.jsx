@@ -1,54 +1,66 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-
-const suggestions = [
-  'Skill apa saja yang dikuasai?',
-  'Ceritakan kemampuan backend',
-  'Tools UI/UX yang digunakan?',
-  'Bagaimana pengalaman kerjanya?'
-];
+import { useLanguage } from '../context/LanguageContext';
 
 const skillTopics = [
   {
     id: 'frontend',
     keywords: ['frontend', 'front-end', 'react', 'next', 'typescript', 'tailwind', 'vite', 'redux', 'zustand', 'web app', 'web aplikasi'],
     label: 'Frontend Engineering',
+    labelId: 'Rekayasa Frontend',
     technologies: 'React 19, Next.js App Router, TypeScript, TailwindCSS v4, Vite, serta Redux/Zustand.',
-    summary: 'Fokus pada aplikasi web yang responsif, berkinerja tinggi, dan mudah diakses.'
+    technologiesEn: 'React 19, Next.js App Router, TypeScript, TailwindCSS v4, Vite, and Redux/Zustand.',
+    summary: 'Fokus pada aplikasi web yang responsif, berkinerja tinggi, dan mudah diakses.',
+    summaryEn: 'Focused on responsive, high-performance, and accessible web applications.'
   },
   {
     id: 'backend',
     keywords: ['backend', 'back-end', 'node', 'express', 'api', 'jwt', 'auth', 'websocket', 'server'],
     label: 'Backend Development',
+    labelId: 'Pengembangan Backend',
     technologies: 'Node.js, Express.js, RESTful APIs, JWT/Auth, CORS middleware, dan WebSockets.',
-    summary: 'Fokus pada API asinkron, middleware, dan integrasi layanan.'
+    technologiesEn: 'Node.js, Express.js, RESTful APIs, JWT/Auth, CORS middleware, and WebSockets.',
+    summary: 'Fokus pada API asinkron, middleware, dan integrasi layanan.',
+    summaryEn: 'Focused on asynchronous APIs, middleware, and service integrations.'
   },
   {
     id: 'database',
     keywords: ['database', 'basis data', 'postgres', 'sql', 'query', 'migrasi', 'migration', 'acid'],
     label: 'Database Architecture',
+    labelId: 'Arsitektur Database',
     technologies: 'PostgreSQL, connection pooling (`pg`), optimasi SQL, database migrations, dan transaksi ACID.',
-    summary: 'Fokus pada skema relasional dan optimasi query.'
+    technologiesEn: 'PostgreSQL, connection pooling (`pg`), SQL optimization, database migrations, and ACID transactions.',
+    summary: 'Fokus pada skema relasional dan optimasi query.',
+    summaryEn: 'Focused on relational schemas and query optimization.'
   },
   {
     id: 'architecture',
     keywords: ['arsitektur', 'architecture', 'clean architecture', 'design pattern', 'dto', 'validasi', 'validation'],
     label: 'System Architecture',
+    labelId: 'Arsitektur Sistem',
     technologies: 'Clean Architecture, design patterns, async flow control, API specifications, dan DTO validation.',
-    summary: 'Fokus pada modul yang terstruktur, terpisah, dan mudah dirawat.'
+    technologiesEn: 'Clean Architecture, design patterns, async flow control, API specifications, and DTO validation.',
+    summary: 'Fokus pada modul yang terstruktur, terpisah, dan mudah dirawat.',
+    summaryEn: 'Focused on well-structured, decoupled, and maintainable modules.'
   },
   {
     id: 'devops',
     keywords: ['devops', 'docker', 'git', 'github', 'ci/cd', 'cicd', 'npm', 'deploy', 'deployment'],
     label: 'DevOps & Tools',
+    labelId: 'DevOps & Peralatan',
     technologies: 'Docker, Git/GitHub, dasar CI/CD, npm/Vite bundling, dan environment isolation.',
-    summary: 'Fokus pada lingkungan pengembangan yang konsisten dan alur kerja version control.'
+    technologiesEn: 'Docker, Git/GitHub, CI/CD fundamentals, npm/Vite bundling, and environment isolation.',
+    summary: 'Fokus pada lingkungan pengembangan yang konsisten dan alur kerja version control.',
+    summaryEn: 'Focused on consistent development environments and version control workflows.'
   },
   {
     id: 'uiux',
     keywords: ['ui', 'ux', 'ui/ux', 'figma', 'desain', 'design system', 'aksesibilitas', 'accessibility', 'dark mode'],
     label: 'UI/UX Design',
+    labelId: 'Desain UI/UX',
     technologies: 'Figma prototyping, design systems, micro-interactions, dark mode, dan accessibility.',
-    summary: 'Fokus pada antarmuka yang intuitif dan pengalaman pengguna yang jelas.'
+    technologiesEn: 'Figma prototyping, design systems, micro-interactions, dark mode, and accessibility.',
+    summary: 'Fokus pada antarmuka yang intuitif dan pengalaman pengguna yang jelas.',
+    summaryEn: 'Focused on intuitive interfaces and clear user experiences.'
   }
 ];
 
@@ -70,7 +82,7 @@ function includesAny(text, keywords) {
   return keywords.some((keyword) => text.includes(normalize(keyword)));
 }
 
-function getAnswerAction(question) {
+function getAnswerAction(question, language) {
   const query = normalize(question);
 
   if (/^(hai|halo|hello|hi|assalamualaikum|pagi|siang|sore|malam)\b/.test(query)) {
@@ -78,56 +90,77 @@ function getAnswerAction(question) {
   }
 
   if (includesAny(query, experienceKeywords)) {
-    return { href: '#experience', label: 'Lihat pengalaman kerja' };
+    return { href: '#experience', label: language === 'id' ? 'Lihat pengalaman kerja' : 'View work experience' };
   }
 
   if (includesAny(query, projectKeywords) && !includesAny(query, skillTopics.flatMap((topic) => topic.keywords))) {
-    return { href: '#projects', label: 'Lihat proyek' };
+    return { href: '#projects', label: language === 'id' ? 'Lihat proyek' : 'View projects' };
   }
 
   if (skillTopics.some((topic) => includesAny(query, topic.keywords)) || includesAny(query, allSkillKeywords)) {
-    return { href: '#skills', label: 'Lihat bagian Skills' };
+    return { href: '#skills', label: language === 'id' ? 'Lihat bagian Skills' : 'View skills section' };
   }
 
   if (includesAny(query, ['kontak', 'contact', 'email', 'hubungi', 'menghubungi'])) {
-    return { href: '#contact', label: 'Buka bagian Contact' };
+    return { href: '#contact', label: language === 'id' ? 'Buka bagian Kontak' : 'Open contact section' };
   }
 
   return null;
 }
 
-function answerQuestion(question) {
+function answerQuestion(question, language) {
   const query = normalize(question);
+  const isIndonesian = language === 'id';
 
   if (/^(hai|halo|hello|hi|assalamualaikum|pagi|siang|sore|malam)\b/.test(query)) {
-    return 'Halo! Saya bisa membantu menjelaskan skill, teknologi, dan pengalaman yang tercantum di portofolio ini. Silakan pilih pertanyaan cepat atau ketik pertanyaan Anda.';
+    return isIndonesian
+      ? 'Halo! Saya bisa membantu menjelaskan skill, teknologi, dan pengalaman yang tercantum di portofolio ini. Silakan pilih pertanyaan cepat atau ketik pertanyaan Anda.'
+      : 'Hello! I can explain the skills, technologies, and experience listed in this portfolio. Choose a quick question or type your own.';
   }
 
   if (includesAny(query, experienceKeywords)) {
-    return 'Bagian pengalaman mencantumkan tiga posisi: Senior Fullstack Engineer (2024–sekarang), Frontend Developer Specialist (2023–2024), dan Software Engineering Intern (2022–2023). Detail tugas dan pencapaiannya ada di bagian Experience.';
+    return isIndonesian
+      ? 'Bagian pengalaman mencantumkan tiga posisi: Senior Fullstack Engineer (2024-sekarang), Frontend Developer Specialist (2023-2024), dan Software Engineering Intern (2022-2023). Detail tugas dan pencapaiannya ada di bagian Pengalaman.'
+      : 'The experience section lists three roles: Senior Fullstack Engineer (2024-present), Frontend Developer Specialist (2023-2024), and Software Engineering Intern (2022-2023). Details and achievements are in the Experience section.';
   }
 
   if (includesAny(query, projectKeywords) && !includesAny(query, skillTopics.flatMap((topic) => topic.keywords))) {
-    return 'Informasi proyek ditampilkan di bagian Projects pada halaman ini. Saya belum memiliki rincian proyek tambahan di luar yang tertulis di sana.';
+    return isIndonesian
+      ? 'Informasi proyek ditampilkan di bagian Proyek pada halaman ini. Saya belum memiliki rincian tambahan di luar yang tertulis di sana.'
+      : 'Project information is shown in the Projects section of this page. I do not have additional details beyond what is listed there.';
   }
 
   const matchedTopic = skillTopics.find((topic) => includesAny(query, topic.keywords));
   if (matchedTopic) {
-    return `${matchedTopic.label}: ${matchedTopic.summary} Teknologi yang dicantumkan meliputi ${matchedTopic.technologies}`;
+    const label = isIndonesian ? matchedTopic.labelId : matchedTopic.label;
+    const summary = isIndonesian ? matchedTopic.summary : matchedTopic.summaryEn;
+    const technologies = isIndonesian ? matchedTopic.technologies : matchedTopic.technologiesEn;
+    return `${label}: ${summary} ${isIndonesian ? 'Teknologi yang dicantumkan meliputi' : 'Listed technologies include'} ${technologies}`;
   }
 
   if (includesAny(query, allSkillKeywords)) {
-    return `Portofolio ini mencantumkan enam area: ${skillTopics.map((topic) => topic.label).join(', ')}. Anda bisa bertanya lebih spesifik, misalnya tentang React, backend, database, Docker, atau Figma.`;
+    const topics = skillTopics.map((topic) => isIndonesian ? topic.labelId : topic.label).join(', ');
+    return isIndonesian
+      ? `Portofolio ini mencantumkan enam area: ${topics}. Anda bisa bertanya lebih spesifik, misalnya tentang React, backend, database, Docker, atau Figma.`
+      : `This portfolio lists six areas: ${topics}. You can ask about React, backend, databases, Docker, or Figma.`;
   }
 
   if (includesAny(query, ['kontak', 'contact', 'email', 'hubungi', 'menghubungi'])) {
-    return 'Informasi untuk menghubungi pemilik portofolio tersedia di bagian Contact. Saya tidak menampilkan alamat kontak yang tidak tercantum di sana.';
+    return isIndonesian
+      ? 'Informasi untuk menghubungi pemilik portofolio tersedia di bagian Kontak. Saya tidak menampilkan alamat yang tidak tercantum di sana.'
+      : 'Contact details are available in the Contact section. I will not provide an address that is not listed there.';
   }
 
-  return 'Saya belum menemukan informasi itu di konten portofolio yang tersedia. Coba tanyakan tentang frontend, backend, database, arsitektur sistem, DevOps, UI/UX, pengalaman kerja, atau proyek.';
+  return isIndonesian
+    ? 'Saya belum menemukan informasi itu di konten portofolio yang tersedia. Coba tanyakan tentang frontend, backend, database, arsitektur sistem, DevOps, UI/UX, pengalaman kerja, atau proyek.'
+    : 'I could not find that in the available portfolio content. Ask about frontend, backend, databases, system architecture, DevOps, UI/UX, work experience, or projects.';
 }
 
 export default function SkillChatbot() {
+  const { language, t } = useLanguage();
+  const suggestions = language === 'id'
+    ? ['Skill apa saja yang dikuasai?', 'Ceritakan kemampuan backend', 'Tools UI/UX yang digunakan?', 'Bagaimana pengalaman kerjanya?']
+    : ['What skills are listed?', 'Tell me about backend skills', 'Which UI/UX tools are used?', 'What work experience is listed?'];
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
   const [launcherOffset, setLauncherOffset] = useState({ x: 0, y: 0 });
@@ -136,7 +169,7 @@ export default function SkillChatbot() {
     {
       id: 'welcome',
       role: 'assistant',
-      text: 'Halo! Saya asisten portofolio. Tanyakan tentang skill, teknologi, atau pengalaman yang tercantum di halaman ini.'
+      text: 'welcome'
     }
   ]);
   const inputRef = useRef(null);
@@ -227,12 +260,12 @@ export default function SkillChatbot() {
   const submitQuestion = (question = input) => {
     const trimmedQuestion = question.trim();
     if (!trimmedQuestion) return;
-    const answer = answerQuestion(trimmedQuestion);
+    const answer = answerQuestion(trimmedQuestion, language);
 
     setMessages((currentMessages) => [
       ...currentMessages,
       { id: `user-${Date.now()}`, role: 'user', text: trimmedQuestion },
-      { id: `assistant-${Date.now()}`, role: 'assistant', text: answer, action: getAnswerAction(trimmedQuestion) }
+      { id: `assistant-${Date.now()}`, role: 'assistant', text: answer, action: getAnswerAction(trimmedQuestion, language) }
     ]);
     setInput('');
   };
@@ -255,17 +288,17 @@ export default function SkillChatbot() {
         >
           <header
             onPointerDown={(event) => startDrag('panel', event)}
-            title="Seret header untuk memindahkan chat"
+            title={t('Drag the header to move the chat', 'Seret header untuk memindahkan chat')}
             className="flex cursor-grab touch-none select-none items-center justify-between border-b border-white/10 bg-black/30 px-4 py-3 active:cursor-grabbing"
           >
             <div>
-              <h2 id="skill-chatbot-title" className="text-sm font-bold text-white">Asisten Portofolio</h2>
-              <p className="mt-0.5 text-[11px] text-slate-400">Seret header untuk memindahkan</p>
+              <h2 id="skill-chatbot-title" className="text-sm font-bold text-white">{t('Portfolio Assistant', 'Asisten Portofolio')}</h2>
+              <p className="mt-0.5 text-[11px] text-slate-400">{t('Drag header to move', 'Seret header untuk memindahkan')}</p>
             </div>
             <button
               type="button"
               onClick={closeChat}
-              aria-label="Tutup asisten portofolio"
+              aria-label={t('Close portfolio assistant', 'Tutup asisten portofolio')}
               className="rounded-lg p-2 text-slate-400 transition hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
             >
               <svg aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -283,7 +316,9 @@ export default function SkillChatbot() {
                       ? 'rounded-br-md bg-purple-600/50 text-white'
                       : 'rounded-bl-md border border-white/10 bg-white/5 text-slate-200'
                   }`}>
-                    {message.text}
+                    {message.id === 'welcome'
+                      ? t('Hello! I am the portfolio assistant. Ask about the skills, technologies, or experience listed on this page.', 'Halo! Saya asisten portofolio. Tanyakan tentang skill, teknologi, atau pengalaman yang tercantum di halaman ini.')
+                      : message.text}
                   </p>
                   {message.action && (
                     <a
@@ -324,7 +359,7 @@ export default function SkillChatbot() {
             }}
             className="border-t border-white/10 bg-black/30 p-3"
           >
-            <label className="sr-only" htmlFor="skill-chatbot-input">Tulis pertanyaan tentang skill atau pengalaman</label>
+            <label className="sr-only" htmlFor="skill-chatbot-input">{t('Ask about skills or experience', 'Tulis pertanyaan tentang skill atau pengalaman')}</label>
             <div className="flex items-center gap-2">
               <input
                 id="skill-chatbot-input"
@@ -333,13 +368,13 @@ export default function SkillChatbot() {
                 value={input}
                 onChange={(event) => setInput(event.target.value)}
                 maxLength={300}
-                placeholder="Tanyakan tentang skill..."
+                placeholder={t('Ask about skills...', 'Tanyakan tentang skill...')}
                 className="min-w-0 flex-1 rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-xs text-white placeholder:text-slate-500 focus:border-cyan-400/50 focus:outline-none focus:ring-2 focus:ring-cyan-400/20"
               />
               <button
                 type="submit"
                 disabled={!input.trim()}
-                aria-label="Kirim pertanyaan"
+                aria-label={t('Send question', 'Kirim pertanyaan')}
                 className="rounded-xl bg-purple-500/80 p-2.5 text-white transition hover:bg-purple-400 disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
               >
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -356,6 +391,7 @@ export default function SkillChatbot() {
         ref={launcherRef}
         type="button"
         aria-expanded={isOpen}
+        aria-label={isOpen ? t('Close chat assistant', 'Tutup asisten chat') : t('Ask about skills', 'Tanya tentang skill')}
         aria-controls={isOpen ? 'skill-chatbot-panel' : undefined}
         onPointerDown={(event) => startDrag('launcher', event)}
         onClick={(event) => {
@@ -372,7 +408,7 @@ export default function SkillChatbot() {
         <svg aria-hidden="true" className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M8 10h8M8 14h5m-7 6 1.7-3.4A8 8 0 1 1 20 12a8 8 0 0 1-8 8H6Z" />
         </svg>
-        <span>{isOpen ? 'Tutup chat' : 'Tanya skill'}</span>
+        <span>{isOpen ? t('Close chat', 'Tutup chat') : t('Ask about skills', 'Tanya skill')}</span>
       </button>
     </div>
   );

@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function CommandPalette({ isOpen, onClose, onOpen }) {
+  const { t } = useLanguage();
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [toastMessage, setToastMessage] = useState('');
@@ -11,72 +13,72 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
   const commands = [
     {
       id: 'nav-hero',
-      category: 'Navigation',
-      label: 'Go to Home (Hero)',
+      category: t('Navigation', 'Navigasi'),
+      label: t('Go to Home (Hero)', 'Ke Beranda (Hero)'),
       shortcut: 'HERO',
       icon: '🏠',
       action: () => scrollToSection('hero')
     },
     {
       id: 'nav-about',
-      category: 'Navigation',
-      label: 'Go to About Me & Tech Stack',
+      category: t('Navigation', 'Navigasi'),
+      label: t('Go to About Me & Tech Stack', 'Ke Tentang Saya & Tech Stack'),
       shortcut: 'ABOUT',
       icon: '👤',
       action: () => scrollToSection('about')
     },
     {
       id: 'nav-skills',
-      category: 'Navigation',
-      label: 'Go to Competency Radar Chart',
+      category: t('Navigation', 'Navigasi'),
+      label: t('Go to Competency Radar Chart', 'Ke Grafik Kompetensi'),
       shortcut: 'SKILLS',
       icon: '📊',
       action: () => scrollToSection('skills')
     },
     {
       id: 'nav-architecture',
-      category: 'Navigation',
-      label: 'Go to System Architecture Flow',
+      category: t('Navigation', 'Navigasi'),
+      label: t('Go to System Architecture Flow', 'Ke Alur Arsitektur Sistem'),
       shortcut: 'ARCH',
       icon: '⚙️',
       action: () => scrollToSection('architecture')
     },
     {
       id: 'nav-projects',
-      category: 'Navigation',
-      label: 'Go to Featured Projects Showcase',
+      category: t('Navigation', 'Navigasi'),
+      label: t('Go to Featured Projects Showcase', 'Ke Proyek Unggulan'),
       shortcut: 'PROJECTS',
       icon: '💻',
       action: () => scrollToSection('projects')
     },
     {
       id: 'nav-experience',
-      category: 'Navigation',
-      label: 'Go to Experience & Journey',
+      category: t('Navigation', 'Navigasi'),
+      label: t('Go to Experience & Journey', 'Ke Pengalaman & Perjalanan Karier'),
       shortcut: 'EXP',
       icon: '🚀',
       action: () => scrollToSection('experience')
     },
     {
       id: 'nav-contact',
-      category: 'Navigation',
-      label: 'Go to Contact Section',
+      category: t('Navigation', 'Navigasi'),
+      label: t('Go to Contact Section', 'Ke Bagian Kontak'),
       shortcut: 'CONTACT',
       icon: '✉️',
       action: () => scrollToSection('contact')
     },
     {
       id: 'act-email',
-      category: 'Actions',
-      label: 'Copy Email Address to Clipboard',
+      category: t('Actions', 'Aksi'),
+      label: t('Copy Email Address to Clipboard', 'Salin Alamat Email'),
       shortcut: 'COPY',
       icon: '📋',
       action: () => handleCopyEmail()
     },
     {
       id: 'act-github',
-      category: 'Actions',
-      label: 'Open GitHub Profile',
+      category: t('Actions', 'Aksi'),
+      label: t('Open GitHub Profile', 'Buka Profil GitHub'),
       shortcut: 'GITHUB',
       icon: '🐙',
       action: () => {
@@ -101,7 +103,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText('dev@high-end-tech.io');
-    showToast('✓ Email copied to clipboard!');
+    showToast(t('✓ Email copied to clipboard!', '✓ Email berhasil disalin!'));
     setTimeout(() => onClose(), 1200);
   };
 
@@ -208,7 +210,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
         ref={dialogRef}
         role="dialog"
         aria-modal="true"
-        aria-label="Command palette"
+        aria-label={t('Command palette', 'Menu perintah')}
         aria-describedby="command-palette-help"
         tabIndex={-1}
         onClick={(e) => e.stopPropagation()}
@@ -222,12 +224,12 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             role="combobox"
-            aria-label="Search commands"
+            aria-label={t('Search commands', 'Cari perintah')}
             aria-autocomplete="list"
             aria-expanded="true"
             aria-controls="command-palette-results"
             aria-activedescendant={filteredCommands[selectedIndex] ? `command-option-${filteredCommands[selectedIndex].id}` : undefined}
-            placeholder="Type a command or section name... (e.g. Projects, Copy)"
+            placeholder={t('Type a command or section name... (e.g. Projects, Copy)', 'Ketik perintah atau nama bagian... (mis. Proyek, Salin)')}
             className="w-full bg-transparent text-white placeholder-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded font-mono text-xs sm:text-sm"
           />
           <kbd className="hidden sm:inline-block font-mono text-[10px] text-slate-400 bg-white/10 px-2 py-0.5 rounded border border-white/10">
@@ -236,7 +238,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
           <button
             type="button"
             onClick={onClose}
-            aria-label="Close command palette"
+            aria-label={t('Close command palette', 'Tutup menu perintah')}
             className="ml-2 p-1 rounded text-slate-400 hover:text-white hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
           >
             <svg aria-hidden="true" className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -246,7 +248,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
         </div>
 
         {/* Command Results */}
-        <div id="command-palette-results" role="listbox" aria-label="Commands" className="max-h-80 overflow-y-auto p-2 space-y-1">
+        <div id="command-palette-results" role="listbox" aria-label={t('Commands', 'Perintah')} className="max-h-80 overflow-y-auto p-2 space-y-1">
           {filteredCommands.length > 0 ? (
             filteredCommands.map((cmd, idx) => {
               const isSelected = idx === selectedIndex;
@@ -276,7 +278,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
             })
           ) : (
             <div role="status" className="py-8 text-center font-mono text-xs text-slate-500">
-              No matching commands found for "{query}"
+              {t(`No matching commands found for "${query}"`, `Tidak ada perintah yang cocok untuk "${query}"`)}
             </div>
           )}
         </div>
@@ -284,8 +286,8 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
         {/* Footer info & Toast feedback */}
         <div id="command-palette-help" className="flex items-center justify-between px-4 py-2.5 bg-black/60 border-t border-white/10 text-[11px] font-mono text-slate-500">
           <div className="flex items-center gap-3">
-            <span><kbd className="text-slate-300 bg-white/10 px-1 rounded">↑↓</kbd> navigate</span>
-            <span><kbd className="text-slate-300 bg-white/10 px-1 rounded">↵</kbd> select</span>
+            <span><kbd className="text-slate-300 bg-white/10 px-1 rounded">↑↓</kbd> {t('navigate', 'navigasi')}</span>
+            <span><kbd className="text-slate-300 bg-white/10 px-1 rounded">↵</kbd> {t('select', 'pilih')}</span>
           </div>
 
           {toastMessage ? (
