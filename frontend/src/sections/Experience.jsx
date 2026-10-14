@@ -1,6 +1,8 @@
 import GlassCard from '../components/GlassCard';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Experience() {
+  const { t } = useLanguage();
   const experiences = [
     {
       id: 1,
@@ -10,10 +12,16 @@ export default function Experience() {
       location: 'Remote',
       type: 'Full-time',
       description: 'Architecting high-concurrency web applications and cloud microservices. Leading front-end and back-end integration using Next.js, Express, and PostgreSQL with a strong focus on system performance and zero-downtime deployments.',
+      descriptionId: 'Merancang aplikasi web dengan konkurensi tinggi dan microservice cloud. Memimpin integrasi frontend dan backend menggunakan Next.js, Express, serta PostgreSQL dengan fokus pada performa sistem dan deployment tanpa downtime.',
       achievements: [
         'Reduced frontend initial page load time by 45% through route-based code splitting and image optimizations.',
         'Engineered automated database migrations and optimized query execution plans in PostgreSQL.',
         'Mentored junior engineers and conducted strict code reviews to ensure clean architecture.'
+      ],
+      achievementsId: [
+        'Mempercepat pemuatan awal halaman frontend sebesar 45% melalui pemisahan kode per rute dan optimasi gambar.',
+        'Membangun migrasi basis data otomatis dan mengoptimalkan rencana eksekusi query PostgreSQL.',
+        'Membimbing engineer junior dan melakukan code review untuk menjaga arsitektur yang rapi.'
       ],
       skills: ['React 19', 'Next.js', 'Node.js', 'PostgreSQL', 'Docker', 'TailwindCSS']
     },
@@ -25,9 +33,14 @@ export default function Experience() {
       location: 'Jakarta, ID',
       type: 'Full-time',
       description: 'Crafted interactive web applications and design systems for enterprise clients. Implemented responsive glassmorphism UIs, dynamic chart visualizers, and fluid micro-interactions.',
+      descriptionId: 'Membangun aplikasi web interaktif dan design system untuk klien enterprise. Mengimplementasikan UI glassmorphism responsif, visualisasi grafik dinamis, dan mikrointeraksi yang halus.',
       achievements: [
         'Built reusable component libraries used across 6 enterprise web applications.',
         'Integrated real-time WebSocket communication for live client data streams.'
+      ],
+      achievementsId: [
+        'Membangun pustaka komponen reusable yang digunakan di 6 aplikasi web enterprise.',
+        'Mengintegrasikan komunikasi WebSocket real-time untuk aliran data klien.'
       ],
       skills: ['React', 'TypeScript', 'TailwindCSS', 'Figma', 'Redux Toolkit']
     },
@@ -39,9 +52,14 @@ export default function Experience() {
       location: 'Hybrid',
       type: 'Internship',
       description: 'Developed RESTful API endpoints in Node.js/Express, implemented database schema migrations, and collaborated on automated unit testing pipelines.',
+      descriptionId: 'Mengembangkan endpoint REST API dengan Node.js/Express, menerapkan migrasi skema basis data, dan berkolaborasi dalam pipeline pengujian unit otomatis.',
       achievements: [
         'Authored comprehensive Swagger/OpenAPI documentation for core endpoints.',
         'Achieved 90%+ code coverage for new backend controller modules.'
+      ],
+      achievementsId: [
+        'Menulis dokumentasi Swagger/OpenAPI untuk endpoint utama.',
+        'Mencapai code coverage lebih dari 90% untuk modul controller backend baru.'
       ],
       skills: ['Express.js', 'Node.js', 'PostgreSQL', 'REST API', 'Git']
     }
@@ -58,13 +76,13 @@ export default function Experience() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-16">
           <div>
             <div className="flex items-center gap-3">
-              <span className="font-mono text-cyan-400 text-sm font-semibold tracking-wider uppercase">03. Career Track</span>
+              <span className="font-mono text-cyan-400 text-sm font-semibold tracking-wider uppercase">{t('03. Career Track', '03. Perjalanan Karier')}</span>
               <div className="h-[1px] w-12 bg-cyan-400/40"></div>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-1">Experience & Journey</h2>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-1">{t('Experience & Journey', 'Pengalaman & Perjalanan')}</h2>
           </div>
           <p className="text-slate-400 text-sm font-mono max-w-xs">
-            // Track record of engineering high-impact digital solutions.
+            // {t('Track record of engineering high-impact digital solutions.', 'Rekam jejak membangun solusi digital dengan dampak tinggi.')}
           </p>
         </div>
 
@@ -94,7 +112,7 @@ export default function Experience() {
                     {exp.role}
                   </h3>
                   <span className="font-mono text-xs text-slate-400 bg-white/5 border border-white/10 px-3 py-1 rounded-lg">
-                    📍 {exp.location} • {exp.type}
+                    📍 {t(exp.location, exp.location === 'Remote' ? 'Jarak jauh' : exp.location)} • {t(exp.type, exp.type === 'Full-time' ? 'Penuh waktu' : 'Magang')}
                   </span>
                 </div>
 
@@ -103,7 +121,7 @@ export default function Experience() {
                 </h4>
 
                 <p className="text-slate-300 text-sm leading-relaxed mb-4">
-                  {exp.description}
+                  {t(exp.description, exp.descriptionId)}
                 </p>
 
                 {/* Key Achievements Bullet list */}
@@ -112,7 +130,7 @@ export default function Experience() {
                     {exp.achievements.map((item, idx) => (
                       <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-300">
                         <span className="text-emerald-400 mt-0.5 select-none">✓</span>
-                        <span>{item}</span>
+                        <span>{t(item, exp.achievementsId[idx])}</span>
                       </div>
                     ))}
                   </div>

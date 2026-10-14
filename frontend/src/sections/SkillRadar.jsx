@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import GlassCard from '../components/GlassCard';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function SkillRadar() {
   const [selectedSkillIndex, setSelectedSkillIndex] = useState(0);
+  const { t } = useLanguage();
 
   const skills = [
     {
@@ -10,66 +12,84 @@ export default function SkillRadar() {
       label: 'Frontend Eng.',
       score: 95,
       level: 'Mastery',
+      levelId: 'Mahir',
       color: '#61DAFB',
       icon: '⚛️',
       description: 'Building high-performance, accessible Single Page Applications & Next.js web applications with modern state management and glassmorphism UIs.',
+      descriptionId: 'Membangun Single Page Application dan aplikasi web Next.js yang cepat, mudah diakses, serta menggunakan pengelolaan state modern dan antarmuka glassmorphism.',
       technologies: ['React 19', 'Next.js App Router', 'TypeScript', 'TailwindCSS v4', 'Vite', 'Redux / Zustand'],
-      highlights: ['99+ Lighthouse Performance Score', 'Sub-100ms Page Transitions', 'Pixel-perfect responsive layouts']
+      highlights: ['99+ Lighthouse Performance Score', 'Sub-100ms Page Transitions', 'Pixel-perfect responsive layouts'],
+      highlightsId: ['Skor performa Lighthouse 99+', 'Transisi halaman di bawah 100 ms', 'Tata letak responsif yang presisi']
     },
     {
       id: 'backend',
       label: 'Backend Dev.',
       score: 92,
       level: 'Expert',
+      levelId: 'Ahli',
       color: '#339933',
       icon: '⚡',
       description: 'Designing non-blocking async RESTful APIs, Express gateways, middleware pipelines, and scalable serverless microservices.',
+      descriptionId: 'Merancang REST API asinkron non-blocking, gateway Express, pipeline middleware, dan microservice serverless yang skalabel.',
       technologies: ['Node.js', 'Express.js', 'RESTful APIs', 'JWT / Auth', 'CORS Middleware', 'WebSockets'],
-      highlights: ['High-concurrency event handling', 'Clean Modular Architecture', 'Comprehensive error boundaries']
+      highlights: ['High-concurrency event handling', 'Clean Modular Architecture', 'Comprehensive error boundaries'],
+      highlightsId: ['Menangani event dengan konkurensi tinggi', 'Arsitektur modular yang rapi', 'Penanganan error yang menyeluruh']
     },
     {
       id: 'database',
       label: 'Database Arch.',
       score: 88,
       level: 'Advanced',
+      levelId: 'Lanjutan',
       color: '#4169E1',
       icon: '🐘',
       description: 'Architecting relational PostgreSQL schemas, optimizing connection pool clients, and writing indexed SQL queries.',
+      descriptionId: 'Merancang skema relasional PostgreSQL, mengoptimalkan connection pool, dan menulis query SQL dengan indeks.',
       technologies: ['PostgreSQL', 'Connection Pooling (`pg`)', 'SQL Optimization', 'Database Migrations', 'ACID Transactions'],
-      highlights: ['Zero-downtime query execution', 'Normalized DB Schema design', 'Parameterized SQL Injection guards']
+      highlights: ['Zero-downtime query execution', 'Normalized DB Schema design', 'Parameterized SQL Injection guards'],
+      highlightsId: ['Eksekusi query tanpa downtime', 'Perancangan skema basis data ternormalisasi', 'Pencegahan SQL injection dengan parameter']
     },
     {
       id: 'architecture',
       label: 'System Arch.',
       score: 85,
       level: 'Advanced',
+      levelId: 'Lanjutan',
       color: '#A78BFA',
       icon: '🏛️',
       description: 'Enforcing clean code principles, modular component decoupling, design patterns, and end-to-end data flow optimization.',
+      descriptionId: 'Menerapkan prinsip clean code, pemisahan komponen modular, design pattern, dan optimasi alur data menyeluruh.',
       technologies: ['Clean Architecture', 'Design Patterns', 'Async Flow Control', 'API Specifications', 'DTO Validation'],
-      highlights: ['Maintainable self-documenting code', 'Loosely coupled modules', 'High testability standards']
+      highlights: ['Maintainable self-documenting code', 'Loosely coupled modules', 'High testability standards'],
+      highlightsId: ['Kode yang mudah dirawat dan menjelaskan dirinya sendiri', 'Modul dengan keterikatan rendah', 'Standar kemudahan pengujian yang tinggi']
     },
     {
       id: 'devops',
       label: 'DevOps & Tools',
       score: 82,
       level: 'Proficient',
+      levelId: 'Terampil',
       color: '#2496ED',
       icon: '🐳',
       description: 'Containerizing application environments with Docker, automating git workflows, and managing build pipelines.',
+      descriptionId: 'Mengemas lingkungan aplikasi dengan Docker, mengotomatisasi alur kerja Git, dan mengelola pipeline build.',
       technologies: ['Docker', 'Git & GitHub', 'CI/CD Basics', 'npm / Vite Bundling', 'Environment Isolation'],
-      highlights: ['Multi-stage build optimization', 'Reproducible dev environments', 'Version control hygiene']
+      highlights: ['Multi-stage build optimization', 'Reproducible dev environments', 'Version control hygiene'],
+      highlightsId: ['Optimasi build multi-stage', 'Lingkungan pengembangan yang dapat direproduksi', 'Pengelolaan version control yang rapi']
     },
     {
       id: 'uiux',
       label: 'UI/UX Design',
       score: 88,
       level: 'Advanced',
+      levelId: 'Lanjutan',
       color: '#F24E1E',
       icon: '🎨',
       description: 'Designing intuitive glassmorphism wireframes in Figma and translating them into dynamic, interactive web interfaces.',
+      descriptionId: 'Merancang wireframe glassmorphism yang intuitif di Figma dan menerjemahkannya menjadi antarmuka web yang dinamis dan interaktif.',
       technologies: ['Figma Prototyping', 'Design Systems', 'Micro-interactions', 'Dark Mode Ergonomics', 'Accessibility'],
-      highlights: ['Custom design tokens', 'Smooth 60fps micro-animations', 'User-centered design focus']
+      highlights: ['Custom design tokens', 'Smooth 60fps micro-animations', 'User-centered design focus'],
+      highlightsId: ['Design token khusus', 'Mikroanimasi halus 60 fps', 'Berfokus pada kebutuhan pengguna']
     }
   ];
 
@@ -114,13 +134,13 @@ export default function SkillRadar() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-16">
           <div>
             <div className="flex items-center gap-3">
-              <span className="font-mono text-cyan-400 text-sm font-semibold tracking-wider uppercase">Competency Matrix</span>
+              <span className="font-mono text-cyan-400 text-sm font-semibold tracking-wider uppercase">{t('Competency Matrix', 'Matriks Kompetensi')}</span>
               <div className="h-[1px] w-12 bg-cyan-400/40"></div>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-1">Skill Radar Chart</h2>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-1">{t('Skill Radar Chart', 'Grafik Radar Keahlian')}</h2>
           </div>
           <p className="text-slate-400 text-sm font-mono max-w-xs">
-            // Multi-dimensional evaluation across technical domains.
+            // {t('Multi-dimensional evaluation across technical domains.', 'Evaluasi multidimensi untuk berbagai bidang teknis.')}
           </p>
         </div>
 
@@ -137,7 +157,7 @@ export default function SkillRadar() {
                   <span className="w-2.5 h-2.5 rounded-full bg-purple-400 animate-pulse" />
                   SVG Vector Competency Radar
                 </span>
-                <span className="text-cyan-300 font-bold">6-Axis Metric</span>
+                  <span className="text-cyan-300 font-bold">{t('6-Axis Metric', 'Metrik 6 Sumbu')}</span>
               </div>
 
               {/* SVG Canvas */}
@@ -290,7 +310,7 @@ export default function SkillRadar() {
                     {currentSkill.icon}
                   </div>
                   <div>
-                    <span className="font-mono text-[10px] text-cyan-300 uppercase tracking-widest">// DOMAIN INSPECTOR</span>
+                    <span className="font-mono text-[10px] text-cyan-300 uppercase tracking-widest">// {t('DOMAIN INSPECTOR', 'DETAIL BIDANG')}</span>
                     <h3 className="text-2xl font-bold text-white mt-0.5">{currentSkill.label}</h3>
                   </div>
                 </div>
@@ -298,7 +318,7 @@ export default function SkillRadar() {
                 <div className="text-right">
                   <div className="text-2xl font-bold font-mono text-cyan-400">{currentSkill.score}%</div>
                   <div className="font-mono text-[10px] text-purple-300 bg-purple-500/10 border border-purple-500/20 px-2 py-0.5 rounded-md mt-1">
-                    {currentSkill.level}
+                    {t(currentSkill.level, currentSkill.levelId)}
                   </div>
                 </div>
               </div>
@@ -306,7 +326,7 @@ export default function SkillRadar() {
               {/* Skill Progress Bar */}
               <div>
                 <div className="flex justify-between text-xs font-mono text-slate-400 mb-1.5">
-                  <span>Proficiency Rating</span>
+                  <span>{t('Proficiency Rating', 'Tingkat Penguasaan')}</span>
                   <span className="text-slate-200">{currentSkill.score} / 100</span>
                 </div>
                 <div className="w-full h-2.5 bg-black/50 rounded-full overflow-hidden border border-white/10 p-0.5">
@@ -319,12 +339,12 @@ export default function SkillRadar() {
 
               {/* Description */}
               <p className="text-slate-300 text-sm leading-relaxed">
-                {currentSkill.description}
+                {t(currentSkill.description, currentSkill.descriptionId)}
               </p>
 
               {/* Stack Pills */}
               <div>
-                <h4 className="font-mono text-xs uppercase tracking-wider text-slate-400 mb-2.5">// Technologies Employed</h4>
+                <h4 className="font-mono text-xs uppercase tracking-wider text-slate-400 mb-2.5">// {t('Technologies Employed', 'Teknologi yang Digunakan')}</h4>
                 <div className="flex flex-wrap gap-2">
                   {currentSkill.technologies.map((tech, idx) => (
                     <span 
@@ -339,12 +359,12 @@ export default function SkillRadar() {
 
               {/* Key Highlights */}
               <div className="pt-2 border-t border-white/10">
-                <h4 className="font-mono text-xs uppercase tracking-wider text-slate-400 mb-2">// Engineering Highlights</h4>
+                <h4 className="font-mono text-xs uppercase tracking-wider text-slate-400 mb-2">// {t('Engineering Highlights', 'Sorotan Rekayasa')}</h4>
                 <div className="space-y-2">
                   {currentSkill.highlights.map((item, idx) => (
                     <div key={idx} className="flex items-center gap-2.5 text-xs text-slate-300">
                       <span className="text-emerald-400 font-mono">✓</span>
-                      <span>{item}</span>
+                      <span>{t(item, currentSkill.highlightsId[idx])}</span>
                     </div>
                   ))}
                 </div>

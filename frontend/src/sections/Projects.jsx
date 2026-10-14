@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import GlassCard from '../components/GlassCard';
 import ProjectModal from '../components/ProjectModal';
 import { fetchProjects } from '../services/api';
+import { useLanguage } from '../context/LanguageContext';
 
 const MOCK_PROJECTS = [
   {
@@ -9,7 +10,9 @@ const MOCK_PROJECTS = [
     title: 'DevPulse Realtime Analytics',
     category: 'Fullstack',
     description: 'High-concurrency developer telemetry platform with live WebSocket streaming, microsecond metrics parsing, and interactive glass charts.',
+    descriptionId: 'Platform telemetri developer berkonkurensi tinggi dengan streaming WebSocket langsung, pemrosesan metrik mikrodetik, dan grafik interaktif.',
     long_description: 'DevPulse is a fullstack monitoring solution engineered for cloud-native microservices. It ingests thousands of metrics per second, presenting real-time system health, error traces, and latency distribution through a reactive React dashboard.',
+    long_descriptionId: 'DevPulse adalah solusi pemantauan fullstack untuk microservice cloud-native. Platform ini menerima ribuan metrik per detik dan menampilkan kondisi sistem, error trace, serta distribusi latensi secara real-time melalui dashboard React.',
     tech_stack: ['React 19', 'Node.js', 'Express', 'PostgreSQL', 'TailwindCSS', 'WebSockets'],
     github_url: 'https://github.com',
     live_url: 'https://example.com',
@@ -20,7 +23,9 @@ const MOCK_PROJECTS = [
     title: 'Nova Headless E-Commerce',
     category: 'Fullstack',
     description: 'Ultra-fast headless commerce platform featuring dynamic cart state management, Stripe payment processing, and inventory synchronization.',
+    descriptionId: 'Platform headless commerce yang cepat dengan pengelolaan keranjang dinamis, pemrosesan pembayaran Stripe, dan sinkronisasi inventaris.',
     long_description: 'Nova Commerce provides enterprise-grade online shopping experiences. Built with Next.js App Router and PostgreSQL backend, it delivers sub-100ms page loads and full PCI-compliant checkout workflow.',
+    long_descriptionId: 'Nova Commerce menghadirkan pengalaman belanja online untuk kebutuhan enterprise. Dibangun dengan Next.js App Router dan backend PostgreSQL, platform ini menargetkan pemuatan halaman di bawah 100 ms dan alur checkout yang sesuai PCI.',
     tech_stack: ['Next.js', 'PostgreSQL', 'Express.js', 'Stripe API', 'TailwindCSS'],
     github_url: 'https://github.com',
     live_url: 'https://example.com',
@@ -31,7 +36,9 @@ const MOCK_PROJECTS = [
     title: 'CyberAuth Key Vault',
     category: 'Backend',
     description: 'Zero-trust API gateway & secret management microservice with JWT authentication, rate limiting, and encrypted storage.',
+    descriptionId: 'API gateway zero-trust dan microservice pengelolaan secret dengan autentikasi JWT, rate limiting, dan penyimpanan terenkripsi.',
     long_description: 'A secure backend service designed for identity management and key rotation. Includes automated rate limiting, bcrypt key hashing, and role-based access control (RBAC) middleware.',
+    long_descriptionId: 'Layanan backend untuk pengelolaan identitas dan rotasi key. Mencakup rate limiting otomatis, hashing key dengan bcrypt, dan middleware role-based access control (RBAC).',
     tech_stack: ['Node.js', 'Express', 'PostgreSQL', 'JWT', 'Docker'],
     github_url: 'https://github.com',
     live_url: null,
@@ -42,7 +49,9 @@ const MOCK_PROJECTS = [
     title: 'AI Prompt Studio & Workspace',
     category: 'Frontend',
     description: 'Interactive playground for prompt engineering with live token counter, side-by-side output comparison, and export utilities.',
+    descriptionId: 'Playground interaktif untuk prompt engineering dengan penghitung token langsung, perbandingan output berdampingan, dan fitur ekspor.',
     long_description: 'Designed for AI developers to test and evaluate LLM prompts in real time. Features dynamic model preset selection, variable injection, and visual output diffing.',
+    long_descriptionId: 'Dirancang bagi developer AI untuk menguji dan mengevaluasi prompt LLM secara real-time. Fiturnya mencakup pemilihan preset model, penyisipan variabel, dan perbandingan output secara visual.',
     tech_stack: ['React', 'TypeScript', 'TailwindCSS', 'Figma', 'Vite'],
     github_url: 'https://github.com',
     live_url: 'https://example.com',
@@ -51,6 +60,7 @@ const MOCK_PROJECTS = [
 ];
 
 export default function Projects() {
+  const { t, language } = useLanguage();
   const [projects, setProjects] = useState([]);
   const [activeCategory, setActiveCategory] = useState('All');
   const [activeTechnology, setActiveTechnology] = useState('All');
@@ -116,13 +126,13 @@ export default function Projects() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-14">
           <div>
             <div className="flex items-center gap-3">
-              <span className="font-mono text-purple-400 text-sm font-semibold tracking-wider uppercase">02. Showcase</span>
+              <span className="font-mono text-purple-400 text-sm font-semibold tracking-wider uppercase">{t('02. Showcase', '02. Karya Pilihan')}</span>
               <div className="h-[1px] w-12 bg-purple-400/40"></div>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-1">Featured Projects</h2>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-1">{t('Featured Projects', 'Proyek Unggulan')}</h2>
           </div>
           <p className="text-slate-400 text-sm font-mono max-w-xs">
-            // Selected software systems, fullstack platforms, and APIs.
+            // {t('Selected software systems, fullstack platforms, and APIs.', 'Pilihan sistem perangkat lunak, platform fullstack, dan API.')}
           </p>
         </div>
 
@@ -130,7 +140,7 @@ export default function Projects() {
         <div className="grid gap-4 sm:grid-cols-[minmax(0,1fr)_16rem] mb-6">
           <div>
             <label htmlFor="project-search" className="mb-2 block font-mono text-[11px] uppercase tracking-wider text-slate-400">
-              Search projects
+              {t('Search projects', 'Cari proyek')}
             </label>
             <div className="relative">
               <svg aria-hidden="true" className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -142,7 +152,7 @@ export default function Projects() {
                 type="search"
                 value={searchQuery}
                 onChange={(event) => setSearchQuery(event.target.value)}
-                placeholder="Name, description, or technology..."
+                placeholder={t('Name, description, or technology...', 'Nama, deskripsi, atau teknologi...')}
                 className="w-full rounded-xl border border-white/10 bg-black/30 py-3 pl-10 pr-4 text-sm text-white placeholder:text-slate-500 focus:border-cyan-400/50 focus:outline-none focus:ring-2 focus:ring-cyan-400/20"
               />
             </div>
@@ -150,7 +160,7 @@ export default function Projects() {
 
           <div>
             <label htmlFor="project-technology-filter" className="mb-2 block font-mono text-[11px] uppercase tracking-wider text-slate-400">
-              Filter by technology
+              {t('Filter by technology', 'Filter teknologi')}
             </label>
             <select
               id="project-technology-filter"
@@ -158,7 +168,7 @@ export default function Projects() {
               onChange={(event) => setActiveTechnology(event.target.value)}
               className="w-full rounded-xl border border-white/10 bg-[#0D111D] px-3 py-3 text-sm text-slate-200 focus:border-cyan-400/50 focus:outline-none focus:ring-2 focus:ring-cyan-400/20"
             >
-              <option value="All">All technologies</option>
+              <option value="All">{t('All technologies', 'Semua teknologi')}</option>
               {technologies.map((technology) => (
                 <option key={technology} value={technology}>{technology}</option>
               ))}
@@ -179,14 +189,16 @@ export default function Projects() {
                   : 'bg-white/5 text-slate-400 border-white/5 hover:text-white hover:border-white/20'
               }`}
             >
-              {cat}
+              {cat === 'All' ? t('All', 'Semua') : cat}
             </button>
           ))}
         </div>
 
         {!loading && (
           <p className="mb-6 font-mono text-[11px] text-slate-500" aria-live="polite">
-            Showing {filteredProjects.length} of {projects.length} projects
+            {language === 'id'
+              ? `Menampilkan ${filteredProjects.length} dari ${projects.length} proyek`
+              : `Showing ${filteredProjects.length} of ${projects.length} projects`}
           </p>
         )}
 
@@ -194,7 +206,7 @@ export default function Projects() {
         {loading && (
           <div className="flex flex-col items-center justify-center py-20">
             <div className="w-10 h-10 border-4 border-purple-500/20 border-t-purple-500 rounded-full animate-spin mb-4"></div>
-            <p className="text-slate-400 font-mono text-xs">Loading projects from system network...</p>
+            <p className="text-slate-400 font-mono text-xs">{t('Loading projects from system network...', 'Memuat proyek...')}</p>
           </div>
         )}
 
@@ -226,7 +238,7 @@ export default function Projects() {
                   </div>
 
                   <p className="text-slate-300 text-sm leading-relaxed mb-6 line-clamp-2">
-                    {project.description}
+                        {t(project.description, project.descriptionId || project.description)}
                   </p>
                 </div>
 
@@ -246,10 +258,10 @@ export default function Projects() {
                       type="button"
                       onClick={() => setSelectedProject(project)}
                       aria-haspopup="dialog"
-                      aria-label={`View details for ${project.title}`}
+                      aria-label={t(`View details for ${project.title}`, `Lihat detail ${project.title}`)}
                       className="text-purple-300 hover:text-white transition-colors flex items-center gap-1.5 text-xs font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded"
                     >
-                      <span>View Details</span>
+                      <span>{t('View Details', 'Lihat Detail')}</span>
                       <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                       </svg>
@@ -263,7 +275,7 @@ export default function Projects() {
                           rel="noopener noreferrer" 
                           className="text-slate-400 hover:text-white transition-colors flex items-center gap-1.5 text-xs font-mono"
                         >
-                          <span>GitHub Repo</span>
+                          <span>{t('GitHub Repo', 'Repositori GitHub')}</span>
                           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                           </svg>
@@ -277,13 +289,13 @@ export default function Projects() {
                           rel="noopener noreferrer" 
                           className="text-purple-400 hover:text-purple-300 transition-colors flex items-center gap-1.5 text-xs font-mono font-semibold"
                         >
-                          <span>Live Preview</span>
+                          <span>{t('Live Preview', 'Pratinjau Langsung')}</span>
                           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                           </svg>
                         </a>
                       ) : (
-                        <span className="text-slate-500 text-xs font-mono">Service internal</span>
+                        <span className="text-slate-500 text-xs font-mono">{t('Internal service', 'Layanan internal')}</span>
                       )}
                     </div>
                   </div>
@@ -295,8 +307,8 @@ export default function Projects() {
 
         {!loading && filteredProjects.length === 0 && (
           <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-12 text-center">
-            <p className="text-sm font-semibold text-white">No matching projects found</p>
-            <p className="mt-2 text-xs text-slate-400">Try another search term or clear the selected filters.</p>
+            <p className="text-sm font-semibold text-white">{t('No matching projects found', 'Tidak ada proyek yang cocok')}</p>
+            <p className="mt-2 text-xs text-slate-400">{t('Try another search term or clear the selected filters.', 'Coba kata pencarian lain atau hapus filter yang dipilih.')}</p>
             <button
               type="button"
               onClick={() => {
@@ -306,7 +318,7 @@ export default function Projects() {
               }}
               className="mt-5 rounded-lg border border-purple-400/30 bg-purple-500/10 px-4 py-2 text-xs font-medium text-purple-200 transition-colors hover:bg-purple-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
             >
-              Clear filters
+              {t('Clear filters', 'Hapus filter')}
             </button>
           </div>
         )}
