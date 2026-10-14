@@ -1,4 +1,7 @@
+import { useLanguage } from '../context/LanguageContext';
+
 export default function Footer() {
+  const { t } = useLanguage();
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -10,21 +13,21 @@ export default function Footer() {
         {/* Left branding */}
         <div className="flex items-center gap-2">
           <span className="text-cyan-400 font-bold">Ivan.dev</span>
-          <span>— Fullstack Engineering Showcase</span>
+          <span>{t('— Fullstack Engineering Showcase', '— Portofolio Rekayasa Fullstack')}</span>
         </div>
 
         {/* Center copyright */}
         <div className="text-center sm:text-left text-slate-500">
-          &copy; {new Date().getFullYear()} Designed & Built with <span className="text-purple-400">♥</span> & <span className="text-cyan-400">React 19</span>
+          &copy; {new Date().getFullYear()} {t('Designed & Built with', 'Dirancang & Dibangun dengan')} <span className="text-purple-400">♥</span> & <span className="text-cyan-400">React 19</span>
         </div>
 
         {/* Back to top CTA */}
         <button
           onClick={scrollToTop}
           className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 transition-all cursor-pointer group"
-          title="Back to top"
+          title={t('Back to top', 'Kembali ke atas')}
         >
-          <span>Back to Top</span>
+          <span>{t('Back to Top', 'Kembali ke Atas')}</span>
           <svg className="w-3.5 h-3.5 text-purple-400 group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
           </svg>
