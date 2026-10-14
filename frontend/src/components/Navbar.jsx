@@ -1,9 +1,32 @@
 import { useState, useEffect } from 'react';
 import NeonButton from './NeonButton';
+import { useLanguage } from '../context/LanguageContext';
+
+function LanguageToggle({ language, setLanguage, t }) {
+  return (
+    <div role="group" aria-label={t('Choose language', 'Pilih bahasa')} className="flex items-center rounded-xl border border-white/10 bg-white/5 p-1 font-mono text-[10px]">
+      {['en', 'id'].map((option) => (
+        <button
+          key={option}
+          type="button"
+          onClick={() => setLanguage(option)}
+          aria-pressed={language === option}
+          aria-label={option === 'en' ? t('Switch to English', 'Ganti ke bahasa Inggris') : t('Switch to Indonesian', 'Ganti ke bahasa Indonesia')}
+          className={`rounded-lg px-2 py-1.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 ${
+            language === option ? 'bg-purple-500/30 text-white' : 'text-slate-400 hover:text-white'
+          }`}
+        >
+          {option.toUpperCase()}
+        </button>
+      ))}
+    </div>
+  );
+}
 
 export default function Navbar({ onOpenCommandPalette }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,12 +37,12 @@ export default function Navbar({ onOpenCommandPalette }) {
   }, []);
 
   const navLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Architecture', href: '#architecture' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Contact', href: '#contact' },
+    { name: t('About', 'Tentang'), href: '#about' },
+    { name: t('Skills', 'Keahlian'), href: '#skills' },
+    { name: t('Architecture', 'Arsitektur'), href: '#architecture' },
+    { name: t('Projects', 'Proyek'), href: '#projects' },
+    { name: t('Experience', 'Pengalaman'), href: '#experience' },
+    { name: t('Contact', 'Kontak'), href: '#contact' },
   ];
 
   return (
@@ -58,32 +81,34 @@ export default function Navbar({ onOpenCommandPalette }) {
 
           {/* Right Actions: Command Palette & Status Badge */}
           <div className="hidden md:flex items-center gap-3">
+            <LanguageToggle language={language} setLanguage={setLanguage} t={t} />
             {/* Command Palette Trigger */}
             <button
               onClick={onOpenCommandPalette}
               className="flex items-center gap-2 font-mono text-xs text-slate-300 bg-white/5 hover:bg-white/10 hover:text-white border border-white/10 hover:border-purple-500/40 px-3.5 py-2 rounded-xl transition-all cursor-pointer group shadow-sm"
-              title="Open Command Palette (Ctrl+K)"
+              title={t('Open Command Palette (Ctrl+K)', 'Buka Command Palette (Ctrl+K)')}
             >
               <svg className="w-3.5 h-3.5 text-purple-400 group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
-              <span>Search</span>
+              <span>{t('Search', 'Cari')}</span>
               <kbd className="text-[10px] bg-white/10 text-purple-300 px-1.5 py-0.5 rounded border border-white/10 font-mono">
                 ⌘K
               </kbd>
             </button>
 
             <NeonButton href="#contact" className="text-xs px-5 py-2">
-              Let's Talk
+              {t("Let's Talk", 'Mari Bicara')}
             </NeonButton>
           </div>
 
           {/* Mobile Menu Toggle */}
           <div className="flex items-center gap-2 md:hidden">
+            <LanguageToggle language={language} setLanguage={setLanguage} t={t} />
             <button
               onClick={onOpenCommandPalette}
               className="p-2 rounded-xl bg-white/5 text-purple-400 border border-white/10"
-              title="Search"
+              title={t('Search', 'Cari')}
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -93,7 +118,7 @@ export default function Navbar({ onOpenCommandPalette }) {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 rounded-xl bg-white/5 text-slate-300 hover:text-white border border-white/10"
-              aria-label="Toggle Navigation Menu"
+              aria-label={t('Toggle Navigation Menu', 'Buka/tutup menu navigasi')}
             >
               {mobileMenuOpen ? (
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -127,7 +152,7 @@ export default function Navbar({ onOpenCommandPalette }) {
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-full text-center text-xs py-2.5"
               >
-                Let's Talk
+                {t("Let's Talk", 'Mari Bicara')}
               </NeonButton>
             </div>
           </div>
