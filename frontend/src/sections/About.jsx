@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import GlassCard from '../components/GlassCard';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function About() {
   const [activeTab, setActiveTab] = useState('all');
+  const { t } = useLanguage();
 
   const allSkills = [
     { name: 'React.js', category: 'frontend', color: 'text-[#61DAFB]', bg: 'bg-[#61DAFB]/10 border-[#61DAFB]/30' },
@@ -51,13 +53,13 @@ export default function About() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-16">
           <div>
             <div className="flex items-center gap-3">
-              <span className="font-mono text-cyan-400 text-sm font-semibold tracking-wider uppercase">01. Discovery</span>
+              <span className="font-mono text-cyan-400 text-sm font-semibold tracking-wider uppercase">{t('01. Discovery', '01. Tentang Saya')}</span>
               <div className="h-[1px] w-12 bg-cyan-400/40"></div>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-1">About Me</h2>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-1">{t('About Me', 'Tentang Saya')}</h2>
           </div>
           <p className="text-slate-400 text-sm max-w-sm font-mono">
-            // Blending software engineering precision with aesthetic design.
+            // {t('Blending software engineering precision with aesthetic design.', 'Memadukan ketelitian rekayasa perangkat lunak dengan desain yang menarik.')}
           </p>
         </div>
 
@@ -67,34 +69,40 @@ export default function About() {
           <div className="lg:col-span-7 space-y-6">
             <GlassCard className="space-y-4">
               <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                <span>Passionate Developer & Problem Solver</span>
+                <span>{t('Passionate Developer & Problem Solver', 'Developer yang Antusias & Pemecah Masalah')}</span>
                 <span className="text-xs font-mono text-purple-400 bg-purple-500/10 border border-purple-500/20 px-2.5 py-1 rounded-full">Fullstack</span>
               </h3>
               
               <p className="text-slate-300 leading-relaxed text-sm sm:text-base">
-                Hello! I am a fullstack software engineer committed to crafting fast, user-centered, and scalable web applications. My path began with a fascination for interactive frontends, expanding into robust backend architecture and data systems.
+                {t(
+                  'Hello! I am a fullstack software engineer committed to crafting fast, user-centered, and scalable web applications. My path began with a fascination for interactive frontends, expanding into robust backend architecture and data systems.',
+                  'Halo! Saya seorang software engineer fullstack yang berfokus membangun aplikasi web yang cepat, berpusat pada pengguna, dan skalabel. Perjalanan saya dimulai dari ketertarikan pada frontend interaktif, lalu berkembang ke arsitektur backend dan sistem data yang andal.'
+                )}
               </p>
 
               <p className="text-slate-300 leading-relaxed text-sm sm:text-base">
-                I take pride in producing maintainable, self-documenting code, enforcing seamless API design, and delivering glassmorphism UI interfaces that engage users at first glance.
+                {t(
+                  'I take pride in producing maintainable, self-documenting code, enforcing seamless API design, and delivering glassmorphism UI interfaces that engage users at first glance.',
+                  'Saya mengutamakan kode yang mudah dirawat dan dipahami, desain API yang konsisten, serta antarmuka glassmorphism yang menarik bagi pengguna.'
+                )}
               </p>
 
               {/* Core Principles Grid */}
               <div className="grid sm:grid-cols-2 gap-4 pt-4 border-t border-white/10">
                 <div className="p-3.5 rounded-xl bg-white/5 border border-white/5">
-                  <div className="font-mono text-xs font-semibold text-cyan-400 uppercase tracking-wider mb-1">⚡ High Performance</div>
-                  <div className="text-xs text-slate-400">Optimized bundle size, crisp animations, and fast response times.</div>
+                  <div className="font-mono text-xs font-semibold text-cyan-400 uppercase tracking-wider mb-1">⚡ {t('High Performance', 'Performa Tinggi')}</div>
+                  <div className="text-xs text-slate-400">{t('Optimized bundle size, crisp animations, and fast response times.', 'Ukuran bundle yang optimal, animasi halus, dan waktu respons cepat.')}</div>
                 </div>
                 <div className="p-3.5 rounded-xl bg-white/5 border border-white/5">
-                  <div className="font-mono text-xs font-semibold text-purple-400 uppercase tracking-wider mb-1">🛡️ Clean Architecture</div>
-                  <div className="text-xs text-slate-400">Modular backend design, validated schemas, and clear REST APIs.</div>
+                  <div className="font-mono text-xs font-semibold text-purple-400 uppercase tracking-wider mb-1">🛡️ {t('Clean Architecture', 'Arsitektur yang Bersih')}</div>
+                  <div className="text-xs text-slate-400">{t('Modular backend design, validated schemas, and clear REST APIs.', 'Desain backend modular, skema tervalidasi, dan REST API yang jelas.')}</div>
                 </div>
               </div>
             </GlassCard>
 
             {/* Marquee Skills Slider */}
             <div className="space-y-3">
-              <div className="font-mono text-xs text-slate-400 uppercase tracking-widest pl-1">Continuous Stack Marquee</div>
+              <div className="font-mono text-xs text-slate-400 uppercase tracking-widest pl-1">{t('Continuous Stack Marquee', 'Rangkaian Teknologi')}</div>
               
               {/* Row 1 */}
               <div className="relative w-full overflow-hidden py-1 mask-gradient-horizontal">
@@ -133,20 +141,20 @@ export default function About() {
           <div className="lg:col-span-5">
             <GlassCard>
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-lg font-bold text-white">Technical Arsenal</h3>
+                <h3 className="text-lg font-bold text-white">{t('Technical Arsenal', 'Kumpulan Teknologi')}</h3>
                 <span className="font-mono text-xs text-cyan-400 bg-cyan-500/10 px-2.5 py-1 rounded-full border border-cyan-500/20">
-                  {filteredSkills.length} Technologies
+                  {filteredSkills.length} {t('Technologies', 'Teknologi')}
                 </span>
               </div>
 
               {/* Filter Tabs */}
               <div className="flex flex-wrap gap-1.5 p-1 bg-black/40 rounded-xl border border-white/5 mb-6">
                 {[
-                  { id: 'all', label: 'All' },
+                  { id: 'all', label: t('All', 'Semua') },
                   { id: 'frontend', label: 'Frontend' },
                   { id: 'backend', label: 'Backend' },
-                  { id: 'database', label: 'Database' },
-                  { id: 'tools', label: 'Tools' },
+                  { id: 'database', label: t('Database', 'Basis Data') },
+                  { id: 'tools', label: t('Tools', 'Tools') },
                 ].map((tab) => (
                   <button
                     key={tab.id}
@@ -176,8 +184,8 @@ export default function About() {
               </div>
 
               <div className="mt-6 pt-4 border-t border-white/10 font-mono text-xs text-slate-500 flex items-center justify-between">
-                <span>Status: Updated 2026</span>
-                <span className="text-purple-400">100% Modular</span>
+                <span>{t('Status: Updated 2026', 'Status: Diperbarui 2026')}</span>
+                <span className="text-purple-400">{t('100% Modular', '100% Modular')}</span>
               </div>
             </GlassCard>
           </div>

@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import NeonButton from '../components/NeonButton';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Hero() {
   const [copied, setCopied] = useState(false);
+  const { t } = useLanguage();
 
   const codeSnippet = `const developer = {
   name: 'Ivan Winata',
@@ -38,26 +40,29 @@ export default function Hero() {
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
               </span>
               <span className="font-mono text-xs font-semibold uppercase tracking-wider text-emerald-300">
-                Available for new projects & roles
+                {t('Available for new projects & roles', 'Terbuka untuk proyek dan posisi baru')}
               </span>
             </div>
 
             {/* Headline */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.15]">
-              Building Next-Gen <br className="hidden sm:block" />
-              <span className="text-gradient">Web Applications</span> <br />
-              & Digital Experiences
+              {t('Building Next-Gen', 'Membangun')} <br className="hidden sm:block" />
+              <span className="text-gradient">{t('Web Applications', 'Aplikasi Web')}</span> <br />
+              {t('& Digital Experiences', '& Pengalaman Digital')}
             </h1>
 
             {/* Subtitle */}
             <p className="text-slate-300 text-base sm:text-lg max-w-xl leading-relaxed font-normal">
-              Fullstack Engineer specializing in high-concurrency Node.js services, pixel-perfect React/Next.js interfaces, and scalable database architectures.
+              {t(
+                'Fullstack Engineer specializing in high-concurrency Node.js services, pixel-perfect React/Next.js interfaces, and scalable database architectures.',
+                'Fullstack Engineer dengan fokus pada layanan Node.js berkonkurensi tinggi, antarmuka React/Next.js yang presisi, dan arsitektur basis data yang skalabel.'
+              )}
             </p>
 
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <NeonButton href="#projects" className="px-7 py-3 text-sm">
-                <span>View Projects</span>
+                <span>{t('View Projects', 'Lihat Proyek')}</span>
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
@@ -67,7 +72,7 @@ export default function Hero() {
                 href="#contact" 
                 className="px-6 py-3 rounded-full bg-white/5 hover:bg-white/10 text-slate-200 hover:text-white border border-white/10 transition-all duration-300 font-mono text-sm flex items-center gap-2 backdrop-blur-md"
               >
-                <span>Contact Me</span>
+                <span>{t('Contact Me', 'Hubungi Saya')}</span>
               </a>
             </div>
 
@@ -75,15 +80,15 @@ export default function Hero() {
             <div className="grid grid-cols-3 gap-4 pt-6 border-t border-white/10 max-w-md">
               <div>
                 <div className="text-2xl sm:text-3xl font-bold font-mono text-white">3+</div>
-                <div className="text-xs text-slate-400 font-mono uppercase tracking-wider mt-0.5">Years Exp.</div>
+                <div className="text-xs text-slate-400 font-mono uppercase tracking-wider mt-0.5">{t('Years Exp.', 'Tahun Pengalaman')}</div>
               </div>
               <div>
                 <div className="text-2xl sm:text-3xl font-bold font-mono text-cyan-400">20+</div>
-                <div className="text-xs text-slate-400 font-mono uppercase tracking-wider mt-0.5">Projects</div>
+                <div className="text-xs text-slate-400 font-mono uppercase tracking-wider mt-0.5">{t('Projects', 'Proyek')}</div>
               </div>
               <div>
                 <div className="text-2xl sm:text-3xl font-bold font-mono text-purple-400">99.9%</div>
-                <div className="text-xs text-slate-400 font-mono uppercase tracking-wider mt-0.5">Uptime</div>
+                <div className="text-xs text-slate-400 font-mono uppercase tracking-wider mt-0.5">{t('Uptime', 'Waktu Aktif')}</div>
               </div>
             </div>
           </div>
@@ -104,16 +109,16 @@ export default function Hero() {
                 <button
                   onClick={handleCopyCode}
                   className="flex items-center gap-1.5 font-mono text-[11px] text-slate-400 hover:text-white bg-white/5 hover:bg-white/10 px-2.5 py-1 rounded-md border border-white/10 transition-colors"
-                  title="Copy snippet"
+                  title={t('Copy snippet', 'Salin cuplikan kode')}
                 >
                   {copied ? (
-                    <span className="text-emerald-400 flex items-center gap-1">✓ Copied!</span>
+                    <span className="text-emerald-400 flex items-center gap-1">{t('✓ Copied!', '✓ Tersalin!')}</span>
                   ) : (
                     <>
                       <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                       </svg>
-                      <span>Copy</span>
+                      <span>{t('Copy', 'Salin')}</span>
                     </>
                   )}
                 </button>
@@ -142,7 +147,7 @@ export default function Hero() {
               <div className="bg-[#080B14] px-4 py-2 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-500">
                 <span className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-                  TypeScript React Ready
+                  {t('TypeScript React Ready', 'TypeScript React Siap')}
                 </span>
                 <span>UTF-8</span>
               </div>
