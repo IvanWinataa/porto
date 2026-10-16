@@ -52,7 +52,7 @@ export default function Contact() {
   return (
     <section id="contact" className="py-28 relative overflow-hidden bg-grid-pattern">
       {/* Glow highlight */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-gradient-to-t from-purple-600/20 via-cyan-500/10 to-transparent rounded-full blur-[150px] -z-10 pointer-events-none" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-gradient-to-t from-blue-600/20 via-cyan-500/10 to-transparent rounded-full blur-[150px] -z-10 pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
@@ -60,8 +60,8 @@ export default function Contact() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-16">
           <div>
             <div className="flex items-center gap-3">
-              <span className="font-mono text-purple-400 text-sm font-semibold tracking-wider uppercase">04. {t('Connection', 'Kontak')}</span>
-              <div className="h-[1px] w-12 bg-purple-400/40"></div>
+              <span className="font-mono text-blue-400 text-sm font-semibold tracking-wider uppercase">04. {t('Connection', 'Kontak')}</span>
+              <div className="h-[1px] w-12 bg-blue-400/40"></div>
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-1">{t('Get In Touch', 'Hubungi Saya')}</h2>
           </div>
@@ -107,7 +107,7 @@ export default function Contact() {
 
                 {/* Location */}
                 <div className="p-4 rounded-xl bg-white/5 border border-white/10 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-purple-500/10 text-purple-400 border border-purple-500/20 flex items-center justify-center font-mono">
+                  <div className="w-10 h-10 rounded-lg bg-blue-500/10 text-blue-400 border border-blue-500/20 flex items-center justify-center font-mono">
                     📍
                   </div>
                   <div>
@@ -165,7 +165,7 @@ export default function Contact() {
                       maxLength={100}
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-purple-500/60 focus:shadow-[0_0_20px_rgba(139,92,246,0.25)] transition-all text-sm font-sans"
+                      className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-blue-500/60 focus:shadow-[0_0_20px_rgba(59,130,246,0.25)] transition-all text-sm font-sans"
                       placeholder="Alex Morgan"
                     />
                   </div>
@@ -182,7 +182,7 @@ export default function Contact() {
                       maxLength={254}
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-purple-500/60 focus:shadow-[0_0_20px_rgba(139,92,246,0.25)] transition-all text-sm font-sans"
+                      className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-blue-500/60 focus:shadow-[0_0_20px_rgba(59,130,246,0.25)] transition-all text-sm font-sans"
                       placeholder="alex@company.com"
                     />
                   </div>
@@ -205,7 +205,7 @@ export default function Contact() {
                     maxLength={5000}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-purple-500/60 focus:shadow-[0_0_20px_rgba(139,92,246,0.25)] transition-all text-sm resize-none font-sans"
+                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-blue-500/60 focus:shadow-[0_0_20px_rgba(59,130,246,0.25)] transition-all text-sm resize-none font-sans"
                     placeholder={t('Describe your project, timeline, or inquiry...', 'Jelaskan proyek, linimasa, atau pertanyaan Anda...')}
                   />
                 </div>

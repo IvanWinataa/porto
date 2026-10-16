@@ -47,7 +47,7 @@ const { data } = await response.json();`
       subtitle: 'REST Dispatcher Layer',
       subtitleId: 'Lapisan Pengatur REST',
       icon: '⚡',
-      color: 'border-purple-400 text-purple-400',
+      color: 'border-blue-400 text-blue-400',
       badge: 'Node.js Runtime',
       badgeId: 'Runtime Node.js',
       latency: '~4 ms',
@@ -77,7 +77,7 @@ router.post('/api/contact', contactController.sendMessage);`
       subtitle: 'Middleware Guard Layer',
       subtitleId: 'Lapisan Proteksi Middleware',
       icon: '🛡️',
-      color: 'border-amber-400 text-amber-400',
+      color: 'border-sky-400 text-sky-400',
       badge: 'Middleware',
       badgeId: 'Middleware',
       latency: '~2 ms',
@@ -184,11 +184,11 @@ return result.rows;`
             <NeonButton 
               onClick={handleSimulatePulse} 
               disabled={simulating}
-              variant="amber"
+              variant="blue"
               className="text-xs px-5 py-2.5"
             >
               <span className="flex items-center gap-2">
-                <span className={`w-2 h-2 rounded-full ${simulating ? 'bg-amber-400 animate-ping' : 'bg-amber-300'}`} />
+                <span className={`w-2 h-2 rounded-full ${simulating ? 'bg-blue-400 animate-ping' : 'bg-blue-300'}`} />
                 <span>{simulating ? t(`Transmitting Step ${simulationStep}/4...`, `Mengirim tahap ${simulationStep}/4...`) : t('Simulate Request Pulse', 'Simulasikan Alur Permintaan')}</span>
               </span>
             </NeonButton>
@@ -228,11 +228,11 @@ return result.rows;`
                         onClick={() => setSelectedNodeId(node.id)}
                         aria-pressed={isSelected}
                         aria-label={t(`Select ${node.title} details`, `Pilih detail ${node.title}`)}
-                        className={`w-full text-left p-4 rounded-xl border transition-all duration-300 cursor-pointer flex items-center justify-between gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#05070F] ${
+                        className={`w-full text-left p-4 rounded-xl border transition-all duration-300 cursor-pointer flex items-center justify-between gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712] ${
                           isSelected 
-                            ? 'bg-purple-600/20 border-purple-400 shadow-[0_0_25px_rgba(139,92,246,0.3)] scale-[1.02]' 
+                            ? 'bg-blue-600/20 border-blue-400 shadow-[0_0_25px_rgba(59,130,246,0.3)] scale-[1.02]'
                             : 'bg-white/5 border-white/10 hover:border-white/30 hover:bg-white/10'
-                        } ${isStepActive ? 'ring-2 ring-amber-400 shadow-[0_0_30px_rgba(245,158,11,0.5)]' : ''}`}
+                        } ${isStepActive ? 'ring-2 ring-blue-400 shadow-[0_0_30px_rgba(59,130,246,0.5)]' : ''}`}
                       >
                         <span className="flex items-center gap-3.5">
                           <span aria-hidden="true" className="w-10 h-10 rounded-lg bg-black/40 border border-white/10 flex items-center justify-center text-xl shrink-0">
@@ -258,10 +258,10 @@ return result.rows;`
                       {/* Animated Flow Connector Arrow */}
                       {index < nodes.length - 1 && (
                         <div className="flex items-center justify-center py-1">
-                          <div className="h-6 w-[2px] bg-gradient-to-b from-purple-500/60 to-cyan-500/60 relative">
+                          <div className="h-6 w-[2px] bg-gradient-to-b from-blue-500/60 to-cyan-500/60 relative">
                             {/* Moving packet particle */}
                             {simulating && (simulationStep === index + 1 || simulationStep === index + 2) && (
-                              <div className="absolute -top-1 -left-[3px] w-2.5 h-2.5 rounded-full bg-amber-400 shadow-[0_0_10px_rgba(245,158,11,1)] animate-bounce" />
+                              <div className="absolute -top-1 -left-[3px] w-2.5 h-2.5 rounded-full bg-blue-400 shadow-[0_0_10px_rgba(59,130,246,1)] animate-bounce" />
                             )}
                           </div>
                         </div>
@@ -276,7 +276,7 @@ return result.rows;`
               {/* Status Simulation Bar */}
               <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between font-mono text-xs text-slate-400">
                 <span className="flex items-center gap-2">
-                  <span className="text-purple-400">⚡ {t('Request Flow:', 'Alur Permintaan')}</span>{' '}
+                  <span className="text-blue-400">⚡ {t('Request Flow:', 'Alur Permintaan')}</span>{' '}
                   Client ➔ Router ➔ Guard ➔ DB
                 </span>
                 <span className="text-emerald-400 font-semibold">200 OK</span>
@@ -294,7 +294,7 @@ return result.rows;`
               {/* Header Inspector */}
               <div className="flex items-start justify-between pb-4 border-b border-white/10">
                 <div>
-                  <span className="font-mono text-[10px] text-purple-400 uppercase tracking-widest">// {t('NODE INSPECTION PANEL', 'PANEL INSPEKSI NODE')}</span>
+                  <span className="font-mono text-[10px] text-blue-400 uppercase tracking-widest">// {t('NODE INSPECTION PANEL', 'PANEL INSPEKSI NODE')}</span>
                   <h3 className="text-xl font-bold text-white mt-1 flex items-center gap-2">
                     <span>{currentNode.icon}</span>
                     <span>{currentNode.title}</span>
@@ -327,7 +327,7 @@ return result.rows;`
               <div>
                 <div className="flex justify-between items-center mb-2 font-mono text-[11px] text-slate-400">
                   <span>{t('Implementation Pattern', 'Pola Implementasi')}</span>
-                  <span className="text-purple-400">JavaScript ES6</span>
+                  <span className="text-blue-400">JavaScript ES6</span>
                 </div>
                 <div className="p-3.5 rounded-xl bg-black/60 border border-white/10 font-mono text-xs text-slate-300 overflow-x-auto leading-relaxed">
                   <pre>{currentNode.codeSnippet}</pre>
@@ -342,7 +342,7 @@ return result.rows;`
                 </div>
                 <div className="p-2.5 rounded-lg bg-white/5 border border-white/5">
                   <div className="text-[10px] text-slate-500 uppercase">{t('Protocol Guard', 'Proteksi Protokol')}</div>
-                  <div className="text-purple-300 font-bold mt-0.5">{currentNode.protocol}</div>
+                  <div className="text-blue-300 font-bold mt-0.5">{currentNode.protocol}</div>
                 </div>
               </div>
 

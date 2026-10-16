@@ -313,7 +313,7 @@ export default function SkillChatbot() {
                 <div className={`flex max-w-[90%] flex-col gap-2 ${message.role === 'user' ? 'items-end' : 'items-start'}`}>
                   <p className={`whitespace-pre-wrap rounded-2xl px-3 py-2.5 text-xs leading-relaxed ${
                     message.role === 'user'
-                      ? 'rounded-br-md bg-purple-600/50 text-white'
+                      ? 'rounded-br-md bg-blue-600/50 text-white'
                       : 'rounded-bl-md border border-white/10 bg-white/5 text-slate-200'
                   }`}>
                     {message.id === 'welcome'
@@ -375,7 +375,7 @@ export default function SkillChatbot() {
                 type="submit"
                 disabled={!input.trim()}
                 aria-label={t('Send question', 'Kirim pertanyaan')}
-                className="rounded-xl bg-purple-500/80 p-2.5 text-white transition hover:bg-purple-400 disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+                className="rounded-xl bg-blue-500/80 p-2.5 text-white transition hover:bg-blue-400 disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
               >
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h14m-7-7 7 7-7 7" />
@@ -403,7 +403,7 @@ export default function SkillChatbot() {
           setIsOpen((open) => !open);
         }}
         style={{ transform: `translate3d(${launcherOffset.x}px, ${launcherOffset.y}px, 0)` }}
-        className="group flex h-14 touch-none cursor-grab items-center gap-2 rounded-full border border-purple-300/30 bg-purple-600 px-4 text-sm font-semibold text-white shadow-[0_8px_30px_rgba(139,92,246,0.4)] transition-colors hover:bg-purple-500 active:cursor-grabbing focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#05070F]"
+        className="group flex h-14 touch-none cursor-grab items-center gap-2 rounded-full border border-blue-300/30 bg-blue-600 px-4 text-sm font-semibold text-white shadow-[0_8px_30px_rgba(59,130,246,0.4)] transition-colors hover:bg-blue-500 active:cursor-grabbing focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712]"
       >
         <svg aria-hidden="true" className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M8 10h8M8 14h5m-7 6 1.7-3.4A8 8 0 1 1 20 12a8 8 0 0 1-8 8H6Z" />

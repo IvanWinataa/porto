@@ -68,7 +68,7 @@ export default function Experience() {
   return (
     <section id="experience" className="py-28 relative overflow-hidden bg-grid-pattern">
       {/* Background glow spot */}
-      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[140px] -z-10 pointer-events-none" />
+      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[140px] -z-10 pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
@@ -92,7 +92,7 @@ export default function Experience() {
             <div key={exp.id} className="relative group">
               
               {/* Glowing Node Marker */}
-              <div className="absolute -left-[31px] md:-left-[47px] top-2 w-4 h-4 rounded-full bg-purple-500 border-4 border-[#05070F] shadow-[0_0_15px_rgba(139,92,246,0.9)] group-hover:scale-125 group-hover:bg-cyan-400 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.9)] transition-all duration-300" />
+              <div className="absolute -left-[31px] md:-left-[47px] top-2 w-4 h-4 rounded-full bg-blue-500 border-4 border-[#030712] shadow-[0_0_15px_rgba(59,130,246,0.9)] group-hover:scale-125 group-hover:bg-cyan-400 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.9)] transition-all duration-300" />
 
               {/* Period badge floating left on Desktop */}
               <div className="hidden md:block absolute -left-48 top-1.5 font-mono text-xs text-cyan-300 bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 rounded-full text-center w-36 shadow-sm">
@@ -100,7 +100,7 @@ export default function Experience() {
               </div>
 
               {/* Experience Card */}
-              <GlassCard className="hover:border-purple-500/40 transition-all duration-300">
+              <GlassCard className="hover:border-blue-500/40 transition-all duration-300">
                 
                 {/* Mobile Period badge */}
                 <div className="md:hidden inline-block mb-3 font-mono text-xs text-cyan-300 bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 rounded-full">
@@ -116,7 +116,7 @@ export default function Experience() {
                   </span>
                 </div>
 
-                <h4 className="font-mono text-sm text-purple-400 mb-4 font-medium">
+                <h4 className="font-mono text-sm text-blue-400 mb-4 font-medium">
                   @ {exp.company}
                 </h4>
 
@@ -141,7 +141,7 @@ export default function Experience() {
                   {exp.skills.map((skill, idx) => (
                     <span 
                       key={idx} 
-                      className="font-mono text-[11px] text-slate-300 bg-white/5 border border-white/10 px-2.5 py-1 rounded-md group-hover:border-purple-500/30 transition-colors"
+                      className="font-mono text-[11px] text-slate-300 bg-white/5 border border-white/10 px-2.5 py-1 rounded-md group-hover:border-blue-500/30 transition-colors"
                     >
                       {skill}
                     </span>

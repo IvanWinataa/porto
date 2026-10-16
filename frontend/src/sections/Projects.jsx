@@ -16,7 +16,7 @@ const MOCK_PROJECTS = [
     tech_stack: ['React 19', 'Node.js', 'Express', 'PostgreSQL', 'TailwindCSS', 'WebSockets'],
     github_url: 'https://github.com',
     live_url: 'https://example.com',
-    gradient: 'from-purple-600/30 to-cyan-500/30'
+    gradient: 'from-blue-600/30 to-sky-500/30'
   },
   {
     id: '2',
@@ -29,7 +29,7 @@ const MOCK_PROJECTS = [
     tech_stack: ['Next.js', 'PostgreSQL', 'Express.js', 'Stripe API', 'TailwindCSS'],
     github_url: 'https://github.com',
     live_url: 'https://example.com',
-    gradient: 'from-cyan-600/30 to-blue-500/30'
+    gradient: 'from-sky-600/30 to-cyan-500/30'
   },
   {
     id: '3',
@@ -42,7 +42,7 @@ const MOCK_PROJECTS = [
     tech_stack: ['Node.js', 'Express', 'PostgreSQL', 'JWT', 'Docker'],
     github_url: 'https://github.com',
     live_url: null,
-    gradient: 'from-emerald-600/30 to-teal-500/30'
+    gradient: 'from-cyan-600/30 to-blue-500/30'
   },
   {
     id: '4',
@@ -55,7 +55,7 @@ const MOCK_PROJECTS = [
     tech_stack: ['React', 'TypeScript', 'TailwindCSS', 'Figma', 'Vite'],
     github_url: 'https://github.com',
     live_url: 'https://example.com',
-    gradient: 'from-amber-500/30 to-rose-500/30'
+    gradient: 'from-blue-700/30 to-cyan-500/30'
   }
 ];
 
@@ -126,8 +126,8 @@ export default function Projects() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-14">
           <div>
             <div className="flex items-center gap-3">
-              <span className="font-mono text-purple-400 text-sm font-semibold tracking-wider uppercase">{t('02. Showcase', '02. Karya Pilihan')}</span>
-              <div className="h-[1px] w-12 bg-purple-400/40"></div>
+              <span className="font-mono text-blue-400 text-sm font-semibold tracking-wider uppercase">{t('02. Showcase', '02. Karya Pilihan')}</span>
+              <div className="h-[1px] w-12 bg-blue-400/40"></div>
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-1">{t('Featured Projects', 'Proyek Unggulan')}</h2>
           </div>
@@ -185,7 +185,7 @@ export default function Projects() {
               aria-pressed={activeCategory === cat}
               className={`px-4 py-2 rounded-xl text-xs font-mono transition-all duration-300 border cursor-pointer ${
                 activeCategory === cat
-                  ? 'bg-purple-600/30 text-white border-purple-500/50 shadow-[0_0_20px_rgba(139,92,246,0.3)] font-semibold'
+                  ? 'bg-blue-600/30 text-white border-blue-500/50 shadow-[0_0_20px_rgba(59,130,246,0.3)] font-semibold'
                   : 'bg-white/5 text-slate-400 border-white/5 hover:text-white hover:border-white/20'
               }`}
             >
@@ -205,7 +205,7 @@ export default function Projects() {
         {/* Loading Spinner */}
         {loading && (
           <div className="flex flex-col items-center justify-center py-20">
-            <div className="w-10 h-10 border-4 border-purple-500/20 border-t-purple-500 rounded-full animate-spin mb-4"></div>
+            <div className="w-10 h-10 border-4 border-blue-500/20 border-t-blue-500 rounded-full animate-spin mb-4"></div>
             <p className="text-slate-400 font-mono text-xs">{t('Loading projects from system network...', 'Memuat proyek...')}</p>
           </div>
         )}
@@ -216,11 +216,11 @@ export default function Projects() {
             {filteredProjects.map((project) => (
               <GlassCard 
                 key={project.id} 
-                className="group flex flex-col justify-between hover:border-purple-500/40 transition-all duration-300 relative"
+                className="group flex flex-col justify-between hover:border-blue-500/40 transition-all duration-300 relative"
               >
                 <div>
                   {/* Banner mockup container */}
-                  <div className={`relative h-48 sm:h-52 w-full rounded-xl mb-6 overflow-hidden bg-gradient-to-br ${project.gradient || 'from-purple-900/40 to-cyan-900/40'} border border-white/10 flex items-center justify-center`}>
+                  <div className={`relative h-48 sm:h-52 w-full rounded-xl mb-6 overflow-hidden bg-gradient-to-br ${project.gradient || 'from-blue-900/40 to-cyan-900/40'} border border-white/10 flex items-center justify-center`}>
                     
                     {/* Grid backdrop */}
                     <div className="absolute inset-0 bg-dots-pattern opacity-40 pointer-events-none" />
@@ -259,7 +259,7 @@ export default function Projects() {
                       onClick={() => setSelectedProject(project)}
                       aria-haspopup="dialog"
                       aria-label={t(`View details for ${project.title}`, `Lihat detail ${project.title}`)}
-                      className="text-purple-300 hover:text-white transition-colors flex items-center gap-1.5 text-xs font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded"
+                      className="text-blue-300 hover:text-white transition-colors flex items-center gap-1.5 text-xs font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded"
                     >
                       <span>{t('View Details', 'Lihat Detail')}</span>
                       <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -287,7 +287,7 @@ export default function Projects() {
                           href={project.live_url} 
                           target="_blank" 
                           rel="noopener noreferrer" 
-                          className="text-purple-400 hover:text-purple-300 transition-colors flex items-center gap-1.5 text-xs font-mono font-semibold"
+                          className="text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-1.5 text-xs font-mono font-semibold"
                         >
                           <span>{t('Live Preview', 'Pratinjau Langsung')}</span>
                           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -316,7 +316,7 @@ export default function Projects() {
                 setActiveTechnology('All');
                 setActiveCategory('All');
               }}
-              className="mt-5 rounded-lg border border-purple-400/30 bg-purple-500/10 px-4 py-2 text-xs font-medium text-purple-200 transition-colors hover:bg-purple-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+              className="mt-5 rounded-lg border border-blue-400/30 bg-blue-500/10 px-4 py-2 text-xs font-medium text-blue-200 transition-colors hover:bg-blue-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
             >
               {t('Clear filters', 'Hapus filter')}
             </button>

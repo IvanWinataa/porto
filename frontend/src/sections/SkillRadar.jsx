@@ -126,7 +126,7 @@ export default function SkillRadar() {
   return (
     <section id="skills" className="py-28 relative overflow-hidden bg-grid-pattern">
       {/* Background glow spot */}
-      <div className="absolute top-1/3 left-10 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[140px] -z-10 pointer-events-none" />
+      <div className="absolute top-1/3 left-10 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[140px] -z-10 pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
@@ -154,7 +154,7 @@ export default function SkillRadar() {
               
               <div className="w-full flex items-center justify-between font-mono text-xs text-slate-400 pb-2 mb-4 border-b border-white/10">
                 <span className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-purple-400 animate-pulse" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-blue-400 animate-pulse" />
                   SVG Vector Competency Radar
                 </span>
                   <span className="text-cyan-300 font-bold">{t('6-Axis Metric', 'Metrik 6 Sumbu')}</span>
@@ -205,7 +205,7 @@ export default function SkillRadar() {
                   <polygon
                     points={polygonPoints}
                     fill="url(#radarGradient)"
-                    stroke="#a78bfa"
+                    stroke="#60a5fa"
                     strokeWidth="2.5"
                     className="transition-all duration-500 filter drop-shadow-[0_0_15px_rgba(167,139,250,0.5)]"
                   />
@@ -213,7 +213,7 @@ export default function SkillRadar() {
                   {/* SVG Gradient Def */}
                   <defs>
                     <linearGradient id="radarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="rgba(139, 92, 246, 0.45)" />
+                      <stop offset="0%" stopColor="rgba(59, 130, 246, 0.45)" />
                       <stop offset="100%" stopColor="rgba(6, 182, 212, 0.35)" />
                     </linearGradient>
                   </defs>
@@ -229,8 +229,8 @@ export default function SkillRadar() {
                           cx={x}
                           cy={y}
                           r={isSelected ? "7" : "4.5"}
-                          fill={isSelected ? "#38bdf8" : "#a78bfa"}
-                          stroke="#05070F"
+                          fill={isSelected ? "#38bdf8" : "#60a5fa"}
+                          stroke="#030712"
                           strokeWidth="2"
                           className="transition-all duration-300 hover:scale-150"
                         />
@@ -267,7 +267,7 @@ export default function SkillRadar() {
                       }}
                       className={`font-mono text-[11px] px-2.5 py-1 rounded-lg border transition-all duration-300 cursor-pointer whitespace-nowrap shadow-md ${
                         isSelected
-                          ? 'bg-purple-600/40 text-white border-cyan-400 font-semibold shadow-[0_0_15px_rgba(56,189,248,0.4)] scale-105'
+                          ? 'bg-blue-600/40 text-white border-cyan-400 font-semibold shadow-[0_0_15px_rgba(56,189,248,0.4)] scale-105'
                           : 'bg-black/60 text-slate-400 border-white/10 hover:border-white/30 hover:text-slate-200'
                       }`}
                     >
@@ -306,7 +306,7 @@ export default function SkillRadar() {
               {/* Skill Header */}
               <div className="flex items-center justify-between pb-4 border-b border-white/10">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 text-2xl flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 text-2xl flex items-center justify-center">
                     {currentSkill.icon}
                   </div>
                   <div>
@@ -317,7 +317,7 @@ export default function SkillRadar() {
 
                 <div className="text-right">
                   <div className="text-2xl font-bold font-mono text-cyan-400">{currentSkill.score}%</div>
-                  <div className="font-mono text-[10px] text-purple-300 bg-purple-500/10 border border-purple-500/20 px-2 py-0.5 rounded-md mt-1">
+                  <div className="font-mono text-[10px] text-blue-300 bg-blue-500/10 border border-blue-500/20 px-2 py-0.5 rounded-md mt-1">
                     {t(currentSkill.level, currentSkill.levelId)}
                   </div>
                 </div>
@@ -331,7 +331,7 @@ export default function SkillRadar() {
                 </div>
                 <div className="w-full h-2.5 bg-black/50 rounded-full overflow-hidden border border-white/10 p-0.5">
                   <div 
-                    className="h-full bg-gradient-to-r from-purple-500 to-cyan-400 rounded-full transition-all duration-700 ease-out shadow-[0_0_12px_rgba(6,182,212,0.5)]"
+                    className="h-full bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full transition-all duration-700 ease-out shadow-[0_0_12px_rgba(6,182,212,0.5)]"
                     style={{ width: `${currentSkill.score}%` }}
                   />
                 </div>

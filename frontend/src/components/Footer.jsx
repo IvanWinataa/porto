@@ -18,7 +18,7 @@ export default function Footer() {
 
         {/* Center copyright */}
         <div className="text-center sm:text-left text-slate-500">
-          &copy; {new Date().getFullYear()} {t('Designed & Built with', 'Dirancang & Dibangun dengan')} <span className="text-purple-400">♥</span> & <span className="text-cyan-400">React 19</span>
+          &copy; {new Date().getFullYear()} {t('Designed & Built with', 'Dirancang & Dibangun dengan')} <span className="text-blue-400">♥</span> & <span className="text-cyan-400">React 19</span>
         </div>
 
         {/* Back to top CTA */}
@@ -28,7 +28,7 @@ export default function Footer() {
           title={t('Back to top', 'Kembali ke atas')}
         >
           <span>{t('Back to Top', 'Kembali ke Atas')}</span>
-          <svg className="w-3.5 h-3.5 text-purple-400 group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-3.5 h-3.5 text-blue-400 group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
           </svg>
         </button>

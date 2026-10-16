@@ -206,7 +206,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
       onClick={onClose}
     >
       <div 
-        className="glass-card border border-white/20 rounded-2xl max-w-xl w-full overflow-hidden shadow-[0_20px_60px_rgba(139,92,246,0.3)] text-left cursor-default transition-all duration-300 relative"
+        className="glass-card border border-white/20 rounded-2xl max-w-xl w-full overflow-hidden shadow-[0_20px_60px_rgba(59,130,246,0.3)] text-left cursor-default transition-all duration-300 relative"
         ref={dialogRef}
         role="dialog"
         aria-modal="true"
@@ -217,7 +217,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
       >
         {/* Search Input */}
         <div className="flex items-center px-4 py-4 border-b border-white/10 bg-black/40">
-          <span className="font-mono text-purple-400 text-lg mr-3 select-none">{'>_'}</span>
+          <span className="font-mono text-blue-400 text-lg mr-3 select-none">{'>_'}</span>
           <input
             ref={inputRef}
             type="text"
@@ -262,7 +262,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
                   onMouseEnter={() => setSelectedIndex(idx)}
                   className={`flex items-center justify-between px-4 py-3 rounded-xl transition-all cursor-pointer ${
                     isSelected 
-                      ? 'bg-purple-600/30 border border-purple-500/40 text-white shadow-[0_0_15px_rgba(139,92,246,0.25)]' 
+                      ? 'bg-blue-600/30 border border-blue-500/40 text-white shadow-[0_0_15px_rgba(59,130,246,0.25)]'
                       : 'text-slate-300 hover:bg-white/5 border border-transparent'
                   }`}
                 >

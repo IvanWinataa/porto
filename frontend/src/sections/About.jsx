@@ -15,7 +15,7 @@ export default function About() {
     { name: 'Express.js', category: 'backend', color: 'text-[#A8B2C1]', bg: 'bg-white/10 border-white/20' },
     { name: 'PostgreSQL', category: 'database', color: 'text-[#4169E1]', bg: 'bg-[#4169E1]/10 border-[#4169E1]/30' },
     { name: 'Docker', category: 'tools', color: 'text-[#2496ED]', bg: 'bg-[#2496ED]/10 border-[#2496ED]/30' },
-    { name: 'REST API', category: 'backend', color: 'text-purple-400', bg: 'bg-purple-500/10 border-purple-500/30' },
+    { name: 'REST API', category: 'backend', color: 'text-blue-400', bg: 'bg-blue-500/10 border-blue-500/30' },
     { name: 'Figma', category: 'tools', color: 'text-[#F24E1E]', bg: 'bg-[#F24E1E]/10 border-[#F24E1E]/30' },
     { name: 'Git & GitHub', category: 'tools', color: 'text-[#F05032]', bg: 'bg-[#F05032]/10 border-[#F05032]/30' }
   ];
@@ -45,7 +45,7 @@ export default function About() {
   return (
     <section id="about" className="py-28 relative overflow-hidden bg-grid-pattern">
       {/* Background radial highlight */}
-      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[140px] -z-10 pointer-events-none" />
+      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[140px] -z-10 pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
@@ -70,7 +70,7 @@ export default function About() {
             <GlassCard className="space-y-4">
               <h3 className="text-xl font-bold text-white flex items-center gap-2">
                 <span>{t('Passionate Developer & Problem Solver', 'Developer yang Antusias & Pemecah Masalah')}</span>
-                <span className="text-xs font-mono text-purple-400 bg-purple-500/10 border border-purple-500/20 px-2.5 py-1 rounded-full">Fullstack</span>
+                <span className="text-xs font-mono text-blue-400 bg-blue-500/10 border border-blue-500/20 px-2.5 py-1 rounded-full">Fullstack</span>
               </h3>
               
               <p className="text-slate-300 leading-relaxed text-sm sm:text-base">
@@ -94,7 +94,7 @@ export default function About() {
                   <div className="text-xs text-slate-400">{t('Optimized bundle size, crisp animations, and fast response times.', 'Ukuran bundle yang optimal, animasi halus, dan waktu respons cepat.')}</div>
                 </div>
                 <div className="p-3.5 rounded-xl bg-white/5 border border-white/5">
-                  <div className="font-mono text-xs font-semibold text-purple-400 uppercase tracking-wider mb-1">🛡️ {t('Clean Architecture', 'Arsitektur yang Bersih')}</div>
+                  <div className="font-mono text-xs font-semibold text-blue-400 uppercase tracking-wider mb-1">🛡️ {t('Clean Architecture', 'Arsitektur yang Bersih')}</div>
                   <div className="text-xs text-slate-400">{t('Modular backend design, validated schemas, and clear REST APIs.', 'Desain backend modular, skema tervalidasi, dan REST API yang jelas.')}</div>
                 </div>
               </div>
@@ -110,7 +110,7 @@ export default function About() {
                   {[...marqueeRow1, ...marqueeRow1, ...marqueeRow1].map((skill, index) => (
                     <div 
                       key={`m1-${index}`} 
-                      className="flex items-center gap-2 font-mono text-xs bg-white/5 border border-white/10 px-4 py-2 rounded-xl text-slate-300 hover:border-purple-500/50 hover:text-white transition-all cursor-default"
+                      className="flex items-center gap-2 font-mono text-xs bg-white/5 border border-white/10 px-4 py-2 rounded-xl text-slate-300 hover:border-blue-500/50 hover:text-white transition-all cursor-default"
                     >
                       <span>{skill.icon}</span>
                       <span>{skill.name}</span>
@@ -161,7 +161,7 @@ export default function About() {
                     onClick={() => setActiveTab(tab.id)}
                     className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all cursor-pointer ${
                       activeTab === tab.id
-                        ? 'bg-purple-600/30 text-white border border-purple-500/40 shadow-sm'
+                        ? 'bg-blue-600/30 text-white border border-blue-500/40 shadow-sm'
                         : 'text-slate-400 hover:text-slate-200'
                     }`}
                   >
@@ -185,7 +185,7 @@ export default function About() {
 
               <div className="mt-6 pt-4 border-t border-white/10 font-mono text-xs text-slate-500 flex items-center justify-between">
                 <span>{t('Status: Updated 2026', 'Status: Diperbarui 2026')}</span>
-                <span className="text-purple-400">{t('100% Modular', '100% Modular')}</span>
+                <span className="text-blue-400">{t('100% Modular', '100% Modular')}</span>
               </div>
             </GlassCard>
           </div>

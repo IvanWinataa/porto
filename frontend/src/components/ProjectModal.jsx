@@ -70,7 +70,7 @@ export default function ProjectModal({ project, onClose }) {
       onClick={onClose}
     >
       <div 
-        className="glass-card border border-white/20 rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 relative shadow-[0_20px_60px_rgba(139,92,246,0.3)] text-left cursor-default transition-all duration-300"
+        className="glass-card border border-white/20 rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 relative shadow-[0_20px_60px_rgba(59,130,246,0.3)] text-left cursor-default transition-all duration-300"
         ref={dialogRef}
         role="dialog"
         aria-modal="true"
@@ -102,10 +102,10 @@ export default function ProjectModal({ project, onClose }) {
         </div>
 
         {/* Visual Banner Preview */}
-        <div className={`relative h-52 sm:h-64 w-full rounded-2xl mb-8 overflow-hidden bg-gradient-to-br ${project.gradient || 'from-purple-900/50 to-cyan-900/50'} border border-white/15 flex items-center justify-center`}>
+        <div className={`relative h-52 sm:h-64 w-full rounded-2xl mb-8 overflow-hidden bg-gradient-to-br ${project.gradient || 'from-blue-900/50 to-cyan-900/50'} border border-white/15 flex items-center justify-center`}>
           <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none"></div>
           
-          <div className="absolute w-48 h-48 bg-purple-500/30 rounded-full blur-3xl"></div>
+          <div className="absolute w-48 h-48 bg-blue-500/30 rounded-full blur-3xl"></div>
           <div className="absolute w-36 h-36 bg-cyan-500/20 rounded-full blur-2xl -bottom-6 -right-6"></div>
 
           <div className="z-10 text-center px-4">

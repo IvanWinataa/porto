@@ -13,7 +13,7 @@ function LanguageToggle({ language, setLanguage, t }) {
           aria-pressed={language === option}
           aria-label={option === 'en' ? t('Switch to English', 'Ganti ke bahasa Inggris') : t('Switch to Indonesian', 'Ganti ke bahasa Indonesia')}
           className={`rounded-lg px-2 py-1.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 ${
-            language === option ? 'bg-purple-500/30 text-white' : 'text-slate-400 hover:text-white'
+            language === option ? 'bg-blue-500/30 text-white' : 'text-slate-400 hover:text-white'
           }`}
         >
           {option.toUpperCase()}
@@ -55,7 +55,7 @@ export default function Navbar({ onOpenCommandPalette }) {
         <div className="px-4 sm:px-6 flex items-center justify-between">
           {/* Logo Brand */}
           <a href="#hero" className="flex items-center gap-3 group">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-600 to-cyan-400 p-[1px] flex items-center justify-center shadow-[0_0_15px_rgba(139,92,246,0.4)] group-hover:shadow-[0_0_25px_rgba(139,92,246,0.7)] transition-all">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-cyan-400 p-[1px] flex items-center justify-center shadow-[0_0_15px_rgba(59,130,246,0.4)] group-hover:shadow-[0_0_25px_rgba(59,130,246,0.7)] transition-all">
               <div className="w-full h-full bg-[#070A14] rounded-[11px] flex items-center justify-center font-mono font-bold text-sm text-cyan-400">
                 {'</>'}
               </div>
@@ -74,7 +74,7 @@ export default function Navbar({ onOpenCommandPalette }) {
                 className="text-slate-300 hover:text-white px-3.5 py-2 rounded-lg hover:bg-white/5 transition-all text-xs uppercase tracking-wider relative group"
               >
                 {link.name}
-                <span className="absolute bottom-1 left-3.5 right-3.5 h-[2px] bg-gradient-to-r from-purple-500 to-cyan-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                <span className="absolute bottom-1 left-3.5 right-3.5 h-[2px] bg-gradient-to-r from-blue-500 to-cyan-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               </a>
             ))}
           </div>
@@ -85,14 +85,14 @@ export default function Navbar({ onOpenCommandPalette }) {
             {/* Command Palette Trigger */}
             <button
               onClick={onOpenCommandPalette}
-              className="flex items-center gap-2 font-mono text-xs text-slate-300 bg-white/5 hover:bg-white/10 hover:text-white border border-white/10 hover:border-purple-500/40 px-3.5 py-2 rounded-xl transition-all cursor-pointer group shadow-sm"
+              className="flex items-center gap-2 font-mono text-xs text-slate-300 bg-white/5 hover:bg-white/10 hover:text-white border border-white/10 hover:border-blue-500/40 px-3.5 py-2 rounded-xl transition-all cursor-pointer group shadow-sm"
               title={t('Open Command Palette (Ctrl+K)', 'Buka Command Palette (Ctrl+K)')}
             >
-              <svg className="w-3.5 h-3.5 text-purple-400 group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3.5 h-3.5 text-blue-400 group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
               <span>{t('Search', 'Cari')}</span>
-              <kbd className="text-[10px] bg-white/10 text-purple-300 px-1.5 py-0.5 rounded border border-white/10 font-mono">
+              <kbd className="text-[10px] bg-white/10 text-blue-300 px-1.5 py-0.5 rounded border border-white/10 font-mono">
                 ⌘K
               </kbd>
             </button>
@@ -107,7 +107,7 @@ export default function Navbar({ onOpenCommandPalette }) {
             <LanguageToggle language={language} setLanguage={setLanguage} t={t} />
             <button
               onClick={onOpenCommandPalette}
-              className="p-2 rounded-xl bg-white/5 text-purple-400 border border-white/10"
+              className="p-2 rounded-xl bg-white/5 text-blue-400 border border-white/10"
               title={t('Search', 'Cari')}
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

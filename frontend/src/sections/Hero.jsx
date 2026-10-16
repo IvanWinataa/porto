@@ -24,7 +24,7 @@ export default function Hero() {
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center pt-28 pb-20 relative overflow-hidden bg-grid-pattern">
       {/* Background ambient lighting blobs */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-gradient-to-tr from-purple-600/20 via-cyan-500/15 to-pink-500/10 rounded-full blur-[140px] -z-10 pointer-events-none animate-pulse-slow" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-gradient-to-tr from-blue-600/20 via-cyan-500/15 to-sky-500/10 rounded-full blur-[140px] -z-10 pointer-events-none animate-pulse-slow" />
       <div className="absolute bottom-10 right-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px] -z-10 pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 z-10 w-full">
@@ -87,7 +87,7 @@ export default function Hero() {
                 <div className="text-xs text-slate-400 font-mono uppercase tracking-wider mt-0.5">{t('Projects', 'Proyek')}</div>
               </div>
               <div>
-                <div className="text-2xl sm:text-3xl font-bold font-mono text-purple-400">99.9%</div>
+                <div className="text-2xl sm:text-3xl font-bold font-mono text-blue-400">99.9%</div>
                 <div className="text-xs text-slate-400 font-mono uppercase tracking-wider mt-0.5">{t('Uptime', 'Waktu Aktif')}</div>
               </div>
             </div>
@@ -131,11 +131,11 @@ export default function Hero() {
                     1<br />2<br />3<br />4<br />5<br />6<br />7<br />8
                   </div>
                   <div>
-                    <div><span className="text-purple-400 font-semibold">const</span> <span className="text-cyan-300">developer</span> = &#123;</div>
+                    <div><span className="text-blue-400 font-semibold">const</span> <span className="text-cyan-300">developer</span> = &#123;</div>
                     <div className="pl-4"><span className="text-slate-400">name:</span> <span className="text-emerald-300">'Ivan Winata'</span>,</div>
                     <div className="pl-4"><span className="text-slate-400">title:</span> <span className="text-emerald-300">'Fullstack Engineer'</span>,</div>
                     <div className="pl-4"><span className="text-slate-400">location:</span> <span className="text-emerald-300">'Indonesia (Remote)'</span>,</div>
-                    <div className="pl-4"><span className="text-slate-400">coreStack:</span> [<span className="text-amber-300">'React'</span>, <span className="text-amber-300">'Node.js'</span>, <span className="text-amber-300">'Postgres'</span>],</div>
+                    <div className="pl-4"><span className="text-slate-400">coreStack:</span> [<span className="text-blue-300">'React'</span>, <span className="text-blue-300">'Node.js'</span>, <span className="text-blue-300">'Postgres'</span>],</div>
                     <div className="pl-4"><span className="text-slate-400">status:</span> <span className="text-cyan-400">'Open for hire'</span>,</div>
                     <div className="pl-4"><span className="text-slate-400">codeQuote:</span> <span className="text-emerald-300">"Build with passion"</span></div>
                     <div>&#125;;</div>
@@ -144,7 +144,7 @@ export default function Hero() {
               </div>
 
               {/* Status bar */}
-              <div className="bg-[#080B14] px-4 py-2 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-500">
+              <div className="bg-[#050b16] px-4 py-2 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-500">
                 <span className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
                   {t('TypeScript React Ready', 'TypeScript React Siap')}
