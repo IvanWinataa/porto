@@ -11,33 +11,36 @@ import Contact from './sections/Contact';
 import CommandPalette from './components/CommandPalette';
 import SkillChatbot from './components/SkillChatbot';
 import { LanguageProvider } from './context/LanguageContext';
+import { ThemeProvider } from './context/ThemeContext';
 
 function App() {
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
 
   return (
-    <LanguageProvider>
-      <div className="selection:bg-primary/30 selection:text-white">
-        <Navbar onOpenCommandPalette={() => setIsCommandPaletteOpen(true)} />
-        <main>
-          <Hero />
-          <About />
-          <SkillRadar />
-          <Architecture />
-          <Projects />
-          <Experience />
-          <Contact />
-        </main>
-        <Footer />
+    <ThemeProvider>
+      <LanguageProvider>
+        <div className="selection:bg-primary/30 selection:text-white">
+          <Navbar onOpenCommandPalette={() => setIsCommandPaletteOpen(true)} />
+          <main>
+            <Hero />
+            <About />
+            <SkillRadar />
+            <Architecture />
+            <Projects />
+            <Experience />
+            <Contact />
+          </main>
+          <Footer />
 
-        <CommandPalette
-          isOpen={isCommandPaletteOpen}
-          onClose={() => setIsCommandPaletteOpen(false)}
-          onOpen={() => setIsCommandPaletteOpen(true)}
-        />
-        <SkillChatbot />
-      </div>
-    </LanguageProvider>
+          <CommandPalette
+            isOpen={isCommandPaletteOpen}
+            onClose={() => setIsCommandPaletteOpen(false)}
+            onOpen={() => setIsCommandPaletteOpen(true)}
+          />
+          <SkillChatbot />
+        </div>
+      </LanguageProvider>
+    </ThemeProvider>
   )
 }
 
