@@ -82,7 +82,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
       shortcut: 'GITHUB',
       icon: '🐙',
       action: () => {
-        window.open('https://github.com', '_blank');
+        window.open('https://github.com/IvanWinataa', '_blank', 'noopener,noreferrer');
         onClose();
       }
     }

@@ -20,12 +20,12 @@ export function LanguageProvider({ children }) {
   useEffect(() => {
     document.documentElement.lang = language;
     document.title = language === 'id'
-      ? 'Portofolio | Fullstack Engineer & Spesialis UI/UX'
-      : 'Portfolio | Fullstack Engineer & UI/UX Specialist';
+      ? 'Ivan Winata | Fullstack Engineer & Spesialis UI/UX'
+      : 'Ivan Winata | Fullstack Engineer & UI/UX Specialist';
 
     const description = language === 'id'
-      ? 'Portofolio yang menampilkan pilihan aplikasi web, pengalaman rekayasa perangkat lunak, dan kemampuan teknis.'
-      : 'Portfolio featuring selected web applications, engineering experience, and technical capabilities.';
+      ? 'Ivan Winata adalah Fullstack Engineer dan Spesialis UI/UX yang membangun pengalaman web yang matang dan produk digital yang andal.'
+      : 'Ivan Winata is a Fullstack Engineer and UI/UX Specialist building thoughtful web experiences and reliable digital products.';
     document.querySelector('meta[name="description"]')?.setAttribute('content', description);
     document.querySelector('meta[property="og:title"]')?.setAttribute('content', document.title);
     document.querySelector('meta[property="og:description"]')?.setAttribute('content', description);

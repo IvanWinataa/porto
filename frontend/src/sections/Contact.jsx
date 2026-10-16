@@ -119,7 +119,7 @@ export default function Contact() {
                 {/* Social Profiles */}
                 <div className="pt-2 flex items-center gap-3">
                   <a 
-                    href="https://github.com" 
+                    href="https://github.com/IvanWinataa"
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="flex-1 py-2.5 px-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/30 text-slate-300 hover:text-white font-mono text-xs text-center transition-all flex items-center justify-center gap-2"
@@ -130,7 +130,7 @@ export default function Contact() {
                     </svg>
                   </a>
                   <a 
-                    href="https://linkedin.com" 
+                    href="https://www.linkedin.com/in/ivan-winata-33b15b286/"
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="flex-1 py-2.5 px-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/30 text-slate-300 hover:text-white font-mono text-xs text-center transition-all flex items-center justify-center gap-2"
