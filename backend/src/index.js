@@ -52,6 +52,11 @@ app.use('/api/health', healthRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/contact', contactRoutes);
 
+// ---- 404 Catch-All Handler ----
+app.use((req, res) => {
+  res.status(404).json({ success: false, message: 'Endpoint not found.' });
+});
+
 // ---- Global Error Handler ----
 app.use((err, req, res, next) => {
   console.error(err.stack);
@@ -59,6 +64,10 @@ app.use((err, req, res, next) => {
 });
 
 // ---- Start Server ----
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;
