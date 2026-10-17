@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import NeonButton from './NeonButton';
-import { useLanguage } from '../context/LanguageContext';
-import { useTheme } from '../context/ThemeContext';
+import { useLanguage } from '../context/useLanguage';
+import { useTheme } from '../context/useTheme';
 
 function LanguageToggle({ language, setLanguage, t }) {
   return (

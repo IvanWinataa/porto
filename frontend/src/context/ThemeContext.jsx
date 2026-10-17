@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 
-const ThemeContext = createContext(null);
+export const ThemeContext = createContext(null);
 const THEME_STORAGE_KEY = 'portfolio-theme';
 
 function getInitialTheme() {
@@ -42,8 +42,5 @@ export function ThemeProvider({ children }) {
   );
 }
 
-export function useTheme() {
-  const context = useContext(ThemeContext);
-  if (!context) throw new Error('useTheme must be used inside ThemeProvider');
-  return context;
-}
+export default ThemeProvider;
+

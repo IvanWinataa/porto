@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 
-const LanguageContext = createContext(null);
+export const LanguageContext = createContext(null);
 
 function getInitialLanguage() {
   try {
@@ -46,8 +46,4 @@ export function LanguageProvider({ children }) {
   );
 }
 
-export function useLanguage() {
-  const context = useContext(LanguageContext);
-  if (!context) throw new Error('useLanguage must be used inside LanguageProvider');
-  return context;
-}
+export default LanguageProvider;
