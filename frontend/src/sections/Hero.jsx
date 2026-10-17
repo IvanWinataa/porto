@@ -2,7 +2,7 @@ import { useState } from 'react';
 import NeonButton from '../components/NeonButton';
 import { useLanguage } from '../context/LanguageContext';
 
-export default function Hero() {
+export default function Hero({ onOpenResume }) {
   const [copied, setCopied] = useState(false);
   const { t } = useLanguage();
 
@@ -67,6 +67,17 @@ export default function Hero() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
               </NeonButton>
+
+              <button
+                type="button"
+                onClick={onOpenResume}
+                className="px-6 py-3 rounded-full bg-blue-600/15 hover:bg-blue-600/25 text-cyan-300 hover:text-white border border-cyan-500/30 hover:border-cyan-400 transition-all duration-300 font-mono text-sm flex items-center gap-2 backdrop-blur-md cursor-pointer shadow-[0_0_15px_rgba(6,182,212,0.12)]"
+              >
+                <svg className="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <span>{t('View CV / Resume', 'Lihat CV / Resume')}</span>
+              </button>
               
               <a 
                 href="#contact" 

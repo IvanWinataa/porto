@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 
-export default function CommandPalette({ isOpen, onClose, onOpen }) {
+export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }) {
   const { t } = useLanguage();
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -74,6 +74,17 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
       shortcut: 'CONTACT',
       icon: '✉️',
       action: () => scrollToSection('contact')
+    },
+    {
+      id: 'act-resume',
+      category: t('Actions', 'Aksi'),
+      label: t('View Interactive CV & Printable Resume', 'Lihat CV Interaktif & Cetak Resume'),
+      shortcut: 'CV',
+      icon: '📄',
+      action: () => {
+        onClose();
+        if (onOpenResume) onOpenResume();
+      }
     },
     {
       id: 'act-email',

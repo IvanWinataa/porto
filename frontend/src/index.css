@@ -200,3 +200,57 @@ html[data-theme='light'] [class~='hover:border-white/30']:hover { border-color: 
 html[data-theme='light'] ::-webkit-scrollbar-track { background: #e8f0fb; }
 html[data-theme='light'] ::-webkit-scrollbar-thumb { border-color: #e8f0fb; }
 
+/* Print Media Styles for High-Quality PDF Export */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #resume-printable-content,
+  #resume-printable-content * {
+    visibility: visible;
+  }
+
+  #resume-printable-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 16mm 20mm;
+    background: #ffffff !important;
+    color: #111827 !important;
+    overflow: visible !important;
+  }
+
+  #resume-printable-content * {
+    color: #1f2937 !important;
+    border-color: #e5e7eb !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  #resume-printable-content h1,
+  #resume-printable-content h2,
+  #resume-printable-content h3,
+  #resume-printable-content h4,
+  #resume-printable-content h5 {
+    color: #0f172a !important;
+  }
+
+  #resume-printable-content .text-gradient {
+    -webkit-text-fill-color: #0284c7 !important;
+    color: #0284c7 !important;
+  }
+
+  #resume-printable-content .text-cyan-400 {
+    color: #0284c7 !important;
+  }
+
+  #resume-printable-content .text-emerald-300,
+  #resume-printable-content .text-emerald-400 {
+    color: #059669 !important;
+  }
+}
+
