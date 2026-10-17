@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import GlassCard from '../components/GlassCard';
 import ProjectModal from '../components/ProjectModal';
 import { fetchProjects } from '../services/api';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/useLanguage';
 
 const MOCK_PROJECTS = [
   {

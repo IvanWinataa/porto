@@ -1,5 +1,5 @@
 import GlassCard from '../components/GlassCard';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/useLanguage';
 
 export default function Experience() {
   const { t } = useLanguage();

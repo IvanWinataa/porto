@@ -2,7 +2,7 @@ import { useState } from 'react';
 import GlassCard from '../components/GlassCard';
 import NeonButton from '../components/NeonButton';
 import { sendContactMessage } from '../services/api';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/useLanguage';
 
 export default function Contact() {
   const { t } = useLanguage();

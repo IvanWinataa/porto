@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import NeonButton from './NeonButton';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/useLanguage';
 
 export default function ResumeModal({ isOpen, onClose }) {
   const { t } = useLanguage();

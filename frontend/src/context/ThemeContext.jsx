@@ -1,6 +1,6 @@
-import { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { ThemeContext } from './ThemeContextInstance';
 
-export const ThemeContext = createContext(null);
 const THEME_STORAGE_KEY = 'portfolio-theme';
 
 function getInitialTheme() {
@@ -43,4 +43,3 @@ export function ThemeProvider({ children }) {
 }
 
 export default ThemeProvider;
-

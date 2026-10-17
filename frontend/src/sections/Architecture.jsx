@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import GlassCard from '../components/GlassCard';
 import NeonButton from '../components/NeonButton';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/useLanguage';
 
 export default function Architecture() {
   const { t } = useLanguage();

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import NeonButton from '../components/NeonButton';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/useLanguage';
 
 export default function Hero({ onOpenResume }) {
   const [copied, setCopied] = useState(false);

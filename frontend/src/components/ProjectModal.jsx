@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import NeonButton from './NeonButton';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/useLanguage';
 
 export default function ProjectModal({ project, onClose }) {
   const { t } = useLanguage();

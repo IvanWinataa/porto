@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/useLanguage';
 
 export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }) {
   const { t } = useLanguage();

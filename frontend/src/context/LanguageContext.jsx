@@ -1,6 +1,5 @@
-import { createContext, useCallback, useContext, useEffect, useState } from 'react';
-
-export const LanguageContext = createContext(null);
+import { useCallback, useEffect, useState } from 'react';
+import { LanguageContext } from './LanguageContextInstance';
 
 function getInitialLanguage() {
   try {

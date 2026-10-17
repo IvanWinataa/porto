@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import GlassCard from '../components/GlassCard';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/useLanguage';
 
 export default function SkillRadar() {
   const [selectedSkillIndex, setSelectedSkillIndex] = useState(0);
