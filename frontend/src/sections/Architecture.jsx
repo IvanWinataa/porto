@@ -157,8 +157,9 @@ return result.rows;`
   };
 
   useEffect(() => {
-    if (simulationStep > 0 && simulationStep <= 4) {
-      setSelectedNodeId(nodes[simulationStep - 1].id);
+    const stepNodeIds = ['frontend', 'gateway', 'security', 'database'];
+    if (simulationStep > 0 && simulationStep <= stepNodeIds.length) {
+      setSelectedNodeId(stepNodeIds[simulationStep - 1]);
     }
   }, [simulationStep]);
 

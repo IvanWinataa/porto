@@ -5,6 +5,7 @@ import Hero from './sections/Hero';
 import About from './sections/About';
 import SkillRadar from './sections/SkillRadar';
 import Architecture from './sections/Architecture';
+import ApiPlayground from './sections/ApiPlayground';
 import Projects from './sections/Projects';
 import Experience from './sections/Experience';
 import Contact from './sections/Contact';
@@ -26,6 +27,7 @@ function App() {
             <About />
             <SkillRadar />
             <Architecture />
+            <ApiPlayground />
             <Projects />
             <Experience />
             <Contact />

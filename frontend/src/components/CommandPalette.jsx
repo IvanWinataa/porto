@@ -44,6 +44,14 @@ export default function CommandPalette({ isOpen, onClose, onOpen }) {
       action: () => scrollToSection('architecture')
     },
     {
+      id: 'nav-api',
+      category: t('Navigation', 'Navigasi'),
+      label: t('Go to Live API Playground', 'Ke Live API Playground'),
+      shortcut: 'API',
+      icon: '⚡',
+      action: () => scrollToSection('api-playground')
+    },
+    {
       id: 'nav-projects',
       category: t('Navigation', 'Navigasi'),
       label: t('Go to Featured Projects Showcase', 'Ke Proyek Unggulan'),

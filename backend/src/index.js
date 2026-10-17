@@ -4,9 +4,13 @@ require('dotenv').config();
 
 const projectRoutes = require('./routes/projectRoutes');
 const contactRoutes = require('./routes/contactRoutes');
+const healthRoutes = require('./routes/healthRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+// Nonaktifkan header X-Powered-By untuk keamanan
+app.disable('x-powered-by');
 
 if (process.env.TRUST_PROXY_HOPS) {
   const trustProxyHops = Number(process.env.TRUST_PROXY_HOPS);
@@ -17,6 +21,14 @@ if (process.env.TRUST_PROXY_HOPS) {
 }
 
 // ---- Middleware ----
+// Security headers sederhana tanpa dependensi luar
+app.use((req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  next();
+});
+
 const allowedOrigins = [
   process.env.FRONTEND_URL,
   'http://localhost:5173',
@@ -33,9 +45,10 @@ app.use(express.json());
 
 // ---- Routes ----
 app.get('/', (req, res) => {
-  res.json({ message: 'Portfolio API v1.0 is running ✅' });
+  res.json({ message: 'Portfolio API v1.0 is running ✅', health: '/api/health' });
 });
 
+app.use('/api/health', healthRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/contact', contactRoutes);
 

@@ -70,6 +70,7 @@ export default function Navbar({ onOpenCommandPalette }) {
     { name: t('About', 'Tentang'), href: '#about' },
     { name: t('Skills', 'Keahlian'), href: '#skills' },
     { name: t('Architecture', 'Arsitektur'), href: '#architecture' },
+    { name: t('API', 'API'), href: '#api-playground' },
     { name: t('Projects', 'Proyek'), href: '#projects' },
     { name: t('Experience', 'Pengalaman'), href: '#experience' },
     { name: t('Contact', 'Kontak'), href: '#contact' },

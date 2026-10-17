@@ -1,4 +1,13 @@
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+export const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
+/**
+ * Check backend and database health status
+ */
+export const fetchHealth = async () => {
+  const response = await fetch(`${BASE_URL}/api/health`);
+  const data = await response.json();
+  return { ok: response.ok, status: response.status, data };
+};
 
 /**
  * Fetch all projects from the backend API
@@ -42,3 +51,4 @@ export const sendContactMessage = async (payload) => {
   if (!response.ok) throw new Error(data.message || 'Failed to send message');
   return data;
 };
+
