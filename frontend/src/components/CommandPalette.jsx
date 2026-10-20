@@ -116,7 +116,8 @@ export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }
     onClose();
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+      element.scrollIntoView({ behavior });
     }
   };
 

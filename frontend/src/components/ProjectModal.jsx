@@ -96,7 +96,7 @@ export default function ProjectModal({ project, onClose }) {
           <span className="font-mono text-xs text-cyan-300 bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 rounded-full uppercase tracking-wider">
             {project.category}
           </span>
-          <h2 id="project-dialog-title" className="text-2xl sm:text-3xl font-extrabold mt-3 text-white">
+          <h2 id="project-dialog-title" className="mt-3 pr-12 text-2xl font-extrabold text-white sm:pr-14 sm:text-3xl">
             {project.title}
           </h2>
         </div>

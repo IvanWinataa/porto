@@ -12,6 +12,7 @@ export default function ResumeModal({ isOpen, onClose }) {
   useEffect(() => {
     if (!isOpen) return;
 
+    const previouslyFocused = document.activeElement;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     const focusFrame = window.requestAnimationFrame(() => closeBtnRef.current?.focus());
@@ -47,6 +48,9 @@ export default function ResumeModal({ isOpen, onClose }) {
       window.cancelAnimationFrame(focusFrame);
       document.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = previousOverflow;
+      if (previouslyFocused instanceof HTMLElement && previouslyFocused.isConnected) {
+        previouslyFocused.focus();
+      }
     };
   }, [isOpen, onClose]);
 
@@ -77,43 +81,45 @@ export default function ResumeModal({ isOpen, onClose }) {
         className="glass-card border border-white/20 rounded-2xl max-w-4xl w-full max-h-[92vh] flex flex-col shadow-[0_20px_60px_rgba(0,0,0,0.8)] overflow-hidden"
       >
         {/* Top Control Bar */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-black/40 shrink-0">
-          <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between gap-2 px-3 py-3 border-b border-white/10 bg-black/40 shrink-0 sm:px-6 sm:py-4">
+          <div className="flex min-w-0 flex-1 items-center gap-2 sm:gap-3">
             <span className="w-3 h-3 rounded-full bg-cyan-400 animate-pulse" />
-            <h2 id="resume-title" className="font-mono text-sm font-bold text-white tracking-wide">
+            <h2 id="resume-title" className="truncate font-mono text-[10px] font-bold text-white tracking-wide sm:text-sm">
               {t('CURRICULUM VITAE // IVAN WINATA', 'DAFTAR RIWAYAT HIDUP // IVAN WINATA')}
             </h2>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 items-center gap-1 sm:gap-2">
             {/* Print / Save as PDF Button */}
             <button
               type="button"
               onClick={handlePrint}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono bg-blue-600/20 text-cyan-300 border border-cyan-500/30 hover:bg-blue-600/30 transition-all cursor-pointer"
+              className="flex min-h-10 min-w-10 items-center justify-center gap-1.5 rounded-lg border border-cyan-500/30 bg-blue-600/20 px-2 text-xs font-mono text-cyan-300 transition-all hover:bg-blue-600/30 sm:px-3"
               title={t('Print or Save as PDF', 'Cetak atau Simpan sebagai PDF')}
+              aria-label={t('Print or save as PDF', 'Cetak atau simpan sebagai PDF')}
             >
-              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg aria-hidden="true" className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
               </svg>
-              <span>{t('Print / PDF', 'Cetak / PDF')}</span>
+              <span className="hidden sm:inline">{t('Print / PDF', 'Cetak / PDF')}</span>
             </button>
 
             {/* Share / Copy Link */}
             <button
               type="button"
               onClick={handleCopyLink}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono bg-white/5 text-slate-300 border border-white/10 hover:bg-white/10 hover:text-white transition-all cursor-pointer"
+              className="flex min-h-10 min-w-10 items-center justify-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-2 text-xs font-mono text-slate-300 transition-all hover:bg-white/10 hover:text-white sm:px-3"
               title={t('Copy Profile Link', 'Salin Tautan Profil')}
+              aria-label={copiedLink ? t('Profile link copied', 'Tautan profil tersalin') : t('Copy profile link', 'Salin tautan profil')}
             >
               {copiedLink ? (
                 <span className="text-emerald-400 font-semibold">✓ {t('Copied!', 'Tersalin!')}</span>
               ) : (
                 <>
-                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg aria-hidden="true" className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                   </svg>
-                  <span>{t('Share', 'Bagikan')}</span>
+                  <span className="hidden sm:inline">{t('Share', 'Bagikan')}</span>
                 </>
               )}
             </button>
@@ -123,10 +129,10 @@ export default function ResumeModal({ isOpen, onClose }) {
               ref={closeBtnRef}
               type="button"
               onClick={onClose}
-              className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer ml-1"
+              className="ml-1 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/10 hover:text-white"
               aria-label={t('Close modal', 'Tutup')}
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg aria-hidden="true" className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>

@@ -152,7 +152,7 @@ export default function SkillRadar() {
             
             <div className="glass-card rounded-3xl p-6 sm:p-8 w-full border border-white/10 relative flex flex-col items-center shadow-[0_15px_40px_rgba(0,0,0,0.5)]">
               
-              <div className="w-full flex items-center justify-between font-mono text-xs text-slate-400 pb-2 mb-4 border-b border-white/10">
+              <div className="w-full flex flex-col items-start gap-2 justify-between font-mono text-[10px] text-slate-400 pb-2 mb-4 border-b border-white/10 sm:flex-row sm:items-center sm:text-xs">
                 <span className="flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-blue-400 animate-pulse" />
                   SVG Vector Competency Radar
@@ -161,8 +161,15 @@ export default function SkillRadar() {
               </div>
 
               {/* SVG Canvas */}
-              <div className="relative w-[320px] h-[320px] flex items-center justify-center">
-                <svg width={size} height={size} className="overflow-visible select-none">
+              <div className="relative aspect-square w-full max-w-[320px] flex items-center justify-center">
+                <svg
+                  width="100%"
+                  height="100%"
+                  viewBox={`0 0 ${size} ${size}`}
+                  role="img"
+                  aria-label={t('Radar chart visualizing six skill areas. Use the skill buttons to inspect each area.', 'Grafik radar enam area keahlian. Gunakan tombol keahlian untuk melihat detail setiap area.')}
+                  className="overflow-visible select-none"
+                >
                   
                   {/* Concentric Hexagon Grid Rings */}
                   {gridLevels.map((level) => {
@@ -224,7 +231,7 @@ export default function SkillRadar() {
                     const isSelected = idx === selectedSkillIndex;
 
                     return (
-                      <g key={skill.id} className="cursor-pointer" onClick={() => setSelectedSkillIndex(idx)}>
+                      <g key={skill.id} aria-hidden="true">
                         <circle
                           cx={x}
                           cy={y}
@@ -258,20 +265,23 @@ export default function SkillRadar() {
                   return (
                     <button
                       key={skill.id}
+                      type="button"
                       onClick={() => setSelectedSkillIndex(idx)}
+                      aria-pressed={isSelected}
+                      aria-label={t(`Show ${skill.label} details`, `Tampilkan detail ${skill.label}`)}
+                      className={`hidden sm:block font-mono text-[11px] px-2.5 py-1 rounded-lg border transition-all duration-300 cursor-pointer whitespace-nowrap shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 ${
+                        isSelected
+                          ? 'bg-blue-600/40 text-white border-cyan-400 font-semibold shadow-[0_0_15px_rgba(56,189,248,0.4)] scale-105'
+                          : 'bg-black/60 text-slate-400 border-white/10 hover:border-white/30 hover:text-slate-200'
+                      }`}
                       style={{
                         position: 'absolute',
                         left: `${labelPos.x}px`,
                         top: `${labelPos.y}px`,
                         transform: 'translate(-50%, -50%)',
                       }}
-                      className={`font-mono text-[11px] px-2.5 py-1 rounded-lg border transition-all duration-300 cursor-pointer whitespace-nowrap shadow-md ${
-                        isSelected
-                          ? 'bg-blue-600/40 text-white border-cyan-400 font-semibold shadow-[0_0_15px_rgba(56,189,248,0.4)] scale-105'
-                          : 'bg-black/60 text-slate-400 border-white/10 hover:border-white/30 hover:text-slate-200'
-                      }`}
                     >
-                      <span>{skill.icon}</span> {skill.label}
+                      <span aria-hidden="true">{skill.icon}</span> {skill.label}
                     </button>
                   );
                 })}
@@ -279,18 +289,22 @@ export default function SkillRadar() {
               </div>
 
               {/* Bottom Quick Axis Selector Bar */}
-              <div className="flex flex-wrap items-center justify-center gap-1.5 mt-6 pt-4 border-t border-white/10 w-full">
+              <div className="mt-6 flex w-full flex-wrap items-center justify-center gap-1.5 border-t border-white/10 pt-4 sm:hidden">
                 {skills.map((skill, idx) => (
                   <button
                     key={skill.id}
+                    type="button"
                     onClick={() => setSelectedSkillIndex(idx)}
-                    className={`w-3 h-3 rounded-full transition-all cursor-pointer ${
+                    aria-label={t(`Show ${skill.label} details`, `Tampilkan detail ${skill.label}`)}
+                    aria-pressed={idx === selectedSkillIndex}
+                    className={`inline-flex min-h-9 items-center justify-center rounded-lg border px-2 py-1 font-mono text-[10px] transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 ${
                       idx === selectedSkillIndex 
-                        ? 'bg-cyan-400 scale-125 shadow-[0_0_10px_rgba(6,182,212,0.8)]' 
-                        : 'bg-white/20 hover:bg-white/40'
+                        ? 'border-cyan-300/50 bg-cyan-400/20 text-cyan-100 shadow-[0_0_10px_rgba(6,182,212,0.25)]'
+                        : 'border-white/10 bg-white/5 text-slate-400 hover:bg-white/10 hover:text-slate-200'
                     }`}
-                    title={skill.label}
-                  />
+                  >
+                    {skill.label}
+                  </button>
                 ))}
               </div>
 

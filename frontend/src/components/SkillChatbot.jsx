@@ -221,6 +221,37 @@ export default function SkillChatbot() {
     }
   };
 
+  const movePanelByKeyboard = (event) => {
+    if (event.target !== event.currentTarget) return;
+
+    const directions = {
+      ArrowLeft: [-1, 0],
+      ArrowRight: [1, 0],
+      ArrowUp: [0, -1],
+      ArrowDown: [0, 1]
+    };
+    const direction = directions[event.key];
+    if (!direction) return;
+
+    event.preventDefault();
+    const panel = event.currentTarget.parentElement;
+    const rect = panel?.getBoundingClientRect();
+    if (!rect) return;
+
+    const step = event.shiftKey ? 32 : 12;
+    const minDeltaX = 8 - rect.left;
+    const maxDeltaX = window.innerWidth - 8 - rect.right;
+    const minDeltaY = 8 - rect.top;
+    const maxDeltaY = window.innerHeight - 8 - rect.bottom;
+    const deltaX = Math.min(maxDeltaX, Math.max(minDeltaX, direction[0] * step));
+    const deltaY = Math.min(maxDeltaY, Math.max(minDeltaY, direction[1] * step));
+
+    setPanelOffset((currentOffset) => ({
+      x: currentOffset.x + deltaX,
+      y: currentOffset.y + deltaY
+    }));
+  };
+
   const endDrag = (event) => {
     const drag = dragRef.current;
     if (!drag || drag.pointerId !== event.pointerId) return;
@@ -241,7 +272,8 @@ export default function SkillChatbot() {
   }, [isOpen]);
 
   useEffect(() => {
-    endOfMessagesRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+    endOfMessagesRef.current?.scrollIntoView({ behavior, block: 'nearest' });
   }, [messages, isOpen]);
 
   useEffect(() => {
@@ -284,16 +316,22 @@ export default function SkillChatbot() {
           aria-modal="false"
           aria-labelledby="skill-chatbot-title"
           style={{ transform: `translate3d(${panelOffset.x}px, ${panelOffset.y}px, 0)` }}
-          className="glass-card flex h-[min(34rem,calc(100dvh-7rem))] w-[min(23rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-white/15 shadow-[0_20px_60px_rgba(0,0,0,0.55)]"
+          className="glass-card flex h-[min(34rem,calc(100dvh_-_7rem))] w-[min(23rem,calc(100vw_-_2rem))] flex-col overflow-hidden rounded-2xl border border-white/15 shadow-[0_20px_60px_rgba(0,0,0,0.55)]"
         >
           <header
             onPointerDown={(event) => startDrag('panel', event)}
+            onKeyDown={movePanelByKeyboard}
+            role="group"
+            tabIndex={0}
+            aria-label={t('Chat panel move handle', 'Pegangan untuk memindahkan panel chat')}
+            aria-describedby="skill-chatbot-move-help"
+            aria-keyshortcuts="ArrowUp ArrowDown ArrowLeft ArrowRight"
             title={t('Drag the header to move the chat', 'Seret header untuk memindahkan chat')}
-            className="flex cursor-grab touch-none select-none items-center justify-between border-b border-white/10 bg-black/30 px-4 py-3 active:cursor-grabbing"
+            className="flex cursor-grab touch-none select-none items-center justify-between border-b border-white/10 bg-black/30 px-4 py-3 active:cursor-grabbing focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
           >
             <div>
               <h2 id="skill-chatbot-title" className="text-sm font-bold text-white">{t('Portfolio Assistant', 'Asisten Portofolio')}</h2>
-              <p className="mt-0.5 text-[11px] text-slate-400">{t('Drag header to move', 'Seret header untuk memindahkan')}</p>
+              <p id="skill-chatbot-move-help" className="mt-0.5 text-[11px] text-slate-400">{t('Drag header or focus it and use arrow keys to move', 'Seret header atau fokuskan lalu gunakan tombol panah untuk memindahkan')}</p>
             </div>
             <button
               type="button"
@@ -307,7 +345,7 @@ export default function SkillChatbot() {
             </button>
           </header>
 
-          <div className="flex-1 space-y-3 overflow-y-auto p-3" aria-live="polite" aria-relevant="additions text">
+          <div className="flex-1 space-y-3 overflow-y-auto p-3" role="log" aria-label={t('Chat messages', 'Pesan chat')} aria-live="polite" aria-relevant="additions text">
             {messages.map((message) => (
               <div key={message.id} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                 <div className={`flex max-w-[90%] flex-col gap-2 ${message.role === 'user' ? 'items-end' : 'items-start'}`}>

@@ -113,6 +113,7 @@
 
 html[data-theme='light'] {
   color-scheme: light;
+  --focus-ring-color: #1d4ed8;
 }
 
 html[data-theme='light'] body {
@@ -199,6 +200,44 @@ html[data-theme='light'] [class~='hover:border-white/30']:hover { border-color: 
 
 html[data-theme='light'] ::-webkit-scrollbar-track { background: #e8f0fb; }
 html[data-theme='light'] ::-webkit-scrollbar-thumb { border-color: #e8f0fb; }
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring-color, #38bdf8);
+  outline-offset: 3px;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #94a3b8;
+  opacity: 1;
+}
+
+html[data-theme='light'] input::placeholder,
+html[data-theme='light'] textarea::placeholder {
+  color: #64748b;
+}
+
+@media (max-width: 640px) {
+  html,
+  body {
+    background-attachment: scroll;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
 
 /* Print Media Styles for High-Quality PDF Export */
 @media print {
