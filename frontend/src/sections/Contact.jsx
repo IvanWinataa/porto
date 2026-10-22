@@ -11,7 +11,7 @@ export default function Contact() {
   const [status, setStatus] = useState({ success: null, message: '' });
   const [emailCopied, setEmailCopied] = useState(false);
 
-  const emailAddress = 'dev@high-end-tech.io';
+  const emailAddress = 'ivanwinata1972@gmail.com';
 
   const handleChange = (e) => {
     const { name, value } = e.target;

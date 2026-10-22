@@ -122,7 +122,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }
   };
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText('dev@high-end-tech.io');
+    navigator.clipboard.writeText('ivanwinata1972@gmail.com');
     showToast(t('✓ Email copied to clipboard!', '✓ Email berhasil disalin!'));
     setTimeout(() => onClose(), 1200);
   };
