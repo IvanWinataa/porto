@@ -153,7 +153,12 @@ export default function ResumeModal({ isOpen, onClose }) {
               </p>
               <p className="text-xs font-mono text-slate-400 mt-2 flex flex-wrap gap-x-4 gap-y-1">
                 <span>📍 Indonesia (Available Worldwide / Remote)</span>
-                <span>✉️ ivanwinata1972@gmail.com</span>
+                <a
+                  href="mailto:ivanwinata1972@gmail.com"
+                  className="transition-colors hover:text-cyan-300 focus-visible:rounded-sm"
+                >
+                  ✉️ ivanwinata1972@gmail.com
+                </a>
                 <span>🔗 github.com/IvanWinataa</span>
               </p>
             </div>

@@ -93,11 +93,18 @@ export default function Contact() {
                     </div>
                     <div>
                       <div className="font-mono text-[10px] text-slate-400 uppercase tracking-wider">{t('Direct Email', 'Email Langsung')}</div>
-                      <div className="text-slate-200 text-xs font-mono truncate">{emailAddress}</div>
+                      <a
+                        href={`mailto:${emailAddress}`}
+                        aria-label={t(`Send an email to ${emailAddress}`, `Kirim email ke ${emailAddress}`)}
+                        className="block max-w-full truncate font-mono text-xs text-slate-200 transition-colors hover:text-cyan-300 focus-visible:rounded-sm"
+                      >
+                        {emailAddress}
+                      </a>
                     </div>
                   </div>
 
                   <button
+                    type="button"
                     onClick={handleCopyEmail}
                     className="font-mono text-[11px] text-cyan-300 bg-cyan-500/10 hover:bg-cyan-500/20 px-3 py-1.5 rounded-lg border border-cyan-500/30 transition-all cursor-pointer shrink-0"
                   >
