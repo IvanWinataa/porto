@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import NeonButton from './NeonButton';
 import { useLanguage } from '../context/useLanguage';
+import { experiences, getLocationLabel, getPeriodLabel } from '../data/experience';
 
 export default function ResumeModal({ isOpen, onClose }) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [copiedLink, setCopiedLink] = useState(false);
   const modalRef = useRef(null);
   const closeBtnRef = useRef(null);
@@ -227,83 +228,23 @@ export default function ResumeModal({ isOpen, onClose }) {
               // {t('Work Experience', 'Pengalaman Kerja')}
             </h3>
             <div className="space-y-6">
-              {/* Job 1 */}
-              <div className="space-y-2">
-                <div className="flex flex-wrap items-center justify-between gap-2">
-                  <h4 className="text-base font-bold text-white">
-                    Senior Fullstack Engineer <span className="text-cyan-400 font-mono text-sm font-normal">@ TechCorp Solutions</span>
-                  </h4>
-                  <span className="font-mono text-xs text-slate-400 bg-white/5 px-2.5 py-0.5 rounded border border-white/10">
-                    2024 - Present • Remote
-                  </span>
+              {experiences.map((experience) => (
+                <div key={experience.id} className="space-y-2">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <h4 className="text-base font-bold text-white">
+                      {experience.role} <span className="text-cyan-400 font-mono text-sm font-normal">@ {experience.company}</span>
+                    </h4>
+                    <span className="font-mono text-xs text-slate-400 bg-white/5 px-2.5 py-0.5 rounded border border-white/10">
+                      {getPeriodLabel(experience.period, language)} / {getLocationLabel(experience.location, language)}
+                    </span>
+                  </div>
+                  <ul className="list-disc list-inside space-y-1 text-xs text-slate-300 leading-relaxed">
+                    {experience.resumeHighlights.map((highlight, index) => (
+                      <li key={`${experience.id}-${index}`}>{t(highlight.en, highlight.id)}</li>
+                    ))}
+                  </ul>
                 </div>
-                <ul className="list-disc list-inside space-y-1 text-xs text-slate-300 leading-relaxed">
-                  <li>
-                    {t(
-                      'Architected high-concurrency Node.js services reducing initial page load by 45% through route-based code splitting and caching.',
-                      'Merancang arsitektur microservice Node.js konkurensi tinggi dan menurunkan waktu muat halaman hingga 45% melalui code splitting dan caching.'
-                    )}
-                  </li>
-                  <li>
-                    {t(
-                      'Optimized PostgreSQL query execution plans and database connection pooling to handle enterprise-level request volumes.',
-                      'Mengoptimalkan rencana eksekusi query PostgreSQL dan pooling koneksi untuk menangani volume transaksi skala enterprise.'
-                    )}
-                  </li>
-                  <li>
-                    {t(
-                      'Engineered zero-downtime deployment pipelines and automated unit testing suites.',
-                      'Membangun pipeline deployment tanpa downtime dan rangkaian automated unit testing.'
-                    )}
-                  </li>
-                </ul>
-              </div>
-
-              {/* Job 2 */}
-              <div className="space-y-2">
-                <div className="flex flex-wrap items-center justify-between gap-2">
-                  <h4 className="text-base font-bold text-white">
-                    Frontend Developer Specialist <span className="text-cyan-400 font-mono text-sm font-normal">@ Nexus Digital Agency</span>
-                  </h4>
-                  <span className="font-mono text-xs text-slate-400 bg-white/5 px-2.5 py-0.5 rounded border border-white/10">
-                    2023 - 2024 • Jakarta, ID
-                  </span>
-                </div>
-                <ul className="list-disc list-inside space-y-1 text-xs text-slate-300 leading-relaxed">
-                  <li>
-                    {t(
-                      'Crafted responsive glassmorphism component libraries used across 6 enterprise web platforms.',
-                      'Membangun pustaka komponen responsif glassmorphism yang digunakan di 6 aplikasi web enterprise.'
-                    )}
-                  </li>
-                  <li>
-                    {t(
-                      'Integrated WebSocket live feeds and interactive chart visualizers for data monitoring dashboards.',
-                      'Mengintegrasikan feed real-time WebSocket dan visualisasi grafik interaktif untuk dashboard telemetri.'
-                    )}
-                  </li>
-                </ul>
-              </div>
-
-              {/* Job 3 */}
-              <div className="space-y-2">
-                <div className="flex flex-wrap items-center justify-between gap-2">
-                  <h4 className="text-base font-bold text-white">
-                    Software Engineering Intern <span className="text-cyan-400 font-mono text-sm font-normal">@ Innovation Labs</span>
-                  </h4>
-                  <span className="font-mono text-xs text-slate-400 bg-white/5 px-2.5 py-0.5 rounded border border-white/10">
-                    2022 - 2023 • Hybrid
-                  </span>
-                </div>
-                <ul className="list-disc list-inside space-y-1 text-xs text-slate-300 leading-relaxed">
-                  <li>
-                    {t(
-                      'Built RESTful API endpoints in Node.js/Express and implemented database schema migrations in PostgreSQL.',
-                      'Mengembangkan endpoint RESTful API dengan Node.js/Express dan migrasi skema tabel PostgreSQL.'
-                    )}
-                  </li>
-                </ul>
-              </div>
+              ))}
             </div>
           </div>
 

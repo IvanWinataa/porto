@@ -1,69 +1,9 @@
 import GlassCard from '../components/GlassCard';
 import { useLanguage } from '../context/useLanguage';
+import { experiences, getEmploymentTypeLabel, getLocationLabel, getPeriodLabel } from '../data/experience';
 
 export default function Experience() {
-  const { t } = useLanguage();
-  const experiences = [
-    {
-      id: 1,
-      period: '2024 - PRESENT',
-      role: 'Senior Fullstack Engineer',
-      company: 'TechCorp Solutions',
-      location: 'Remote',
-      type: 'Full-time',
-      description: 'Architecting high-concurrency web applications and cloud microservices. Leading front-end and back-end integration using Next.js, Express, and PostgreSQL with a strong focus on system performance and zero-downtime deployments.',
-      descriptionId: 'Merancang aplikasi web dengan konkurensi tinggi dan microservice cloud. Memimpin integrasi frontend dan backend menggunakan Next.js, Express, serta PostgreSQL dengan fokus pada performa sistem dan deployment tanpa downtime.',
-      achievements: [
-        'Reduced frontend initial page load time by 45% through route-based code splitting and image optimizations.',
-        'Engineered automated database migrations and optimized query execution plans in PostgreSQL.',
-        'Mentored junior engineers and conducted strict code reviews to ensure clean architecture.'
-      ],
-      achievementsId: [
-        'Mempercepat pemuatan awal halaman frontend sebesar 45% melalui pemisahan kode per rute dan optimasi gambar.',
-        'Membangun migrasi basis data otomatis dan mengoptimalkan rencana eksekusi query PostgreSQL.',
-        'Membimbing engineer junior dan melakukan code review untuk menjaga arsitektur yang rapi.'
-      ],
-      skills: ['React 19', 'Next.js', 'Node.js', 'PostgreSQL', 'Docker', 'TailwindCSS']
-    },
-    {
-      id: 2,
-      period: '2023 - 2024',
-      role: 'Frontend Developer Specialist',
-      company: 'Nexus Digital Agency',
-      location: 'Jakarta, ID',
-      type: 'Full-time',
-      description: 'Crafted interactive web applications and design systems for enterprise clients. Implemented responsive glassmorphism UIs, dynamic chart visualizers, and fluid micro-interactions.',
-      descriptionId: 'Membangun aplikasi web interaktif dan design system untuk klien enterprise. Mengimplementasikan UI glassmorphism responsif, visualisasi grafik dinamis, dan mikrointeraksi yang halus.',
-      achievements: [
-        'Built reusable component libraries used across 6 enterprise web applications.',
-        'Integrated real-time WebSocket communication for live client data streams.'
-      ],
-      achievementsId: [
-        'Membangun pustaka komponen reusable yang digunakan di 6 aplikasi web enterprise.',
-        'Mengintegrasikan komunikasi WebSocket real-time untuk aliran data klien.'
-      ],
-      skills: ['React', 'TypeScript', 'TailwindCSS', 'Figma', 'Redux Toolkit']
-    },
-    {
-      id: 3,
-      period: '2022 - 2023',
-      role: 'Software Engineering Intern',
-      company: 'Innovation Labs',
-      location: 'Hybrid',
-      type: 'Internship',
-      description: 'Developed RESTful API endpoints in Node.js/Express, implemented database schema migrations, and collaborated on automated unit testing pipelines.',
-      descriptionId: 'Mengembangkan endpoint REST API dengan Node.js/Express, menerapkan migrasi skema basis data, dan berkolaborasi dalam pipeline pengujian unit otomatis.',
-      achievements: [
-        'Authored comprehensive Swagger/OpenAPI documentation for core endpoints.',
-        'Achieved 90%+ code coverage for new backend controller modules.'
-      ],
-      achievementsId: [
-        'Menulis dokumentasi Swagger/OpenAPI untuk endpoint utama.',
-        'Mencapai code coverage lebih dari 90% untuk modul controller backend baru.'
-      ],
-      skills: ['Express.js', 'Node.js', 'PostgreSQL', 'REST API', 'Git']
-    }
-  ];
+  const { t, language } = useLanguage();
 
   return (
     <section id="experience" className="py-28 relative overflow-hidden bg-grid-pattern">
@@ -96,7 +36,7 @@ export default function Experience() {
 
               {/* Period badge floating left on Desktop */}
               <div className="hidden md:block absolute -left-48 top-1.5 font-mono text-xs text-cyan-300 bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 rounded-full text-center w-36 shadow-sm">
-                {exp.period}
+                {getPeriodLabel(exp.period, language)}
               </div>
 
               {/* Experience Card */}
@@ -104,7 +44,7 @@ export default function Experience() {
                 
                 {/* Mobile Period badge */}
                 <div className="md:hidden inline-block mb-3 font-mono text-xs text-cyan-300 bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 rounded-full">
-                  {exp.period}
+                  {getPeriodLabel(exp.period, language)}
                 </div>
 
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
@@ -112,7 +52,7 @@ export default function Experience() {
                     {exp.role}
                   </h3>
                   <span className="font-mono text-xs text-slate-400 bg-white/5 border border-white/10 px-3 py-1 rounded-lg">
-                    📍 {t(exp.location, exp.location === 'Remote' ? 'Jarak jauh' : exp.location)} • {t(exp.type, exp.type === 'Full-time' ? 'Penuh waktu' : 'Magang')}
+                    📍 {getLocationLabel(exp.location, language)} • {getEmploymentTypeLabel(exp.type, language)}
                   </span>
                 </div>
 
