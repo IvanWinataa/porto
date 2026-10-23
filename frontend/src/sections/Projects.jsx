@@ -13,6 +13,12 @@ const MOCK_PROJECTS = [
     descriptionId: 'Platform telemetri developer berkonkurensi tinggi dengan streaming WebSocket langsung, pemrosesan metrik mikrodetik, dan grafik interaktif.',
     long_description: 'DevPulse is a fullstack monitoring solution engineered for cloud-native microservices. It ingests thousands of metrics per second, presenting real-time system health, error traces, and latency distribution through a reactive React dashboard.',
     long_descriptionId: 'DevPulse adalah solusi pemantauan fullstack untuk microservice cloud-native. Platform ini menerima ribuan metrik per detik dan menampilkan kondisi sistem, error trace, serta distribusi latensi secara real-time melalui dashboard React.',
+    case_study: {
+      highlights: [
+        { en: 'Real-time metrics ingestion', id: 'Penerimaan metrik secara real-time' },
+        { en: 'Dashboard for system health, error traces, and latency distribution', id: 'Dashboard untuk kondisi sistem, error trace, dan distribusi latensi' }
+      ]
+    },
     tech_stack: ['React 19', 'Node.js', 'Express', 'PostgreSQL', 'TailwindCSS', 'WebSockets'],
     github_url: 'https://github.com',
     live_url: 'https://example.com',
@@ -26,6 +32,13 @@ const MOCK_PROJECTS = [
     descriptionId: 'Platform headless commerce yang cepat dengan pengelolaan keranjang dinamis, pemrosesan pembayaran Stripe, dan sinkronisasi inventaris.',
     long_description: 'Nova Commerce provides enterprise-grade online shopping experiences. Built with Next.js App Router and PostgreSQL backend, it delivers sub-100ms page loads and full PCI-compliant checkout workflow.',
     long_descriptionId: 'Nova Commerce menghadirkan pengalaman belanja online untuk kebutuhan enterprise. Dibangun dengan Next.js App Router dan backend PostgreSQL, platform ini menargetkan pemuatan halaman di bawah 100 ms dan alur checkout yang sesuai PCI.',
+    case_study: {
+      highlights: [
+        { en: 'Dynamic cart state management', id: 'Pengelolaan state keranjang dinamis' },
+        { en: 'Stripe payment processing and inventory synchronization', id: 'Pemrosesan pembayaran Stripe dan sinkronisasi inventaris' },
+        { en: 'Next.js App Router with a PostgreSQL backend', id: 'Next.js App Router dengan backend PostgreSQL' }
+      ]
+    },
     tech_stack: ['Next.js', 'PostgreSQL', 'Express.js', 'Stripe API', 'TailwindCSS'],
     github_url: 'https://github.com',
     live_url: 'https://example.com',
@@ -39,6 +52,12 @@ const MOCK_PROJECTS = [
     descriptionId: 'API gateway zero-trust dan microservice pengelolaan secret dengan autentikasi JWT, rate limiting, dan penyimpanan terenkripsi.',
     long_description: 'A secure backend service designed for identity management and key rotation. Includes automated rate limiting, bcrypt key hashing, and role-based access control (RBAC) middleware.',
     long_descriptionId: 'Layanan backend untuk pengelolaan identitas dan rotasi key. Mencakup rate limiting otomatis, hashing key dengan bcrypt, dan middleware role-based access control (RBAC).',
+    case_study: {
+      highlights: [
+        { en: 'JWT authentication and automated rate limiting', id: 'Autentikasi JWT dan rate limiting otomatis' },
+        { en: 'Bcrypt key hashing and role-based access control', id: 'Hashing key dengan bcrypt dan kontrol akses berbasis peran' }
+      ]
+    },
     tech_stack: ['Node.js', 'Express', 'PostgreSQL', 'JWT', 'Docker'],
     github_url: 'https://github.com',
     live_url: null,
@@ -52,6 +71,12 @@ const MOCK_PROJECTS = [
     descriptionId: 'Playground interaktif untuk prompt engineering dengan penghitung token langsung, perbandingan output berdampingan, dan fitur ekspor.',
     long_description: 'Designed for AI developers to test and evaluate LLM prompts in real time. Features dynamic model preset selection, variable injection, and visual output diffing.',
     long_descriptionId: 'Dirancang bagi developer AI untuk menguji dan mengevaluasi prompt LLM secara real-time. Fiturnya mencakup pemilihan preset model, penyisipan variabel, dan perbandingan output secara visual.',
+    case_study: {
+      highlights: [
+        { en: 'Model preset selection and variable injection', id: 'Pemilihan preset model dan penyisipan variabel' },
+        { en: 'Side-by-side output comparison and export utilities', id: 'Perbandingan output berdampingan dan fitur ekspor' }
+      ]
+    },
     tech_stack: ['React', 'TypeScript', 'TailwindCSS', 'Figma', 'Vite'],
     github_url: 'https://github.com',
     live_url: 'https://example.com',

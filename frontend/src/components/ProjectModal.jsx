@@ -3,10 +3,26 @@ import NeonButton from './NeonButton';
 import { useLanguage } from '../context/useLanguage';
 
 export default function ProjectModal({ project, onClose }) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const dialogRef = useRef(null);
   const closeButtonRef = useRef(null);
   const onCloseRef = useRef(onClose);
+  const caseStudy = project?.case_study || project?.caseStudy || {};
+  const localizeCaseStudyValue = (value) => {
+    if (typeof value === 'string') return value;
+    if (!value || typeof value !== 'object') return '';
+    return language === 'id' ? value.id || value.en || '' : value.en || value.id || '';
+  };
+  const highlights = Array.isArray(caseStudy.highlights)
+    ? caseStudy.highlights.map(localizeCaseStudyValue).filter(Boolean)
+    : [];
+  const storySections = [
+    { key: 'challenge', label: t('Challenge', 'Tantangan') },
+    { key: 'approach', label: t('Approach', 'Pendekatan') },
+    { key: 'role', label: t('My role', 'Peran saya') },
+    { key: 'outcome', label: t('Outcome', 'Hasil') }
+  ].map((section) => ({ ...section, value: localizeCaseStudyValue(caseStudy[section.key]) }))
+    .filter((section) => section.value);
 
   useEffect(() => {
     onCloseRef.current = onClose;
@@ -117,7 +133,7 @@ export default function ProjectModal({ project, onClose }) {
         {/* Detailed Description */}
         <div className="space-y-6 mb-8">
           <div>
-            <h3 className="text-xs font-mono uppercase tracking-widest text-slate-400 mb-2">// {t('System Overview', 'Ringkasan Sistem')}</h3>
+            <h3 className="text-xs font-mono uppercase tracking-widest text-slate-400 mb-2">// {t('Project Overview', 'Ringkasan Proyek')}</h3>
             <p id="project-dialog-description" className="text-slate-300 leading-relaxed text-sm sm:text-base">
               {t(
                 project.long_description || project.description,
@@ -126,11 +142,46 @@ export default function ProjectModal({ project, onClose }) {
             </p>
           </div>
 
+          {(highlights.length > 0 || storySections.length > 0) && (
+            <section aria-labelledby="project-case-study-title">
+              <h3 id="project-case-study-title" className="text-xs font-mono uppercase tracking-widest text-slate-400 mb-3">
+                // {t('Case Study', 'Studi Kasus')}
+              </h3>
+
+              {highlights.length > 0 && (
+                <div>
+                  <h4 className="text-sm font-semibold text-slate-200 mb-3">
+                    {t('Features and focus', 'Fitur dan fokus')}
+                  </h4>
+                  <ul className="grid gap-2 sm:grid-cols-2">
+                    {highlights.map((highlight, idx) => (
+                      <li key={`${idx}-${highlight}`} className="flex items-start gap-2.5 rounded-xl border border-white/10 bg-white/[0.03] px-3.5 py-3 text-sm leading-relaxed text-slate-300">
+                        <span aria-hidden="true" className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-300" />
+                        <span>{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {storySections.length > 0 && (
+                <div className={`grid gap-3 sm:grid-cols-2 ${highlights.length > 0 ? 'mt-5' : ''}`}>
+                  {storySections.map(({ key, label, value }) => (
+                    <article key={key} className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
+                      <h4 className="mb-2 text-sm font-semibold text-slate-200">{label}</h4>
+                      <p className="text-sm leading-relaxed text-slate-400">{value}</p>
+                    </article>
+                  ))}
+                </div>
+              )}
+            </section>
+          )}
+
           {/* Tech Stack */}
           <div>
-            <h3 className="text-xs font-mono uppercase tracking-widest text-slate-400 mb-3">// {t('Technologies & Libraries', 'Teknologi & Pustaka')}</h3>
+            <h3 className="text-xs font-mono uppercase tracking-widest text-slate-400 mb-3">// {t('Tech Stack', 'Teknologi')}</h3>
             <div className="flex flex-wrap gap-2">
-              {project.tech_stack.map((tech, idx) => (
+              {(project.tech_stack || []).map((tech, idx) => (
                 <span 
                   key={idx} 
                   className="font-mono text-xs text-cyan-300 bg-cyan-500/10 border border-cyan-500/20 px-3 py-1.5 rounded-lg"
