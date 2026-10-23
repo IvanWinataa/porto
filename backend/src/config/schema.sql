@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS projects (
   description TEXT NOT NULL,
   long_description TEXT,
   tech_stack TEXT[] NOT NULL,
+  -- Optional details: challenge, approach, role, outcome, and highlights [{en, id}].
   case_study JSONB NOT NULL DEFAULT '{}'::jsonb,
   image_url VARCHAR(512),
   github_url VARCHAR(512),

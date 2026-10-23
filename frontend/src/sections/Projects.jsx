@@ -286,7 +286,7 @@ export default function Projects() {
                       aria-label={t(`View details for ${project.title}`, `Lihat detail ${project.title}`)}
                       className="text-blue-300 hover:text-white transition-colors flex items-center gap-1.5 text-xs font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded"
                     >
-                      <span>{t('View Details', 'Lihat Detail')}</span>
+                      <span>{t('View Case Study', 'Lihat Studi Kasus')}</span>
                       <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                       </svg>
