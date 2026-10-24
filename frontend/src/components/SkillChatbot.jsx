@@ -327,7 +327,7 @@ export default function SkillChatbot() {
             aria-describedby="skill-chatbot-move-help"
             aria-keyshortcuts="ArrowUp ArrowDown ArrowLeft ArrowRight"
             title={t('Drag the header to move the chat', 'Seret header untuk memindahkan chat')}
-            className="flex cursor-grab touch-none select-none items-center justify-between border-b border-white/10 bg-black/30 px-4 py-3 active:cursor-grabbing focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+            className="flex cursor-grab touch-none select-none items-center justify-between border-b border-white/10 bg-black/30 px-4 py-3 active:cursor-grabbing focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
           >
             <div>
               <h2 id="skill-chatbot-title" className="text-sm font-bold text-white">{t('Portfolio Assistant', 'Asisten Portofolio')}</h2>
@@ -337,7 +337,7 @@ export default function SkillChatbot() {
               type="button"
               onClick={closeChat}
               aria-label={t('Close portfolio assistant', 'Tutup asisten portofolio')}
-              className="rounded-lg p-2 text-slate-400 transition hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+              className="rounded-lg p-2 text-slate-400 transition hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
             >
               <svg aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
@@ -361,7 +361,7 @@ export default function SkillChatbot() {
                   {message.action && (
                     <a
                       href={message.action.href}
-                      className="inline-flex items-center gap-1 rounded-lg border border-cyan-400/20 bg-cyan-400/5 px-2.5 py-1.5 text-[11px] font-medium text-cyan-200 transition-colors hover:border-cyan-300/40 hover:bg-cyan-400/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+                      className="inline-flex items-center gap-1 rounded-lg border border-teal-400/20 bg-teal-400/5 px-2.5 py-1.5 text-[11px] font-medium text-teal-200 transition-colors hover:border-teal-300/40 hover:bg-teal-400/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
                     >
                       {message.action.label}
                       <svg aria-hidden="true" className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -380,7 +380,7 @@ export default function SkillChatbot() {
                     key={suggestion}
                     type="button"
                     onClick={() => submitQuestion(suggestion)}
-                    className="rounded-full border border-cyan-400/20 bg-cyan-400/5 px-2.5 py-1.5 text-left text-[10px] leading-snug text-cyan-100 transition hover:border-cyan-300/50 hover:bg-cyan-400/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+                    className="rounded-full border border-teal-400/20 bg-teal-400/5 px-2.5 py-1.5 text-left text-[10px] leading-snug text-teal-100 transition hover:border-teal-300/50 hover:bg-teal-400/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
                   >
                     {suggestion}
                   </button>
@@ -407,13 +407,13 @@ export default function SkillChatbot() {
                 onChange={(event) => setInput(event.target.value)}
                 maxLength={300}
                 placeholder={t('Ask about skills...', 'Tanyakan tentang skill...')}
-                className="min-w-0 flex-1 rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-xs text-white placeholder:text-slate-500 focus:border-cyan-400/50 focus:outline-none focus:ring-2 focus:ring-cyan-400/20"
+                className="min-w-0 flex-1 rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-xs text-white placeholder:text-slate-500 focus:border-teal-400/50 focus:outline-none focus:ring-2 focus:ring-teal-400/20"
               />
               <button
                 type="submit"
                 disabled={!input.trim()}
                 aria-label={t('Send question', 'Kirim pertanyaan')}
-                className="rounded-xl bg-blue-500/80 p-2.5 text-white transition hover:bg-blue-400 disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+                className="rounded-xl bg-blue-500/80 p-2.5 text-white transition hover:bg-blue-400 disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
               >
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h14m-7-7 7 7-7 7" />
@@ -441,7 +441,7 @@ export default function SkillChatbot() {
           setIsOpen((open) => !open);
         }}
         style={{ transform: `translate3d(${launcherOffset.x}px, ${launcherOffset.y}px, 0)` }}
-        className="group flex h-14 touch-none cursor-grab items-center gap-2 rounded-full border border-blue-300/30 bg-blue-600 px-4 text-sm font-semibold text-white shadow-[0_8px_30px_rgba(59,130,246,0.4)] transition-colors hover:bg-blue-500 active:cursor-grabbing focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712]"
+        className="group flex h-14 touch-none cursor-grab items-center gap-2 rounded-full border border-blue-300/30 bg-blue-600 px-4 text-sm font-semibold text-white shadow-[0_8px_30px_rgba(59,130,246,0.4)] transition-colors hover:bg-blue-500 active:cursor-grabbing focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712]"
       >
         <svg aria-hidden="true" className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M8 10h8M8 14h5m-7 6 1.7-3.4A8 8 0 1 1 20 12a8 8 0 0 1-8 8H6Z" />

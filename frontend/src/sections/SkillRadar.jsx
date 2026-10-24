@@ -134,8 +134,8 @@ export default function SkillRadar() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-16">
           <div>
             <div className="flex items-center gap-3">
-              <span className="font-mono text-cyan-400 text-sm font-semibold tracking-wider uppercase">{t('Competency Matrix', 'Matriks Kompetensi')}</span>
-              <div className="h-[1px] w-12 bg-cyan-400/40"></div>
+              <span className="font-mono text-teal-400 text-sm font-semibold tracking-wider uppercase">{t('Competency Matrix', 'Matriks Kompetensi')}</span>
+              <div className="h-[1px] w-12 bg-teal-400/40"></div>
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-1">{t('Skill Radar Chart', 'Grafik Radar Keahlian')}</h2>
           </div>
@@ -157,7 +157,7 @@ export default function SkillRadar() {
                   <span className="w-2.5 h-2.5 rounded-full bg-blue-400 animate-pulse" />
                   SVG Vector Competency Radar
                 </span>
-                  <span className="text-cyan-300 font-bold">{t('6-Axis Metric', 'Metrik 6 Sumbu')}</span>
+                  <span className="text-teal-300 font-bold">{t('6-Axis Metric', 'Metrik 6 Sumbu')}</span>
               </div>
 
               {/* SVG Canvas */}
@@ -221,7 +221,7 @@ export default function SkillRadar() {
                   <defs>
                     <linearGradient id="radarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                       <stop offset="0%" stopColor="rgba(59, 130, 246, 0.45)" />
-                      <stop offset="100%" stopColor="rgba(6, 182, 212, 0.35)" />
+                      <stop offset="100%" stopColor="rgba(20, 184, 166, 0.35)" />
                     </linearGradient>
                   </defs>
 
@@ -236,7 +236,7 @@ export default function SkillRadar() {
                           cx={x}
                           cy={y}
                           r={isSelected ? "7" : "4.5"}
-                          fill={isSelected ? "#38bdf8" : "#60a5fa"}
+                          fill={isSelected ? "#2dd4bf" : "#60a5fa"}
                           stroke="#030712"
                           strokeWidth="2"
                           className="transition-all duration-300 hover:scale-150"
@@ -247,7 +247,7 @@ export default function SkillRadar() {
                             cy={y}
                             r="11"
                             fill="none"
-                            stroke="#38bdf8"
+                            stroke="#2dd4bf"
                             strokeWidth="1.5"
                             className="animate-ping opacity-75"
                           />
@@ -269,9 +269,9 @@ export default function SkillRadar() {
                       onClick={() => setSelectedSkillIndex(idx)}
                       aria-pressed={isSelected}
                       aria-label={t(`Show ${skill.label} details`, `Tampilkan detail ${skill.label}`)}
-                      className={`hidden sm:block font-mono text-[11px] px-2.5 py-1 rounded-lg border transition-all duration-300 cursor-pointer whitespace-nowrap shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 ${
+                      className={`hidden sm:block font-mono text-[11px] px-2.5 py-1 rounded-lg border transition-all duration-300 cursor-pointer whitespace-nowrap shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${
                         isSelected
-                          ? 'bg-blue-600/40 text-white border-cyan-400 font-semibold shadow-[0_0_15px_rgba(56,189,248,0.4)] scale-105'
+                          ? 'bg-blue-600/40 text-white border-teal-400 font-semibold shadow-[0_0_15px_rgba(45, 212, 191,0.4)] scale-105'
                           : 'bg-black/60 text-slate-400 border-white/10 hover:border-white/30 hover:text-slate-200'
                       }`}
                       style={{
@@ -297,9 +297,9 @@ export default function SkillRadar() {
                     onClick={() => setSelectedSkillIndex(idx)}
                     aria-label={t(`Show ${skill.label} details`, `Tampilkan detail ${skill.label}`)}
                     aria-pressed={idx === selectedSkillIndex}
-                    className={`inline-flex min-h-9 items-center justify-center rounded-lg border px-2 py-1 font-mono text-[10px] transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 ${
+                    className={`inline-flex min-h-9 items-center justify-center rounded-lg border px-2 py-1 font-mono text-[10px] transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${
                       idx === selectedSkillIndex 
-                        ? 'border-cyan-300/50 bg-cyan-400/20 text-cyan-100 shadow-[0_0_10px_rgba(6,182,212,0.25)]'
+                        ? 'border-teal-300/50 bg-teal-400/20 text-teal-100 shadow-[0_0_10px_rgba(20, 184, 166,0.25)]'
                         : 'border-white/10 bg-white/5 text-slate-400 hover:bg-white/10 hover:text-slate-200'
                     }`}
                   >
@@ -324,13 +324,13 @@ export default function SkillRadar() {
                     {currentSkill.icon}
                   </div>
                   <div>
-                    <span className="font-mono text-[10px] text-cyan-300 uppercase tracking-widest">// {t('DOMAIN INSPECTOR', 'DETAIL BIDANG')}</span>
+                    <span className="font-mono text-[10px] text-teal-300 uppercase tracking-widest">// {t('DOMAIN INSPECTOR', 'DETAIL BIDANG')}</span>
                     <h3 className="text-2xl font-bold text-white mt-0.5">{currentSkill.label}</h3>
                   </div>
                 </div>
 
                 <div className="text-right">
-                  <div className="text-2xl font-bold font-mono text-cyan-400">{currentSkill.score}%</div>
+                  <div className="text-2xl font-bold font-mono text-teal-400">{currentSkill.score}%</div>
                   <div className="font-mono text-[10px] text-blue-300 bg-blue-500/10 border border-blue-500/20 px-2 py-0.5 rounded-md mt-1">
                     {t(currentSkill.level, currentSkill.levelId)}
                   </div>
@@ -345,7 +345,7 @@ export default function SkillRadar() {
                 </div>
                 <div className="w-full h-2.5 bg-black/50 rounded-full overflow-hidden border border-white/10 p-0.5">
                   <div 
-                    className="h-full bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full transition-all duration-700 ease-out shadow-[0_0_12px_rgba(6,182,212,0.5)]"
+                    className="h-full bg-gradient-to-r from-blue-500 to-teal-400 rounded-full transition-all duration-700 ease-out shadow-[0_0_12px_rgba(20, 184, 166,0.5)]"
                     style={{ width: `${currentSkill.score}%` }}
                   />
                 </div>
@@ -363,7 +363,7 @@ export default function SkillRadar() {
                   {currentSkill.technologies.map((tech, idx) => (
                     <span 
                       key={idx} 
-                      className="font-mono text-xs text-cyan-300 bg-cyan-500/10 border border-cyan-500/20 px-3 py-1.5 rounded-lg"
+                      className="font-mono text-xs text-teal-300 bg-teal-500/10 border border-teal-500/20 px-3 py-1.5 rounded-lg"
                     >
                       {tech}
                     </span>

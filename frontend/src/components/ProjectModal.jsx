@@ -99,7 +99,7 @@ export default function ProjectModal({ project, onClose }) {
         <button 
           ref={closeButtonRef}
           onClick={onClose}
-          className="absolute top-6 right-6 text-slate-400 hover:text-white bg-white/10 hover:bg-white/20 rounded-full p-2.5 transition-colors cursor-pointer border border-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+          className="absolute top-6 right-6 text-slate-400 hover:text-white bg-white/10 hover:bg-white/20 rounded-full p-2.5 transition-colors cursor-pointer border border-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
           aria-label={t('Close modal', 'Tutup detail proyek')}
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -109,7 +109,7 @@ export default function ProjectModal({ project, onClose }) {
 
         {/* Category & Title */}
         <div className="mb-6">
-          <span className="font-mono text-xs text-cyan-300 bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 rounded-full uppercase tracking-wider">
+          <span className="font-mono text-xs text-teal-300 bg-teal-500/10 border border-teal-500/20 px-3 py-1 rounded-full uppercase tracking-wider">
             {project.category}
           </span>
           <h2 id="project-dialog-title" className="mt-3 pr-12 text-2xl font-extrabold text-white sm:pr-14 sm:text-3xl">
@@ -118,11 +118,11 @@ export default function ProjectModal({ project, onClose }) {
         </div>
 
         {/* Visual Banner Preview */}
-        <div className={`relative h-52 sm:h-64 w-full rounded-2xl mb-8 overflow-hidden bg-gradient-to-br ${project.gradient || 'from-blue-900/50 to-cyan-900/50'} border border-white/15 flex items-center justify-center`}>
+        <div className={`relative h-52 sm:h-64 w-full rounded-2xl mb-8 overflow-hidden bg-gradient-to-br ${project.gradient || 'from-blue-900/50 to-teal-900/50'} border border-white/15 flex items-center justify-center`}>
           <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none"></div>
           
           <div className="absolute w-48 h-48 bg-blue-500/30 rounded-full blur-3xl"></div>
-          <div className="absolute w-36 h-36 bg-cyan-500/20 rounded-full blur-2xl -bottom-6 -right-6"></div>
+          <div className="absolute w-36 h-36 bg-teal-500/20 rounded-full blur-2xl -bottom-6 -right-6"></div>
 
           <div className="z-10 text-center px-4">
             <div className="font-mono text-xs text-slate-400 mb-2 uppercase tracking-widest">// {t('SYSTEM PREVIEW ARCHITECTURE', 'PRATINJAU SISTEM')}</div>
@@ -156,7 +156,7 @@ export default function ProjectModal({ project, onClose }) {
                   <ul className="grid gap-2 sm:grid-cols-2">
                     {highlights.map((highlight, idx) => (
                       <li key={`${idx}-${highlight}`} className="flex items-start gap-2.5 rounded-xl border border-white/10 bg-white/[0.03] px-3.5 py-3 text-sm leading-relaxed text-slate-300">
-                        <span aria-hidden="true" className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-300" />
+                        <span aria-hidden="true" className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-teal-300" />
                         <span>{highlight}</span>
                       </li>
                     ))}
@@ -184,7 +184,7 @@ export default function ProjectModal({ project, onClose }) {
               {(project.tech_stack || []).map((tech, idx) => (
                 <span 
                   key={idx} 
-                  className="font-mono text-xs text-cyan-300 bg-cyan-500/10 border border-cyan-500/20 px-3 py-1.5 rounded-lg"
+                  className="font-mono text-xs text-teal-300 bg-teal-500/10 border border-teal-500/20 px-3 py-1.5 rounded-lg"
                 >
                   {tech}
                 </span>

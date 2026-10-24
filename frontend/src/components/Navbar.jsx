@@ -13,7 +13,7 @@ function LanguageToggle({ language, setLanguage, t }) {
           onClick={() => setLanguage(option)}
           aria-pressed={language === option}
           aria-label={option === 'en' ? t('Switch to English', 'Ganti ke bahasa Inggris') : t('Switch to Indonesian', 'Ganti ke bahasa Indonesia')}
-          className={`rounded-lg px-2 py-1.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 ${
+          className={`rounded-lg px-2 py-1.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${
             language === option ? 'bg-blue-500/30 text-white' : 'text-slate-400 hover:text-white'
           }`}
         >
@@ -36,7 +36,7 @@ function ThemeToggle({ t }) {
       onClick={toggleTheme}
       aria-label={label}
       title={label}
-      className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-blue-300 transition-colors hover:border-blue-400/40 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+      className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-blue-300 transition-colors hover:border-blue-400/40 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
     >
       {theme === 'dark' ? (
         <svg aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -86,12 +86,12 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }) {
         <div className="px-4 sm:px-6 flex items-center justify-between">
           {/* Logo Brand */}
           <a href="#hero" className="flex items-center gap-3 group">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-cyan-400 p-[1px] flex items-center justify-center shadow-[0_0_15px_rgba(59,130,246,0.4)] group-hover:shadow-[0_0_25px_rgba(59,130,246,0.7)] transition-all">
-              <div className="w-full h-full bg-[#070A14] rounded-[11px] flex items-center justify-center font-mono font-bold text-sm text-cyan-400">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-teal-400 p-[1px] flex items-center justify-center shadow-[0_0_15px_rgba(59,130,246,0.4)] group-hover:shadow-[0_0_25px_rgba(59,130,246,0.7)] transition-all">
+              <div className="w-full h-full bg-[#070A14] rounded-[11px] flex items-center justify-center font-mono font-bold text-sm text-teal-400">
                 {'</>'}
               </div>
             </div>
-            <span className="font-mono text-lg font-bold tracking-tight text-white group-hover:text-cyan-300 transition-colors">
+            <span className="font-mono text-lg font-bold tracking-tight text-white group-hover:text-teal-300 transition-colors">
               Ivan<span className="text-gradient">.dev</span>
             </span>
           </a>
@@ -105,7 +105,7 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }) {
                 className="text-slate-300 hover:text-white px-3.5 py-2 rounded-lg hover:bg-white/5 transition-all text-xs uppercase tracking-wider relative group"
               >
                 {link.name}
-                <span className="absolute bottom-1 left-3.5 right-3.5 h-[2px] bg-gradient-to-r from-blue-500 to-cyan-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                <span className="absolute bottom-1 left-3.5 right-3.5 h-[2px] bg-gradient-to-r from-blue-500 to-teal-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               </a>
             ))}
           </div>
@@ -119,10 +119,10 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }) {
             <button
               type="button"
               onClick={onOpenResume}
-              className="flex items-center gap-1.5 font-mono text-xs text-cyan-300 bg-blue-600/10 hover:bg-blue-600/20 hover:text-cyan-200 border border-cyan-500/30 px-3 py-2 rounded-xl transition-all cursor-pointer shadow-sm"
+              className="flex items-center gap-1.5 font-mono text-xs text-teal-300 bg-blue-600/10 hover:bg-blue-600/20 hover:text-teal-200 border border-teal-500/30 px-3 py-2 rounded-xl transition-all cursor-pointer shadow-sm"
               title={t('View Interactive CV & Printable Resume', 'Lihat CV Interaktif & Cetak Resume')}
             >
-              <svg className="w-3.5 h-3.5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3.5 h-3.5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
               <span>{t('CV', 'CV')}</span>
@@ -159,7 +159,7 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }) {
                 setMobileMenuOpen(false);
                 onOpenCommandPalette();
               }}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
               title={t('Search', 'Cari')}
               aria-label={t('Open search and command palette', 'Buka pencarian dan menu perintah')}
               aria-haspopup="dialog"
@@ -172,7 +172,7 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }) {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
               aria-label={mobileMenuOpen ? t('Close navigation menu', 'Tutup menu navigasi') : t('Open navigation menu', 'Buka menu navigasi')}
               aria-expanded={mobileMenuOpen}
               aria-controls={mobileMenuOpen ? 'mobile-navigation-menu' : undefined}
@@ -215,9 +215,9 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }) {
                 setMobileMenuOpen(false);
                 if (onOpenResume) onOpenResume();
               }}
-              className="w-full flex items-center justify-center gap-2 text-cyan-300 hover:text-white font-mono text-xs py-2 px-3 rounded-lg bg-blue-600/10 border border-cyan-500/20"
+              className="w-full flex items-center justify-center gap-2 text-teal-300 hover:text-white font-mono text-xs py-2 px-3 rounded-lg bg-blue-600/10 border border-teal-500/20"
             >
-              <svg className="w-3.5 h-3.5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3.5 h-3.5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
               <span>{t('View CV / Resume', 'Lihat CV / Resume')}</span>

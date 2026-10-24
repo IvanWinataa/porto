@@ -6,9 +6,9 @@
   --color-dark-card: rgba(8, 15, 29, 0.72);
   --color-primary: #3b82f6;
   --color-primary-light: #60a5fa;
-  --color-secondary: #38bdf8;
+  --color-secondary: #2dd4bf;
   --color-emerald: #10b981;
-  --color-pink: #38bdf8;
+  --color-pink: #2dd4bf;
   
   --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
   --font-mono: "Fira Code", monospace;
@@ -48,14 +48,14 @@
 }
 
 @utility text-gradient {
-  background: linear-gradient(135deg, #60a5fa 0%, #38bdf8 50%, #2563eb 100%);
+  background: linear-gradient(135deg, #60a5fa 0%, #2dd4bf 50%, #2563eb 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 @utility text-gradient-blue {
-  background: linear-gradient(135deg, #3b82f6 0%, #38bdf8 100%);
+  background: linear-gradient(135deg, #3b82f6 0%, #2dd4bf 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -87,7 +87,7 @@
     background-color: #030712;
     background-image:
       radial-gradient(ellipse at 16% 0%, rgba(37, 99, 235, 0.16), transparent 36%),
-      radial-gradient(ellipse at 88% 38%, rgba(14, 165, 233, 0.09), transparent 32%),
+      radial-gradient(ellipse at 88% 38%, rgba(20, 184, 166, 0.09), transparent 32%),
       linear-gradient(180deg, #030712 0%, #050b16 54%, #030712 100%);
     background-attachment: fixed;
     color: #f1f5f9;
@@ -120,7 +120,7 @@ html[data-theme='light'] body {
   background-color: #f4f8ff;
   background-image:
     radial-gradient(ellipse at 14% 0%, rgba(59, 130, 246, 0.14), transparent 34%),
-    radial-gradient(ellipse at 88% 34%, rgba(56, 189, 248, 0.1), transparent 30%),
+    radial-gradient(ellipse at 88% 34%, rgba(45, 212, 191, 0.1), transparent 30%),
     linear-gradient(180deg, #f8fbff 0%, #eef5ff 52%, #f8fbff 100%);
   color: #0f172a;
 }
@@ -150,12 +150,12 @@ html[data-theme='light'] [class~='text-blue-200'],
 html[data-theme='light'] [class~='text-blue-300'],
 html[data-theme='light'] [class~='text-blue-400'],
 html[data-theme='light'] [class~='text-blue-500'],
-html[data-theme='light'] [class~='text-cyan-100'],
-html[data-theme='light'] [class~='text-cyan-200'],
-html[data-theme='light'] [class~='text-cyan-300'],
-html[data-theme='light'] [class~='text-cyan-400'],
-html[data-theme='light'] [class~='text-sky-300'],
-html[data-theme='light'] [class~='text-sky-400'] {
+html[data-theme='light'] [class~='text-teal-100'],
+html[data-theme='light'] [class~='text-teal-200'],
+html[data-theme='light'] [class~='text-teal-300'],
+html[data-theme='light'] [class~='text-teal-400'],
+html[data-theme='light'] [class~='text-teal-300'],
+html[data-theme='light'] [class~='text-teal-400'] {
   color: #075985;
 }
 
@@ -189,7 +189,7 @@ html[data-theme='light'] [class~='bg-blue-500/80'][class~='text-white'] {
 
 html[data-theme='light'] button.bg-gradient-to-r,
 html[data-theme='light'] a.bg-gradient-to-r {
-  background-image: linear-gradient(to right, rgba(37, 99, 235, 0.12), rgba(14, 165, 233, 0.14));
+  background-image: linear-gradient(to right, rgba(37, 99, 235, 0.12), rgba(20, 184, 166, 0.14));
   border-color: rgba(37, 99, 235, 0.28);
 }
 
@@ -202,7 +202,7 @@ html[data-theme='light'] ::-webkit-scrollbar-track { background: #e8f0fb; }
 html[data-theme='light'] ::-webkit-scrollbar-thumb { border-color: #e8f0fb; }
 
 :focus-visible {
-  outline: 2px solid var(--focus-ring-color, #38bdf8);
+  outline: 2px solid var(--focus-ring-color, #2dd4bf);
   outline-offset: 3px;
 }
 
@@ -283,7 +283,7 @@ html[data-theme='light'] textarea::placeholder {
     color: #0284c7 !important;
   }
 
-  #resume-printable-content .text-cyan-400 {
+  #resume-printable-content .text-teal-400 {
     color: #0284c7 !important;
   }
 

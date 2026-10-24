@@ -13,13 +13,13 @@ export default function Footer() {
         
         {/* Left branding */}
         <div className="flex items-center gap-2">
-          <span className="text-cyan-400 font-bold">Ivan.dev</span>
+          <span className="text-teal-400 font-bold">Ivan.dev</span>
           <span>{t('— Fullstack Engineering Showcase', '— Portofolio Rekayasa Fullstack')}</span>
         </div>
 
         {/* Center copyright */}
         <div className="text-center sm:text-left text-slate-500">
-          &copy; {new Date().getFullYear()} {t('Designed & Built with', 'Dirancang & Dibangun dengan')} <span className="text-blue-400">♥</span> & <span className="text-cyan-400">React 19</span>
+          &copy; {new Date().getFullYear()} {t('Designed & Built with', 'Dirancang & Dibangun dengan')} <span className="text-blue-400">♥</span> & <span className="text-teal-400">React 19</span>
         </div>
 
         {/* Back to top CTA */}

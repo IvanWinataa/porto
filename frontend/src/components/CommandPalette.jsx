@@ -250,7 +250,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }
             aria-controls="command-palette-results"
             aria-activedescendant={filteredCommands[selectedIndex] ? `command-option-${filteredCommands[selectedIndex].id}` : undefined}
             placeholder={t('Type a command or section name... (e.g. Projects, Copy)', 'Ketik perintah atau nama bagian... (mis. Proyek, Salin)')}
-            className="w-full bg-transparent text-white placeholder-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded font-mono text-xs sm:text-sm"
+            className="w-full bg-transparent text-white placeholder-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 rounded font-mono text-xs sm:text-sm"
           />
           <kbd className="hidden sm:inline-block font-mono text-[10px] text-slate-400 bg-white/10 px-2 py-0.5 rounded border border-white/10">
             ESC
@@ -259,7 +259,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }
             type="button"
             onClick={onClose}
             aria-label={t('Close command palette', 'Tutup menu perintah')}
-            className="ml-2 p-1 rounded text-slate-400 hover:text-white hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+            className="ml-2 p-1 rounded text-slate-400 hover:text-white hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
           >
             <svg aria-hidden="true" className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
@@ -290,7 +290,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }
                     <span aria-hidden="true" className="text-base">{cmd.icon}</span>
                     <span className="font-sans text-xs sm:text-sm font-medium">{cmd.label}</span>
                   </div>
-                  <span aria-hidden="true" className="font-mono text-[10px] text-cyan-300 bg-cyan-500/10 border border-cyan-500/20 px-2 py-0.5 rounded">
+                  <span aria-hidden="true" className="font-mono text-[10px] text-teal-300 bg-teal-500/10 border border-teal-500/20 px-2 py-0.5 rounded">
                     {cmd.shortcut}
                   </span>
                 </div>

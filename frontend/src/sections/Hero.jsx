@@ -24,8 +24,8 @@ export default function Hero({ onOpenResume }) {
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center pt-28 pb-20 relative overflow-hidden bg-grid-pattern">
       {/* Background ambient lighting blobs */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-gradient-to-tr from-blue-600/20 via-cyan-500/15 to-sky-500/10 rounded-full blur-[140px] -z-10 pointer-events-none animate-pulse-slow" />
-      <div className="absolute bottom-10 right-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px] -z-10 pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-gradient-to-tr from-blue-600/20 via-teal-500/15 to-teal-500/10 rounded-full blur-[140px] -z-10 pointer-events-none animate-pulse-slow" />
+      <div className="absolute bottom-10 right-10 w-96 h-96 bg-teal-500/10 rounded-full blur-[120px] -z-10 pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 z-10 w-full">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -71,9 +71,9 @@ export default function Hero({ onOpenResume }) {
               <button
                 type="button"
                 onClick={onOpenResume}
-                className="px-6 py-3 rounded-full bg-blue-600/15 hover:bg-blue-600/25 text-cyan-300 hover:text-white border border-cyan-500/30 hover:border-cyan-400 transition-all duration-300 font-mono text-sm flex items-center gap-2 backdrop-blur-md cursor-pointer shadow-[0_0_15px_rgba(6,182,212,0.12)]"
+                className="px-6 py-3 rounded-full bg-blue-600/15 hover:bg-blue-600/25 text-teal-300 hover:text-white border border-teal-500/30 hover:border-teal-400 transition-all duration-300 font-mono text-sm flex items-center gap-2 backdrop-blur-md cursor-pointer shadow-[0_0_15px_rgba(20, 184, 166,0.12)]"
               >
-                <svg className="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
                 <span>{t('View CV / Resume', 'Lihat CV / Resume')}</span>
@@ -94,7 +94,7 @@ export default function Hero({ onOpenResume }) {
                 <div className="text-xs text-slate-400 font-mono uppercase tracking-wider mt-0.5">{t('Years Exp.', 'Tahun Pengalaman')}</div>
               </div>
               <div>
-                <div className="text-2xl sm:text-3xl font-bold font-mono text-cyan-400">20+</div>
+                <div className="text-2xl sm:text-3xl font-bold font-mono text-teal-400">20+</div>
                 <div className="text-xs text-slate-400 font-mono uppercase tracking-wider mt-0.5">{t('Projects', 'Proyek')}</div>
               </div>
               <div>
@@ -142,12 +142,12 @@ export default function Hero({ onOpenResume }) {
                     1<br />2<br />3<br />4<br />5<br />6<br />7<br />8
                   </div>
                   <div>
-                    <div><span className="text-blue-400 font-semibold">const</span> <span className="text-cyan-300">developer</span> = &#123;</div>
+                    <div><span className="text-blue-400 font-semibold">const</span> <span className="text-teal-300">developer</span> = &#123;</div>
                     <div className="pl-4"><span className="text-slate-400">name:</span> <span className="text-emerald-300">'Ivan Winata'</span>,</div>
                     <div className="pl-4"><span className="text-slate-400">title:</span> <span className="text-emerald-300">'Fullstack Engineer'</span>,</div>
                     <div className="pl-4"><span className="text-slate-400">location:</span> <span className="text-emerald-300">'Indonesia (Remote)'</span>,</div>
                     <div className="pl-4"><span className="text-slate-400">coreStack:</span> [<span className="text-blue-300">'React'</span>, <span className="text-blue-300">'Node.js'</span>, <span className="text-blue-300">'Postgres'</span>],</div>
-                    <div className="pl-4"><span className="text-slate-400">status:</span> <span className="text-cyan-400">'Open for hire'</span>,</div>
+                    <div className="pl-4"><span className="text-slate-400">status:</span> <span className="text-teal-400">'Open for hire'</span>,</div>
                     <div className="pl-4"><span className="text-slate-400">codeQuote:</span> <span className="text-emerald-300">"Build with passion"</span></div>
                     <div>&#125;;</div>
                   </div>
@@ -157,7 +157,7 @@ export default function Hero({ onOpenResume }) {
               {/* Status bar */}
               <div className="bg-[#050b16] px-4 py-2 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-500">
                 <span className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                  <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
                   {t('TypeScript React Ready', 'TypeScript React Siap')}
                 </span>
                 <span>UTF-8</span>

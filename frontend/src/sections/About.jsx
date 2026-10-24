@@ -53,8 +53,8 @@ export default function About() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-16">
           <div>
             <div className="flex items-center gap-3">
-              <span className="font-mono text-cyan-400 text-sm font-semibold tracking-wider uppercase">{t('01. Discovery', '01. Tentang Saya')}</span>
-              <div className="h-[1px] w-12 bg-cyan-400/40"></div>
+              <span className="font-mono text-teal-400 text-sm font-semibold tracking-wider uppercase">{t('01. Discovery', '01. Tentang Saya')}</span>
+              <div className="h-[1px] w-12 bg-teal-400/40"></div>
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-1">{t('About Me', 'Tentang Saya')}</h2>
           </div>
@@ -90,7 +90,7 @@ export default function About() {
               {/* Core Principles Grid */}
               <div className="grid sm:grid-cols-2 gap-4 pt-4 border-t border-white/10">
                 <div className="p-3.5 rounded-xl bg-white/5 border border-white/5">
-                  <div className="font-mono text-xs font-semibold text-cyan-400 uppercase tracking-wider mb-1">⚡ {t('High Performance', 'Performa Tinggi')}</div>
+                  <div className="font-mono text-xs font-semibold text-teal-400 uppercase tracking-wider mb-1">⚡ {t('High Performance', 'Performa Tinggi')}</div>
                   <div className="text-xs text-slate-400">{t('Optimized bundle size, crisp animations, and fast response times.', 'Ukuran bundle yang optimal, animasi halus, dan waktu respons cepat.')}</div>
                 </div>
                 <div className="p-3.5 rounded-xl bg-white/5 border border-white/5">
@@ -125,7 +125,7 @@ export default function About() {
                   {[...marqueeRow2, ...marqueeRow2, ...marqueeRow2].map((skill, index) => (
                     <div 
                       key={`m2-${index}`} 
-                      className="flex items-center gap-2 font-mono text-xs bg-white/5 border border-white/10 px-4 py-2 rounded-xl text-slate-300 hover:border-cyan-500/50 hover:text-white transition-all cursor-default"
+                      className="flex items-center gap-2 font-mono text-xs bg-white/5 border border-white/10 px-4 py-2 rounded-xl text-slate-300 hover:border-teal-500/50 hover:text-white transition-all cursor-default"
                     >
                       <span>{skill.icon}</span>
                       <span>{skill.name}</span>
@@ -142,7 +142,7 @@ export default function About() {
             <GlassCard>
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-lg font-bold text-white">{t('Technical Arsenal', 'Kumpulan Teknologi')}</h3>
-                <span className="font-mono text-xs text-cyan-400 bg-cyan-500/10 px-2.5 py-1 rounded-full border border-cyan-500/20">
+                <span className="font-mono text-xs text-teal-400 bg-teal-500/10 px-2.5 py-1 rounded-full border border-teal-500/20">
                   {filteredSkills.length} {t('Technologies', 'Teknologi')}
                 </span>
               </div>
@@ -177,7 +177,7 @@ export default function About() {
                     key={skill.name}
                     className={`flex items-center gap-2 font-mono text-xs px-3.5 py-2 rounded-xl border transition-all duration-300 hover:scale-105 cursor-default ${skill.bg}`}
                   >
-                    <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                    <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
                     <span className="text-slate-100 font-medium">{skill.name}</span>
                   </div>
                 ))}

@@ -22,7 +22,7 @@ const MOCK_PROJECTS = [
     tech_stack: ['React 19', 'Node.js', 'Express', 'PostgreSQL', 'TailwindCSS', 'WebSockets'],
     github_url: 'https://github.com',
     live_url: 'https://example.com',
-    gradient: 'from-blue-600/30 to-sky-500/30'
+    gradient: 'from-blue-600/30 to-teal-500/30'
   },
   {
     id: '2',
@@ -42,7 +42,7 @@ const MOCK_PROJECTS = [
     tech_stack: ['Next.js', 'PostgreSQL', 'Express.js', 'Stripe API', 'TailwindCSS'],
     github_url: 'https://github.com',
     live_url: 'https://example.com',
-    gradient: 'from-sky-600/30 to-cyan-500/30'
+    gradient: 'from-teal-600/30 to-teal-500/30'
   },
   {
     id: '3',
@@ -61,7 +61,7 @@ const MOCK_PROJECTS = [
     tech_stack: ['Node.js', 'Express', 'PostgreSQL', 'JWT', 'Docker'],
     github_url: 'https://github.com',
     live_url: null,
-    gradient: 'from-cyan-600/30 to-blue-500/30'
+    gradient: 'from-teal-600/30 to-blue-500/30'
   },
   {
     id: '4',
@@ -80,7 +80,7 @@ const MOCK_PROJECTS = [
     tech_stack: ['React', 'TypeScript', 'TailwindCSS', 'Figma', 'Vite'],
     github_url: 'https://github.com',
     live_url: 'https://example.com',
-    gradient: 'from-blue-700/30 to-cyan-500/30'
+    gradient: 'from-blue-700/30 to-teal-500/30'
   }
 ];
 
@@ -143,7 +143,7 @@ export default function Projects() {
   return (
     <section id="projects" className="py-28 relative overflow-hidden bg-grid-pattern">
       {/* Glow highlight */}
-      <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[140px] -z-10 pointer-events-none" />
+      <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-teal-500/10 rounded-full blur-[140px] -z-10 pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
@@ -178,7 +178,7 @@ export default function Projects() {
                 value={searchQuery}
                 onChange={(event) => setSearchQuery(event.target.value)}
                 placeholder={t('Name, description, or technology...', 'Nama, deskripsi, atau teknologi...')}
-                className="w-full rounded-xl border border-white/10 bg-black/30 py-3 pl-10 pr-4 text-sm text-white placeholder:text-slate-500 focus:border-cyan-400/50 focus:outline-none focus:ring-2 focus:ring-cyan-400/20"
+                className="w-full rounded-xl border border-white/10 bg-black/30 py-3 pl-10 pr-4 text-sm text-white placeholder:text-slate-500 focus:border-teal-400/50 focus:outline-none focus:ring-2 focus:ring-teal-400/20"
               />
             </div>
           </div>
@@ -191,7 +191,7 @@ export default function Projects() {
               id="project-technology-filter"
               value={activeTechnology}
               onChange={(event) => setActiveTechnology(event.target.value)}
-              className="w-full rounded-xl border border-white/10 bg-[#0D111D] px-3 py-3 text-sm text-slate-200 focus:border-cyan-400/50 focus:outline-none focus:ring-2 focus:ring-cyan-400/20"
+              className="w-full rounded-xl border border-white/10 bg-[#0D111D] px-3 py-3 text-sm text-slate-200 focus:border-teal-400/50 focus:outline-none focus:ring-2 focus:ring-teal-400/20"
             >
               <option value="All">{t('All technologies', 'Semua teknologi')}</option>
               {technologies.map((technology) => (
@@ -245,17 +245,17 @@ export default function Projects() {
               >
                 <div>
                   {/* Banner mockup container */}
-                  <div className={`relative h-48 sm:h-52 w-full rounded-xl mb-6 overflow-hidden bg-gradient-to-br ${project.gradient || 'from-blue-900/40 to-cyan-900/40'} border border-white/10 flex items-center justify-center`}>
+                  <div className={`relative h-48 sm:h-52 w-full rounded-xl mb-6 overflow-hidden bg-gradient-to-br ${project.gradient || 'from-blue-900/40 to-teal-900/40'} border border-white/10 flex items-center justify-center`}>
                     
                     {/* Grid backdrop */}
                     <div className="absolute inset-0 bg-dots-pattern opacity-40 pointer-events-none" />
                     
                     {/* Floating title tag */}
                     <div className="z-10 text-center px-6 transform group-hover:scale-105 transition-transform duration-500">
-                      <span className="font-mono text-[10px] text-cyan-300 uppercase tracking-widest bg-black/50 border border-white/10 px-3 py-1 rounded-full backdrop-blur-md">
+                      <span className="font-mono text-[10px] text-teal-300 uppercase tracking-widest bg-black/50 border border-white/10 px-3 py-1 rounded-full backdrop-blur-md">
                         {project.category}
                       </span>
-                      <h4 className="text-xl font-bold text-white mt-3 group-hover:text-cyan-300 transition-colors">
+                      <h4 className="text-xl font-bold text-white mt-3 group-hover:text-teal-300 transition-colors">
                         {project.title}
                       </h4>
                     </div>
@@ -271,7 +271,7 @@ export default function Projects() {
                   {/* Tech stack pills */}
                   <div className="flex flex-wrap gap-1.5 mb-6">
                     {project.tech_stack.map((tech, idx) => (
-                      <span key={idx} className="font-mono text-[11px] text-cyan-300 bg-cyan-500/10 border border-cyan-500/20 px-2.5 py-1 rounded-md">
+                      <span key={idx} className="font-mono text-[11px] text-teal-300 bg-teal-500/10 border border-teal-500/20 px-2.5 py-1 rounded-md">
                         {tech}
                       </span>
                     ))}
@@ -284,7 +284,7 @@ export default function Projects() {
                       onClick={() => setSelectedProject(project)}
                       aria-haspopup="dialog"
                       aria-label={t(`View details for ${project.title}`, `Lihat detail ${project.title}`)}
-                      className="text-blue-300 hover:text-white transition-colors flex items-center gap-1.5 text-xs font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded"
+                      className="text-blue-300 hover:text-white transition-colors flex items-center gap-1.5 text-xs font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 rounded"
                     >
                       <span>{t('View Case Study', 'Lihat Studi Kasus')}</span>
                       <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -341,7 +341,7 @@ export default function Projects() {
                 setActiveTechnology('All');
                 setActiveCategory('All');
               }}
-              className="mt-5 rounded-lg border border-blue-400/30 bg-blue-500/10 px-4 py-2 text-xs font-medium text-blue-200 transition-colors hover:bg-blue-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+              className="mt-5 rounded-lg border border-blue-400/30 bg-blue-500/10 px-4 py-2 text-xs font-medium text-blue-200 transition-colors hover:bg-blue-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
             >
               {t('Clear filters', 'Hapus filter')}
             </button>

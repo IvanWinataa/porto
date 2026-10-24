@@ -84,7 +84,7 @@ export default function ResumeModal({ isOpen, onClose }) {
         {/* Top Control Bar */}
         <div className="flex items-center justify-between gap-2 px-3 py-3 border-b border-white/10 bg-black/40 shrink-0 sm:px-6 sm:py-4">
           <div className="flex min-w-0 flex-1 items-center gap-2 sm:gap-3">
-            <span className="w-3 h-3 rounded-full bg-cyan-400 animate-pulse" />
+            <span className="w-3 h-3 rounded-full bg-teal-400 animate-pulse" />
             <h2 id="resume-title" className="truncate font-mono text-[10px] font-bold text-white tracking-wide sm:text-sm">
               {t('CURRICULUM VITAE // IVAN WINATA', 'DAFTAR RIWAYAT HIDUP // IVAN WINATA')}
             </h2>
@@ -95,7 +95,7 @@ export default function ResumeModal({ isOpen, onClose }) {
             <button
               type="button"
               onClick={handlePrint}
-              className="flex min-h-10 min-w-10 items-center justify-center gap-1.5 rounded-lg border border-cyan-500/30 bg-blue-600/20 px-2 text-xs font-mono text-cyan-300 transition-all hover:bg-blue-600/30 sm:px-3"
+              className="flex min-h-10 min-w-10 items-center justify-center gap-1.5 rounded-lg border border-teal-500/30 bg-blue-600/20 px-2 text-xs font-mono text-teal-300 transition-all hover:bg-blue-600/30 sm:px-3"
               title={t('Print or Save as PDF', 'Cetak atau Simpan sebagai PDF')}
               aria-label={t('Print or save as PDF', 'Cetak atau simpan sebagai PDF')}
             >
@@ -156,7 +156,7 @@ export default function ResumeModal({ isOpen, onClose }) {
                 <span>📍 Indonesia (Available Worldwide / Remote)</span>
                 <a
                   href="mailto:ivanwinata1972@gmail.com"
-                  className="transition-colors hover:text-cyan-300 focus-visible:rounded-sm"
+                  className="transition-colors hover:text-teal-300 focus-visible:rounded-sm"
                 >
                   ✉️ ivanwinata1972@gmail.com
                 </a>
@@ -176,7 +176,7 @@ export default function ResumeModal({ isOpen, onClose }) {
 
           {/* Professional Summary */}
           <div>
-            <h3 className="font-mono text-xs uppercase tracking-widest text-cyan-400 mb-2">
+            <h3 className="font-mono text-xs uppercase tracking-widest text-teal-400 mb-2">
               // {t('Professional Summary', 'Ringkasan Profesional')}
             </h3>
             <p className="text-sm leading-relaxed text-slate-300">
@@ -189,7 +189,7 @@ export default function ResumeModal({ isOpen, onClose }) {
 
           {/* Core Technical Arsenal */}
           <div>
-            <h3 className="font-mono text-xs uppercase tracking-widest text-cyan-400 mb-3">
+            <h3 className="font-mono text-xs uppercase tracking-widest text-teal-400 mb-3">
               // {t('Technical Competencies', 'Kompetensi Teknis')}
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
@@ -224,7 +224,7 @@ export default function ResumeModal({ isOpen, onClose }) {
 
           {/* Work Experience */}
           <div>
-            <h3 className="font-mono text-xs uppercase tracking-widest text-cyan-400 mb-4">
+            <h3 className="font-mono text-xs uppercase tracking-widest text-teal-400 mb-4">
               // {t('Work Experience', 'Pengalaman Kerja')}
             </h3>
             <div className="space-y-6">
@@ -232,7 +232,7 @@ export default function ResumeModal({ isOpen, onClose }) {
                 <div key={experience.id} className="space-y-2">
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <h4 className="text-base font-bold text-white">
-                      {experience.role} <span className="text-cyan-400 font-mono text-sm font-normal">@ {experience.company}</span>
+                      {experience.role} <span className="text-teal-400 font-mono text-sm font-normal">@ {experience.company}</span>
                     </h4>
                     <span className="font-mono text-xs text-slate-400 bg-white/5 px-2.5 py-0.5 rounded border border-white/10">
                       {getPeriodLabel(experience.period, language)} / {getLocationLabel(experience.location, language)}
@@ -250,7 +250,7 @@ export default function ResumeModal({ isOpen, onClose }) {
 
           {/* Education & Certifications */}
           <div className="pt-4 border-t border-white/10">
-            <h3 className="font-mono text-xs uppercase tracking-widest text-cyan-400 mb-3">
+            <h3 className="font-mono text-xs uppercase tracking-widest text-teal-400 mb-3">
               // {t('Education & Certifications', 'Pendidikan & Sertifikasi')}
             </h3>
             <div className="grid sm:grid-cols-2 gap-4 text-xs">

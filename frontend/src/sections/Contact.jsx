@@ -52,7 +52,7 @@ export default function Contact() {
   return (
     <section id="contact" className="py-28 relative overflow-hidden bg-grid-pattern">
       {/* Glow highlight */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-gradient-to-t from-blue-600/20 via-cyan-500/10 to-transparent rounded-full blur-[150px] -z-10 pointer-events-none" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-gradient-to-t from-blue-600/20 via-teal-500/10 to-transparent rounded-full blur-[150px] -z-10 pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
@@ -86,9 +86,9 @@ export default function Contact() {
               <div className="space-y-4 pt-2">
                 
                 {/* Email Card with Copy button */}
-                <div className="p-4 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between gap-3 group hover:border-cyan-500/40 transition-colors">
+                <div className="p-4 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between gap-3 group hover:border-teal-500/40 transition-colors">
                   <div className="flex items-center gap-3 overflow-hidden">
-                    <div className="w-10 h-10 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 flex items-center justify-center font-mono">
+                    <div className="w-10 h-10 rounded-lg bg-teal-500/10 text-teal-400 border border-teal-500/20 flex items-center justify-center font-mono">
                       ✉️
                     </div>
                     <div>
@@ -96,7 +96,7 @@ export default function Contact() {
                       <a
                         href={`mailto:${emailAddress}`}
                         aria-label={t(`Send an email to ${emailAddress}`, `Kirim email ke ${emailAddress}`)}
-                        className="block max-w-full truncate font-mono text-xs text-slate-200 transition-colors hover:text-cyan-300 focus-visible:rounded-sm"
+                        className="block max-w-full truncate font-mono text-xs text-slate-200 transition-colors hover:text-teal-300 focus-visible:rounded-sm"
                       >
                         {emailAddress}
                       </a>
@@ -106,7 +106,7 @@ export default function Contact() {
                   <button
                     type="button"
                     onClick={handleCopyEmail}
-                    className="font-mono text-[11px] text-cyan-300 bg-cyan-500/10 hover:bg-cyan-500/20 px-3 py-1.5 rounded-lg border border-cyan-500/30 transition-all cursor-pointer shrink-0"
+                    className="font-mono text-[11px] text-teal-300 bg-teal-500/10 hover:bg-teal-500/20 px-3 py-1.5 rounded-lg border border-teal-500/30 transition-all cursor-pointer shrink-0"
                   >
                     {emailCopied ? t('Copied', 'Tersalin') : t('Copy', 'Salin')}
                   </button>

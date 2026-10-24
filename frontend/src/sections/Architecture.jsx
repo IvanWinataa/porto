@@ -77,7 +77,7 @@ router.post('/api/contact', contactController.sendMessage);`
       subtitle: 'Middleware Guard Layer',
       subtitleId: 'Lapisan Proteksi Middleware',
       icon: '🛡️',
-      color: 'border-sky-400 text-sky-400',
+      color: 'border-teal-400 text-teal-400',
       badge: 'Middleware',
       badgeId: 'Middleware',
       latency: '~2 ms',
@@ -108,7 +108,7 @@ if (!name || !email || !emailRegex.test(email)) {
       subtitle: 'Persistence Data Layer',
       subtitleId: 'Lapisan Persistensi Data',
       icon: '🐘',
-      color: 'border-cyan-400 text-cyan-400',
+      color: 'border-teal-400 text-teal-400',
       badge: 'Database Pool',
       badgeId: 'Pool Database',
       latency: '~6 ms',
@@ -166,7 +166,7 @@ return result.rows;`
   return (
     <section id="architecture" className="py-28 relative overflow-hidden bg-grid-pattern">
       {/* Background ambient lighting */}
-      <div className="absolute top-1/2 right-10 w-[550px] h-[550px] bg-cyan-600/10 rounded-full blur-[140px] -z-10 pointer-events-none" />
+      <div className="absolute top-1/2 right-10 w-[550px] h-[550px] bg-teal-600/10 rounded-full blur-[140px] -z-10 pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
@@ -174,8 +174,8 @@ return result.rows;`
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-14">
           <div>
             <div className="flex items-center gap-3">
-              <span className="font-mono text-cyan-400 text-sm font-semibold tracking-wider uppercase">{t('Architecture Flow', 'Alur Arsitektur')}</span>
-              <div className="h-[1px] w-12 bg-cyan-400/40"></div>
+              <span className="font-mono text-teal-400 text-sm font-semibold tracking-wider uppercase">{t('Architecture Flow', 'Alur Arsitektur')}</span>
+              <div className="h-[1px] w-12 bg-teal-400/40"></div>
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-1">{t('System Architecture', 'Arsitektur Sistem')}</h2>
           </div>
@@ -210,7 +210,7 @@ return result.rows;`
                   <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
                   {t('Live Topology Graph', 'Graf Topologi Langsung')}
                 </span>
-                <span>{t('Total Latency', 'Latensi Total')}: <strong className="text-cyan-300">~12ms</strong></span>
+                <span>{t('Total Latency', 'Latensi Total')}: <strong className="text-teal-300">~12ms</strong></span>
               </div>
 
               {/* Stacked Flow Nodes */}
@@ -229,7 +229,7 @@ return result.rows;`
                         onClick={() => setSelectedNodeId(node.id)}
                         aria-pressed={isSelected}
                         aria-label={t(`Select ${node.title} details`, `Pilih detail ${node.title}`)}
-                        className={`w-full text-left p-4 rounded-xl border transition-all duration-300 cursor-pointer flex items-center justify-between gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712] ${
+                        className={`w-full text-left p-4 rounded-xl border transition-all duration-300 cursor-pointer flex items-center justify-between gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712] ${
                           isSelected 
                             ? 'bg-blue-600/20 border-blue-400 shadow-[0_0_25px_rgba(59,130,246,0.3)] scale-[1.02]'
                             : 'bg-white/5 border-white/10 hover:border-white/30 hover:bg-white/10'
@@ -242,7 +242,7 @@ return result.rows;`
                           <span>
                             <span className="flex items-center gap-2">
                               <span className="font-bold text-white text-sm sm:text-base">{node.title}</span>
-                              <span className="font-mono text-[10px] text-cyan-300 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20">
+                              <span className="font-mono text-[10px] text-teal-300 bg-teal-500/10 px-2 py-0.5 rounded border border-teal-500/20">
                                 {t(node.badge, node.badgeId)}
                               </span>
                             </span>
@@ -259,7 +259,7 @@ return result.rows;`
                       {/* Animated Flow Connector Arrow */}
                       {index < nodes.length - 1 && (
                         <div className="flex items-center justify-center py-1">
-                          <div className="h-6 w-[2px] bg-gradient-to-b from-blue-500/60 to-cyan-500/60 relative">
+                          <div className="h-6 w-[2px] bg-gradient-to-b from-blue-500/60 to-teal-500/60 relative">
                             {/* Moving packet particle */}
                             {simulating && (simulationStep === index + 1 || simulationStep === index + 2) && (
                               <div className="absolute -top-1 -left-[3px] w-2.5 h-2.5 rounded-full bg-blue-400 shadow-[0_0_10px_rgba(59,130,246,1)] animate-bounce" />
@@ -301,7 +301,7 @@ return result.rows;`
                     <span>{currentNode.title}</span>
                   </h3>
                 </div>
-                <span className="font-mono text-xs text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 px-2.5 py-1 rounded-full">
+                <span className="font-mono text-xs text-teal-400 bg-teal-500/10 border border-teal-500/20 px-2.5 py-1 rounded-full">
                   {t(currentNode.badge, currentNode.badgeId)}
                 </span>
               </div>
@@ -317,7 +317,7 @@ return result.rows;`
                 <ul className="space-y-2">
                   {currentNode.specifications.map((spec, idx) => (
                     <li key={idx} className="flex items-center gap-2 text-xs text-slate-300">
-                      <span className="text-cyan-400 font-mono">▸</span>
+                      <span className="text-teal-400 font-mono">▸</span>
                       <span>{t(spec, currentNode.specificationsId[idx])}</span>
                     </li>
                   ))}
@@ -339,7 +339,7 @@ return result.rows;`
               <div className="grid grid-cols-2 gap-3 pt-2 border-t border-white/10 font-mono text-xs">
                 <div className="p-2.5 rounded-lg bg-white/5 border border-white/5">
                   <div className="text-[10px] text-slate-500 uppercase">{t('Est. Latency', 'Perkiraan Latensi')}</div>
-                  <div className="text-cyan-300 font-bold mt-0.5">{currentNode.latency}</div>
+                  <div className="text-teal-300 font-bold mt-0.5">{currentNode.latency}</div>
                 </div>
                 <div className="p-2.5 rounded-lg bg-white/5 border border-white/5">
                   <div className="text-[10px] text-slate-500 uppercase">{t('Protocol Guard', 'Proteksi Protokol')}</div>

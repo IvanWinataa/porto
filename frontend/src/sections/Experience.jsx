@@ -16,8 +16,8 @@ export default function Experience() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-16">
           <div>
             <div className="flex items-center gap-3">
-              <span className="font-mono text-cyan-400 text-sm font-semibold tracking-wider uppercase">{t('03. Career Track', '03. Perjalanan Karier')}</span>
-              <div className="h-[1px] w-12 bg-cyan-400/40"></div>
+              <span className="font-mono text-teal-400 text-sm font-semibold tracking-wider uppercase">{t('03. Career Track', '03. Perjalanan Karier')}</span>
+              <div className="h-[1px] w-12 bg-teal-400/40"></div>
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-1">{t('Experience & Journey', 'Pengalaman & Perjalanan')}</h2>
           </div>
@@ -32,10 +32,10 @@ export default function Experience() {
             <div key={exp.id} className="relative group">
               
               {/* Glowing Node Marker */}
-              <div className="absolute -left-[31px] md:-left-[47px] top-2 w-4 h-4 rounded-full bg-blue-500 border-4 border-[#030712] shadow-[0_0_15px_rgba(59,130,246,0.9)] group-hover:scale-125 group-hover:bg-cyan-400 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.9)] transition-all duration-300" />
+              <div className="absolute -left-[31px] md:-left-[47px] top-2 w-4 h-4 rounded-full bg-blue-500 border-4 border-[#030712] shadow-[0_0_15px_rgba(59,130,246,0.9)] group-hover:scale-125 group-hover:bg-teal-400 group-hover:shadow-[0_0_20px_rgba(20, 184, 166,0.9)] transition-all duration-300" />
 
               {/* Period badge floating left on Desktop */}
-              <div className="hidden md:block absolute -left-48 top-1.5 font-mono text-xs text-cyan-300 bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 rounded-full text-center w-36 shadow-sm">
+              <div className="hidden md:block absolute -left-48 top-1.5 font-mono text-xs text-teal-300 bg-teal-500/10 border border-teal-500/20 px-3 py-1 rounded-full text-center w-36 shadow-sm">
                 {getPeriodLabel(exp.period, language)}
               </div>
 
@@ -43,12 +43,12 @@ export default function Experience() {
               <GlassCard className="hover:border-blue-500/40 transition-all duration-300">
                 
                 {/* Mobile Period badge */}
-                <div className="md:hidden inline-block mb-3 font-mono text-xs text-cyan-300 bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 rounded-full">
+                <div className="md:hidden inline-block mb-3 font-mono text-xs text-teal-300 bg-teal-500/10 border border-teal-500/20 px-3 py-1 rounded-full">
                   {getPeriodLabel(exp.period, language)}
                 </div>
 
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                  <h3 className="text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">
+                  <h3 className="text-xl font-bold text-white group-hover:text-teal-300 transition-colors">
                     {exp.role}
                   </h3>
                   <span className="font-mono text-xs text-slate-400 bg-white/5 border border-white/10 px-3 py-1 rounded-lg">

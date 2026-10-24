@@ -162,10 +162,10 @@ export default function ApiPlayground() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-14">
           <div>
             <div className="flex items-center gap-3">
-              <span className="font-mono text-cyan-400 text-sm font-semibold tracking-wider uppercase">
+              <span className="font-mono text-teal-400 text-sm font-semibold tracking-wider uppercase">
                 {t('Live API Terminal', 'Terminal API Langsung')}
               </span>
-              <div className="h-[1px] w-12 bg-cyan-400/40"></div>
+              <div className="h-[1px] w-12 bg-teal-400/40"></div>
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-1">
               {t('API Playground & Live Tester', 'Playground API & Live Tester')}
@@ -187,7 +187,7 @@ export default function ApiPlayground() {
                 onClick={() => handleSelectPreset(preset)}
                 className={`flex items-center gap-2.5 px-4 py-2.5 rounded-xl text-xs font-mono transition-all border cursor-pointer ${
                   isSelected
-                    ? 'bg-blue-600/30 text-white border-cyan-400/60 shadow-[0_0_20px_rgba(6,182,212,0.3)]'
+                    ? 'bg-blue-600/30 text-white border-teal-400/60 shadow-[0_0_20px_rgba(20, 184, 166,0.3)]'
                     : 'bg-white/5 text-slate-400 border-white/10 hover:border-white/25 hover:text-slate-200'
                 }`}
               >
@@ -216,7 +216,7 @@ export default function ApiPlayground() {
                 <span className="font-mono text-xs text-slate-400 uppercase tracking-widest">
                   // {t('HTTP Request Console', 'Konsol Request HTTP')}
                 </span>
-                <span className="font-mono text-[10px] text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 px-2 py-0.5 rounded">
+                <span className="font-mono text-[10px] text-teal-400 bg-teal-500/10 border border-teal-500/20 px-2 py-0.5 rounded">
                   Node.js / Express 5
                 </span>
               </div>
@@ -233,7 +233,7 @@ export default function ApiPlayground() {
                     {selectedPreset.method}
                   </span>
                   <span className="text-slate-500">{BASE_URL}</span>
-                  <span className="text-cyan-300 font-semibold">{selectedPreset.path}</span>
+                  <span className="text-teal-300 font-semibold">{selectedPreset.path}</span>
                 </div>
               </div>
 
@@ -253,7 +253,7 @@ export default function ApiPlayground() {
                     value={requestBody}
                     onChange={(e) => setRequestBody(e.target.value)}
                     rows={6}
-                    className="w-full rounded-xl bg-black/60 border border-white/10 p-3 font-mono text-xs text-slate-200 focus:outline-none focus:border-cyan-400/50 resize-none"
+                    className="w-full rounded-xl bg-black/60 border border-white/10 p-3 font-mono text-xs text-slate-200 focus:outline-none focus:border-teal-400/50 resize-none"
                     placeholder="Enter JSON payload..."
                   />
                 </div>
@@ -306,7 +306,7 @@ export default function ApiPlayground() {
                     }`}>
                       {responseMeta.status} {responseMeta.statusText}
                     </span>
-                    <span className="font-mono text-[11px] text-cyan-300 bg-cyan-500/10 border border-cyan-500/20 px-2 py-0.5 rounded">
+                    <span className="font-mono text-[11px] text-teal-300 bg-teal-500/10 border border-teal-500/20 px-2 py-0.5 rounded">
                       ⚡ {responseMeta.timeMs}ms
                     </span>
                   </div>
@@ -317,7 +317,7 @@ export default function ApiPlayground() {
               <div className="p-5 font-mono text-xs bg-[#060812]/95 min-h-[300px] max-h-[460px] overflow-auto leading-relaxed text-slate-300">
                 {loading ? (
                   <div className="flex flex-col items-center justify-center py-20 text-slate-500 space-y-3">
-                    <div className="w-8 h-8 border-2 border-cyan-500/20 border-t-cyan-400 rounded-full animate-spin" />
+                    <div className="w-8 h-8 border-2 border-teal-500/20 border-t-teal-400 rounded-full animate-spin" />
                     <p>{t('Transmitting HTTP packet over TCP...', 'Mengirimkan paket HTTP melalui TCP...')}</p>
                   </div>
                 ) : responseMeta ? (
