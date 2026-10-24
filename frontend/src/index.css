@@ -149,14 +149,15 @@ html[data-theme='light'] [class~='text-blue-100'] { color: #1e3a8a; }
 html[data-theme='light'] [class~='text-blue-200'],
 html[data-theme='light'] [class~='text-blue-300'],
 html[data-theme='light'] [class~='text-blue-400'],
-html[data-theme='light'] [class~='text-blue-500'],
+html[data-theme='light'] [class~='text-blue-500'] {
+  color: #1d4ed8;
+}
 html[data-theme='light'] [class~='text-teal-100'],
 html[data-theme='light'] [class~='text-teal-200'],
 html[data-theme='light'] [class~='text-teal-300'],
 html[data-theme='light'] [class~='text-teal-400'],
-html[data-theme='light'] [class~='text-teal-300'],
-html[data-theme='light'] [class~='text-teal-400'] {
-  color: #075985;
+html[data-theme='light'] [class~='text-teal-500'] {
+  color: #0f766e;
 }
 
 html[data-theme='light'] [class~='text-emerald-300'],
@@ -284,7 +285,7 @@ html[data-theme='light'] textarea::placeholder {
   }
 
   #resume-printable-content .text-teal-400 {
-    color: #0284c7 !important;
+    color: #0f766e !important;
   }
 
   #resume-printable-content .text-emerald-300,

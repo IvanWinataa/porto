@@ -221,7 +221,7 @@ export default function SkillRadar() {
                   <defs>
                     <linearGradient id="radarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                       <stop offset="0%" stopColor="rgba(59, 130, 246, 0.45)" />
-                      <stop offset="100%" stopColor="rgba(20, 184, 166, 0.35)" />
+                      <stop offset="100%" stopColor="rgba(20,184,166, 0.35)" />
                     </linearGradient>
                   </defs>
 
@@ -271,7 +271,7 @@ export default function SkillRadar() {
                       aria-label={t(`Show ${skill.label} details`, `Tampilkan detail ${skill.label}`)}
                       className={`hidden sm:block font-mono text-[11px] px-2.5 py-1 rounded-lg border transition-all duration-300 cursor-pointer whitespace-nowrap shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${
                         isSelected
-                          ? 'bg-blue-600/40 text-white border-teal-400 font-semibold shadow-[0_0_15px_rgba(45, 212, 191,0.4)] scale-105'
+                          ? 'bg-blue-600/40 text-white border-teal-400 font-semibold shadow-[0_0_15px_rgba(45,212,191,0.4)] scale-105'
                           : 'bg-black/60 text-slate-400 border-white/10 hover:border-white/30 hover:text-slate-200'
                       }`}
                       style={{
@@ -299,7 +299,7 @@ export default function SkillRadar() {
                     aria-pressed={idx === selectedSkillIndex}
                     className={`inline-flex min-h-9 items-center justify-center rounded-lg border px-2 py-1 font-mono text-[10px] transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${
                       idx === selectedSkillIndex 
-                        ? 'border-teal-300/50 bg-teal-400/20 text-teal-100 shadow-[0_0_10px_rgba(20, 184, 166,0.25)]'
+                        ? 'border-teal-300/50 bg-teal-400/20 text-teal-100 shadow-[0_0_10px_rgba(20,184,166,0.25)]'
                         : 'border-white/10 bg-white/5 text-slate-400 hover:bg-white/10 hover:text-slate-200'
                     }`}
                   >
@@ -345,7 +345,7 @@ export default function SkillRadar() {
                 </div>
                 <div className="w-full h-2.5 bg-black/50 rounded-full overflow-hidden border border-white/10 p-0.5">
                   <div 
-                    className="h-full bg-gradient-to-r from-blue-500 to-teal-400 rounded-full transition-all duration-700 ease-out shadow-[0_0_12px_rgba(20, 184, 166,0.5)]"
+                    className="h-full bg-gradient-to-r from-blue-500 to-teal-400 rounded-full transition-all duration-700 ease-out shadow-[0_0_12px_rgba(20,184,166,0.5)]"
                     style={{ width: `${currentSkill.score}%` }}
                   />
                 </div>

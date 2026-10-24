@@ -187,7 +187,7 @@ export default function ApiPlayground() {
                 onClick={() => handleSelectPreset(preset)}
                 className={`flex items-center gap-2.5 px-4 py-2.5 rounded-xl text-xs font-mono transition-all border cursor-pointer ${
                   isSelected
-                    ? 'bg-blue-600/30 text-white border-teal-400/60 shadow-[0_0_20px_rgba(20, 184, 166,0.3)]'
+                    ? 'bg-blue-600/30 text-white border-teal-400/60 shadow-[0_0_20px_rgba(20,184,166,0.3)]'
                     : 'bg-white/5 text-slate-400 border-white/10 hover:border-white/25 hover:text-slate-200'
                 }`}
               >

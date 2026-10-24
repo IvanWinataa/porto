@@ -32,7 +32,7 @@ export default function Experience() {
             <div key={exp.id} className="relative group">
               
               {/* Glowing Node Marker */}
-              <div className="absolute -left-[31px] md:-left-[47px] top-2 w-4 h-4 rounded-full bg-blue-500 border-4 border-[#030712] shadow-[0_0_15px_rgba(59,130,246,0.9)] group-hover:scale-125 group-hover:bg-teal-400 group-hover:shadow-[0_0_20px_rgba(20, 184, 166,0.9)] transition-all duration-300" />
+              <div className="absolute -left-[31px] md:-left-[47px] top-2 w-4 h-4 rounded-full bg-blue-500 border-4 border-[#030712] shadow-[0_0_15px_rgba(59,130,246,0.9)] group-hover:scale-125 group-hover:bg-teal-400 group-hover:shadow-[0_0_20px_rgba(20,184,166,0.9)] transition-all duration-300" />
 
               {/* Period badge floating left on Desktop */}
               <div className="hidden md:block absolute -left-48 top-1.5 font-mono text-xs text-teal-300 bg-teal-500/10 border border-teal-500/20 px-3 py-1 rounded-full text-center w-36 shadow-sm">
