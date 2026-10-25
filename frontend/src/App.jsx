@@ -12,6 +12,7 @@ import Contact from './sections/Contact';
 import CommandPalette from './components/CommandPalette';
 import ResumeModal from './components/ResumeModal';
 import SkillChatbot from './components/SkillChatbot';
+import ScrollReveal from './components/ScrollReveal';
 import { LanguageProvider } from './context/LanguageContext';
 import { ThemeProvider } from './context/ThemeContext';
 import { useLanguage } from './context/useLanguage';
@@ -43,14 +44,14 @@ function App() {
             onOpenResume={() => setIsResumeModalOpen(true)}
           />
           <main id="main-content" tabIndex="-1" className="scroll-mt-24">
-            <Hero onOpenResume={() => setIsResumeModalOpen(true)} />
-            <About />
-            <SkillRadar />
-            <Architecture />
-            <ApiPlayground />
-            <Projects />
-            <Experience />
-            <Contact />
+            <ScrollReveal><Hero onOpenResume={() => setIsResumeModalOpen(true)} /></ScrollReveal>
+            <ScrollReveal><About /></ScrollReveal>
+            <ScrollReveal><SkillRadar /></ScrollReveal>
+            <ScrollReveal><Architecture /></ScrollReveal>
+            <ScrollReveal><ApiPlayground /></ScrollReveal>
+            <ScrollReveal><Projects /></ScrollReveal>
+            <ScrollReveal><Experience /></ScrollReveal>
+            <ScrollReveal><Contact /></ScrollReveal>
           </main>
           <Footer />
 

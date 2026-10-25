@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import GlassCard from '../components/GlassCard';
 import ProjectModal from '../components/ProjectModal';
+import ScrollReveal from '../components/ScrollReveal';
 import { fetchProjects } from '../services/api';
 import { useLanguage } from '../context/useLanguage';
 
@@ -238,11 +239,11 @@ export default function Projects() {
         {/* Projects Grid */}
         {!loading && filteredProjects.length > 0 && (
           <div className="grid md:grid-cols-2 gap-8">
-            {filteredProjects.map((project) => (
-              <GlassCard 
-                key={project.id} 
-                className="group flex flex-col justify-between hover:border-blue-500/40 transition-all duration-300 relative"
-              >
+            {filteredProjects.map((project, index) => (
+              <ScrollReveal key={project.id} delay={Math.min(index * 90, 360)} className="h-full min-w-0">
+                <GlassCard
+                  className="group flex h-full flex-col justify-between hover:border-blue-500/40 transition-all duration-300 relative"
+                >
                 <div>
                   {/* Banner mockup container */}
                   <div className={`relative h-48 sm:h-52 w-full rounded-xl mb-6 overflow-hidden bg-gradient-to-br ${project.gradient || 'from-blue-900/40 to-teal-900/40'} border border-white/10 flex items-center justify-center`}>
@@ -337,7 +338,8 @@ export default function Projects() {
                     </div>
                   </div>
                 </div>
-              </GlassCard>
+                </GlassCard>
+              </ScrollReveal>
             ))}
           </div>
         )}
