@@ -85,6 +85,27 @@ const MOCK_PROJECTS = [
   }
 ];
 
+function ProjectSkeletonCard() {
+  return (
+    <div aria-hidden="true" className="glass-card animate-pulse rounded-2xl p-6">
+      <div className="mb-6 h-48 rounded-xl border border-white/10 bg-white/5 sm:h-52" />
+      <div className="mb-6 space-y-2.5">
+        <div className="h-3 w-full rounded bg-white/10" />
+        <div className="h-3 w-4/5 rounded bg-white/10" />
+      </div>
+      <div className="mb-6 flex gap-2">
+        <div className="h-6 w-20 rounded-md bg-white/10" />
+        <div className="h-6 w-16 rounded-md bg-white/10" />
+        <div className="h-6 w-24 rounded-md bg-white/10" />
+      </div>
+      <div className="flex items-center justify-between border-t border-white/10 pt-4">
+        <div className="h-3 w-28 rounded bg-white/10" />
+        <div className="h-3 w-24 rounded bg-white/10" />
+      </div>
+    </div>
+  );
+}
+
 export default function Projects() {
   const { t, language } = useLanguage();
   const [projects, setProjects] = useState([]);
@@ -228,11 +249,13 @@ export default function Projects() {
           </p>
         )}
 
-        {/* Loading Spinner */}
+        {/* Project Skeletons */}
         {loading && (
-          <div className="flex flex-col items-center justify-center py-20">
-            <div className="w-10 h-10 border-4 border-blue-500/20 border-t-blue-500 rounded-full animate-spin mb-4"></div>
-            <p className="text-slate-400 font-mono text-xs">{t('Loading projects from system network...', 'Memuat proyek...')}</p>
+          <div role="status" aria-live="polite" aria-busy="true" className="py-2">
+            <p className="sr-only">{t('Loading projects from system network...', 'Memuat proyek...')}</p>
+            <div className="grid gap-8 md:grid-cols-2" aria-hidden="true">
+              {Array.from({ length: 4 }, (_, index) => <ProjectSkeletonCard key={index} />)}
+            </div>
           </div>
         )}
 
