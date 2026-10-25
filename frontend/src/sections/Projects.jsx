@@ -246,6 +246,18 @@ export default function Projects() {
                 <div>
                   {/* Banner mockup container */}
                   <div className={`relative h-48 sm:h-52 w-full rounded-xl mb-6 overflow-hidden bg-gradient-to-br ${project.gradient || 'from-blue-900/40 to-teal-900/40'} border border-white/10 flex items-center justify-center`}>
+                    {project.image_url && (
+                      <img
+                        src={project.image_url}
+                        alt=""
+                        aria-hidden="true"
+                        loading="lazy"
+                        decoding="async"
+                        onError={(event) => event.currentTarget.remove()}
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    )}
+                    <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-black/10" />
                     
                     {/* Grid backdrop */}
                     <div className="absolute inset-0 bg-dots-pattern opacity-40 pointer-events-none" />

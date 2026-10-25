@@ -119,6 +119,18 @@ export default function ProjectModal({ project, onClose }) {
 
         {/* Visual Banner Preview */}
         <div className={`relative h-52 sm:h-64 w-full rounded-2xl mb-8 overflow-hidden bg-gradient-to-br ${project.gradient || 'from-blue-900/50 to-teal-900/50'} border border-white/15 flex items-center justify-center`}>
+          {project.image_url && (
+            <img
+              src={project.image_url}
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              decoding="async"
+              onError={(event) => event.currentTarget.remove()}
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          )}
+          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-black/10" />
           <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none"></div>
           
           <div className="absolute w-48 h-48 bg-blue-500/30 rounded-full blur-3xl"></div>
