@@ -3,6 +3,8 @@ import NeonButton from './NeonButton';
 import { useLanguage } from '../context/useLanguage';
 import { useTheme } from '../context/useTheme';
 
+const SECTION_IDS = ['about', 'skills', 'architecture', 'api-playground', 'projects', 'experience', 'contact'];
+
 function LanguageToggle({ language, setLanguage, t }) {
   return (
     <div role="group" aria-label={t('Choose language', 'Pilih bahasa')} className="flex items-center rounded-xl border border-white/10 bg-white/5 p-1 font-mono text-[10px]">
@@ -56,6 +58,7 @@ function ThemeToggle({ t }) {
 export default function Navbar({ onOpenCommandPalette, onOpenResume }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
   const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
@@ -64,6 +67,55 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }) {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const sections = SECTION_IDS
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+
+    if (!sections.length) return undefined;
+
+    if (!('IntersectionObserver' in window)) {
+      const updateActiveSection = () => {
+        const marker = window.scrollY + window.innerHeight * 0.28;
+        const currentSection = sections
+          .filter((section) => section.getBoundingClientRect().top + window.scrollY <= marker)
+          .at(-1);
+        setActiveSection(currentSection?.id || '');
+      };
+
+      updateActiveSection();
+      window.addEventListener('scroll', updateActiveSection, { passive: true });
+      window.addEventListener('resize', updateActiveSection);
+      return () => {
+        window.removeEventListener('scroll', updateActiveSection);
+        window.removeEventListener('resize', updateActiveSection);
+      };
+    }
+
+    const sectionOrder = new Map(SECTION_IDS.map((id, index) => [id, index]));
+    const intersectingSections = new Map();
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          intersectingSections.set(entry.target.id, entry.target);
+        } else {
+          intersectingSections.delete(entry.target.id);
+        }
+      });
+
+      const currentSection = [...intersectingSections.keys()]
+        .sort((first, second) => sectionOrder.get(first) - sectionOrder.get(second))
+        .at(-1);
+      setActiveSection(currentSection || '');
+    }, {
+      rootMargin: '-20% 0px -65% 0px',
+      threshold: 0
+    });
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
   }, []);
 
   const navLinks = [
@@ -98,16 +150,25 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }) {
 
           {/* Desktop Navigation Links */}
           <div className="hidden md:flex items-center space-x-1 font-mono text-sm">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-slate-300 hover:text-white px-3.5 py-2 rounded-lg hover:bg-white/5 transition-all text-xs uppercase tracking-wider relative group"
-              >
-                {link.name}
-                <span className="absolute bottom-1 left-3.5 right-3.5 h-[2px] bg-gradient-to-r from-blue-500 to-teal-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href.slice(1);
+
+              return (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  aria-current={isActive ? 'location' : undefined}
+                  className={`px-3.5 py-2 rounded-lg transition-all text-xs uppercase tracking-wider relative group ${
+                    isActive ? 'text-teal-200 bg-white/5' : 'text-slate-300 hover:text-white hover:bg-white/5'
+                  }`}
+                >
+                  {link.name}
+                  <span className={`absolute bottom-1 left-3.5 right-3.5 h-[2px] bg-gradient-to-r from-blue-500 to-teal-400 transition-transform duration-300 origin-left ${
+                    isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                  }`} />
+                </a>
+              );
+            })}
           </div>
 
           {/* Right Actions: Command Palette & Status Badge */}
@@ -193,16 +254,25 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }) {
         {/* Mobile Dropdown Menu */}
         {mobileMenuOpen && (
           <div id="mobile-navigation-menu" className="md:hidden mt-3 max-h-[calc(100dvh_-_7rem)] overflow-y-auto overscroll-contain pt-3 border-t border-white/10 px-4 pb-4 space-y-2 animate-fadeIn">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex min-h-11 items-center text-slate-300 hover:text-white font-mono text-sm py-2 px-3 rounded-lg hover:bg-white/5"
-              >
-                {link.name}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href.slice(1);
+
+              return (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  aria-current={isActive ? 'location' : undefined}
+                  className={`flex min-h-11 items-center font-mono text-sm py-2 px-3 rounded-lg transition-colors ${
+                    isActive
+                      ? 'border border-teal-500/20 bg-teal-500/10 text-teal-200'
+                      : 'text-slate-300 hover:text-white hover:bg-white/5'
+                  }`}
+                >
+                  {link.name}
+                </a>
+              );
+            })}
 
             <div className="flex min-h-11 items-center justify-between gap-3 border-t border-white/10 pt-3">
               <LanguageToggle language={language} setLanguage={setLanguage} t={t} />
