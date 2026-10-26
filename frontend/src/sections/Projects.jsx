@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import GlassCard from '../components/GlassCard';
+import Icon from '../components/Icon';
 import ProjectModal from '../components/ProjectModal';
 import ScrollReveal from '../components/ScrollReveal';
 import { fetchProjects } from '../services/api';
@@ -336,49 +337,47 @@ export default function Projects() {
                   </div>
 
                   {/* Links */}
-                  <div className="flex flex-wrap items-start sm:items-center justify-between gap-2 sm:gap-3 pt-4 border-t border-white/10">
+                  <div className="space-y-3 pt-4 border-t border-white/10">
                     <button
                       type="button"
                       onClick={() => setSelectedProject(project)}
                       aria-haspopup="dialog"
                       aria-label={t(`View details for ${project.title}`, `Lihat detail ${project.title}`)}
-                      className="min-h-10 text-blue-300 hover:text-white transition-colors flex items-center gap-1.5 text-xs font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 rounded"
+                      className="inline-flex min-h-10 items-center gap-1.5 rounded text-xs font-mono text-blue-300 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
                     >
                       <span>{t('View Case Study', 'Lihat Studi Kasus')}</span>
-                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                      </svg>
+                      <Icon name="arrowRight" className="h-3.5 w-3.5" />
                     </button>
 
-                    <div className="flex flex-wrap items-center gap-4">
+                    <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                       {project.github_url && (
-                        <a 
-                          href={project.github_url} 
-                          target="_blank" 
-                          rel="noopener noreferrer" 
-                          className="min-h-10 text-slate-400 hover:text-white transition-colors flex items-center gap-1.5 text-xs font-mono"
+                        <a
+                          href={project.github_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={t(`Open source code for ${project.title}`, `Buka kode sumber ${project.title}`)}
+                          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 text-xs font-semibold text-slate-200 transition-colors hover:border-white/20 hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
                         >
-                          <span>{t('GitHub Repo', 'Repositori GitHub')}</span>
-                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                          </svg>
+                          <Icon name="github" className="h-4 w-4" />
+                          <span>{t('Source Code', 'Kode Sumber')}</span>
                         </a>
                       )}
 
                       {project.live_url ? (
-                        <a 
-                          href={project.live_url} 
-                          target="_blank" 
-                          rel="noopener noreferrer" 
-                          className="min-h-10 text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-1.5 text-xs font-mono font-semibold"
+                        <a
+                          href={project.live_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={t(`Open live demo for ${project.title}`, `Buka demo ${project.title}`)}
+                          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-blue-500/50 bg-blue-600 px-4 text-xs font-semibold text-white transition-colors hover:bg-blue-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
                         >
-                          <span>{t('Live Preview', 'Pratinjau Langsung')}</span>
-                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                          </svg>
+                          <span>{t('Live Demo', 'Demo Langsung')}</span>
+                          <Icon name="externalLink" className="h-4 w-4" />
                         </a>
                       ) : (
-                        <span className="text-slate-500 text-xs font-mono">{t('Internal service', 'Layanan internal')}</span>
+                        <span className="inline-flex min-h-11 items-center justify-center rounded-xl border border-white/5 bg-white/[0.03] px-4 text-center text-xs font-mono text-slate-500">
+                          {t('Demo link unavailable', 'Tautan demo belum tersedia')}
+                        </span>
                       )}
                     </div>
                   </div>
