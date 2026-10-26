@@ -165,20 +165,20 @@ return result.rows;`
   }, [simulationStep]);
 
   return (
-    <section id="architecture" className="py-28 relative overflow-hidden section-surface">
+    <section id="architecture" className="py-16 sm:py-20 lg:py-28 relative overflow-hidden section-surface">
       {/* Background ambient lighting */}
       <div className="absolute top-1/2 right-10 w-[550px] h-[550px] bg-teal-600/10 rounded-full blur-[140px] -z-10 pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-14">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 sm:mb-14">
           <div>
             <div className="flex items-center gap-3">
               <span className="font-mono text-teal-400 text-sm font-semibold tracking-wider uppercase">{t('Architecture Flow', 'Alur Arsitektur')}</span>
               <div className="h-[1px] w-12 bg-teal-400/40"></div>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-1">{t('System Architecture', 'Arsitektur Sistem')}</h2>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-1">{t('System Architecture', 'Arsitektur Sistem')}</h2>
           </div>
           
           {/* Simulation Trigger Button */}

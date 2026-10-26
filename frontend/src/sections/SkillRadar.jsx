@@ -125,20 +125,20 @@ export default function SkillRadar() {
   const gridLevels = [20, 40, 60, 80, 100];
 
   return (
-    <section id="skills" className="py-28 relative overflow-hidden bg-grid-pattern">
+    <section id="skills" className="py-16 sm:py-20 lg:py-28 relative overflow-hidden bg-grid-pattern">
       {/* Background glow spot */}
       <div className="absolute top-1/3 left-10 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[140px] -z-10 pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-16">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 sm:mb-14 lg:mb-16">
           <div>
             <div className="flex items-center gap-3">
               <span className="font-mono text-teal-400 text-sm font-semibold tracking-wider uppercase">{t('Competency Matrix', 'Matriks Kompetensi')}</span>
               <div className="h-[1px] w-12 bg-teal-400/40"></div>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-1">{t('Skill Radar Chart', 'Grafik Radar Keahlian')}</h2>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-1">{t('Skill Radar Chart', 'Grafik Radar Keahlian')}</h2>
           </div>
           <p className="text-slate-400 text-sm font-mono max-w-xs">
             // {t('Multi-dimensional evaluation across technical domains.', 'Evaluasi multidimensi untuk berbagai bidang teknis.')}

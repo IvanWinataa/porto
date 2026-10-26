@@ -44,20 +44,20 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-28 relative overflow-hidden section-surface">
+    <section id="about" className="py-16 sm:py-20 lg:py-28 relative overflow-hidden section-surface">
       {/* Background radial highlight */}
       <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[140px] -z-10 pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-16">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 sm:mb-14 lg:mb-16">
           <div>
             <div className="flex items-center gap-3">
               <span className="font-mono text-teal-400 text-sm font-semibold tracking-wider uppercase">{t('01. Discovery', '01. Tentang Saya')}</span>
               <div className="h-[1px] w-12 bg-teal-400/40"></div>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-1">{t('About Me', 'Tentang Saya')}</h2>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-1">{t('About Me', 'Tentang Saya')}</h2>
           </div>
           <p className="text-slate-400 text-sm max-w-sm font-mono">
             // {t('Blending software engineering precision with aesthetic design.', 'Memadukan ketelitian rekayasa perangkat lunak dengan desain yang menarik.')}

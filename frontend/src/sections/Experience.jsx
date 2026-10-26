@@ -7,20 +7,20 @@ export default function Experience() {
   const { t, language } = useLanguage();
 
   return (
-    <section id="experience" className="py-28 relative overflow-hidden bg-grid-pattern">
+    <section id="experience" className="py-16 sm:py-20 lg:py-28 relative overflow-hidden bg-grid-pattern">
       {/* Background glow spot */}
       <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[140px] -z-10 pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-16">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 sm:mb-14 lg:mb-16">
           <div>
             <div className="flex items-center gap-3">
               <span className="font-mono text-teal-400 text-sm font-semibold tracking-wider uppercase">{t('03. Career Track', '03. Perjalanan Karier')}</span>
               <div className="h-[1px] w-12 bg-teal-400/40"></div>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-1">{t('Experience & Journey', 'Pengalaman & Perjalanan')}</h2>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-1">{t('Experience & Journey', 'Pengalaman & Perjalanan')}</h2>
           </div>
           <p className="text-slate-400 text-sm font-mono max-w-xs">
             // {t('Track record of engineering high-impact digital solutions.', 'Rekam jejak membangun solusi digital dengan dampak tinggi.')}
@@ -28,12 +28,12 @@ export default function Experience() {
         </div>
 
         {/* Timeline Container */}
-        <div className="relative border-l-2 border-white/10 ml-4 md:ml-36 space-y-12 pl-6 md:pl-10">
+        <div className="relative border-l-2 border-white/10 ml-3 sm:ml-4 md:ml-36 space-y-8 sm:space-y-12 pl-5 sm:pl-6 md:pl-10">
           {experiences.map((exp) => (
             <div key={exp.id} className="relative group">
               
               {/* Glowing Node Marker */}
-              <div className="absolute -left-[31px] md:-left-[47px] top-2 w-4 h-4 rounded-full bg-blue-500 border-4 border-[#030712] shadow-[0_0_15px_rgba(59,130,246,0.9)] group-hover:scale-125 group-hover:bg-teal-400 group-hover:shadow-[0_0_20px_rgba(20,184,166,0.9)] transition-all duration-300" />
+              <div className="absolute -left-[26px] sm:-left-[31px] md:-left-[47px] top-2 w-4 h-4 rounded-full bg-blue-500 border-4 border-[#030712] shadow-[0_0_15px_rgba(59,130,246,0.9)] group-hover:scale-125 group-hover:bg-teal-400 group-hover:shadow-[0_0_20px_rgba(20,184,166,0.9)] transition-all duration-300" />
 
               {/* Period badge floating left on Desktop */}
               <div className="hidden md:block absolute -left-48 top-1.5 font-mono text-xs text-teal-300 bg-teal-500/10 border border-teal-500/20 px-3 py-1 rounded-full text-center w-36 shadow-sm">

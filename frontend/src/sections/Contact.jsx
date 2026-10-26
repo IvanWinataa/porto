@@ -75,27 +75,27 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-28 relative overflow-hidden section-surface">
+    <section id="contact" className="py-16 sm:py-20 lg:py-28 relative overflow-hidden section-surface">
       {/* Glow highlight */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-gradient-to-t from-blue-600/20 via-teal-500/10 to-transparent rounded-full blur-[150px] -z-10 pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-16">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 sm:mb-14 lg:mb-16">
           <div>
             <div className="flex items-center gap-3">
               <span className="font-mono text-blue-400 text-sm font-semibold tracking-wider uppercase">04. {t('Connection', 'Kontak')}</span>
               <div className="h-[1px] w-12 bg-blue-400/40"></div>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-1">{t('Get In Touch', 'Hubungi Saya')}</h2>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-1">{t('Get In Touch', 'Hubungi Saya')}</h2>
           </div>
           <p className="text-slate-400 text-sm font-mono max-w-xs">
             // {t('Open for remote roles, freelancing, & architecture consults.', 'Terbuka untuk pekerjaan jarak jauh, freelance, dan konsultasi arsitektur.')}
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-12 items-start">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
           {/* Contact Information & Quick Actions */}
           <div className="lg:col-span-5 space-y-6">

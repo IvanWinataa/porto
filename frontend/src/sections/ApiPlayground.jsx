@@ -153,14 +153,14 @@ export default function ApiPlayground() {
   };
 
   return (
-    <section id="api-playground" className="py-28 relative overflow-hidden bg-grid-pattern">
+    <section id="api-playground" className="py-16 sm:py-20 lg:py-28 relative overflow-hidden bg-grid-pattern">
       {/* Background radial glow */}
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[550px] h-[550px] bg-blue-600/10 rounded-full blur-[140px] -z-10 pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-14">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 sm:mb-14">
           <div>
             <div className="flex items-center gap-3">
               <span className="font-mono text-teal-400 text-sm font-semibold tracking-wider uppercase">
@@ -168,7 +168,7 @@ export default function ApiPlayground() {
               </span>
               <div className="h-[1px] w-12 bg-teal-400/40"></div>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-1">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-1">
               {t('API Playground & Live Tester', 'Playground API & Live Tester')}
             </h2>
           </div>

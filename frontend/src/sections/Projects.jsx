@@ -87,13 +87,13 @@ const MOCK_PROJECTS = [
 
 function ProjectSkeletonCard() {
   return (
-    <div aria-hidden="true" className="glass-card animate-pulse rounded-2xl p-6">
-      <div className="mb-6 h-48 rounded-xl border border-white/10 bg-white/5 sm:h-52" />
+    <div aria-hidden="true" className="glass-card animate-pulse rounded-2xl p-4 sm:p-6">
+      <div className="mb-4 h-40 rounded-xl border border-white/10 bg-white/5 sm:mb-6 sm:h-52" />
       <div className="mb-6 space-y-2.5">
         <div className="h-3 w-full rounded bg-white/10" />
         <div className="h-3 w-4/5 rounded bg-white/10" />
       </div>
-      <div className="mb-6 flex gap-2">
+      <div className="mb-4 flex gap-2 sm:mb-6">
         <div className="h-6 w-20 rounded-md bg-white/10" />
         <div className="h-6 w-16 rounded-md bg-white/10" />
         <div className="h-6 w-24 rounded-md bg-white/10" />
@@ -174,20 +174,20 @@ export default function Projects() {
   }, []);
 
   return (
-    <section id="projects" className="py-28 relative overflow-hidden section-surface">
+    <section id="projects" className="py-16 sm:py-20 lg:py-28 relative overflow-hidden section-surface">
       {/* Glow highlight */}
       <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-teal-500/10 rounded-full blur-[140px] -z-10 pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-14">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 sm:mb-14">
           <div>
             <div className="flex items-center gap-3">
               <span className="font-mono text-blue-400 text-sm font-semibold tracking-wider uppercase">{t('02. Showcase', '02. Karya Pilihan')}</span>
               <div className="h-[1px] w-12 bg-blue-400/40"></div>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-1">{t('Featured Projects', 'Proyek Unggulan')}</h2>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-1">{t('Featured Projects', 'Proyek Unggulan')}</h2>
           </div>
           <p className="text-slate-400 text-sm font-mono max-w-xs">
             // {t('Selected software systems, fullstack platforms, and APIs.', 'Pilihan sistem perangkat lunak, platform fullstack, dan API.')}
@@ -241,7 +241,7 @@ export default function Projects() {
               key={cat}
               onClick={() => setActiveCategory(cat)}
               aria-pressed={activeCategory === cat}
-              className={`px-4 py-2 rounded-xl text-xs font-mono transition-all duration-300 border cursor-pointer ${
+              className={`min-h-10 px-3 py-2 sm:px-4 rounded-xl text-xs font-mono transition-all duration-300 border cursor-pointer ${
                 activeCategory === cat
                   ? 'bg-blue-600/30 text-white border-blue-500/50 shadow-[0_0_20px_rgba(59,130,246,0.3)] font-semibold'
                   : 'bg-white/5 text-slate-400 border-white/5 hover:text-white hover:border-white/20'
@@ -275,7 +275,7 @@ export default function Projects() {
         {loading && (
           <div role="status" aria-live="polite" aria-busy="true" className="py-2">
             <p className="sr-only">{t('Loading projects from system network...', 'Memuat proyek...')}</p>
-            <div className="grid gap-8 md:grid-cols-2" aria-hidden="true">
+            <div className="grid gap-5 sm:gap-8 md:grid-cols-2" aria-hidden="true">
               {Array.from({ length: 4 }, (_, index) => <ProjectSkeletonCard key={index} />)}
             </div>
           </div>
@@ -283,7 +283,7 @@ export default function Projects() {
 
         {/* Projects Grid */}
         {!loading && filteredProjects.length > 0 && (
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid gap-5 sm:gap-8 md:grid-cols-2">
             {filteredProjects.map((project, index) => (
               <ScrollReveal key={project.id} delay={Math.min(index * 90, 360)} className="h-full min-w-0">
                 <GlassCard
@@ -291,7 +291,7 @@ export default function Projects() {
                 >
                 <div>
                   {/* Banner mockup container */}
-                  <div className={`relative h-48 sm:h-52 w-full rounded-xl mb-6 overflow-hidden bg-gradient-to-br ${project.gradient || 'from-blue-900/40 to-teal-900/40'} border border-white/10 flex items-center justify-center`}>
+                  <div className={`relative h-40 sm:h-52 w-full rounded-xl mb-4 sm:mb-6 overflow-hidden bg-gradient-to-br ${project.gradient || 'from-blue-900/40 to-teal-900/40'} border border-white/10 flex items-center justify-center`}>
                     {project.image_url && (
                       <img
                         src={project.image_url}
@@ -309,25 +309,25 @@ export default function Projects() {
                     <div className="absolute inset-0 bg-dots-pattern opacity-40 pointer-events-none" />
                     
                     {/* Floating title tag */}
-                    <div className="z-10 text-center px-6 transform group-hover:scale-105 transition-transform duration-500">
+                    <div className="z-10 text-center px-3 sm:px-6 transform group-hover:scale-105 transition-transform duration-500">
                       <span className="font-mono text-[10px] text-teal-300 uppercase tracking-widest bg-black/50 border border-white/10 px-3 py-1 rounded-full backdrop-blur-md">
                         {project.category}
                       </span>
-                      <h4 className="text-xl font-bold text-white mt-3 group-hover:text-teal-300 transition-colors">
+                      <h4 className="text-lg sm:text-xl font-bold text-white mt-3 group-hover:text-teal-300 transition-colors">
                         {project.title}
                       </h4>
                     </div>
 
                   </div>
 
-                  <p className="text-slate-300 text-sm leading-relaxed mb-6 line-clamp-2">
+                  <p className="text-slate-300 text-sm leading-relaxed mb-4 sm:mb-6 line-clamp-2">
                         {t(project.description, project.descriptionId || project.description)}
                   </p>
                 </div>
 
                 <div>
                   {/* Tech stack pills */}
-                  <div className="flex flex-wrap gap-1.5 mb-6">
+                  <div className="flex flex-wrap gap-1.5 mb-4 sm:mb-6">
                     {(project.tech_stack || []).map((tech, idx) => (
                       <span key={idx} className="font-mono text-[11px] text-teal-300 bg-teal-500/10 border border-teal-500/20 px-2.5 py-1 rounded-md">
                         {tech}
@@ -336,13 +336,13 @@ export default function Projects() {
                   </div>
 
                   {/* Links */}
-                  <div className="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-white/10">
+                  <div className="flex flex-wrap items-start sm:items-center justify-between gap-2 sm:gap-3 pt-4 border-t border-white/10">
                     <button
                       type="button"
                       onClick={() => setSelectedProject(project)}
                       aria-haspopup="dialog"
                       aria-label={t(`View details for ${project.title}`, `Lihat detail ${project.title}`)}
-                      className="text-blue-300 hover:text-white transition-colors flex items-center gap-1.5 text-xs font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 rounded"
+                      className="min-h-10 text-blue-300 hover:text-white transition-colors flex items-center gap-1.5 text-xs font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 rounded"
                     >
                       <span>{t('View Case Study', 'Lihat Studi Kasus')}</span>
                       <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -356,7 +356,7 @@ export default function Projects() {
                           href={project.github_url} 
                           target="_blank" 
                           rel="noopener noreferrer" 
-                          className="text-slate-400 hover:text-white transition-colors flex items-center gap-1.5 text-xs font-mono"
+                          className="min-h-10 text-slate-400 hover:text-white transition-colors flex items-center gap-1.5 text-xs font-mono"
                         >
                           <span>{t('GitHub Repo', 'Repositori GitHub')}</span>
                           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -370,7 +370,7 @@ export default function Projects() {
                           href={project.live_url} 
                           target="_blank" 
                           rel="noopener noreferrer" 
-                          className="text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-1.5 text-xs font-mono font-semibold"
+                          className="min-h-10 text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-1.5 text-xs font-mono font-semibold"
                         >
                           <span>{t('Live Preview', 'Pratinjau Langsung')}</span>
                           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
