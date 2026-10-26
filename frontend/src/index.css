@@ -258,6 +258,28 @@ html[data-theme='light'] textarea::placeholder {
     visibility 0s linear var(--scroll-reveal-delay, 0ms);
 }
 
+.back-to-top {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(0, 0.75rem, 0);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease,
+    visibility 0s linear 180ms;
+  visibility: hidden;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate3d(0, 0, 0);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease,
+    visibility 0s linear;
+  visibility: visible;
+}
+
 @media (max-width: 640px) {
   html,
   body {
@@ -284,6 +306,11 @@ html[data-theme='light'] textarea::placeholder {
     opacity: 1;
     visibility: visible;
     transform: none;
+    transition: none;
+  }
+
+  .back-to-top,
+  .back-to-top.is-visible {
     transition: none;
   }
 }

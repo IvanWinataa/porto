@@ -14,6 +14,7 @@ import ResumeModal from './components/ResumeModal';
 import SkillChatbot from './components/SkillChatbot';
 import ScrollReveal from './components/ScrollReveal';
 import ScrollProgress from './components/ScrollProgress';
+import BackToTopButton from './components/BackToTopButton';
 import { LanguageProvider } from './context/LanguageContext';
 import { ThemeProvider } from './context/ThemeContext';
 import { useLanguage } from './context/useLanguage';
@@ -41,6 +42,7 @@ function App() {
         <div className="selection:bg-primary/30 selection:text-white">
           <SkipLink />
           <ScrollProgress />
+          <BackToTopButton />
           <Navbar 
             onOpenCommandPalette={() => setIsCommandPaletteOpen(true)} 
             onOpenResume={() => setIsResumeModalOpen(true)}
