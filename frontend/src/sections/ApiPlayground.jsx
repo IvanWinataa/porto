@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import GlassCard from '../components/GlassCard';
 import NeonButton from '../components/NeonButton';
+import Icon from '../components/Icon';
 import { BASE_URL } from '../services/api';
 import { useLanguage } from '../context/useLanguage';
 
@@ -273,7 +274,7 @@ export default function ApiPlayground() {
                   </span>
                 ) : (
                   <span className="flex items-center gap-2">
-                    <span>⚡ {t('Send Live Request', 'Kirim Request')}</span>
+                    <span className="inline-flex items-center gap-1.5"><Icon name="bolt" className="h-3.5 w-3.5" /> {t('Send Live Request', 'Kirim Request')}</span>
                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
@@ -306,8 +307,8 @@ export default function ApiPlayground() {
                     }`}>
                       {responseMeta.status} {responseMeta.statusText}
                     </span>
-                    <span className="font-mono text-[11px] text-teal-300 bg-teal-500/10 border border-teal-500/20 px-2 py-0.5 rounded">
-                      ⚡ {responseMeta.timeMs}ms
+                    <span className="inline-flex items-center gap-1 font-mono text-[11px] text-teal-300 bg-teal-500/10 border border-teal-500/20 px-2 py-0.5 rounded">
+                      <Icon name="bolt" className="h-3 w-3" /> {responseMeta.timeMs}ms
                     </span>
                   </div>
                 )}
@@ -326,7 +327,7 @@ export default function ApiPlayground() {
                   </pre>
                 ) : (
                   <div className="flex flex-col items-center justify-center py-20 text-slate-500 text-center">
-                    <span className="text-3xl mb-2">⚡</span>
+                    <Icon name="bolt" className="mb-2 h-8 w-8 text-teal-400" />
                     <p className="font-semibold text-slate-400">{t('No active request sent yet', 'Belum ada request yang dikirim')}</p>
                     <p className="text-[11px] text-slate-600 mt-1">
                       {t('Click "Send Live Request" above to test this endpoint against the server.', 'Klik tombol "Kirim Request" di atas untuk menguji endpoint ini.')}

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../context/useLanguage';
+import Icon from './Icon';
 
 export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }) {
   const { t } = useLanguage();
@@ -16,7 +17,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }
       category: t('Navigation', 'Navigasi'),
       label: t('Go to Home (Hero)', 'Ke Beranda (Hero)'),
       shortcut: 'HERO',
-      icon: '🏠',
+      icon: 'home',
       action: () => scrollToSection('hero')
     },
     {
@@ -24,7 +25,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }
       category: t('Navigation', 'Navigasi'),
       label: t('Go to About Me & Tech Stack', 'Ke Tentang Saya & Tech Stack'),
       shortcut: 'ABOUT',
-      icon: '👤',
+      icon: 'user',
       action: () => scrollToSection('about')
     },
     {
@@ -32,7 +33,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }
       category: t('Navigation', 'Navigasi'),
       label: t('Go to Competency Radar Chart', 'Ke Grafik Kompetensi'),
       shortcut: 'SKILLS',
-      icon: '📊',
+      icon: 'chart',
       action: () => scrollToSection('skills')
     },
     {
@@ -40,7 +41,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }
       category: t('Navigation', 'Navigasi'),
       label: t('Go to System Architecture Flow', 'Ke Alur Arsitektur Sistem'),
       shortcut: 'ARCH',
-      icon: '⚙️',
+      icon: 'layers',
       action: () => scrollToSection('architecture')
     },
     {
@@ -48,7 +49,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }
       category: t('Navigation', 'Navigasi'),
       label: t('Go to Live API Playground', 'Ke Live API Playground'),
       shortcut: 'API',
-      icon: '⚡',
+      icon: 'bolt',
       action: () => scrollToSection('api-playground')
     },
     {
@@ -56,7 +57,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }
       category: t('Navigation', 'Navigasi'),
       label: t('Go to Featured Projects Showcase', 'Ke Proyek Unggulan'),
       shortcut: 'PROJECTS',
-      icon: '💻',
+      icon: 'code',
       action: () => scrollToSection('projects')
     },
     {
@@ -64,7 +65,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }
       category: t('Navigation', 'Navigasi'),
       label: t('Go to Experience & Journey', 'Ke Pengalaman & Perjalanan Karier'),
       shortcut: 'EXP',
-      icon: '🚀',
+      icon: 'rocket',
       action: () => scrollToSection('experience')
     },
     {
@@ -72,7 +73,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }
       category: t('Navigation', 'Navigasi'),
       label: t('Go to Contact Section', 'Ke Bagian Kontak'),
       shortcut: 'CONTACT',
-      icon: '✉️',
+      icon: 'mail',
       action: () => scrollToSection('contact')
     },
     {
@@ -80,7 +81,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }
       category: t('Actions', 'Aksi'),
       label: t('View Interactive CV & Printable Resume', 'Lihat CV Interaktif & Cetak Resume'),
       shortcut: 'CV',
-      icon: '📄',
+      icon: 'file',
       action: () => {
         onClose();
         if (onOpenResume) onOpenResume();
@@ -91,7 +92,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }
       category: t('Actions', 'Aksi'),
       label: t('Copy Email Address to Clipboard', 'Salin Alamat Email'),
       shortcut: 'COPY',
-      icon: '📋',
+      icon: 'clipboard',
       action: () => handleCopyEmail()
     },
     {
@@ -99,7 +100,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }
       category: t('Actions', 'Aksi'),
       label: t('Open GitHub Profile', 'Buka Profil GitHub'),
       shortcut: 'GITHUB',
-      icon: '🐙',
+      icon: 'github',
       action: () => {
         window.open('https://github.com/IvanWinataa', '_blank', 'noopener,noreferrer');
         onClose();
@@ -287,7 +288,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }
                   }`}
                 >
                   <div className="flex items-center gap-3">
-                    <span aria-hidden="true" className="text-base">{cmd.icon}</span>
+                    <Icon name={cmd.icon} className="h-4 w-4 shrink-0 text-teal-300" />
                     <span className="font-sans text-xs sm:text-sm font-medium">{cmd.label}</span>
                   </div>
                   <span aria-hidden="true" className="font-mono text-[10px] text-teal-300 bg-teal-500/10 border border-teal-500/20 px-2 py-0.5 rounded">

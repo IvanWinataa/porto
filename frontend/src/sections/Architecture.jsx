@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import GlassCard from '../components/GlassCard';
 import NeonButton from '../components/NeonButton';
+import Icon from '../components/Icon';
 import { useLanguage } from '../context/useLanguage';
 
 export default function Architecture() {
@@ -15,7 +16,7 @@ export default function Architecture() {
       title: 'React 19 Frontend',
       subtitle: 'Client Interface Layer',
       subtitleId: 'Lapisan Antarmuka Klien',
-      icon: '⚛️',
+      icon: 'atom',
       color: 'border-[#61DAFB] text-[#61DAFB]',
       badge: 'Client Side',
       badgeId: 'Sisi Klien',
@@ -46,7 +47,7 @@ const { data } = await response.json();`
       title: 'Express API Gateway',
       subtitle: 'REST Dispatcher Layer',
       subtitleId: 'Lapisan Pengatur REST',
-      icon: '⚡',
+      icon: 'bolt',
       color: 'border-blue-400 text-blue-400',
       badge: 'Node.js Runtime',
       badgeId: 'Runtime Node.js',
@@ -76,7 +77,7 @@ router.post('/api/contact', contactController.sendMessage);`
       title: 'Security & Validation',
       subtitle: 'Middleware Guard Layer',
       subtitleId: 'Lapisan Proteksi Middleware',
-      icon: '🛡️',
+      icon: 'shield',
       color: 'border-teal-400 text-teal-400',
       badge: 'Middleware',
       badgeId: 'Middleware',
@@ -107,7 +108,7 @@ if (!name || !email || !emailRegex.test(email)) {
       title: 'PostgreSQL DB Engine',
       subtitle: 'Persistence Data Layer',
       subtitleId: 'Lapisan Persistensi Data',
-      icon: '🐘',
+      icon: 'database',
       color: 'border-teal-400 text-teal-400',
       badge: 'Database Pool',
       badgeId: 'Pool Database',
@@ -236,8 +237,8 @@ return result.rows;`
                         } ${isStepActive ? 'ring-2 ring-blue-400 shadow-[0_0_30px_rgba(59,130,246,0.5)]' : ''}`}
                       >
                         <span className="flex items-center gap-3.5">
-                          <span aria-hidden="true" className="w-10 h-10 rounded-lg bg-black/40 border border-white/10 flex items-center justify-center text-xl shrink-0">
-                            {node.icon}
+                          <span aria-hidden="true" className="w-10 h-10 rounded-lg bg-black/40 border border-white/10 flex items-center justify-center text-teal-300 shrink-0">
+                            <Icon name={node.icon} className="h-5 w-5" />
                           </span>
                           <span>
                             <span className="flex items-center gap-2">
@@ -277,7 +278,7 @@ return result.rows;`
               {/* Status Simulation Bar */}
               <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between font-mono text-xs text-slate-400">
                 <span className="flex items-center gap-2">
-                  <span className="text-blue-400">⚡ {t('Request Flow:', 'Alur Permintaan')}</span>{' '}
+                  <span className="inline-flex items-center gap-1.5 text-blue-400"><Icon name="bolt" className="h-3.5 w-3.5" /> {t('Request Flow:', 'Alur Permintaan')}</span>{' '}
                   Client ➔ Router ➔ Guard ➔ DB
                 </span>
                 <span className="text-emerald-400 font-semibold">200 OK</span>
@@ -297,7 +298,7 @@ return result.rows;`
                 <div>
                   <span className="font-mono text-[10px] text-blue-400 uppercase tracking-widest">// {t('NODE INSPECTION PANEL', 'PANEL INSPEKSI NODE')}</span>
                   <h3 className="text-xl font-bold text-white mt-1 flex items-center gap-2">
-                    <span>{currentNode.icon}</span>
+                    <Icon name={currentNode.icon} className="h-5 w-5 text-teal-300" />
                     <span>{currentNode.title}</span>
                   </h3>
                 </div>

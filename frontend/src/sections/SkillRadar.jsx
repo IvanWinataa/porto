@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import GlassCard from '../components/GlassCard';
+import Icon from '../components/Icon';
 import { useLanguage } from '../context/useLanguage';
 
 export default function SkillRadar() {
@@ -14,7 +15,7 @@ export default function SkillRadar() {
       level: 'Mastery',
       levelId: 'Mahir',
       color: '#61DAFB',
-      icon: '⚛️',
+      icon: 'atom',
       description: 'Building high-performance, accessible Single Page Applications & Next.js web applications with modern state management and glassmorphism UIs.',
       descriptionId: 'Membangun Single Page Application dan aplikasi web Next.js yang cepat, mudah diakses, serta menggunakan pengelolaan state modern dan antarmuka glassmorphism.',
       technologies: ['React 19', 'Next.js App Router', 'TypeScript', 'TailwindCSS v4', 'Vite', 'Redux / Zustand'],
@@ -28,7 +29,7 @@ export default function SkillRadar() {
       level: 'Expert',
       levelId: 'Ahli',
       color: '#339933',
-      icon: '⚡',
+      icon: 'server',
       description: 'Designing non-blocking async RESTful APIs, Express gateways, middleware pipelines, and scalable serverless microservices.',
       descriptionId: 'Merancang REST API asinkron non-blocking, gateway Express, pipeline middleware, dan microservice serverless yang skalabel.',
       technologies: ['Node.js', 'Express.js', 'RESTful APIs', 'JWT / Auth', 'CORS Middleware', 'WebSockets'],
@@ -42,7 +43,7 @@ export default function SkillRadar() {
       level: 'Advanced',
       levelId: 'Lanjutan',
       color: '#4169E1',
-      icon: '🐘',
+      icon: 'database',
       description: 'Architecting relational PostgreSQL schemas, optimizing connection pool clients, and writing indexed SQL queries.',
       descriptionId: 'Merancang skema relasional PostgreSQL, mengoptimalkan connection pool, dan menulis query SQL dengan indeks.',
       technologies: ['PostgreSQL', 'Connection Pooling (`pg`)', 'SQL Optimization', 'Database Migrations', 'ACID Transactions'],
@@ -56,7 +57,7 @@ export default function SkillRadar() {
       level: 'Advanced',
       levelId: 'Lanjutan',
       color: '#A78BFA',
-      icon: '🏛️',
+      icon: 'layers',
       description: 'Enforcing clean code principles, modular component decoupling, design patterns, and end-to-end data flow optimization.',
       descriptionId: 'Menerapkan prinsip clean code, pemisahan komponen modular, design pattern, dan optimasi alur data menyeluruh.',
       technologies: ['Clean Architecture', 'Design Patterns', 'Async Flow Control', 'API Specifications', 'DTO Validation'],
@@ -70,7 +71,7 @@ export default function SkillRadar() {
       level: 'Proficient',
       levelId: 'Terampil',
       color: '#2496ED',
-      icon: '🐳',
+      icon: 'box',
       description: 'Containerizing application environments with Docker, automating git workflows, and managing build pipelines.',
       descriptionId: 'Mengemas lingkungan aplikasi dengan Docker, mengotomatisasi alur kerja Git, dan mengelola pipeline build.',
       technologies: ['Docker', 'Git & GitHub', 'CI/CD Basics', 'npm / Vite Bundling', 'Environment Isolation'],
@@ -84,7 +85,7 @@ export default function SkillRadar() {
       level: 'Advanced',
       levelId: 'Lanjutan',
       color: '#F24E1E',
-      icon: '🎨',
+      icon: 'palette',
       description: 'Designing intuitive glassmorphism wireframes in Figma and translating them into dynamic, interactive web interfaces.',
       descriptionId: 'Merancang wireframe glassmorphism yang intuitif di Figma dan menerjemahkannya menjadi antarmuka web yang dinamis dan interaktif.',
       technologies: ['Figma Prototyping', 'Design Systems', 'Micro-interactions', 'Dark Mode Ergonomics', 'Accessibility'],
@@ -281,7 +282,7 @@ export default function SkillRadar() {
                         transform: 'translate(-50%, -50%)',
                       }}
                     >
-                      <span aria-hidden="true">{skill.icon}</span> {skill.label}
+                      <Icon name={skill.icon} className="mr-1 inline-block h-3 w-3 align-[-2px]" /> {skill.label}
                     </button>
                   );
                 })}
@@ -320,8 +321,8 @@ export default function SkillRadar() {
               {/* Skill Header */}
               <div className="flex items-center justify-between pb-4 border-b border-white/10">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 text-2xl flex items-center justify-center">
-                    {currentSkill.icon}
+                  <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 text-teal-300 flex items-center justify-center">
+                    <Icon name={currentSkill.icon} className="h-6 w-6" />
                   </div>
                   <div>
                     <span className="font-mono text-[10px] text-teal-300 uppercase tracking-widest">// {t('DOMAIN INSPECTOR', 'DETAIL BIDANG')}</span>

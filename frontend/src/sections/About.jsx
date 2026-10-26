@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import GlassCard from '../components/GlassCard';
+import Icon from '../components/Icon';
 import { useLanguage } from '../context/useLanguage';
 
 export default function About() {
@@ -25,21 +26,21 @@ export default function About() {
     : allSkills.filter(s => s.category === activeTab);
 
   const marqueeRow1 = [
-    { name: 'React.js', icon: '⚛️' },
-    { name: 'Next.js', icon: '▲' },
-    { name: 'TypeScript', icon: '📘' },
-    { name: 'TailwindCSS', icon: '🎨' },
-    { name: 'Node.js', icon: '🟩' },
-    { name: 'Express.js', icon: '⚡' },
+    { name: 'React.js', icon: 'atom' },
+    { name: 'Next.js', icon: 'triangle' },
+    { name: 'TypeScript', icon: 'fileCode' },
+    { name: 'TailwindCSS', icon: 'wind' },
+    { name: 'Node.js', icon: 'server' },
+    { name: 'Express.js', icon: 'code' },
   ];
 
   const marqueeRow2 = [
-    { name: 'PostgreSQL', icon: '🐘' },
-    { name: 'Docker', icon: '🐳' },
-    { name: 'REST API', icon: '🔌' },
-    { name: 'Figma', icon: '❖' },
-    { name: 'Git', icon: '🌿' },
-    { name: 'Vite', icon: '⚡' },
+    { name: 'PostgreSQL', icon: 'database' },
+    { name: 'Docker', icon: 'box' },
+    { name: 'REST API', icon: 'plug' },
+    { name: 'Figma', icon: 'penTool' },
+    { name: 'Git', icon: 'gitBranch' },
+    { name: 'Vite', icon: 'bolt' },
   ];
 
   return (
@@ -90,11 +91,11 @@ export default function About() {
               {/* Core Principles Grid */}
               <div className="grid sm:grid-cols-2 gap-4 pt-4 border-t border-white/10">
                 <div className="p-3.5 rounded-xl bg-white/5 border border-white/5">
-                  <div className="font-mono text-xs font-semibold text-teal-400 uppercase tracking-wider mb-1">⚡ {t('High Performance', 'Performa Tinggi')}</div>
+                  <div className="mb-1 flex items-center gap-1.5 font-mono text-xs font-semibold uppercase tracking-wider text-teal-400"><Icon name="bolt" className="h-3.5 w-3.5" /> {t('High Performance', 'Performa Tinggi')}</div>
                   <div className="text-xs text-slate-400">{t('Optimized bundle size, crisp animations, and fast response times.', 'Ukuran bundle yang optimal, animasi halus, dan waktu respons cepat.')}</div>
                 </div>
                 <div className="p-3.5 rounded-xl bg-white/5 border border-white/5">
-                  <div className="font-mono text-xs font-semibold text-blue-400 uppercase tracking-wider mb-1">🛡️ {t('Clean Architecture', 'Arsitektur yang Bersih')}</div>
+                  <div className="mb-1 flex items-center gap-1.5 font-mono text-xs font-semibold uppercase tracking-wider text-blue-400"><Icon name="shield" className="h-3.5 w-3.5" /> {t('Clean Architecture', 'Arsitektur yang Bersih')}</div>
                   <div className="text-xs text-slate-400">{t('Modular backend design, validated schemas, and clear REST APIs.', 'Desain backend modular, skema tervalidasi, dan REST API yang jelas.')}</div>
                 </div>
               </div>
@@ -112,7 +113,7 @@ export default function About() {
                       key={`m1-${index}`} 
                       className="flex items-center gap-2 font-mono text-xs bg-white/5 border border-white/10 px-4 py-2 rounded-xl text-slate-300 hover:border-blue-500/50 hover:text-white transition-all cursor-default"
                     >
-                      <span>{skill.icon}</span>
+                      <Icon name={skill.icon} className="h-4 w-4 shrink-0" />
                       <span>{skill.name}</span>
                     </div>
                   ))}
@@ -127,7 +128,7 @@ export default function About() {
                       key={`m2-${index}`} 
                       className="flex items-center gap-2 font-mono text-xs bg-white/5 border border-white/10 px-4 py-2 rounded-xl text-slate-300 hover:border-teal-500/50 hover:text-white transition-all cursor-default"
                     >
-                      <span>{skill.icon}</span>
+                      <Icon name={skill.icon} className="h-4 w-4 shrink-0" />
                       <span>{skill.name}</span>
                     </div>
                   ))}

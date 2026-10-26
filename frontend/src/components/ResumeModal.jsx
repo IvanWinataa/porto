@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import NeonButton from './NeonButton';
+import Icon from './Icon';
 import { useLanguage } from '../context/useLanguage';
 import { experiences, getLocationLabel, getPeriodLabel } from '../data/experience';
 
@@ -195,7 +196,7 @@ export default function ResumeModal({ isOpen, onClose }) {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
               <div className="p-3.5 rounded-xl bg-white/5 border border-white/5 space-y-1.5">
                 <span className="font-mono text-xs font-bold text-white flex items-center gap-1.5">
-                  <span>⚛️</span> Frontend Engineering
+                  <Icon name="atom" className="h-4 w-4 text-teal-400" /> Frontend Engineering
                 </span>
                 <p className="text-xs text-slate-400 leading-normal">
                   React 19, Next.js (App Router), TypeScript, TailwindCSS v4, Vite, Redux, Zustand
@@ -204,7 +205,7 @@ export default function ResumeModal({ isOpen, onClose }) {
 
               <div className="p-3.5 rounded-xl bg-white/5 border border-white/5 space-y-1.5">
                 <span className="font-mono text-xs font-bold text-white flex items-center gap-1.5">
-                  <span>⚡</span> Backend &amp; Architecture
+                  <Icon name="server" className="h-4 w-4 text-teal-400" /> Backend &amp; Architecture
                 </span>
                 <p className="text-xs text-slate-400 leading-normal">
                   Node.js, Express.js, RESTful APIs, Clean Architecture, WebSockets, JWT Authentication
@@ -213,7 +214,7 @@ export default function ResumeModal({ isOpen, onClose }) {
 
               <div className="p-3.5 rounded-xl bg-white/5 border border-white/5 space-y-1.5">
                 <span className="font-mono text-xs font-bold text-white flex items-center gap-1.5">
-                  <span>🐘</span> Database &amp; DevOps
+                  <Icon name="database" className="h-4 w-4 text-teal-400" /> Database &amp; DevOps
                 </span>
                 <p className="text-xs text-slate-400 leading-normal">
                   PostgreSQL, Connection Pooling, Docker, Git / GitHub Workflows, CI/CD, Redis
