@@ -41,7 +41,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }
       category: t('Navigation', 'Navigasi'),
       label: t('Go to System Architecture Flow', 'Ke Alur Arsitektur Sistem'),
       shortcut: 'ARCH',
-      icon: 'layers',
+      icon: 'settings',
       action: () => scrollToSection('architecture')
     },
     {

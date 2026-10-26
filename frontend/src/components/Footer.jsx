@@ -1,4 +1,5 @@
 import { useLanguage } from '../context/useLanguage';
+import Icon from './Icon';
 
 export default function Footer() {
   const { t } = useLanguage();
@@ -19,7 +20,7 @@ export default function Footer() {
 
         {/* Center copyright */}
         <div className="text-center sm:text-left text-slate-500">
-          &copy; {new Date().getFullYear()} {t('Designed & Built with', 'Dirancang & Dibangun dengan')} <span className="text-blue-400">♥</span> & <span className="text-teal-400">React 19</span>
+          &copy; {new Date().getFullYear()} {t('Designed & Built with', 'Dirancang & Dibangun dengan')} <Icon name="heart" className="inline-block h-3.5 w-3.5 align-[-2px] text-blue-400" /> & <span className="text-teal-400">React 19</span>
         </div>
 
         {/* Back to top CTA */}

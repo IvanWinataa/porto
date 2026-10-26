@@ -1,4 +1,5 @@
 import GlassCard from '../components/GlassCard';
+import Icon from '../components/Icon';
 import { useLanguage } from '../context/useLanguage';
 import { experiences, getEmploymentTypeLabel, getLocationLabel, getPeriodLabel } from '../data/experience';
 
@@ -52,7 +53,7 @@ export default function Experience() {
                     {exp.role}
                   </h3>
                   <span className="font-mono text-xs text-slate-400 bg-white/5 border border-white/10 px-3 py-1 rounded-lg">
-                    📍 {getLocationLabel(exp.location, language)} • {getEmploymentTypeLabel(exp.type, language)}
+                    <Icon name="mapPin" className="mr-1 inline-block h-3.5 w-3.5 align-[-2px] text-teal-400" /> {getLocationLabel(exp.location, language)} <span aria-hidden="true">•</span> {getEmploymentTypeLabel(exp.type, language)}
                   </span>
                 </div>
 

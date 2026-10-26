@@ -154,14 +154,14 @@ export default function ResumeModal({ isOpen, onClose }) {
                 Fullstack Software Engineer &amp; UI/UX Specialist
               </p>
               <p className="text-xs font-mono text-slate-400 mt-2 flex flex-wrap gap-x-4 gap-y-1">
-                <span>📍 Indonesia (Available Worldwide / Remote)</span>
+                <span className="inline-flex items-center gap-1.5"><Icon name="mapPin" className="h-3.5 w-3.5 text-teal-400" /> Indonesia (Available Worldwide / Remote)</span>
                 <a
                   href="mailto:ivanwinata1972@gmail.com"
                   className="transition-colors hover:text-teal-300 focus-visible:rounded-sm"
                 >
-                  ✉️ ivanwinata1972@gmail.com
+                  <span className="inline-flex items-center gap-1.5"><Icon name="mail" className="h-3.5 w-3.5" /> ivanwinata1972@gmail.com</span>
                 </a>
-                <span>🔗 github.com/IvanWinataa</span>
+                <span className="inline-flex items-center gap-1.5"><Icon name="github" className="h-3.5 w-3.5 text-teal-400" /> github.com/IvanWinataa</span>
               </p>
             </div>
 
