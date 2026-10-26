@@ -43,7 +43,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-28 relative overflow-hidden bg-grid-pattern">
+    <section id="about" className="py-28 relative overflow-hidden section-surface">
       {/* Background radial highlight */}
       <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[140px] -z-10 pointer-events-none" />
 

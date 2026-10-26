@@ -164,7 +164,7 @@ return result.rows;`
   }, [simulationStep]);
 
   return (
-    <section id="architecture" className="py-28 relative overflow-hidden bg-grid-pattern">
+    <section id="architecture" className="py-28 relative overflow-hidden section-surface">
       {/* Background ambient lighting */}
       <div className="absolute top-1/2 right-10 w-[550px] h-[550px] bg-teal-600/10 rounded-full blur-[140px] -z-10 pointer-events-none" />
 

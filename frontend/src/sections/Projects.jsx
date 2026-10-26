@@ -163,7 +163,7 @@ export default function Projects() {
   }, []);
 
   return (
-    <section id="projects" className="py-28 relative overflow-hidden bg-grid-pattern">
+    <section id="projects" className="py-28 relative overflow-hidden section-surface">
       {/* Glow highlight */}
       <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-teal-500/10 rounded-full blur-[140px] -z-10 pointer-events-none" />
 

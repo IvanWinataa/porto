@@ -50,7 +50,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-28 relative overflow-hidden bg-grid-pattern">
+    <section id="contact" className="py-28 relative overflow-hidden section-surface">
       {/* Glow highlight */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-gradient-to-t from-blue-600/20 via-teal-500/10 to-transparent rounded-full blur-[150px] -z-10 pointer-events-none" />
 
