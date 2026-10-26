@@ -13,6 +13,7 @@ import CommandPalette from './components/CommandPalette';
 import ResumeModal from './components/ResumeModal';
 import SkillChatbot from './components/SkillChatbot';
 import ScrollReveal from './components/ScrollReveal';
+import ScrollProgress from './components/ScrollProgress';
 import { LanguageProvider } from './context/LanguageContext';
 import { ThemeProvider } from './context/ThemeContext';
 import { useLanguage } from './context/useLanguage';
@@ -39,6 +40,7 @@ function App() {
       <LanguageProvider>
         <div className="selection:bg-primary/30 selection:text-white">
           <SkipLink />
+          <ScrollProgress />
           <Navbar 
             onOpenCommandPalette={() => setIsCommandPaletteOpen(true)} 
             onOpenResume={() => setIsResumeModalOpen(true)}
