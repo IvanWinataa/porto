@@ -118,6 +118,15 @@ export default function Projects() {
 
   const technologies = [...new Set(projects.flatMap((project) => project.tech_stack || []))]
     .sort((first, second) => first.localeCompare(second));
+  const hasActiveFilters = searchQuery.trim().length > 0
+    || activeCategory !== 'All'
+    || activeTechnology !== 'All';
+
+  function clearFilters() {
+    setSearchQuery('');
+    setActiveTechnology('All');
+    setActiveCategory('All');
+  }
 
   const searchTerms = searchQuery.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
   const filteredProjects = projects.filter((project) => {
@@ -126,7 +135,9 @@ export default function Projects() {
       project.title,
       project.category,
       project.description,
+      project.descriptionId,
       project.long_description,
+      project.long_descriptionId,
       ...projectTechnologies
     ].filter(Boolean).join(' ').toLocaleLowerCase();
 
@@ -242,11 +253,22 @@ export default function Projects() {
         </div>
 
         {!loading && (
-          <p className="mb-6 font-mono text-[11px] text-slate-500" aria-live="polite">
-            {language === 'id'
-              ? `Menampilkan ${filteredProjects.length} dari ${projects.length} proyek`
-              : `Showing ${filteredProjects.length} of ${projects.length} projects`}
-          </p>
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+            <p className="font-mono text-[11px] text-slate-500" aria-live="polite">
+              {language === 'id'
+                ? `Menampilkan ${filteredProjects.length} dari ${projects.length} proyek`
+                : `Showing ${filteredProjects.length} of ${projects.length} projects`}
+            </p>
+            {hasActiveFilters && (
+              <button
+                type="button"
+                onClick={clearFilters}
+                className="rounded-lg px-2 py-1 font-mono text-[11px] text-teal-300 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
+              >
+                {t('Clear filters', 'Hapus filter')}
+              </button>
+            )}
+          </div>
         )}
 
         {/* Project Skeletons */}
@@ -306,7 +328,7 @@ export default function Projects() {
                 <div>
                   {/* Tech stack pills */}
                   <div className="flex flex-wrap gap-1.5 mb-6">
-                    {project.tech_stack.map((tech, idx) => (
+                    {(project.tech_stack || []).map((tech, idx) => (
                       <span key={idx} className="font-mono text-[11px] text-teal-300 bg-teal-500/10 border border-teal-500/20 px-2.5 py-1 rounded-md">
                         {tech}
                       </span>
@@ -373,11 +395,7 @@ export default function Projects() {
             <p className="mt-2 text-xs text-slate-400">{t('Try another search term or clear the selected filters.', 'Coba kata pencarian lain atau hapus filter yang dipilih.')}</p>
             <button
               type="button"
-              onClick={() => {
-                setSearchQuery('');
-                setActiveTechnology('All');
-                setActiveCategory('All');
-              }}
+              onClick={clearFilters}
               className="mt-5 rounded-lg border border-blue-400/30 bg-blue-500/10 px-4 py-2 text-xs font-medium text-blue-200 transition-colors hover:bg-blue-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
             >
               {t('Clear filters', 'Hapus filter')}
