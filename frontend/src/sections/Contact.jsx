@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import GlassCard from '../components/GlassCard';
 import NeonButton from '../components/NeonButton';
 import Icon from '../components/Icon';
@@ -11,8 +11,15 @@ export default function Contact() {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState({ success: null, message: '' });
   const [emailCopied, setEmailCopied] = useState(false);
+  const [emailCopyMessage, setEmailCopyMessage] = useState('');
+  const [emailCopyFailed, setEmailCopyFailed] = useState(false);
+  const emailCopyTimer = useRef(null);
 
   const emailAddress = 'ivanwinata1972@gmail.com';
+
+  useEffect(() => () => {
+    if (emailCopyTimer.current) window.clearTimeout(emailCopyTimer.current);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,10 +27,27 @@ export default function Contact() {
     if (status.message) setStatus({ success: null, message: '' });
   };
 
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText(emailAddress);
-    setEmailCopied(true);
-    setTimeout(() => setEmailCopied(false), 2000);
+  const handleCopyEmail = async () => {
+    if (emailCopyTimer.current) window.clearTimeout(emailCopyTimer.current);
+
+    try {
+      if (!navigator.clipboard?.writeText) throw new Error('Clipboard API unavailable');
+      await navigator.clipboard.writeText(emailAddress);
+      setEmailCopied(true);
+      setEmailCopyFailed(false);
+      setEmailCopyMessage(t('Email copied to clipboard!', 'Email berhasil disalin!'));
+    } catch (error) {
+      console.warn('Copying email to clipboard failed:', error);
+      setEmailCopied(false);
+      setEmailCopyFailed(true);
+      setEmailCopyMessage(t('Could not copy email. Please copy it manually.', 'Email tidak dapat disalin. Silakan salin secara manual.'));
+    }
+
+    emailCopyTimer.current = window.setTimeout(() => {
+      setEmailCopied(false);
+      setEmailCopyFailed(false);
+      setEmailCopyMessage('');
+    }, 2500);
   };
 
   const handleSubmit = async (e) => {
@@ -107,11 +131,21 @@ export default function Contact() {
                   <button
                     type="button"
                     onClick={handleCopyEmail}
-                    className="font-mono text-[11px] text-teal-300 bg-teal-500/10 hover:bg-teal-500/20 px-3 py-1.5 rounded-lg border border-teal-500/30 transition-all cursor-pointer shrink-0"
+                    aria-label={emailCopied ? t('Email copied', 'Email tersalin') : t('Copy email address', 'Salin alamat email')}
+                    className="font-mono text-[11px] text-teal-300 bg-teal-500/10 hover:bg-teal-500/20 px-3 py-1.5 rounded-lg border border-teal-500/30 transition-all cursor-pointer shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
                   >
                     {emailCopied ? t('Copied', 'Tersalin') : t('Copy', 'Salin')}
                   </button>
                 </div>
+                {emailCopyMessage && (
+                  <p
+                    role="status"
+                    aria-live="polite"
+                    className={`text-[11px] font-mono ${emailCopyFailed ? 'text-amber-300' : 'text-teal-300'}`}
+                  >
+                    {emailCopyMessage}
+                  </p>
+                )}
 
                 {/* Location */}
                 <div className="p-4 rounded-xl bg-white/5 border border-white/10 flex items-center gap-3">
