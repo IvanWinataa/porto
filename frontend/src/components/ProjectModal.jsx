@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import NeonButton from './NeonButton';
+import Icon from './Icon';
 import { useLanguage } from '../context/useLanguage';
 
 export default function ProjectModal({ project, onClose }) {
@@ -82,11 +82,12 @@ export default function ProjectModal({ project, onClose }) {
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-lg transition-opacity duration-300 animate-fadeIn"
+      className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-6 bg-black/80 backdrop-blur-lg transition-opacity duration-300 animate-fadeIn"
       onClick={onClose}
     >
       <div 
-        className="glass-card border border-white/20 rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 relative shadow-[0_20px_60px_rgba(59,130,246,0.3)] text-left cursor-default transition-all duration-300"
+        className="glass-card flex max-h-[92vh] w-full max-w-3xl flex-col overflow-hidden rounded-3xl border border-white/20 text-left shadow-[0_20px_60px_rgba(59,130,246,0.3)] cursor-default transition-all duration-300"
+        style={{ maxHeight: '92dvh' }}
         ref={dialogRef}
         role="dialog"
         aria-modal="true"
@@ -95,30 +96,31 @@ export default function ProjectModal({ project, onClose }) {
         tabIndex={-1}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close Button */}
-        <button 
-          ref={closeButtonRef}
-          onClick={onClose}
-          className="absolute top-6 right-6 text-slate-400 hover:text-white bg-white/10 hover:bg-white/20 rounded-full p-2.5 transition-colors cursor-pointer border border-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
-          aria-label={t('Close modal', 'Tutup detail proyek')}
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
+        <header className="flex shrink-0 items-start justify-between gap-4 border-b border-white/10 bg-black/40 px-4 py-4 backdrop-blur-xl sm:px-7 sm:py-5">
+          <div className="min-w-0">
+            <span className="inline-flex rounded-full border border-teal-500/20 bg-teal-500/10 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-teal-300 sm:text-xs">
+              {project.category}
+            </span>
+            <h2 id="project-dialog-title" className="mt-2 break-words pr-1 text-xl font-extrabold text-white sm:text-2xl">
+              {project.title}
+            </h2>
+          </div>
+          <button
+            ref={closeButtonRef}
+            type="button"
+            onClick={onClose}
+            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-400 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
+            aria-label={t('Close modal', 'Tutup detail proyek')}
+          >
+            <svg aria-hidden="true" className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </header>
 
-        {/* Category & Title */}
-        <div className="mb-6">
-          <span className="font-mono text-xs text-teal-300 bg-teal-500/10 border border-teal-500/20 px-3 py-1 rounded-full uppercase tracking-wider">
-            {project.category}
-          </span>
-          <h2 id="project-dialog-title" className="mt-3 pr-12 text-2xl font-extrabold text-white sm:pr-14 sm:text-3xl">
-            {project.title}
-          </h2>
-        </div>
-
+        <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 py-5 sm:px-7 sm:py-6">
         {/* Visual Banner Preview */}
-        <div className={`relative h-52 sm:h-64 w-full rounded-2xl mb-8 overflow-hidden bg-gradient-to-br ${project.gradient || 'from-blue-900/50 to-teal-900/50'} border border-white/15 flex items-center justify-center`}>
+        <div className={`relative mb-6 flex h-44 w-full items-center justify-center overflow-hidden rounded-2xl border border-white/15 bg-gradient-to-br sm:mb-8 sm:h-64 ${project.gradient || 'from-blue-900/50 to-teal-900/50'}`}>
           {project.image_url && (
             <img
               src={project.image_url}
@@ -137,13 +139,13 @@ export default function ProjectModal({ project, onClose }) {
           <div className="absolute w-36 h-36 bg-teal-500/20 rounded-full blur-2xl -bottom-6 -right-6"></div>
 
           <div className="z-10 text-center px-4">
-            <div className="font-mono text-xs text-slate-400 mb-2 uppercase tracking-widest">// {t('SYSTEM PREVIEW ARCHITECTURE', 'PRATINJAU SISTEM')}</div>
-            <div className="text-2xl font-bold text-gradient">{project.title}</div>
+            <div className="mb-2 font-mono text-[10px] uppercase tracking-wider text-slate-400 sm:text-xs sm:tracking-widest">// {t('SYSTEM PREVIEW ARCHITECTURE', 'PRATINJAU SISTEM')}</div>
+            <div className="break-words text-lg font-bold text-gradient sm:text-2xl">{project.title}</div>
           </div>
         </div>
 
         {/* Detailed Description */}
-        <div className="space-y-6 mb-8">
+        <div className="space-y-6 pb-1">
           <div>
             <h3 className="text-xs font-mono uppercase tracking-widest text-slate-400 mb-2">// {t('Project Overview', 'Ringkasan Proyek')}</h3>
             <p id="project-dialog-description" className="text-slate-300 leading-relaxed text-sm sm:text-base">
@@ -204,42 +206,44 @@ export default function ProjectModal({ project, onClose }) {
             </div>
           </div>
         </div>
+        </div>
 
-        {/* Action Buttons */}
-        <div className="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-white/10">
-          <div className="flex items-center gap-3">
+        {/* Pinned Project Actions */}
+        <footer className="flex shrink-0 flex-col gap-3 border-t border-white/10 bg-black/40 px-4 py-3 backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between sm:px-7 sm:py-4">
+          <div className="grid w-full grid-cols-1 gap-2 sm:flex sm:w-auto">
             {project.live_url ? (
-              <NeonButton href={project.live_url} className="px-6 py-2.5 text-xs">
-                <span className="flex items-center gap-2">
-                  <span>{t('Live Preview', 'Pratinjau Langsung')}</span>
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </span>
-              </NeonButton>
+              <a
+                href={project.live_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-blue-500/50 bg-blue-600 px-4 text-xs font-semibold text-white transition-colors hover:bg-blue-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 sm:min-w-40"
+              >
+                <span>{t('Live Demo', 'Demo Langsung')}</span>
+                <Icon name="externalLink" className="h-4 w-4" />
+              </a>
             ) : (
-              <span className="text-slate-500 font-mono text-xs">{t('Internal Production Service', 'Layanan Produksi Internal')}</span>
+              <span className="inline-flex min-h-11 items-center justify-center rounded-xl border border-white/5 bg-white/[0.03] px-4 text-center font-mono text-xs text-slate-500 sm:min-w-40">
+                {t('Demo link unavailable', 'Tautan demo belum tersedia')}
+              </span>
             )}
 
             {project.github_url && (
-              <a 
-                href={project.github_url} 
-                target="_blank" 
+              <a
+                href={project.github_url}
+                target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-2.5 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-all text-xs font-mono flex items-center gap-2"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 text-xs font-semibold text-slate-200 transition-colors hover:border-white/20 hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 sm:min-w-40"
               >
+                <Icon name="github" className="h-4 w-4" />
                 <span>{t('Source Code', 'Kode Sumber')}</span>
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                </svg>
               </a>
             )}
           </div>
 
-          <span className="text-xs font-mono text-slate-500">
+          <span className="hidden shrink-0 items-center gap-2 font-mono text-[11px] text-slate-500 sm:inline-flex">
             {t('Press', 'Tekan')} <kbd className="bg-white/10 px-1.5 py-0.5 rounded text-slate-300">ESC</kbd> {t('to close', 'untuk menutup')}
           </span>
-        </div>
+        </footer>
       </div>
     </div>
   );
