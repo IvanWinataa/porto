@@ -1,10 +1,8 @@
-import { useState } from 'react';
 import GlassCard from '../components/GlassCard';
 import Icon from '../components/Icon';
 import { useLanguage } from '../context/useLanguage';
 
 export default function About() {
-  const [activeTab, setActiveTab] = useState('all');
   const { t } = useLanguage();
 
   const allSkills = [
@@ -21,27 +19,15 @@ export default function About() {
     { name: 'Git & GitHub', category: 'tools', color: 'text-[#F05032]', bg: 'bg-[#F05032]/10 border-[#F05032]/30' }
   ];
 
-  const filteredSkills = activeTab === 'all' 
-    ? allSkills 
-    : allSkills.filter(s => s.category === activeTab);
-
-  const marqueeRow1 = [
-    { name: 'React.js', icon: 'atom' },
-    { name: 'Next.js', icon: 'triangle' },
-    { name: 'TypeScript', icon: 'fileCode' },
-    { name: 'TailwindCSS', icon: 'wind' },
-    { name: 'Node.js', icon: 'server' },
-    { name: 'Express.js', icon: 'code' },
-  ];
-
-  const marqueeRow2 = [
-    { name: 'PostgreSQL', icon: 'database' },
-    { name: 'Docker', icon: 'box' },
-    { name: 'REST API', icon: 'plug' },
-    { name: 'Figma', icon: 'penTool' },
-    { name: 'Git', icon: 'gitBranch' },
-    { name: 'Vite', icon: 'bolt' },
-  ];
+  const skillGroups = [
+    { id: 'frontend', label: 'Frontend' },
+    { id: 'backend', label: 'Backend' },
+    { id: 'database', label: t('Database', 'Basis Data') },
+    { id: 'tools', label: t('Tools', 'Tools') },
+  ].map((group) => ({
+    ...group,
+    skills: allSkills.filter((skill) => skill.category === group.id),
+  })).filter((group) => group.skills.length > 0);
 
   return (
     <section id="about" className="py-16 sm:py-20 lg:py-28 relative overflow-hidden section-surface">
@@ -101,86 +87,35 @@ export default function About() {
               </div>
             </GlassCard>
 
-            {/* Marquee Skills Slider */}
-            <div className="space-y-3">
-              <div className="font-mono text-xs text-slate-400 uppercase tracking-widest pl-1">{t('Continuous Stack Marquee', 'Rangkaian Teknologi')}</div>
-              
-              {/* Row 1 */}
-              <div className="relative w-full overflow-hidden py-1 mask-gradient-horizontal">
-                <div className="flex w-max animate-marquee space-x-3">
-                  {[...marqueeRow1, ...marqueeRow1, ...marqueeRow1].map((skill, index) => (
-                    <div 
-                      key={`m1-${index}`} 
-                      className="flex items-center gap-2 font-mono text-xs bg-white/5 border border-white/10 px-4 py-2 rounded-xl text-slate-300 hover:border-blue-500/50 hover:text-white transition-all cursor-default"
-                    >
-                      <Icon name={skill.icon} className="h-4 w-4 shrink-0" />
-                      <span>{skill.name}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Row 2 */}
-              <div className="relative w-full overflow-hidden py-1 mask-gradient-horizontal">
-                <div className="flex w-max animate-marquee space-x-3" style={{ animationDirection: 'reverse' }}>
-                  {[...marqueeRow2, ...marqueeRow2, ...marqueeRow2].map((skill, index) => (
-                    <div 
-                      key={`m2-${index}`} 
-                      className="flex items-center gap-2 font-mono text-xs bg-white/5 border border-white/10 px-4 py-2 rounded-xl text-slate-300 hover:border-teal-500/50 hover:text-white transition-all cursor-default"
-                    >
-                      <Icon name={skill.icon} className="h-4 w-4 shrink-0" />
-                      <span>{skill.name}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
           </div>
 
-          {/* Interactive Skill Category Box */}
+          {/* Grouped Skills */}
           <div className="lg:col-span-5">
             <GlassCard>
-              <div className="flex items-center justify-between mb-6">
+              <div className="mb-5 flex items-center justify-between gap-3 sm:mb-6">
                 <h3 className="text-lg font-bold text-white">{t('Technical Arsenal', 'Kumpulan Teknologi')}</h3>
                 <span className="font-mono text-xs text-teal-400 bg-teal-500/10 px-2.5 py-1 rounded-full border border-teal-500/20">
-                  {filteredSkills.length} {t('Technologies', 'Teknologi')}
+                  {allSkills.length} {t('Technologies', 'Teknologi')}
                 </span>
               </div>
 
-              {/* Filter Tabs */}
-              <div className="flex flex-wrap gap-1.5 p-1 bg-black/40 rounded-xl border border-white/5 mb-6">
-                {[
-                  { id: 'all', label: t('All', 'Semua') },
-                  { id: 'frontend', label: 'Frontend' },
-                  { id: 'backend', label: 'Backend' },
-                  { id: 'database', label: t('Database', 'Basis Data') },
-                  { id: 'tools', label: t('Tools', 'Tools') },
-                ].map((tab) => (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveTab(tab.id)}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all cursor-pointer ${
-                      activeTab === tab.id
-                        ? 'bg-blue-600/30 text-white border border-blue-500/40 shadow-sm'
-                        : 'text-slate-400 hover:text-slate-200'
-                    }`}
-                  >
-                    {tab.label}
-                  </button>
-                ))}
-              </div>
-
-              {/* Skill Badges Display Grid */}
-              <div className="flex flex-wrap gap-2.5 min-h-[160px]">
-                {filteredSkills.map((skill) => (
-                  <div
-                    key={skill.name}
-                    className={`flex items-center gap-2 font-mono text-xs px-3.5 py-2 rounded-xl border transition-all duration-300 hover:scale-105 cursor-default ${skill.bg}`}
-                  >
-                    <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
-                    <span className="text-slate-100 font-medium">{skill.name}</span>
-                  </div>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {skillGroups.map((group) => (
+                  <section key={group.id} aria-labelledby={`skill-group-${group.id}`} className="rounded-xl border border-white/10 bg-white/[0.03] p-3.5">
+                    <div className="mb-3 flex items-center justify-between gap-2">
+                      <h4 id={`skill-group-${group.id}`} className="font-mono text-[10px] font-semibold uppercase tracking-wider text-slate-400">
+                        {group.label}
+                      </h4>
+                      <span className="font-mono text-[10px] text-slate-500">{String(group.skills.length).padStart(2, '0')}</span>
+                    </div>
+                    <ul className="flex flex-wrap gap-2">
+                      {group.skills.map((skill) => (
+                        <li key={skill.name} className={`rounded-lg border px-2.5 py-1.5 font-mono text-xs font-medium ${skill.bg} ${skill.color}`}>
+                          {skill.name}
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
                 ))}
               </div>
 
