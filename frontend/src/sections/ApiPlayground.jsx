@@ -160,7 +160,7 @@ export default function ApiPlayground() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 sm:mb-14">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 sm:mb-14 lg:mb-16">
           <div>
             <div className="flex items-center gap-3">
               <span className="font-mono text-teal-400 text-sm font-semibold tracking-wider uppercase">
@@ -172,7 +172,7 @@ export default function ApiPlayground() {
               {t('API Playground & Live Tester', 'Playground API & Live Tester')}
             </h2>
           </div>
-          <p className="text-slate-400 text-sm font-mono max-w-sm">
+          <p className="max-w-sm font-mono text-sm leading-relaxed text-slate-400">
             // {t('Execute live REST queries against the backend, test DB latency, and inspect JSON payloads.', 'Jalankan query REST langsung ke backend, uji latensi DB, dan inspeksi respon JSON.')}
           </p>
         </div>
@@ -287,7 +287,7 @@ export default function ApiPlayground() {
 
           {/* Right Column: Terminal Response Inspector (7 cols) */}
           <div className="lg:col-span-7">
-            <div className="glass-card rounded-2xl border border-white/15 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+            <div className="code-editor glass-card rounded-2xl border border-white/15 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
               
               {/* Terminal Titlebar */}
               <div className="bg-[#0b0e17] px-4 py-3 border-b border-white/10 flex items-center justify-between">

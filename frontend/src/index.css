@@ -183,6 +183,25 @@ html[data-theme='light'] [class~='text-teal-500'] {
 html[data-theme='light'] [class~='text-emerald-300'],
 html[data-theme='light'] [class~='text-emerald-400'] { color: #047857; }
 html[data-theme='light'] [class~='text-red-400'] { color: #b91c1c; }
+html[data-theme='light'] [class*='text-amber-300'],
+html[data-theme='light'] [class*='text-amber-400'] { color: #92400e; }
+html[data-theme='light'] [class~='text-rose-400'] { color: #be123c; }
+
+/* Keep syntax colors bright on editor surfaces that stay dark in light mode. */
+html[data-theme='light'] .code-editor [class~='text-slate-300'] { color: #cbd5e1; }
+html[data-theme='light'] .code-editor [class~='text-slate-400'] { color: #94a3b8; }
+html[data-theme='light'] .code-editor [class~='text-slate-500'],
+html[data-theme='light'] .code-editor [class~='text-slate-600'] { color: #94a3b8; }
+html[data-theme='light'] .code-editor [class~='text-blue-300'] { color: #93c5fd; }
+html[data-theme='light'] .code-editor [class~='text-blue-400'] { color: #60a5fa; }
+html[data-theme='light'] .code-editor [class~='text-teal-300'] { color: #5eead4; }
+html[data-theme='light'] .code-editor [class~='text-teal-400'] { color: #2dd4bf; }
+html[data-theme='light'] .code-editor [class*='text-emerald-300'] { color: #6ee7b7; }
+html[data-theme='light'] .code-editor [class~='text-emerald-400'] { color: #34d399; }
+html[data-theme='light'] .code-editor [class*='text-amber-300'] { color: #fcd34d; }
+html[data-theme='light'] .code-editor [class*='text-amber-400'] { color: #fbbf24; }
+html[data-theme='light'] .code-editor [class~='text-rose-400'] { color: #fb7185; }
+html[data-theme='light'] .code-editor [class~='hover:text-white']:hover { color: #fff; }
 
 html[data-theme='light'] [class~='bg-white/5'] { background-color: rgba(15, 23, 42, 0.025); }
 html[data-theme='light'] [class~='bg-white/10'] { background-color: rgba(15, 23, 42, 0.045); }

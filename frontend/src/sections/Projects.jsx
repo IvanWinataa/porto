@@ -182,7 +182,7 @@ export default function Projects() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 sm:mb-14">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 sm:mb-14 lg:mb-16">
           <div>
             <div className="flex items-center gap-3">
               <span className="font-mono text-blue-400 text-sm font-semibold tracking-wider uppercase">{t('02. Showcase', '02. Karya Pilihan')}</span>
@@ -190,7 +190,7 @@ export default function Projects() {
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-1">{t('Featured Projects', 'Proyek Unggulan')}</h2>
           </div>
-          <p className="text-slate-400 text-sm font-mono max-w-xs">
+          <p className="max-w-sm font-mono text-sm leading-relaxed text-slate-400">
             // {t('Selected software systems, fullstack platforms, and APIs.', 'Pilihan sistem perangkat lunak, platform fullstack, dan API.')}
           </p>
         </div>

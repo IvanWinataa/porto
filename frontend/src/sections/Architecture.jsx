@@ -172,7 +172,7 @@ return result.rows;`
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 sm:mb-14">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 sm:mb-14 lg:mb-16">
           <div>
             <div className="flex items-center gap-3">
               <span className="font-mono text-teal-400 text-sm font-semibold tracking-wider uppercase">{t('Architecture Flow', 'Alur Arsitektur')}</span>

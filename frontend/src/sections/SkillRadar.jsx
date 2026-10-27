@@ -140,7 +140,7 @@ export default function SkillRadar() {
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-1">{t('Skill Radar Chart', 'Grafik Radar Keahlian')}</h2>
           </div>
-          <p className="text-slate-400 text-sm font-mono max-w-xs">
+          <p className="max-w-sm font-mono text-sm leading-relaxed text-slate-400">
             // {t('Multi-dimensional evaluation across technical domains.', 'Evaluasi multidimensi untuk berbagai bidang teknis.')}
           </p>
         </div>

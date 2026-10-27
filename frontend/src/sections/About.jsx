@@ -45,7 +45,7 @@ export default function About() {
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-1">{t('About Me', 'Tentang Saya')}</h2>
           </div>
-          <p className="text-slate-400 text-sm max-w-sm font-mono">
+          <p className="max-w-sm font-mono text-sm leading-relaxed text-slate-400">
             // {t('Blending software engineering precision with aesthetic design.', 'Memadukan ketelitian rekayasa perangkat lunak dengan desain yang menarik.')}
           </p>
         </div>

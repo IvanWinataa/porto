@@ -90,7 +90,7 @@ export default function Contact() {
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-1">{t('Get In Touch', 'Hubungi Saya')}</h2>
           </div>
-          <p className="text-slate-400 text-sm font-mono max-w-xs">
+          <p className="max-w-sm font-mono text-sm leading-relaxed text-slate-400">
             // {t('Open for remote roles, freelancing, & architecture consults.', 'Terbuka untuk pekerjaan jarak jauh, freelance, dan konsultasi arsitektur.')}
           </p>
         </div>

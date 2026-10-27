@@ -22,7 +22,7 @@ export default function Experience() {
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-1">{t('Experience & Journey', 'Pengalaman & Perjalanan')}</h2>
           </div>
-          <p className="text-slate-400 text-sm font-mono max-w-xs">
+          <p className="max-w-sm font-mono text-sm leading-relaxed text-slate-400">
             // {t('Track record of engineering high-impact digital solutions.', 'Rekam jejak membangun solusi digital dengan dampak tinggi.')}
           </p>
         </div>

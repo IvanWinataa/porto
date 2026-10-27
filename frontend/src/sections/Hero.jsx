@@ -109,7 +109,7 @@ export default function Hero({ onOpenResume }) {
 
           {/* Right Hero Interactive Terminal / Code Canvas */}
           <div className="lg:col-span-5 relative">
-            <div className="glass-card rounded-2xl border border-white/15 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-xl">
+            <div className="code-editor glass-card rounded-2xl border border-white/15 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-xl">
               
               {/* Terminal Titlebar */}
               <div className="bg-[#0b0e17] px-4 py-3 border-b border-white/10 flex items-center justify-between">
