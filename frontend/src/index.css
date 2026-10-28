@@ -106,9 +106,14 @@ html[data-theme='light'] .section-surface {
   body {
     background-color: #030712;
     background-image:
+      url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20180%20180'%3E%3Cfilter%20id='noise'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='.82'%20numOctaves='3'%20stitchTiles='stitch'/%3E%3C/filter%3E%3Crect%20width='100%25'%20height='100%25'%20filter='url(%23noise)'%20opacity='.12'/%3E%3C/svg%3E"),
       radial-gradient(ellipse at 16% 0%, rgba(37, 99, 235, 0.16), transparent 36%),
       radial-gradient(ellipse at 88% 38%, rgba(20, 184, 166, 0.09), transparent 32%),
+      radial-gradient(ellipse at 52% 100%, rgba(20, 184, 166, 0.035), transparent 38%),
       linear-gradient(180deg, #030712 0%, #050b16 54%, #030712 100%);
+    background-size: 180px 180px, auto, auto, auto, auto;
+    background-repeat: repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+    background-blend-mode: soft-light, normal, normal, normal, normal;
     background-attachment: fixed;
     color: #f1f5f9;
     font-family: var(--font-sans);
@@ -139,9 +144,14 @@ html[data-theme='light'] {
 html[data-theme='light'] body {
   background-color: #f4f8ff;
   background-image:
+    url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20180%20180'%3E%3Cfilter%20id='noise'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='.82'%20numOctaves='3'%20stitchTiles='stitch'/%3E%3C/filter%3E%3Crect%20width='100%25'%20height='100%25'%20filter='url(%23noise)'%20opacity='.08'/%3E%3C/svg%3E"),
     radial-gradient(ellipse at 14% 0%, rgba(59, 130, 246, 0.14), transparent 34%),
     radial-gradient(ellipse at 88% 34%, rgba(45, 212, 191, 0.1), transparent 30%),
+    radial-gradient(ellipse at 52% 100%, rgba(20, 184, 166, 0.045), transparent 38%),
     linear-gradient(180deg, #f8fbff 0%, #eef5ff 52%, #f8fbff 100%);
+  background-size: 180px 180px, auto, auto, auto, auto;
+  background-repeat: repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  background-blend-mode: soft-light, normal, normal, normal, normal;
   color: #0f172a;
 }
 
