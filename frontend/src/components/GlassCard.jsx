@@ -18,7 +18,7 @@ export default function GlassCard({ children, className = '', onClick }) {
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`glass-card rounded-2xl p-4 sm:p-6 relative overflow-hidden transition-all duration-300 ${
+      className={`glass-card glass-card-interactive rounded-2xl p-4 sm:p-6 relative overflow-hidden transition-all duration-300 ${
         isHovered ? 'shadow-[0_12px_40px_rgba(59,130,246,0.15)] border-white/20' : 'border-white/10'
       } ${className}`}
     >
