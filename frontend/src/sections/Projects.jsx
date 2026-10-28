@@ -89,7 +89,15 @@ const MOCK_PROJECTS = [
 function ProjectSkeletonCard() {
   return (
     <div aria-hidden="true" className="glass-card animate-pulse rounded-2xl p-4 sm:p-6">
-      <div className="mb-4 h-40 rounded-xl border border-white/10 bg-white/5 sm:mb-6 sm:h-52" />
+      <div className="mb-4 overflow-hidden rounded-xl border border-white/10 bg-white/5 sm:mb-6">
+        <div className="flex h-8 items-center gap-1.5 border-b border-white/10 bg-black/30 px-3">
+          <span className="h-2 w-2 rounded-full bg-white/10" />
+          <span className="h-2 w-2 rounded-full bg-white/10" />
+          <span className="h-2 w-2 rounded-full bg-white/10" />
+          <span className="ml-auto h-3 w-2/5 rounded bg-white/10" />
+        </div>
+        <div className="h-40 bg-white/5 sm:h-48" />
+      </div>
       <div className="mb-6 space-y-2.5">
         <div className="h-3 w-full rounded bg-white/10" />
         <div className="h-3 w-4/5 rounded bg-white/10" />
@@ -291,34 +299,44 @@ export default function Projects() {
                   className="group flex h-full flex-col justify-between hover:border-blue-500/40 transition-all duration-300 relative"
                 >
                 <div>
-                  {/* Banner mockup container */}
-                  <div className={`relative h-40 sm:h-52 w-full rounded-xl mb-4 sm:mb-6 overflow-hidden bg-gradient-to-br ${project.gradient || 'from-blue-900/40 to-teal-900/40'} border border-white/10 flex items-center justify-center`}>
-                    {project.image_url && (
-                      <img
-                        src={project.image_url}
-                        alt=""
-                        aria-hidden="true"
-                        loading="lazy"
-                        decoding="async"
-                        onError={(event) => event.currentTarget.remove()}
-                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                    )}
-                    <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-black/10" />
-                    
-                    {/* Grid backdrop */}
-                    <div className="absolute inset-0 bg-dots-pattern opacity-40 pointer-events-none" />
-                    
-                    {/* Floating title tag */}
-                    <div className="z-10 text-center px-3 sm:px-6 transform group-hover:scale-105 transition-transform duration-500">
-                      <span className="font-mono text-[10px] text-teal-300 uppercase tracking-widest bg-black/50 border border-white/10 px-3 py-1 rounded-full backdrop-blur-md">
-                        {project.category}
-                      </span>
-                      <h4 className="text-lg sm:text-xl font-bold text-white mt-3 group-hover:text-teal-300 transition-colors">
-                        {project.title}
-                      </h4>
+                  {/* Browser-style project preview */}
+                  <div className="mb-4 overflow-hidden rounded-xl border border-white/10 bg-white/5 shadow-[0_8px_24px_rgba(0,0,0,0.22)] transition-all duration-500 group-hover:border-blue-400/35 group-hover:shadow-[0_12px_30px_rgba(37,99,235,0.16)] sm:mb-6">
+                    <div aria-hidden="true" className="relative flex h-8 items-center border-b border-white/10 bg-black/30 px-3">
+                      <div className="flex items-center gap-1.5">
+                        <span className="h-2 w-2 rounded-full bg-red-400/80" />
+                        <span className="h-2 w-2 rounded-full bg-amber-400/80" />
+                        <span className="h-2 w-2 rounded-full bg-emerald-400/80" />
+                      </div>
+                      <div className="absolute left-1/2 flex h-4 w-2/5 -translate-x-1/2 items-center gap-1.5 rounded-md border border-white/5 bg-white/5 px-2">
+                        <span className="h-1 w-1 shrink-0 rounded-full bg-teal-400/70" />
+                        <span className="h-1 flex-1 rounded-full bg-white/10" />
+                      </div>
                     </div>
 
+                    <div className={`project-preview relative flex h-40 w-full items-center justify-center overflow-hidden bg-gradient-to-br sm:h-48 ${project.gradient || 'from-blue-900/40 to-teal-900/40'}`}>
+                      {project.image_url && (
+                        <img
+                          src={project.image_url}
+                          alt=""
+                          aria-hidden="true"
+                          loading="lazy"
+                          decoding="async"
+                          onError={(event) => event.currentTarget.remove()}
+                          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        />
+                      )}
+                      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-black/10" />
+                      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-dots-pattern opacity-40" />
+
+                      <div className="z-10 transform px-3 text-center transition-transform duration-500 group-hover:scale-105 sm:px-6">
+                        <span className="rounded-full border border-white/10 bg-black/50 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-teal-300 backdrop-blur-md">
+                          {project.category}
+                        </span>
+                        <h4 className="mt-3 text-lg font-bold text-white transition-colors group-hover:text-teal-300 sm:text-xl">
+                          {project.title}
+                        </h4>
+                      </div>
+                    </div>
                   </div>
 
                   <p className="text-slate-300 text-sm leading-relaxed mb-4 sm:mb-6 line-clamp-2">

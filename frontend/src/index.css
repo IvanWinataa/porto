@@ -172,6 +172,8 @@ html[data-theme='light'] [class~='text-blue-400'],
 html[data-theme='light'] [class~='text-blue-500'] {
   color: #1d4ed8;
 }
+html[data-theme='light'] .project-preview [class~='text-white'] { color: #fff; }
+html[data-theme='light'] .group:hover .project-preview [class~='group-hover:text-teal-300'] { color: #99f6e4; }
 html[data-theme='light'] [class~='text-teal-100'],
 html[data-theme='light'] [class~='text-teal-200'],
 html[data-theme='light'] [class~='text-teal-300'],
