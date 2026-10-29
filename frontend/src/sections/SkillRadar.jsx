@@ -258,9 +258,15 @@ export default function SkillRadar() {
                   })}
                 </svg>
 
-                {/* Outer Axis Label Buttons */}
+              </div>
+
+              {/* Skill categories stay visible and easy to scan on every screen size. */}
+              <div
+                role="group"
+                aria-label={t('Choose a skill area', 'Pilih bidang keahlian')}
+                className="mt-5 grid w-full grid-cols-2 gap-2 border-t border-white/10 pt-4 sm:grid-cols-3"
+              >
                 {skills.map((skill, idx) => {
-                  const labelPos = getCoordinates(idx, 122);
                   const isSelected = idx === selectedSkillIndex;
 
                   return (
@@ -270,43 +276,30 @@ export default function SkillRadar() {
                       onClick={() => setSelectedSkillIndex(idx)}
                       aria-pressed={isSelected}
                       aria-label={t(`Show ${skill.label} details`, `Tampilkan detail ${skill.label}`)}
-                      className={`hidden sm:block font-mono text-[11px] px-2.5 py-1 rounded-lg border transition-all duration-300 cursor-pointer whitespace-nowrap shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${
+                      className={`flex min-h-[62px] min-w-0 items-center gap-2 rounded-xl border p-2 text-left transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 sm:gap-2.5 sm:p-2.5 ${
                         isSelected
-                          ? 'bg-blue-600/40 text-white border-teal-400 font-semibold shadow-[0_0_15px_rgba(45,212,191,0.4)] scale-105'
-                          : 'bg-black/60 text-slate-400 border-white/10 hover:border-white/30 hover:text-slate-200'
+                          ? 'border-teal-300/45 bg-teal-400/10 shadow-[0_0_18px_rgba(20,184,166,0.12)]'
+                          : 'border-white/10 bg-white/[0.025] hover:border-blue-300/30 hover:bg-white/[0.05]'
                       }`}
-                      style={{
-                        position: 'absolute',
-                        left: `${labelPos.x}px`,
-                        top: `${labelPos.y}px`,
-                        transform: 'translate(-50%, -50%)',
-                      }}
                     >
-                      <Icon name={skill.icon} className="mr-1 inline-block h-3 w-3 align-[-2px]" /> {skill.label}
+                      <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border ${
+                        isSelected
+                          ? 'border-teal-300/25 bg-teal-400/10 text-teal-300'
+                          : 'border-white/10 bg-blue-400/[0.06] text-blue-300'
+                      }`}>
+                        <Icon name={skill.icon} className="h-4 w-4" />
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span className={`block truncate font-mono text-[10px] font-semibold leading-tight sm:text-[11px] ${isSelected ? 'text-white' : 'text-slate-300'}`}>
+                          {skill.label}
+                        </span>
+                        <span className="mt-1 block truncate font-mono text-[9px] text-slate-500 sm:text-[10px]">
+                          {skill.score}% · {t(skill.level, skill.levelId)}
+                        </span>
+                      </span>
                     </button>
                   );
                 })}
-
-              </div>
-
-              {/* Bottom Quick Axis Selector Bar */}
-              <div className="mt-6 flex w-full flex-wrap items-center justify-center gap-1.5 border-t border-white/10 pt-4 sm:hidden">
-                {skills.map((skill, idx) => (
-                  <button
-                    key={skill.id}
-                    type="button"
-                    onClick={() => setSelectedSkillIndex(idx)}
-                    aria-label={t(`Show ${skill.label} details`, `Tampilkan detail ${skill.label}`)}
-                    aria-pressed={idx === selectedSkillIndex}
-                    className={`inline-flex min-h-9 items-center justify-center rounded-lg border px-2 py-1 font-mono text-[10px] transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${
-                      idx === selectedSkillIndex 
-                        ? 'border-teal-300/50 bg-teal-400/20 text-teal-100 shadow-[0_0_10px_rgba(20,184,166,0.25)]'
-                        : 'border-white/10 bg-white/5 text-slate-400 hover:bg-white/10 hover:text-slate-200'
-                    }`}
-                  >
-                    {skill.label}
-                  </button>
-                ))}
               </div>
 
             </div>
