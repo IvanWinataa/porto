@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import GlassCard from '../components/GlassCard';
 import NeonButton from '../components/NeonButton';
 import Icon from '../components/Icon';
+import SectionHeading from '../components/SectionHeading';
 import { useLanguage } from '../context/useLanguage';
 
 export default function Architecture() {
@@ -171,20 +172,12 @@ return result.rows;`
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 sm:mb-14 lg:mb-16">
-          <div>
-            <div className="flex items-center gap-3">
-              <span className="font-mono text-teal-400 text-sm font-semibold tracking-wider uppercase">{t('Architecture Flow', 'Alur Arsitektur')}</span>
-              <div className="h-[1px] w-12 bg-teal-400/40"></div>
-            </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-1">{t('System Architecture', 'Arsitektur Sistem')}</h2>
-          </div>
-          
-          {/* Simulation Trigger Button */}
-          <div className="flex items-center gap-3">
-            <NeonButton 
-              onClick={handleSimulatePulse} 
+        <SectionHeading
+          eyebrow={t('Architecture Flow', 'Alur Arsitektur')}
+          title={t('System Architecture', 'Arsitektur Sistem')}
+          action={(
+            <NeonButton
+              onClick={handleSimulatePulse}
               disabled={simulating}
               variant="blue"
               className="text-xs px-5 py-2.5"
@@ -194,8 +187,8 @@ return result.rows;`
                 <span>{simulating ? t(`Transmitting Step ${simulationStep}/4...`, `Mengirim tahap ${simulationStep}/4...`) : t('Simulate Request Pulse', 'Simulasikan Alur Permintaan')}</span>
               </span>
             </NeonButton>
-          </div>
-        </div>
+          )}
+        />
 
         {/* Main Grid: Left Node Visualizer & Right Inspector Panel */}
         <div className="grid lg:grid-cols-12 gap-8 items-start">

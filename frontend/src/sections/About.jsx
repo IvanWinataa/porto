@@ -1,5 +1,6 @@
 import GlassCard from '../components/GlassCard';
 import Icon from '../components/Icon';
+import SectionHeading from '../components/SectionHeading';
 import { useLanguage } from '../context/useLanguage';
 
 export default function About() {
@@ -36,19 +37,11 @@ export default function About() {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 sm:mb-14 lg:mb-16">
-          <div>
-            <div className="flex items-center gap-3">
-              <span className="font-mono text-teal-400 text-sm font-semibold tracking-wider uppercase">{t('01. Discovery', '01. Tentang Saya')}</span>
-              <div className="h-[1px] w-12 bg-teal-400/40"></div>
-            </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-1">{t('About Me', 'Tentang Saya')}</h2>
-          </div>
-          <p className="max-w-sm font-mono text-sm leading-relaxed text-slate-400">
-            // {t('Blending software engineering precision with aesthetic design.', 'Memadukan ketelitian rekayasa perangkat lunak dengan desain yang menarik.')}
-          </p>
-        </div>
+        <SectionHeading
+          eyebrow={t('01. Discovery', '01. Tentang Saya')}
+          title={t('About Me', 'Tentang Saya')}
+          description={t('Blending software engineering precision with aesthetic design.', 'Memadukan ketelitian rekayasa perangkat lunak dengan desain yang menarik.')}
+        />
 
         <div className="grid lg:grid-cols-12 gap-12 items-start">
           

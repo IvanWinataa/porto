@@ -1,5 +1,6 @@
 import GlassCard from '../components/GlassCard';
 import Icon from '../components/Icon';
+import SectionHeading from '../components/SectionHeading';
 import { useLanguage } from '../context/useLanguage';
 import { experiences, getEmploymentTypeLabel, getLocationLabel, getPeriodLabel } from '../data/experience';
 
@@ -13,19 +14,11 @@ export default function Experience() {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 sm:mb-14 lg:mb-16">
-          <div>
-            <div className="flex items-center gap-3">
-              <span className="font-mono text-teal-400 text-sm font-semibold tracking-wider uppercase">{t('03. Career Track', '03. Perjalanan Karier')}</span>
-              <div className="h-[1px] w-12 bg-teal-400/40"></div>
-            </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-1">{t('Experience & Journey', 'Pengalaman & Perjalanan')}</h2>
-          </div>
-          <p className="max-w-sm font-mono text-sm leading-relaxed text-slate-400">
-            // {t('Track record of engineering high-impact digital solutions.', 'Rekam jejak membangun solusi digital dengan dampak tinggi.')}
-          </p>
-        </div>
+        <SectionHeading
+          eyebrow={t('03. Career Track', '03. Perjalanan Karier')}
+          title={t('Experience & Journey', 'Pengalaman & Perjalanan')}
+          description={t('Track record of engineering high-impact digital solutions.', 'Rekam jejak membangun solusi digital dengan dampak tinggi.')}
+        />
 
         {/* Timeline Container */}
         <div className="relative border-l-2 border-white/10 ml-3 sm:ml-4 md:ml-36 space-y-8 sm:space-y-12 pl-5 sm:pl-6 md:pl-10">

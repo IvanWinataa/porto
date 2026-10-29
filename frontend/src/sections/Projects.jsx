@@ -3,6 +3,7 @@ import GlassCard from '../components/GlassCard';
 import Icon from '../components/Icon';
 import ProjectModal from '../components/ProjectModal';
 import ScrollReveal from '../components/ScrollReveal';
+import SectionHeading from '../components/SectionHeading';
 import { fetchProjects } from '../services/api';
 import { useLanguage } from '../context/useLanguage';
 
@@ -189,19 +190,11 @@ export default function Projects() {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 sm:mb-14 lg:mb-16">
-          <div>
-            <div className="flex items-center gap-3">
-              <span className="font-mono text-blue-400 text-sm font-semibold tracking-wider uppercase">{t('02. Showcase', '02. Karya Pilihan')}</span>
-              <div className="h-[1px] w-12 bg-blue-400/40"></div>
-            </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-1">{t('Featured Projects', 'Proyek Unggulan')}</h2>
-          </div>
-          <p className="max-w-sm font-mono text-sm leading-relaxed text-slate-400">
-            // {t('Selected software systems, fullstack platforms, and APIs.', 'Pilihan sistem perangkat lunak, platform fullstack, dan API.')}
-          </p>
-        </div>
+        <SectionHeading
+          eyebrow={t('02. Showcase', '02. Karya Pilihan')}
+          title={t('Featured Projects', 'Proyek Unggulan')}
+          description={t('Selected software systems, fullstack platforms, and APIs.', 'Pilihan sistem perangkat lunak, platform fullstack, dan API.')}
+        />
 
         {/* Search and technology filter */}
         <div className="grid gap-4 sm:grid-cols-[minmax(0,1fr)_16rem] mb-6">

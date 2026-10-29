@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import GlassCard from '../components/GlassCard';
 import NeonButton from '../components/NeonButton';
 import Icon from '../components/Icon';
+import SectionHeading from '../components/SectionHeading';
 import { sendContactMessage } from '../services/api';
 import { useLanguage } from '../context/useLanguage';
 
@@ -81,19 +82,11 @@ export default function Contact() {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 sm:mb-14 lg:mb-16">
-          <div>
-            <div className="flex items-center gap-3">
-              <span className="font-mono text-blue-400 text-sm font-semibold tracking-wider uppercase">04. {t('Connection', 'Kontak')}</span>
-              <div className="h-[1px] w-12 bg-blue-400/40"></div>
-            </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-1">{t('Get In Touch', 'Hubungi Saya')}</h2>
-          </div>
-          <p className="max-w-sm font-mono text-sm leading-relaxed text-slate-400">
-            // {t('Open for remote roles, freelancing, & architecture consults.', 'Terbuka untuk pekerjaan jarak jauh, freelance, dan konsultasi arsitektur.')}
-          </p>
-        </div>
+        <SectionHeading
+          eyebrow={`04. ${t('Connection', 'Kontak')}`}
+          title={t('Get In Touch', 'Hubungi Saya')}
+          description={t('Open for remote roles, freelancing, & architecture consults.', 'Terbuka untuk pekerjaan jarak jauh, freelance, dan konsultasi arsitektur.')}
+        />
 
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           

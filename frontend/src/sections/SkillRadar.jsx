@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import GlassCard from '../components/GlassCard';
 import Icon from '../components/Icon';
+import SectionHeading from '../components/SectionHeading';
 import { useLanguage } from '../context/useLanguage';
 
 export default function SkillRadar() {
@@ -131,19 +132,11 @@ export default function SkillRadar() {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 sm:mb-14 lg:mb-16">
-          <div>
-            <div className="flex items-center gap-3">
-              <span className="font-mono text-teal-400 text-sm font-semibold tracking-wider uppercase">{t('Competency Matrix', 'Matriks Kompetensi')}</span>
-              <div className="h-[1px] w-12 bg-teal-400/40"></div>
-            </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mt-1">{t('Skill Radar Chart', 'Grafik Radar Keahlian')}</h2>
-          </div>
-          <p className="max-w-sm font-mono text-sm leading-relaxed text-slate-400">
-            // {t('Multi-dimensional evaluation across technical domains.', 'Evaluasi multidimensi untuk berbagai bidang teknis.')}
-          </p>
-        </div>
+        <SectionHeading
+          eyebrow={t('Competency Matrix', 'Matriks Kompetensi')}
+          title={t('Skill Radar Chart', 'Grafik Radar Keahlian')}
+          description={t('Multi-dimensional evaluation across technical domains.', 'Evaluasi multidimensi untuk berbagai bidang teknis.')}
+        />
 
         {/* Main Grid: Radar Chart SVG (Left) & Skill Detail Inspector (Right) */}
         <div className="grid lg:grid-cols-12 gap-8 items-center">
