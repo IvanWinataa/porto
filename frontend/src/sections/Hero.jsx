@@ -35,9 +35,26 @@ export default function Hero({ onOpenResume }) {
 
             <div className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.16em] text-blue-300">
               <span aria-hidden="true" className="h-px w-6 bg-teal-400" />
-              {t("Hi, I'm Ivan Winata", 'Halo, saya Ivan Winata')}
+              {t("Hi, I'm", 'Halo, saya')}
             </div>
-            
+
+            {/* Name and role establish the hero's visual hierarchy. */}
+            <h1 className="text-balance text-5xl font-extrabold leading-[1.02] tracking-[-0.045em] sm:text-6xl lg:text-7xl">
+              <span className="text-gradient">Ivan Winata</span>
+            </h1>
+
+            <h2 className="text-balance text-xl font-semibold leading-snug tracking-tight text-slate-100 sm:text-2xl lg:text-[1.75rem]">
+              {t('Fullstack Software Engineer', 'Fullstack Software Engineer')}
+            </h2>
+
+            {/* Subtitle */}
+            <p className="max-w-xl text-sm font-normal leading-relaxed text-slate-300 sm:text-base lg:text-lg">
+              {t(
+                'Building next-gen web applications with high-concurrency Node.js services, pixel-perfect React/Next.js interfaces, and scalable database architectures.',
+                'Membangun aplikasi web modern dengan layanan Node.js berkonkurensi tinggi, antarmuka React/Next.js yang presisi, dan arsitektur basis data yang skalabel.'
+              )}
+            </p>
+
             {/* Live Availability Badge */}
             <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 shadow-[0_0_15px_rgba(16,185,129,0.15)] backdrop-blur-md sm:gap-2.5 sm:px-3.5">
               <span className="relative flex h-2.5 w-2.5">
@@ -48,19 +65,6 @@ export default function Hero({ onOpenResume }) {
                 {t('Available for new projects & roles', 'Terbuka untuk proyek dan posisi baru')}
               </span>
             </div>
-
-            {/* Headline */}
-            <h1 className="text-balance text-4xl font-extrabold leading-[1.12] tracking-tight sm:text-5xl lg:text-6xl">
-              {t('Building Next-Gen', 'Membangun')} <span className="text-gradient">{t('Web Applications', 'Aplikasi Web')}</span> {t('& Digital Experiences', '& Pengalaman Digital')}
-            </h1>
-
-            {/* Subtitle */}
-            <p className="text-slate-300 text-base sm:text-lg max-w-xl leading-relaxed font-normal">
-              {t(
-                'Fullstack Engineer specializing in high-concurrency Node.js services, pixel-perfect React/Next.js interfaces, and scalable database architectures.',
-                'Fullstack Engineer dengan fokus pada layanan Node.js berkonkurensi tinggi, antarmuka React/Next.js yang presisi, dan arsitektur basis data yang skalabel.'
-              )}
-            </p>
 
             {/* CTAs */}
             <div className="flex flex-col items-stretch gap-3 pt-1 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4 sm:pt-2">
@@ -84,9 +88,12 @@ export default function Hero({ onOpenResume }) {
               
               <a 
                 href="#contact" 
-                className="flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 font-mono text-sm text-slate-200 backdrop-blur-md transition-all duration-300 hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 sm:w-auto"
+                className="group flex min-h-12 w-full items-center justify-center gap-2 px-2 py-3 font-mono text-sm text-slate-400 transition-colors duration-300 hover:text-teal-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 sm:w-auto sm:justify-start sm:px-4"
               >
                 <span>{t('Contact Me', 'Hubungi Saya')}</span>
+                <svg aria-hidden="true" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
               </a>
             </div>
 
