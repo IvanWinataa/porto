@@ -1,5 +1,6 @@
 import GlassCard from '../components/GlassCard';
 import Icon from '../components/Icon';
+import ScrollReveal from '../components/ScrollReveal';
 import SectionHeading from '../components/SectionHeading';
 import { useLanguage } from '../context/useLanguage';
 
@@ -93,22 +94,24 @@ export default function About() {
               </div>
 
               <div className="grid gap-3 sm:grid-cols-2">
-                {skillGroups.map((group) => (
-                  <section key={group.id} aria-labelledby={`skill-group-${group.id}`} className="rounded-xl border border-white/10 bg-white/[0.03] p-3.5">
-                    <div className="mb-3 flex items-center justify-between gap-2">
-                      <h4 id={`skill-group-${group.id}`} className="font-mono text-[10px] font-semibold uppercase tracking-wider text-slate-400">
-                        {group.label}
-                      </h4>
-                      <span className="font-mono text-[10px] text-slate-500">{String(group.skills.length).padStart(2, '0')}</span>
-                    </div>
-                    <ul className="flex flex-wrap gap-2">
-                      {group.skills.map((skill) => (
-                        <li key={skill.name} className={`rounded-lg border px-2.5 py-1.5 font-mono text-xs font-medium ${skill.bg} ${skill.color}`}>
-                          {skill.name}
-                        </li>
-                      ))}
-                    </ul>
-                  </section>
+                {skillGroups.map((group, index) => (
+                  <ScrollReveal key={group.id} delay={Math.min(index * 90, 270)} className="h-full">
+                    <section aria-labelledby={`skill-group-${group.id}`} className="h-full rounded-xl border border-white/10 bg-white/[0.03] p-3.5">
+                      <div className="mb-3 flex items-center justify-between gap-2">
+                        <h4 id={`skill-group-${group.id}`} className="font-mono text-[10px] font-semibold uppercase tracking-wider text-slate-400">
+                          {group.label}
+                        </h4>
+                        <span className="font-mono text-[10px] text-slate-500">{String(group.skills.length).padStart(2, '0')}</span>
+                      </div>
+                      <ul className="flex flex-wrap gap-2">
+                        {group.skills.map((skill) => (
+                          <li key={skill.name} className={`rounded-lg border px-2.5 py-1.5 font-mono text-xs font-medium ${skill.bg} ${skill.color}`}>
+                            {skill.name}
+                          </li>
+                        ))}
+                      </ul>
+                    </section>
+                  </ScrollReveal>
                 ))}
               </div>
 

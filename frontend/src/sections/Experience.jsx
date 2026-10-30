@@ -1,5 +1,6 @@
 import GlassCard from '../components/GlassCard';
 import Icon from '../components/Icon';
+import ScrollReveal from '../components/ScrollReveal';
 import SectionHeading from '../components/SectionHeading';
 import { useLanguage } from '../context/useLanguage';
 import { experiences, getEmploymentTypeLabel, getLocationLabel, getPeriodLabel } from '../data/experience';
@@ -22,8 +23,8 @@ export default function Experience() {
 
         {/* Timeline Container */}
         <div className="relative border-l-2 border-white/10 ml-3 sm:ml-4 md:ml-36 space-y-8 sm:space-y-12 pl-5 sm:pl-6 md:pl-10">
-          {experiences.map((exp) => (
-            <div key={exp.id} className="relative group">
+          {experiences.map((exp, index) => (
+            <ScrollReveal key={exp.id} delay={Math.min(index * 100, 300)} className="relative group">
               
               {/* Glowing Node Marker */}
               <div className="absolute -left-[26px] sm:-left-[31px] md:-left-[47px] top-2 w-4 h-4 rounded-full bg-blue-500 border-4 border-[#030712] shadow-[0_0_15px_rgba(59,130,246,0.9)] group-hover:scale-125 group-hover:bg-teal-400 group-hover:shadow-[0_0_20px_rgba(20,184,166,0.9)] transition-all duration-300" />
@@ -82,7 +83,7 @@ export default function Experience() {
                   ))}
                 </div>
               </GlassCard>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
 

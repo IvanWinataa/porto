@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import GlassCard from '../components/GlassCard';
 import Icon from '../components/Icon';
+import ScrollReveal from '../components/ScrollReveal';
 import SectionHeading from '../components/SectionHeading';
 import { useLanguage } from '../context/useLanguage';
 
@@ -263,34 +264,35 @@ export default function SkillRadar() {
                   const isSelected = idx === selectedSkillIndex;
 
                   return (
-                    <button
-                      key={skill.id}
-                      type="button"
-                      onClick={() => setSelectedSkillIndex(idx)}
-                      aria-pressed={isSelected}
-                      aria-label={t(`Show ${skill.label} details`, `Tampilkan detail ${skill.label}`)}
-                      className={`flex min-h-[62px] min-w-0 items-center gap-2 rounded-xl border p-2 text-left transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 sm:gap-2.5 sm:p-2.5 ${
-                        isSelected
-                          ? 'border-teal-300/45 bg-teal-400/10 shadow-[0_0_18px_rgba(20,184,166,0.12)]'
-                          : 'border-white/10 bg-white/[0.025] hover:border-blue-300/30 hover:bg-white/[0.05]'
-                      }`}
-                    >
-                      <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border ${
-                        isSelected
-                          ? 'border-teal-300/25 bg-teal-400/10 text-teal-300'
-                          : 'border-white/10 bg-blue-400/[0.06] text-blue-300'
-                      }`}>
-                        <Icon name={skill.icon} className="h-4 w-4" />
-                      </span>
-                      <span className="min-w-0 flex-1">
-                        <span className={`block truncate font-mono text-[10px] font-semibold leading-tight sm:text-[11px] ${isSelected ? 'text-white' : 'text-slate-300'}`}>
-                          {skill.label}
+                    <ScrollReveal key={skill.id} delay={Math.min(idx * 70, 350)} className="min-w-0">
+                      <button
+                        type="button"
+                        onClick={() => setSelectedSkillIndex(idx)}
+                        aria-pressed={isSelected}
+                        aria-label={t(`Show ${skill.label} details`, `Tampilkan detail ${skill.label}`)}
+                        className={`flex min-h-[62px] min-w-0 w-full items-center gap-2 rounded-xl border p-2 text-left transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 sm:gap-2.5 sm:p-2.5 ${
+                          isSelected
+                            ? 'border-teal-300/45 bg-teal-400/10 shadow-[0_0_18px_rgba(20,184,166,0.12)]'
+                            : 'border-white/10 bg-white/[0.025] hover:border-blue-300/30 hover:bg-white/[0.05]'
+                        }`}
+                      >
+                        <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border ${
+                          isSelected
+                            ? 'border-teal-300/25 bg-teal-400/10 text-teal-300'
+                            : 'border-white/10 bg-blue-400/[0.06] text-blue-300'
+                        }`}>
+                          <Icon name={skill.icon} className="h-4 w-4" />
                         </span>
-                        <span className="mt-1 block truncate font-mono text-[9px] text-slate-500 sm:text-[10px]">
-                          {skill.score}% · {t(skill.level, skill.levelId)}
+                        <span className="min-w-0 flex-1">
+                          <span className={`block truncate font-mono text-[10px] font-semibold leading-tight sm:text-[11px] ${isSelected ? 'text-white' : 'text-slate-300'}`}>
+                            {skill.label}
+                          </span>
+                          <span className="mt-1 block truncate font-mono text-[9px] text-slate-500 sm:text-[10px]">
+                            {skill.score}% · {t(skill.level, skill.levelId)}
+                          </span>
                         </span>
-                      </span>
-                    </button>
+                      </button>
+                    </ScrollReveal>
                   );
                 })}
               </div>
