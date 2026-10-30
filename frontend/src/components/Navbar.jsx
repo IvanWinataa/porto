@@ -158,10 +158,20 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }) {
                   key={link.name}
                   href={link.href}
                   aria-current={isActive ? 'location' : undefined}
-                  className={`px-3.5 py-2 rounded-lg transition-all text-xs uppercase tracking-wider relative group ${
-                    isActive ? 'text-teal-200 bg-white/5' : 'text-slate-300 hover:text-white hover:bg-white/5'
+                  className={`relative group rounded-lg border px-3.5 py-2 text-xs uppercase tracking-wider transition-all ${
+                    isActive
+                      ? 'border-teal-400/20 bg-teal-400/10 text-teal-100 shadow-[0_0_18px_rgba(20,184,166,0.08)]'
+                      : 'border-transparent text-slate-300 hover:bg-white/5 hover:text-white'
                   }`}
                 >
+                  <span
+                    aria-hidden="true"
+                    className={`mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-teal-300 align-middle transition-all duration-300 ${
+                      isActive
+                        ? 'opacity-100 shadow-[0_0_8px_rgba(45,212,191,0.85)]'
+                        : 'opacity-0 group-hover:opacity-50'
+                    }`}
+                  />
                   {link.name}
                   <span className={`absolute bottom-1 left-3.5 right-3.5 h-[2px] bg-gradient-to-r from-blue-500 to-teal-400 transition-transform duration-300 origin-left ${
                     isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
@@ -263,12 +273,18 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }) {
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
                   aria-current={isActive ? 'location' : undefined}
-                  className={`flex min-h-11 items-center font-mono text-sm py-2 px-3 rounded-lg transition-colors ${
+                  className={`flex min-h-11 items-center rounded-lg border px-3 py-2 font-mono text-sm transition-all ${
                     isActive
-                      ? 'border border-teal-500/20 bg-teal-500/10 text-teal-200'
-                      : 'text-slate-300 hover:text-white hover:bg-white/5'
+                      ? 'border-teal-400/25 bg-teal-500/10 text-teal-100 shadow-[0_4px_16px_rgba(20,184,166,0.08)]'
+                      : 'border-transparent text-slate-300 hover:bg-white/5 hover:text-white'
                   }`}
                 >
+                  <span
+                    aria-hidden="true"
+                    className={`mr-2 h-1.5 w-1.5 rounded-full bg-teal-300 transition-all duration-300 ${
+                      isActive ? 'opacity-100 shadow-[0_0_8px_rgba(45,212,191,0.85)]' : 'opacity-0'
+                    }`}
+                  />
                   {link.name}
                 </a>
               );
