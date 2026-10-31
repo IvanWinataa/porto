@@ -213,7 +213,7 @@ export default function Projects() {
                 value={searchQuery}
                 onChange={(event) => setSearchQuery(event.target.value)}
                 placeholder={t('Name, description, or technology...', 'Nama, deskripsi, atau teknologi...')}
-                className="w-full rounded-xl border border-white/10 bg-black/30 py-3 pl-10 pr-4 text-sm text-white placeholder:text-slate-500 focus:border-teal-400/50 focus:outline-none focus:ring-2 focus:ring-teal-400/20"
+                className="w-full rounded-xl border border-white/10 bg-black/30 py-3 pl-10 pr-4 text-sm text-white placeholder:text-slate-500 transition-[border-color,box-shadow] duration-200 focus:border-teal-400/50 focus:outline-none focus:ring-2 focus:ring-teal-400/20"
               />
             </div>
           </div>
@@ -226,7 +226,7 @@ export default function Projects() {
               id="project-technology-filter"
               value={activeTechnology}
               onChange={(event) => setActiveTechnology(event.target.value)}
-              className="w-full rounded-xl border border-white/10 bg-[#0D111D] px-3 py-3 text-sm text-slate-200 focus:border-teal-400/50 focus:outline-none focus:ring-2 focus:ring-teal-400/20"
+              className="w-full rounded-xl border border-white/10 bg-[#0D111D] px-3 py-3 text-sm text-slate-200 transition-[border-color,box-shadow] duration-200 focus:border-teal-400/50 focus:outline-none focus:ring-2 focus:ring-teal-400/20"
             >
               <option value="All">{t('All technologies', 'Semua teknologi')}</option>
               {technologies.map((technology) => (
@@ -237,16 +237,16 @@ export default function Projects() {
         </div>
 
         {/* Categories */}
-        <div className="mb-4 flex flex-wrap gap-2">
+        <div role="group" aria-label={t('Filter projects by category', 'Filter proyek berdasarkan kategori')} className="mb-4 flex flex-wrap gap-2">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
               aria-pressed={activeCategory === cat}
-              className={`min-h-10 px-3 py-2 sm:px-4 rounded-xl text-xs font-mono transition-all duration-300 border cursor-pointer ${
+              className={`min-h-10 cursor-pointer rounded-xl border px-3 py-2 font-mono text-xs transition-all duration-200 ease-out active:scale-[0.98] sm:px-4 ${
                 activeCategory === cat
-                  ? 'bg-blue-600/30 text-white border-blue-500/50 shadow-[0_0_20px_rgba(59,130,246,0.3)] font-semibold'
-                  : 'bg-white/5 text-slate-400 border-white/5 hover:text-white hover:border-white/20'
+                  ? 'scale-[1.02] border-teal-300/40 bg-gradient-to-r from-blue-500/25 to-teal-500/20 text-teal-100 shadow-[0_0_18px_rgba(20,184,166,0.14)] font-semibold'
+                  : 'border-white/10 bg-white/5 text-slate-400 hover:-translate-y-0.5 hover:border-teal-400/30 hover:bg-white/10 hover:text-white'
               }`}
             >
               {cat === 'All' ? t('All', 'Semua') : cat}
@@ -287,7 +287,7 @@ export default function Projects() {
         {!loading && filteredProjects.length > 0 && (
           <div className="grid gap-5 sm:gap-8 md:grid-cols-2">
             {filteredProjects.map((project, index) => (
-              <ScrollReveal key={project.id} delay={Math.min(index * 90, 360)} className="h-full min-w-0">
+              <ScrollReveal key={`${project.id}-${activeCategory}-${activeTechnology}`} delay={Math.min(index * 65, 260)} className="h-full min-w-0">
                 <GlassCard
                   className="group flex h-full flex-col justify-between hover:border-blue-500/40 transition-all duration-300 relative"
                 >
