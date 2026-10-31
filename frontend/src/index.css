@@ -327,6 +327,56 @@ html[data-theme='light'] textarea::placeholder {
     visibility 0s linear var(--scroll-reveal-delay, 0ms);
 }
 
+main > .scroll-reveal + .scroll-reveal {
+  position: relative;
+}
+
+main > .scroll-reveal + .scroll-reveal::before {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 1rem;
+  left: 1rem;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(96, 165, 250, 0.13) 20%,
+    rgba(45, 212, 191, 0.28) 50%,
+    rgba(96, 165, 250, 0.13) 80%,
+    transparent
+  );
+  box-shadow: 0 0 12px rgba(45, 212, 191, 0.1);
+  content: '';
+  pointer-events: none;
+}
+
+html[data-theme='light'] main > .scroll-reveal + .scroll-reveal::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(37, 99, 235, 0.12) 20%,
+    rgba(13, 148, 136, 0.24) 50%,
+    rgba(37, 99, 235, 0.12) 80%,
+    transparent
+  );
+  box-shadow: 0 0 12px rgba(13, 148, 136, 0.08);
+}
+
+@media (min-width: 640px) {
+  main > .scroll-reveal + .scroll-reveal::before {
+    right: 1.5rem;
+    left: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  main > .scroll-reveal + .scroll-reveal::before {
+    right: max(2rem, calc((100% - 68rem) / 2));
+    left: max(2rem, calc((100% - 68rem) / 2));
+  }
+}
+
 .back-to-top {
   opacity: 0;
   pointer-events: none;
