@@ -249,12 +249,36 @@ export default function Contact() {
                   <div
                     role={status.success ? 'status' : 'alert'}
                     aria-live={status.success ? 'polite' : 'assertive'}
-                    className={`p-4 rounded-xl border text-xs font-mono animate-fadeIn ${
-                    status.success 
-                      ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300' 
-                      : 'bg-red-500/10 border-red-500/30 text-red-400'
-                  }`}>
-                    {status.success ? '✓' : '⚠️'} {status.message}
+                    className={[
+                      'flex items-start gap-3 rounded-xl border p-4 font-mono text-xs animate-fadeIn',
+                      status.success
+                        ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-300'
+                        : 'border-red-500/30 bg-red-500/10 text-red-400'
+                    ].join(' ')}
+                  >
+                    <span className={[
+                      'mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border',
+                      status.success
+                        ? 'border-emerald-400/25 bg-emerald-400/10'
+                        : 'border-red-400/25 bg-red-400/10'
+                    ].join(' ')}>
+                      {status.success ? (
+                        <svg aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m5 12 4 4L19 6" />
+                        </svg>
+                      ) : (
+                        <svg aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <circle cx="12" cy="12" r="9" strokeWidth="1.8" />
+                          <path strokeLinecap="round" strokeWidth="1.8" d="M12 8v4m0 4h.01" />
+                        </svg>
+                      )}
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block font-semibold">
+                        {status.success ? t('Message sent', 'Pesan terkirim') : t('Message not sent', 'Pesan belum terkirim')}
+                      </span>
+                      <span className="mt-1 block leading-relaxed opacity-90">{status.message}</span>
+                    </span>
                   </div>
                 )}
 
@@ -263,7 +287,13 @@ export default function Contact() {
                   disabled={loading}
                   className="w-full py-3.5 text-sm"
                 >
-                  {loading ? t('Sending message...', 'Mengirim pesan...') : t('Send Direct Message', 'Kirim Pesan')}
+                  {loading && (
+                    <svg aria-hidden="true" className="h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="3" />
+                      <path className="opacity-80" fill="currentColor" d="M12 3a9 9 0 0 1 9 9h-3a6 6 0 0 0-6-6V3Z" />
+                    </svg>
+                  )}
+                  <span>{loading ? t('Sending message...', 'Mengirim pesan...') : t('Send Direct Message', 'Kirim Pesan')}</span>
                 </NeonButton>
               </form>
             </GlassCard>
