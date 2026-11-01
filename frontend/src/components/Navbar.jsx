@@ -246,7 +246,7 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }) {
               className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
               aria-label={mobileMenuOpen ? t('Close navigation menu', 'Tutup menu navigasi') : t('Open navigation menu', 'Buka menu navigasi')}
               aria-expanded={mobileMenuOpen}
-              aria-controls={mobileMenuOpen ? 'mobile-navigation-menu' : undefined}
+              aria-controls="mobile-navigation-menu"
             >
               {mobileMenuOpen ? (
                 <svg aria-hidden="true" className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -262,8 +262,13 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }) {
         </div>
 
         {/* Mobile Dropdown Menu */}
-        {mobileMenuOpen && (
-          <div id="mobile-navigation-menu" className="md:hidden mt-3 max-h-[calc(100dvh_-_7rem)] overflow-y-auto overscroll-contain pt-3 border-t border-white/10 px-4 pb-4 space-y-2 animate-fadeIn">
+        <div
+          id="mobile-navigation-menu"
+          aria-hidden={!mobileMenuOpen}
+          inert={!mobileMenuOpen}
+          className={`mobile-menu-motion md:hidden ${mobileMenuOpen ? 'is-open' : ''}`}
+        >
+          <div className="mobile-menu-content mt-3 max-h-[calc(100dvh_-_7rem)] overflow-y-auto overscroll-contain border-t border-white/10 px-4 pb-4 pt-3 space-y-2">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href.slice(1);
 
@@ -319,7 +324,7 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }) {
               </NeonButton>
             </div>
           </div>
-        )}
+        </div>
       </nav>
     </header>
   );
