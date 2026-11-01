@@ -185,7 +185,7 @@ export default function Contact() {
           {/* Form */}
           <div className="lg:col-span-7">
             <GlassCard>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} aria-busy={loading} className="space-y-6">
                 
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
@@ -200,7 +200,7 @@ export default function Contact() {
                       maxLength={100}
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-blue-500/60 focus:shadow-[0_0_20px_rgba(59,130,246,0.25)] transition-all text-sm font-sans"
+                      className="w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 font-sans text-sm text-white placeholder-slate-600 outline-none transition-[border-color,box-shadow,background-color] duration-200 focus:border-teal-400/60 focus:shadow-[0_0_20px_rgba(20,184,166,0.18)] focus-visible:ring-2 focus-visible:ring-teal-400/25"
                       placeholder="Alex Morgan"
                     />
                   </div>
@@ -217,7 +217,7 @@ export default function Contact() {
                       maxLength={254}
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-blue-500/60 focus:shadow-[0_0_20px_rgba(59,130,246,0.25)] transition-all text-sm font-sans"
+                      className="w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 font-sans text-sm text-white placeholder-slate-600 outline-none transition-[border-color,box-shadow,background-color] duration-200 focus:border-teal-400/60 focus:shadow-[0_0_20px_rgba(20,184,166,0.18)] focus-visible:ring-2 focus-visible:ring-teal-400/25"
                       placeholder="alex@company.com"
                     />
                   </div>
@@ -240,7 +240,7 @@ export default function Contact() {
                     maxLength={5000}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-blue-500/60 focus:shadow-[0_0_20px_rgba(59,130,246,0.25)] transition-all text-sm resize-none font-sans"
+                    className="w-full resize-none rounded-xl border border-white/10 bg-black/40 px-4 py-3 font-sans text-sm text-white placeholder-slate-600 outline-none transition-[border-color,box-shadow,background-color] duration-200 focus:border-teal-400/60 focus:shadow-[0_0_20px_rgba(20,184,166,0.18)] focus-visible:ring-2 focus-visible:ring-teal-400/25"
                     placeholder={t('Describe your project, timeline, or inquiry...', 'Jelaskan proyek, linimasa, atau pertanyaan Anda...')}
                   />
                 </div>
