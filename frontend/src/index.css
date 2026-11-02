@@ -397,6 +397,9 @@ html[data-theme='light'] main > .scroll-reveal + .scroll-reveal::before {
 }
 
 .chatbot-panel-motion {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 0.75rem);
   visibility: hidden;
   opacity: 0;
   scale: 0.96;
