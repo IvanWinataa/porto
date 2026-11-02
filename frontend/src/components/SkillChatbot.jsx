@@ -309,15 +309,16 @@ export default function SkillChatbot() {
       onPointerUp={endDrag}
       onPointerCancel={endDrag}
     >
-      {isOpen && (
-        <section
-          id="skill-chatbot-panel"
-          role="dialog"
-          aria-modal="false"
-          aria-labelledby="skill-chatbot-title"
-          style={{ transform: `translate3d(${panelOffset.x}px, ${panelOffset.y}px, 0)` }}
-          className="glass-card flex h-[min(34rem,calc(100dvh_-_7rem))] w-[min(23rem,calc(100vw_-_2rem))] flex-col overflow-hidden rounded-2xl border border-white/15 shadow-[0_20px_60px_rgba(0,0,0,0.55)]"
-        >
+      <section
+        id="skill-chatbot-panel"
+        role="dialog"
+        aria-modal="false"
+        aria-labelledby="skill-chatbot-title"
+        aria-hidden={!isOpen}
+        inert={!isOpen}
+        style={{ transform: `translate3d(${panelOffset.x}px, ${panelOffset.y}px, 0)` }}
+        className={`chatbot-panel-motion glass-card flex h-[min(34rem,calc(100dvh_-_7rem))] w-[min(23rem,calc(100vw_-_2rem))] flex-col overflow-hidden rounded-2xl border border-white/15 shadow-[0_20px_60px_rgba(0,0,0,0.55)] ${isOpen ? 'is-open' : ''}`}
+      >
           <header
             onPointerDown={(event) => startDrag('panel', event)}
             onKeyDown={movePanelByKeyboard}
@@ -422,15 +423,14 @@ export default function SkillChatbot() {
             </div>
             <p className="mt-1.5 text-right text-[10px] text-slate-500">Maks. 300 karakter · Enter untuk mengirim</p>
           </form>
-        </section>
-      )}
+      </section>
 
       <button
         ref={launcherRef}
         type="button"
         aria-expanded={isOpen}
         aria-label={isOpen ? t('Close chat assistant', 'Tutup asisten chat') : t('Ask about skills', 'Tanya tentang skill')}
-        aria-controls={isOpen ? 'skill-chatbot-panel' : undefined}
+        aria-controls="skill-chatbot-panel"
         onPointerDown={(event) => startDrag('launcher', event)}
         onClick={(event) => {
           if (suppressLauncherClickRef.current) {
@@ -441,11 +441,14 @@ export default function SkillChatbot() {
           setIsOpen((open) => !open);
         }}
         style={{ transform: `translate3d(${launcherOffset.x}px, ${launcherOffset.y}px, 0)` }}
-        className="group flex h-14 touch-none cursor-grab items-center gap-2 rounded-full border border-blue-300/30 bg-blue-600 px-4 text-sm font-semibold text-white shadow-[0_8px_30px_rgba(59,130,246,0.4)] transition-colors hover:bg-blue-500 active:cursor-grabbing focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712]"
+        className="group flex h-14 touch-none cursor-grab items-center gap-2.5 rounded-full border border-blue-200/30 bg-gradient-to-r from-blue-800 via-blue-700 to-blue-600 px-3.5 text-sm font-semibold text-white shadow-[0_8px_30px_rgba(37,99,235,0.35)] transition-[border-color,background-color,box-shadow] duration-300 hover:border-teal-200/55 hover:shadow-[0_12px_36px_rgba(37,99,235,0.48)] active:cursor-grabbing focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712]"
       >
-        <svg aria-hidden="true" className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M8 10h8M8 14h5m-7 6 1.7-3.4A8 8 0 1 1 20 12a8 8 0 0 1-8 8H6Z" />
-        </svg>
+        <span className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/10 shadow-inner">
+          <svg aria-hidden="true" className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M8 10h8M8 14h5m-7 6 1.7-3.4A8 8 0 1 1 20 12a8 8 0 0 1-8 8H6Z" />
+          </svg>
+          <span aria-hidden="true" className="absolute right-0 top-0 h-2.5 w-2.5 rounded-full border-2 border-blue-700 bg-teal-300 shadow-[0_0_8px_rgba(94,234,212,0.8)]" />
+        </span>
         <span>{isOpen ? t('Close chat', 'Tutup chat') : t('Ask about skills', 'Tanya skill')}</span>
       </button>
     </div>
