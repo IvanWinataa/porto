@@ -107,6 +107,33 @@ html[data-theme='light'] .footer-surface {
     box-shadow 260ms ease;
 }
 
+.project-card::before {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 16%;
+  width: 68%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.7), rgba(45, 212, 191, 0.72), transparent);
+  content: "";
+  opacity: 0.42;
+  pointer-events: none;
+  transform: scaleX(0.68);
+  transform-origin: center;
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+
+.project-card:hover::before,
+.project-card:focus-within::before {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.project-card:focus-within {
+  border-color: rgba(45, 212, 191, 0.34);
+  box-shadow: 0 16px 42px rgba(37, 99, 235, 0.14), 0 0 0 1px rgba(45, 212, 191, 0.1);
+}
+
 @media (hover: hover) and (pointer: fine) {
   .glass-card-interactive:hover {
     transform: translate3d(0, -3px, 0);
@@ -124,6 +151,11 @@ html[data-theme='light'] .footer-surface {
       0 0 0 1px rgba(20, 184, 166, 0.09),
       inset 0 1px rgba(255, 255, 255, 0.8);
   }
+}
+
+html[data-theme='light'] .project-card:focus-within {
+  border-color: rgba(37, 99, 235, 0.28);
+  box-shadow: 0 16px 36px rgba(37, 99, 235, 0.11), 0 0 0 1px rgba(20, 184, 166, 0.09);
 }
 
 html[data-theme='light'] .section-surface {
@@ -222,6 +254,8 @@ html[data-theme='light'] [class~='text-blue-500'] {
 }
 html[data-theme='light'] .project-preview [class~='text-white'] { color: #fff; }
 html[data-theme='light'] .group:hover .project-preview [class~='group-hover:text-teal-300'] { color: #99f6e4; }
+html[data-theme='light'] .project-card .project-demo-action,
+html[data-theme='light'] .project-card .project-demo-action:hover { color: #fff; }
 html[data-theme='light'] [class~='text-teal-100'],
 html[data-theme='light'] [class~='text-teal-200'],
 html[data-theme='light'] [class~='text-teal-300'],

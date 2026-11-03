@@ -289,7 +289,7 @@ export default function Projects() {
             {filteredProjects.map((project, index) => (
               <ScrollReveal key={`${project.id}-${activeCategory}-${activeTechnology}`} delay={Math.min(index * 65, 260)} className="h-full min-w-0">
                 <GlassCard
-                  className="group flex h-full flex-col justify-between hover:border-blue-500/40 transition-all duration-300 relative"
+                  className="project-card group flex h-full flex-col justify-between hover:border-blue-500/40 transition-all duration-300 relative"
                 >
                 <div>
                   {/* Browser-style project preview */}
@@ -354,10 +354,12 @@ export default function Projects() {
                       onClick={() => setSelectedProject(project)}
                       aria-haspopup="dialog"
                       aria-label={t(`View details for ${project.title}`, `Lihat detail ${project.title}`)}
-                      className="inline-flex min-h-10 items-center gap-1.5 rounded text-xs font-mono text-blue-300 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
+                      className="group/case-study inline-flex min-h-12 w-full items-center justify-between gap-3 rounded-xl border border-blue-400/15 bg-gradient-to-r from-blue-500/[0.08] to-teal-500/[0.04] px-3.5 text-left text-xs font-mono text-blue-200 transition-[border-color,background-color,box-shadow,color] duration-300 hover:border-teal-300/30 hover:from-blue-500/[0.14] hover:to-teal-500/[0.1] hover:text-white hover:shadow-[0_8px_24px_rgba(37,99,235,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
                     >
                       <span>{t('View Case Study', 'Lihat Studi Kasus')}</span>
-                      <Icon name="arrowRight" className="h-3.5 w-3.5" />
+                      <span aria-hidden="true" className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-teal-300 transition-[transform,background-color,border-color] duration-300 group-hover/case-study:translate-x-0.5 group-hover/case-study:border-teal-300/30 group-hover/case-study:bg-teal-400/10 group-focus-visible/case-study:translate-x-0.5">
+                        <Icon name="arrowRight" className="h-3.5 w-3.5" />
+                      </span>
                     </button>
 
                     <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
@@ -367,9 +369,9 @@ export default function Projects() {
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label={t(`Open source code for ${project.title}`, `Buka kode sumber ${project.title}`)}
-                          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 text-xs font-semibold text-slate-200 transition-colors hover:border-white/20 hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
+                          className="group/source inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/10 bg-gradient-to-br from-white/[0.07] to-blue-400/[0.035] px-4 text-xs font-semibold text-slate-200 shadow-sm shadow-black/10 transition-[transform,border-color,background-color,box-shadow,color] duration-300 hover:-translate-y-0.5 hover:border-teal-300/30 hover:from-blue-500/10 hover:to-teal-500/10 hover:text-white hover:shadow-[0_8px_22px_rgba(20,184,166,0.1)] active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
                         >
-                          <Icon name="github" className="h-4 w-4" />
+                          <Icon name="github" className="h-4 w-4 transition-transform duration-300 group-hover/source:scale-110" />
                           <span>{t('Source Code', 'Kode Sumber')}</span>
                         </a>
                       )}
@@ -380,10 +382,10 @@ export default function Projects() {
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label={t(`Open live demo for ${project.title}`, `Buka demo ${project.title}`)}
-                          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-blue-500/50 bg-blue-600 px-4 text-xs font-semibold text-white transition-colors hover:bg-blue-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
+                          className="project-demo-action group/demo inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-blue-300/25 bg-gradient-to-r from-blue-600 to-teal-600 px-4 text-xs font-semibold text-white shadow-[0_8px_20px_rgba(37,99,235,0.18)] transition-[transform,border-color,background-color,box-shadow] duration-300 hover:-translate-y-0.5 hover:border-teal-200/50 hover:from-blue-500 hover:to-teal-500 hover:shadow-[0_10px_24px_rgba(20,184,166,0.2)] active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300"
                         >
                           <span>{t('Live Demo', 'Demo Langsung')}</span>
-                          <Icon name="externalLink" className="h-4 w-4" />
+                          <Icon name="externalLink" className="h-4 w-4 transition-transform duration-300 group-hover/demo:-translate-y-0.5 group-hover/demo:translate-x-0.5" />
                         </a>
                       ) : (
                         <span className="inline-flex min-h-11 items-center justify-center rounded-xl border border-white/5 bg-white/[0.03] px-4 text-center text-xs font-mono text-slate-500">
