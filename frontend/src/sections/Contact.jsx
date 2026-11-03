@@ -105,11 +105,11 @@ export default function Contact() {
                 
                 {/* Email Card with Copy button */}
                 <div className="p-4 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between gap-3 group hover:border-teal-500/40 transition-colors">
-                  <div className="flex items-center gap-3 overflow-hidden">
+                  <div className="flex min-w-0 flex-1 items-center gap-3 overflow-hidden">
                     <div className="w-10 h-10 rounded-lg bg-teal-500/10 text-teal-400 border border-teal-500/20 flex items-center justify-center font-mono">
                       <Icon name="mail" className="h-5 w-5" />
                     </div>
-                    <div>
+                    <div className="min-w-0 flex-1">
                       <div className="font-mono text-[10px] text-slate-400 uppercase tracking-wider">{t('Direct Email', 'Email Langsung')}</div>
                       <a
                         href={`mailto:${emailAddress}`}

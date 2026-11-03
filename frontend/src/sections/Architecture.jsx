@@ -197,9 +197,9 @@ return result.rows;`
           <div className="lg:col-span-7 space-y-4">
             
             {/* Interactive Nodes Flow Box */}
-            <div className="glass-card rounded-2xl p-6 relative overflow-hidden border border-white/10">
+            <div className="glass-card rounded-2xl p-4 sm:p-6 relative overflow-hidden border border-white/10">
               
-              <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6 font-mono text-xs text-slate-400">
+              <div className="mb-5 flex flex-col items-start gap-2 border-b border-white/10 pb-4 font-mono text-xs text-slate-400 sm:mb-6 sm:flex-row sm:items-center sm:justify-between">
                 <span className="flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
                   {t('Live Topology Graph', 'Graf Topologi Langsung')}
@@ -223,24 +223,24 @@ return result.rows;`
                         onClick={() => setSelectedNodeId(node.id)}
                         aria-pressed={isSelected}
                         aria-label={t(`Select ${node.title} details`, `Pilih detail ${node.title}`)}
-                        className={`w-full text-left p-4 rounded-xl border transition-all duration-300 cursor-pointer flex items-center justify-between gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712] ${
+                        className={`flex w-full cursor-pointer items-center justify-between gap-3 rounded-xl border p-3 text-left transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712] sm:gap-4 sm:p-4 ${
                           isSelected 
-                            ? 'bg-blue-600/20 border-blue-400 shadow-[0_0_25px_rgba(59,130,246,0.3)] scale-[1.02]'
+                            ? 'scale-[1.01] border-blue-400 bg-blue-600/20 shadow-[0_0_25px_rgba(59,130,246,0.3)] sm:scale-[1.02]'
                             : 'bg-white/5 border-white/10 hover:border-white/30 hover:bg-white/10'
                         } ${isStepActive ? 'ring-2 ring-blue-400 shadow-[0_0_30px_rgba(59,130,246,0.5)]' : ''}`}
                       >
-                        <span className="flex items-center gap-3.5">
-                          <span aria-hidden="true" className="w-10 h-10 rounded-lg bg-black/40 border border-white/10 flex items-center justify-center text-teal-300 shrink-0">
+                        <span className="flex min-w-0 items-center gap-3">
+                          <span aria-hidden="true" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-black/40 text-teal-300">
                             <Icon name={node.icon} className="h-5 w-5" />
                           </span>
-                          <span>
-                            <span className="flex items-center gap-2">
-                              <span className="font-bold text-white text-sm sm:text-base">{node.title}</span>
-                              <span className="font-mono text-[10px] text-teal-300 bg-teal-500/10 px-2 py-0.5 rounded border border-teal-500/20">
+                          <span className="min-w-0">
+                            <span className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                              <span className="break-words text-sm font-bold text-white sm:text-base">{node.title}</span>
+                              <span className="rounded border border-teal-500/20 bg-teal-500/10 px-2 py-0.5 font-mono text-[10px] text-teal-300">
                                 {t(node.badge, node.badgeId)}
                               </span>
                             </span>
-                            <span className="block text-xs text-slate-400 font-mono mt-0.5">{t(node.subtitle, node.subtitleId)}</span>
+                            <span className="mt-0.5 block break-words font-mono text-xs text-slate-400">{t(node.subtitle, node.subtitleId)}</span>
                           </span>
                         </span>
 
@@ -269,8 +269,8 @@ return result.rows;`
               </div>
 
               {/* Status Simulation Bar */}
-              <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between font-mono text-xs text-slate-400">
-                <span className="flex items-center gap-2">
+              <div className="mt-6 flex flex-col items-start gap-2 border-t border-white/10 pt-4 font-mono text-xs text-slate-400 sm:flex-row sm:items-center sm:justify-between">
+                <span className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
                   <span className="inline-flex items-center gap-1.5 text-blue-400"><Icon name="bolt" className="h-3.5 w-3.5" /> {t('Request Flow:', 'Alur Permintaan')}</span>{' '}
                   Client ➔ Router ➔ Guard ➔ DB
                 </span>
@@ -287,15 +287,15 @@ return result.rows;`
             <GlassCard className="space-y-6">
               
               {/* Header Inspector */}
-              <div className="flex items-start justify-between pb-4 border-b border-white/10">
-                <div>
+              <div className="flex flex-wrap items-start justify-between gap-3 border-b border-white/10 pb-4">
+                <div className="min-w-0 flex-1">
                   <span className="font-mono text-[10px] text-blue-400 uppercase tracking-widest">// {t('NODE INSPECTION PANEL', 'PANEL INSPEKSI NODE')}</span>
-                  <h3 className="text-xl font-bold text-white mt-1 flex items-center gap-2">
-                    <Icon name={currentNode.icon} className="h-5 w-5 text-teal-300" />
-                    <span>{currentNode.title}</span>
+                  <h3 className="mt-1 flex items-start gap-2 break-words text-lg font-bold text-white sm:text-xl">
+                    <Icon name={currentNode.icon} className="mt-0.5 h-5 w-5 shrink-0 text-teal-300" />
+                    <span className="min-w-0">{currentNode.title}</span>
                   </h3>
                 </div>
-                <span className="font-mono text-xs text-teal-400 bg-teal-500/10 border border-teal-500/20 px-2.5 py-1 rounded-full">
+                <span className="max-w-full rounded-full border border-teal-500/20 bg-teal-500/10 px-2.5 py-1 font-mono text-xs text-teal-400">
                   {t(currentNode.badge, currentNode.badgeId)}
                 </span>
               </div>

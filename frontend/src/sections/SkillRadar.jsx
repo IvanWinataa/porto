@@ -307,19 +307,19 @@ export default function SkillRadar() {
             <GlassCard className="space-y-6">
               
               {/* Skill Header */}
-              <div className="flex items-center justify-between pb-4 border-b border-white/10">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 text-teal-300 flex items-center justify-center">
+              <div className="flex items-start justify-between gap-3 border-b border-white/10 pb-4">
+                <div className="flex min-w-0 items-center gap-3">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-blue-500/20 bg-blue-500/10 text-teal-300">
                     <Icon name={currentSkill.icon} className="h-6 w-6" />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <span className="font-mono text-[10px] text-teal-300 uppercase tracking-widest">// {t('DOMAIN INSPECTOR', 'DETAIL BIDANG')}</span>
-                    <h3 className="text-2xl font-bold text-white mt-0.5">{currentSkill.label}</h3>
+                    <h3 className="mt-0.5 break-words text-lg font-bold leading-tight text-white sm:text-2xl">{currentSkill.label}</h3>
                   </div>
                 </div>
 
-                <div className="text-right">
-                  <div className="text-2xl font-bold font-mono text-teal-400">{currentSkill.score}%</div>
+                <div className="shrink-0 text-right">
+                  <div className="font-mono text-xl font-bold text-teal-400 sm:text-2xl">{currentSkill.score}%</div>
                   <div className="font-mono text-[10px] text-blue-300 bg-blue-500/10 border border-blue-500/20 px-2 py-0.5 rounded-md mt-1">
                     {t(currentSkill.level, currentSkill.levelId)}
                   </div>

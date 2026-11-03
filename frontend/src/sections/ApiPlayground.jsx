@@ -202,8 +202,8 @@ export default function ApiPlayground() {
           <div className="lg:col-span-5 space-y-6">
             <GlassCard className="space-y-5">
               
-              <div className="flex items-center justify-between pb-3 border-b border-white/10">
-                <span className="font-mono text-xs text-slate-400 uppercase tracking-widest">
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-3">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-slate-400 sm:text-xs">
                   // {t('HTTP Request Console', 'Konsol Request HTTP')}
                 </span>
                 <span className="font-mono text-[10px] text-teal-400 bg-teal-500/10 border border-teal-500/20 px-2 py-0.5 rounded">
@@ -216,14 +216,14 @@ export default function ApiPlayground() {
                 <label className="block font-mono text-[11px] text-slate-400 uppercase tracking-wider mb-1.5">
                   Target Endpoint
                 </label>
-                <div className="flex items-center rounded-xl bg-black/50 border border-white/10 px-3 py-2.5 text-xs font-mono text-slate-200">
-                  <span className={`font-bold mr-2 text-[11px] ${
+                <div className="flex min-w-0 flex-wrap items-center gap-x-1.5 gap-y-1 rounded-xl border border-white/10 bg-black/50 px-3 py-2.5 font-mono text-xs text-slate-200">
+                  <span className={`mr-1 shrink-0 text-[11px] font-bold ${
                     selectedPreset.method === 'GET' ? 'text-emerald-400' : 'text-amber-300'
                   }`}>
                     {selectedPreset.method}
                   </span>
-                  <span className="text-slate-500">{BASE_URL}</span>
-                  <span className="text-teal-300 font-semibold">{selectedPreset.path}</span>
+                  <span className="min-w-0 break-all text-slate-500 sm:break-normal">{BASE_URL}</span>
+                  <span className="min-w-0 break-all font-semibold text-teal-300 sm:break-normal">{selectedPreset.path}</span>
                 </div>
               </div>
 
@@ -279,7 +279,7 @@ export default function ApiPlayground() {
             <div className="code-editor glass-card rounded-2xl border border-white/15 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
               
               {/* Terminal Titlebar */}
-              <div className="bg-[#0b0e17] px-4 py-3 border-b border-white/10 flex items-center justify-between">
+              <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 border-b border-white/10 bg-[#0b0e17] px-4 py-3">
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full bg-red-500/80 border border-red-600/50" />
                   <div className="w-3 h-3 rounded-full bg-yellow-500/80 border border-yellow-600/50" />
@@ -288,7 +288,7 @@ export default function ApiPlayground() {
                 </div>
 
                 {responseMeta && (
-                  <div className="flex items-center gap-2">
+                  <div className="flex flex-wrap items-center gap-2">
                     <span className={`font-mono text-[11px] px-2 py-0.5 rounded border ${
                       responseMeta.ok
                         ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
@@ -304,7 +304,7 @@ export default function ApiPlayground() {
               </div>
 
               {/* Response Body Content */}
-              <div className="p-5 font-mono text-xs bg-[#060812]/95 min-h-[300px] max-h-[460px] overflow-auto leading-relaxed text-slate-300">
+              <div className="min-h-[300px] max-h-[460px] overflow-auto bg-[#060812]/95 p-3 font-mono text-xs leading-relaxed text-slate-300 sm:p-5">
                 {loading ? (
                   <div className="flex flex-col items-center justify-center py-20 text-slate-500 space-y-3">
                     <div className="w-8 h-8 border-2 border-teal-500/20 border-t-teal-400 rounded-full animate-spin" />
@@ -326,7 +326,7 @@ export default function ApiPlayground() {
               </div>
 
               {/* Status footer bar */}
-              <div className="bg-[#080B14] px-4 py-2.5 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-500">
+              <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 border-t border-white/5 bg-[#080B14] px-4 py-2.5 font-mono text-[11px] text-slate-500">
                 <span className="flex items-center gap-2">
                   <span className={`w-2 h-2 rounded-full ${responseMeta?.ok ? 'bg-emerald-400 animate-pulse' : 'bg-slate-600'}`} />
                   {responseMeta?.isSimulated ? 'Demonstration Mode' : 'Live Gateway Connection'}
