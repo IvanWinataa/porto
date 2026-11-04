@@ -133,9 +133,9 @@ export default function ApiPlayground() {
           };
 
       setResponseMeta({
-        status: 200,
-        statusText: '200 OK (Simulated)',
-        ok: true,
+        status: null,
+        statusText: 'Simulated',
+        ok: false,
         timeMs: elapsed,
         headers: { 'content-type': 'application/json', 'x-mode': 'demonstration-fallback' },
         body: fallbackData,
@@ -279,7 +279,7 @@ export default function ApiPlayground() {
             <div className="code-editor glass-card rounded-2xl border border-white/15 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
               
               {/* Terminal Titlebar */}
-              <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 border-b border-white/10 bg-[#0b0e17] px-4 py-3">
+              <div aria-live="polite" aria-atomic="true" className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 border-b border-white/10 bg-[#0b0e17] px-4 py-3">
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full bg-red-500/80 border border-red-600/50" />
                   <div className="w-3 h-3 rounded-full bg-yellow-500/80 border border-yellow-600/50" />
@@ -289,12 +289,16 @@ export default function ApiPlayground() {
 
                 {responseMeta && (
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className={`font-mono text-[11px] px-2 py-0.5 rounded border ${
-                      responseMeta.ok
-                        ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
-                        : 'bg-rose-500/10 border-rose-500/30 text-rose-400'
+                    <span className={`rounded border px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wide ${
+                      responseMeta.isSimulated
+                        ? 'border-amber-400/30 bg-amber-400/10 text-amber-300'
+                        : responseMeta.ok
+                          ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-400'
+                          : 'border-rose-500/30 bg-rose-500/10 text-rose-400'
                     }`}>
-                      {responseMeta.status} {responseMeta.statusText}
+                      {responseMeta.isSimulated
+                        ? t('Demo response', 'Respons simulasi')
+                        : `${responseMeta.status} ${responseMeta.statusText}`}
                     </span>
                     <span className="inline-flex items-center gap-1 font-mono text-[11px] text-teal-300 bg-teal-500/10 border border-teal-500/20 px-2 py-0.5 rounded">
                       <Icon name="bolt" className="h-3 w-3" /> {responseMeta.timeMs}ms
@@ -304,32 +308,84 @@ export default function ApiPlayground() {
               </div>
 
               {/* Response Body Content */}
-              <div className="min-h-[300px] max-h-[460px] overflow-auto bg-[#060812]/95 p-3 font-mono text-xs leading-relaxed text-slate-300 sm:p-5">
+              <div aria-busy={loading} className="min-h-[300px] max-h-[460px] overflow-auto bg-[#060812]/95 p-3 font-mono text-xs leading-relaxed text-slate-300 sm:p-5">
                 {loading ? (
-                  <div className="flex flex-col items-center justify-center py-20 text-slate-500 space-y-3">
-                    <div className="w-8 h-8 border-2 border-teal-500/20 border-t-teal-400 rounded-full animate-spin" />
-                    <p>{t('Transmitting HTTP packet over TCP...', 'Mengirimkan paket HTTP melalui TCP...')}</p>
+                  <div role="status" aria-live="polite" className="flex min-h-[260px] flex-col items-center justify-center px-3 py-10 text-center">
+                    <div aria-hidden="true" className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl border border-blue-400/20 bg-blue-500/10">
+                      <span className="h-6 w-6 rounded-full border-2 border-teal-400/20 border-t-teal-300 animate-spin" />
+                    </div>
+                    <p className="font-semibold text-slate-200">{t('Request in progress', 'Permintaan sedang diproses')}</p>
+                    <p className="mt-2 max-w-xs text-[11px] leading-relaxed text-slate-500">
+                      {t('Waiting for the API response from the selected endpoint.', 'Menunggu respons API dari endpoint yang dipilih.')}
+                    </p>
+                    <div aria-hidden="true" className="mt-5 h-1 w-36 overflow-hidden rounded-full bg-white/5">
+                      <div className="h-full w-1/2 animate-pulse rounded-full bg-gradient-to-r from-blue-400 to-teal-300" />
+                    </div>
                   </div>
                 ) : responseMeta ? (
-                  <pre className="text-emerald-300/90 whitespace-pre-wrap break-words">
-                    {JSON.stringify(responseMeta.body, null, 2)}
-                  </pre>
+                  <>
+                    {responseMeta.isSimulated && (
+                      <div role="status" className="mb-4 flex items-start gap-3 rounded-xl border border-amber-400/20 bg-amber-400/[0.06] px-3.5 py-3 font-sans">
+                        <span aria-hidden="true" className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-amber-400/20 bg-amber-400/10 text-amber-300">
+                          <Icon name="triangle" className="h-3.5 w-3.5" />
+                        </span>
+                        <span className="min-w-0">
+                          <span className="block text-[11px] font-semibold text-amber-200">{t('Backend is unreachable', 'Backend tidak terjangkau')}</span>
+                          <span className="mt-1 block text-[11px] leading-relaxed text-amber-100/65">
+                            {t('Showing a sample response for preview. This is not a live API result.', 'Menampilkan contoh respons untuk pratinjau. Ini bukan hasil API langsung.')}
+                          </span>
+                        </span>
+                      </div>
+                    )}
+                    <pre className={`whitespace-pre-wrap break-words ${
+                      responseMeta.isSimulated
+                        ? 'text-amber-200/85'
+                        : responseMeta.ok
+                          ? 'text-emerald-300/90'
+                          : 'text-rose-300/90'
+                    }`}>
+                      {JSON.stringify(responseMeta.body, null, 2)}
+                    </pre>
+                  </>
                 ) : (
-                  <div className="flex flex-col items-center justify-center py-20 text-slate-500 text-center">
-                    <Icon name="bolt" className="mb-2 h-8 w-8 text-teal-400" />
-                    <p className="font-semibold text-slate-400">{t('No active request sent yet', 'Belum ada request yang dikirim')}</p>
-                    <p className="text-[11px] text-slate-600 mt-1">
-                      {t('Click "Send Live Request" above to test this endpoint against the server.', 'Klik tombol "Kirim Request" di atas untuk menguji endpoint ini.')}
+                  <div className="flex min-h-[260px] flex-col items-center justify-center px-3 py-10 text-center">
+                    <div aria-hidden="true" className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl border border-teal-400/20 bg-teal-400/[0.07] text-teal-300">
+                      <Icon name="bolt" className="h-5 w-5" />
+                    </div>
+                    <span className="rounded-full border border-teal-400/15 bg-teal-400/[0.06] px-2.5 py-1 font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-teal-300">
+                      {t('Terminal ready', 'Terminal siap')}
+                    </span>
+                    <p className="mt-3 font-semibold text-slate-200">{t('No response yet', 'Belum ada respons')}</p>
+                    <p className="mt-2 max-w-xs text-[11px] leading-relaxed text-slate-500">
+                      {t('Choose an endpoint and send a request to inspect its response here.', 'Pilih endpoint dan kirim request untuk melihat responsnya di sini.')}
                     </p>
                   </div>
                 )}
               </div>
 
               {/* Status footer bar */}
-              <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 border-t border-white/5 bg-[#080B14] px-4 py-2.5 font-mono text-[11px] text-slate-500">
+              <div aria-live="polite" className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 border-t border-white/5 bg-[#080B14] px-4 py-2.5 font-mono text-[11px] text-slate-500">
                 <span className="flex items-center gap-2">
-                  <span className={`w-2 h-2 rounded-full ${responseMeta?.ok ? 'bg-emerald-400 animate-pulse' : 'bg-slate-600'}`} />
-                  {responseMeta?.isSimulated ? 'Demonstration Mode' : 'Live Gateway Connection'}
+                  <span className={`h-2 w-2 rounded-full ${
+                    loading
+                      ? 'animate-pulse bg-blue-400'
+                      : responseMeta?.isSimulated
+                        ? 'bg-amber-400'
+                        : responseMeta?.ok
+                          ? 'bg-emerald-400'
+                          : responseMeta
+                            ? 'bg-rose-400'
+                            : 'bg-slate-600'
+                  }`} />
+                  {loading
+                    ? t('Sending request...', 'Mengirim request...')
+                    : responseMeta?.isSimulated
+                      ? t('Backend offline · sample response', 'Backend offline · contoh respons')
+                      : responseMeta?.ok
+                        ? t('Request completed', 'Request selesai')
+                        : responseMeta
+                          ? t('Request failed', 'Request gagal')
+                          : t('Ready for a request', 'Siap menerima request')}
                 </span>
 
                 {responseMeta && (
