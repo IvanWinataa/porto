@@ -180,7 +180,7 @@ export default function SkillRadar() {
                         key={level}
                         points={points}
                         fill="none"
-                        stroke="rgba(255, 255, 255, 0.08)"
+                        stroke="var(--radar-grid-color)"
                         strokeWidth="1"
                         strokeDasharray={level === 100 ? 'none' : '3,3'}
                       />
@@ -197,7 +197,7 @@ export default function SkillRadar() {
                         y1={cy}
                         x2={outerPoint.x}
                         y2={outerPoint.y}
-                        stroke="rgba(255, 255, 255, 0.12)"
+                        stroke="var(--radar-axis-color)"
                         strokeWidth="1"
                       />
                     );
@@ -232,7 +232,7 @@ export default function SkillRadar() {
                           cy={y}
                           r={isSelected ? "7" : "4.5"}
                           fill={isSelected ? "#2dd4bf" : "#60a5fa"}
-                          stroke="#030712"
+                          stroke="var(--radar-node-outline)"
                           strokeWidth="2"
                           className="transition-all duration-300 hover:scale-150"
                         />
