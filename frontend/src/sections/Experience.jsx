@@ -55,7 +55,7 @@ export default function Experience() {
                   @ {exp.company}
                 </h4>
 
-                <p className="text-slate-300 text-sm leading-relaxed mb-4">
+                <p className="mb-4 text-sm leading-relaxed text-slate-300 sm:text-base">
                   {t(exp.description, exp.descriptionId)}
                 </p>
 

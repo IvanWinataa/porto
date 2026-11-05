@@ -96,7 +96,7 @@ export default function Contact() {
             <GlassCard className="space-y-6">
               <h3 className="text-xl font-bold text-white">{t("Let's craft something exceptional", 'Mari wujudkan sesuatu yang istimewa')}</h3>
               
-              <p className="text-slate-300 leading-relaxed text-sm">
+              <p className="text-slate-300 leading-relaxed text-sm sm:text-base">
                 {t('Whether you have a project opportunity, architecture inquiry, or simply want to connect, feel free to reach out. I respond promptly to all messages.', 'Jika Anda memiliki tawaran proyek, pertanyaan tentang arsitektur, atau sekadar ingin terhubung, silakan kirim pesan. Saya akan membalas secepatnya.')}
               </p>
 

@@ -228,7 +228,7 @@ export default function ApiPlayground() {
               </div>
 
               {/* Description */}
-              <p className="text-xs text-slate-400 leading-relaxed font-sans">
+              <p className="font-sans text-sm leading-relaxed text-slate-400 sm:text-base">
                 {t(selectedPreset.description, selectedPreset.descriptionId)}
               </p>
 

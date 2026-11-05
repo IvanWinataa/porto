@@ -341,7 +341,7 @@ export default function SkillRadar() {
               </div>
 
               {/* Description */}
-              <p className="text-slate-300 text-sm leading-relaxed">
+              <p className="text-sm leading-relaxed text-slate-300 sm:text-base">
                 {t(currentSkill.description, currentSkill.descriptionId)}
               </p>
 

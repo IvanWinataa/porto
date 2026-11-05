@@ -301,7 +301,7 @@ return result.rows;`
               </div>
 
               {/* Description */}
-              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+              <p className="text-sm leading-relaxed text-slate-300 sm:text-base">
                 {t(currentNode.description, currentNode.descriptionId)}
               </p>
 
