@@ -507,6 +507,25 @@ html[data-theme='light'] .experience-timeline-node {
   border-color: #f8fbff;
 }
 
+@media (hover: none) and (pointer: coarse) {
+  button:not(:disabled),
+  a[href] {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button:not(:disabled):not([class~='touch-none']):active,
+  a[href]:not([class~='touch-none']):active {
+    filter: brightness(1.08);
+  }
+}
+
+@media (hover: none) and (pointer: coarse) and (prefers-reduced-motion: no-preference) {
+  button:not(:disabled):not([class~='touch-none']):active,
+  a[href]:not([class~='touch-none']):active {
+    scale: 0.98;
+  }
+}
+
 @media (max-width: 640px) {
   html,
   body {
