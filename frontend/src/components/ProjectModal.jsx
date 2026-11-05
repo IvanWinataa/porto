@@ -86,7 +86,7 @@ export default function ProjectModal({ project, onClose }) {
       onClick={onClose}
     >
       <div 
-        className="glass-card flex max-h-[92vh] w-full max-w-3xl flex-col overflow-hidden rounded-3xl border border-white/20 text-left shadow-[0_20px_60px_rgba(59,130,246,0.3)] cursor-default transition-all duration-300"
+        className="project-modal-panel glass-card flex max-h-[92vh] w-full max-w-3xl flex-col overflow-hidden rounded-3xl border border-white/20 text-left shadow-[0_20px_60px_rgba(59,130,246,0.3)] cursor-default transition-all duration-300"
         style={{ maxHeight: '92dvh' }}
         ref={dialogRef}
         role="dialog"
