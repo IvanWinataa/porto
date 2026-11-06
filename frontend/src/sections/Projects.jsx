@@ -213,8 +213,21 @@ export default function Projects() {
                 value={searchQuery}
                 onChange={(event) => setSearchQuery(event.target.value)}
                 placeholder={t('Name, description, or technology...', 'Nama, deskripsi, atau teknologi...')}
-                className="w-full rounded-xl border border-white/10 bg-black/30 py-3 pl-10 pr-4 text-sm text-white placeholder:text-slate-500 transition-[border-color,box-shadow] duration-200 focus:border-teal-400/50 focus:outline-none focus:ring-2 focus:ring-teal-400/20"
+                className="project-search-input w-full rounded-xl border border-white/10 bg-black/30 py-3 pl-10 pr-11 text-sm text-white placeholder:text-slate-500 transition-[border-color,box-shadow] duration-200 focus:border-teal-400/50 focus:outline-none focus:ring-2 focus:ring-teal-400/20"
               />
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery('')}
+                  aria-label={t('Clear project search', 'Hapus pencarian proyek')}
+                  title={t('Clear search', 'Hapus pencarian')}
+                  className="absolute right-2 top-1/2 inline-flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-lg text-slate-400 transition-[background-color,color,transform] duration-200 hover:bg-white/10 hover:text-white active:scale-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 animate-fadeIn"
+                >
+                  <svg aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m6 6 12 12M18 6 6 18" />
+                  </svg>
+                </button>
+              )}
             </div>
           </div>
 
