@@ -6,6 +6,8 @@ import SectionHeading from '../components/SectionHeading';
 import { sendContactMessage } from '../services/api';
 import { useLanguage } from '../context/useLanguage';
 
+const MESSAGE_MAX_LENGTH = 5000;
+
 export default function Contact() {
   const { t } = useLanguage();
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -17,6 +19,18 @@ export default function Contact() {
   const emailCopyTimer = useRef(null);
 
   const emailAddress = 'ivanwinata1972@gmail.com';
+  const messageLength = formData.message.length;
+  const messageProgress = (messageLength / MESSAGE_MAX_LENGTH) * 100;
+  const messageLimitState = messageLength >= 4900
+    ? 'text-rose-400'
+    : messageLength >= 4500
+      ? 'text-amber-300'
+      : 'text-slate-500';
+  const messageProgressColor = messageLength >= 4900
+    ? 'from-rose-500 to-red-400'
+    : messageLength >= 4500
+      ? 'from-amber-400 to-orange-300'
+      : 'from-blue-500 to-teal-400';
 
   useEffect(() => () => {
     if (emailCopyTimer.current) window.clearTimeout(emailCopyTimer.current);
@@ -228,21 +242,41 @@ export default function Contact() {
                     <label htmlFor="message" className="block text-xs font-mono uppercase tracking-widest text-slate-400">
                       {t('Project Details / Message', 'Detail Proyek / Pesan')}
                     </label>
-                    <span className="font-mono text-[10px] text-slate-500">
-                      {formData.message.length} {t('chars', 'karakter')}
-                    </span>
                   </div>
                   <textarea
                     id="message"
                     name="message"
                     required
                     rows="5"
-                    maxLength={5000}
+                    maxLength={MESSAGE_MAX_LENGTH}
                     value={formData.message}
                     onChange={handleChange}
                     className="w-full resize-none rounded-xl border border-white/10 bg-black/40 px-4 py-3 font-sans text-sm text-white placeholder-slate-600 outline-none transition-[border-color,box-shadow,background-color] duration-200 focus:border-teal-400/60 focus:shadow-[0_0_20px_rgba(20,184,166,0.18)] focus-visible:ring-2 focus-visible:ring-teal-400/25"
                     placeholder={t('Describe your project, timeline, or inquiry...', 'Jelaskan proyek, linimasa, atau pertanyaan Anda...')}
                   />
+                  <div className="mt-2 flex items-center justify-between gap-3 font-mono text-[10px]">
+                    <span className={`transition-colors ${messageLimitState}`}>
+                      {messageLength} / {MESSAGE_MAX_LENGTH} {t('characters', 'karakter')}
+                    </span>
+                    <span className="text-slate-500">{t('Message limit', 'Batas pesan')}</span>
+                  </div>
+                  <div
+                    role="progressbar"
+                    aria-label={t('Message length', 'Panjang pesan')}
+                    aria-valuemin={0}
+                    aria-valuemax={MESSAGE_MAX_LENGTH}
+                    aria-valuenow={messageLength}
+                    aria-valuetext={t(
+                      `${messageLength} of ${MESSAGE_MAX_LENGTH} characters`,
+                      `${messageLength} dari ${MESSAGE_MAX_LENGTH} karakter`
+                    )}
+                    className="mt-1.5 h-1 overflow-hidden rounded-full bg-white/10"
+                  >
+                    <span
+                      className={`block h-full rounded-full bg-gradient-to-r transition-[width,background-image] duration-200 ${messageProgressColor}`}
+                      style={{ width: `${messageProgress}%` }}
+                    />
+                  </div>
                 </div>
 
                 {status.message && (
