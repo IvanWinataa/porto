@@ -89,7 +89,7 @@ const MOCK_PROJECTS = [
 
 function ProjectSkeletonCard() {
   return (
-    <div aria-hidden="true" className="glass-card animate-pulse rounded-2xl p-4 sm:p-6">
+    <div aria-hidden="true" className="glass-card skeleton-card rounded-2xl p-4 sm:p-6">
       <div className="mb-4 overflow-hidden rounded-xl border border-white/10 bg-white/5 sm:mb-6">
         <div className="flex h-8 items-center gap-1.5 border-b border-white/10 bg-black/30 px-3">
           <span className="h-2 w-2 rounded-full bg-white/10" />
