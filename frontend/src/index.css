@@ -587,8 +587,33 @@ html[data-theme='light'] .back-to-top:hover {
   color: #0f766e;
 }
 
+@keyframes timeline-current-pulse {
+  0% {
+    opacity: 0.7;
+    transform: scale(0.62);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.35);
+  }
+}
+
+.experience-timeline-node.is-current::before {
+  position: absolute;
+  inset: -0.45rem;
+  border: 1px solid rgba(45, 212, 191, 0.65);
+  border-radius: inherit;
+  content: '';
+  pointer-events: none;
+  animation: timeline-current-pulse 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
 html[data-theme='light'] .experience-timeline-node {
   border-color: #f8fbff;
+}
+
+html[data-theme='light'] .experience-timeline-node.is-current::before {
+  border-color: rgba(13, 148, 136, 0.5);
 }
 
 @media (hover: none) and (pointer: coarse) {
@@ -654,6 +679,10 @@ html[data-theme='light'] .experience-timeline-node {
   }
 
   .mobile-menu-motion.is-open .mobile-menu-content > * {
+    animation: none;
+  }
+
+  .experience-timeline-node.is-current::before {
     animation: none;
   }
 
