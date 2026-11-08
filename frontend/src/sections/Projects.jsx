@@ -415,16 +415,31 @@ export default function Projects() {
         )}
 
         {!loading && filteredProjects.length === 0 && (
-          <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-12 text-center">
-            <p className="text-sm font-semibold text-white">{t('No matching projects found', 'Tidak ada proyek yang cocok')}</p>
-            <p className="mt-2 text-xs text-slate-400">{t('Try another search term or clear the selected filters.', 'Coba kata pencarian lain atau hapus filter yang dipilih.')}</p>
-            <button
-              type="button"
-              onClick={clearFilters}
-              className="mt-5 rounded-lg border border-blue-400/30 bg-blue-500/10 px-4 py-2 text-xs font-medium text-blue-200 transition-colors hover:bg-blue-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
-            >
-              {t('Clear filters', 'Hapus filter')}
-            </button>
+          <div
+            className="relative isolate overflow-hidden rounded-2xl border border-blue-400/15 bg-gradient-to-br from-blue-500/[0.06] via-white/[0.02] to-teal-500/[0.05] px-6 py-12 text-center animate-fadeIn"
+          >
+            <div aria-hidden="true" className="pointer-events-none absolute -right-12 -top-16 h-40 w-40 rounded-full bg-blue-500/10 blur-3xl" />
+            <div aria-hidden="true" className="pointer-events-none absolute -bottom-20 -left-10 h-40 w-40 rounded-full bg-teal-500/10 blur-3xl" />
+            <div className="relative mx-auto flex max-w-lg flex-col items-center">
+              <span aria-hidden="true" className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-teal-400/20 bg-teal-400/10 text-teal-300 shadow-[0_8px_24px_rgba(20,184,166,0.1)]">
+                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <circle cx="11" cy="11" r="7" strokeWidth="1.8" />
+                  <path strokeLinecap="round" strokeWidth="1.8" d="m16 16 4 4M8.5 11h5" />
+                </svg>
+              </span>
+              <p className="text-sm font-semibold text-white">{t('No matching projects found', 'Tidak ada proyek yang cocok')}</p>
+              <p className="mt-2 text-xs leading-relaxed text-slate-400">{t('Try another search term or clear the selected filters.', 'Coba kata pencarian lain atau hapus filter yang dipilih.')}</p>
+              <button
+                type="button"
+                onClick={clearFilters}
+                className="group mt-5 inline-flex min-h-10 items-center justify-center gap-2 rounded-xl border border-teal-400/25 bg-teal-500/10 px-4 py-2 text-xs font-medium text-teal-200 transition-[transform,border-color,background-color,color] duration-200 hover:-translate-y-0.5 hover:border-teal-300/40 hover:bg-teal-500/15 hover:text-white active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
+              >
+                <svg aria-hidden="true" className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-[-45deg]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v6h6M5.6 15a7 7 0 1 0 .3-6.9L4 10" />
+                </svg>
+                {t('Clear filters', 'Hapus filter')}
+              </button>
+            </div>
           </div>
         )}
 
