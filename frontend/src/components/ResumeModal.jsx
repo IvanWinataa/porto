@@ -71,7 +71,7 @@ export default function ResumeModal({ isOpen, onClose }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md transition-opacity duration-300"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md transition-opacity duration-300 animate-fadeIn"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
@@ -80,7 +80,7 @@ export default function ResumeModal({ isOpen, onClose }) {
       <div
         ref={modalRef}
         onClick={(e) => e.stopPropagation()}
-        className="glass-card border border-white/20 rounded-2xl max-w-4xl w-full max-h-[92vh] flex flex-col shadow-[0_20px_60px_rgba(0,0,0,0.8)] overflow-hidden"
+        className="modal-panel-enter glass-card border border-white/20 rounded-2xl max-w-4xl w-full max-h-[92vh] flex flex-col shadow-[0_20px_60px_rgba(0,0,0,0.8)] overflow-hidden"
       >
         {/* Top Control Bar */}
         <div className="flex items-center justify-between gap-2 px-3 py-3 border-b border-white/10 bg-black/40 shrink-0 sm:px-6 sm:py-4">
