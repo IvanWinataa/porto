@@ -48,7 +48,7 @@ export default function ScrollProgress() {
     >
       <div
         aria-hidden="true"
-        className="h-full origin-left bg-gradient-to-r from-blue-500 via-teal-400 to-teal-300 shadow-[0_0_10px_rgba(20,184,166,0.65)] transition-transform duration-100 ease-out"
+        className={`scroll-progress-fill h-full origin-left bg-gradient-to-r from-blue-500 via-teal-400 to-teal-300 shadow-[0_0_10px_rgba(20,184,166,0.65)] transition-transform duration-100 ease-out ${progress > 0 ? 'is-active' : ''}`}
         style={{ transform: `scaleX(${progress})` }}
       />
     </div>
