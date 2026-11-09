@@ -304,8 +304,7 @@ export default function SkillRadar() {
           {/* Skill Detail Inspector Column (Right 6 cols) */}
           <div className="lg:col-span-6">
             
-            <GlassCard className="space-y-6">
-              
+            <GlassCard key={currentSkill.id} className="space-y-6 animate-fadeIn">
               {/* Skill Header */}
               <div className="flex items-start justify-between gap-3 border-b border-white/10 pb-4">
                 <div className="flex min-w-0 items-center gap-3">
