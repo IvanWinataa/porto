@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import GlassCard from '../components/GlassCard';
 import NeonButton from '../components/NeonButton';
 import Icon from '../components/Icon';
@@ -63,7 +63,12 @@ export default function ApiPlayground() {
   const [requestBody, setRequestBody] = useState(PRESET_ENDPOINTS[0].defaultBody || '');
   const [loading, setLoading] = useState(false);
   const [responseMeta, setResponseMeta] = useState(null);
-  const [copied, setCopied] = useState(false);
+  const [copyStatus, setCopyStatus] = useState('idle');
+  const copyStatusTimer = useRef(null);
+
+  useEffect(() => () => {
+    if (copyStatusTimer.current) window.clearTimeout(copyStatusTimer.current);
+  }, []);
 
   const handleSelectPreset = (preset) => {
     setSelectedPreset(preset);
@@ -73,7 +78,7 @@ export default function ApiPlayground() {
 
   const handleExecute = async () => {
     setLoading(true);
-    setCopied(false);
+    setCopyStatus('idle');
     const start = performance.now();
 
     try {
@@ -146,11 +151,20 @@ export default function ApiPlayground() {
     }
   };
 
-  const handleCopyResponse = () => {
+  const handleCopyResponse = async () => {
     if (!responseMeta) return;
-    navigator.clipboard.writeText(JSON.stringify(responseMeta.body, null, 2));
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    if (copyStatusTimer.current) window.clearTimeout(copyStatusTimer.current);
+
+    try {
+      if (!navigator.clipboard?.writeText) throw new Error('Clipboard API unavailable');
+      await navigator.clipboard.writeText(JSON.stringify(responseMeta.body, null, 2));
+      setCopyStatus('copied');
+    } catch (error) {
+      console.warn('Copying the API response failed:', error);
+      setCopyStatus('failed');
+    }
+
+    copyStatusTimer.current = window.setTimeout(() => setCopyStatus('idle'), 2000);
   };
 
   return (
@@ -392,16 +406,34 @@ export default function ApiPlayground() {
                   <button
                     type="button"
                     onClick={handleCopyResponse}
-                    className="text-slate-400 hover:text-white transition-colors cursor-pointer flex items-center gap-1"
+                    aria-label={copyStatus === 'copied'
+                      ? t('Response copied', 'Respons tersalin')
+                      : copyStatus === 'failed'
+                        ? t('Could not copy response', 'Respons gagal disalin')
+                        : t('Copy response JSON', 'Salin JSON respons')}
+                    className="inline-flex min-h-8 min-w-[6rem] items-center justify-end gap-1.5 rounded-lg px-2 font-mono text-[11px] text-slate-400 transition-[background-color,color] hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
                   >
-                    {copied ? (
-                      <span className="text-emerald-400 font-semibold">✓ Copied!</span>
+                    {copyStatus === 'copied' ? (
+                      <span aria-live="polite" className="inline-flex items-center gap-1 text-emerald-400 font-semibold animate-fadeIn">
+                        <svg aria-hidden="true" className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="m5 12 4 4L19 6" />
+                        </svg>
+                        {t('Copied!', 'Tersalin!')}
+                      </span>
+                    ) : copyStatus === 'failed' ? (
+                      <span aria-live="polite" className="inline-flex items-center gap-1 text-amber-300 font-semibold animate-fadeIn">
+                        <svg aria-hidden="true" className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <circle cx="12" cy="12" r="9" strokeWidth="2" />
+                          <path strokeLinecap="round" strokeWidth="2" d="M12 8v4m0 4h.01" />
+                        </svg>
+                        {t('Copy failed', 'Gagal menyalin')}
+                      </span>
                     ) : (
                       <>
-                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg aria-hidden="true" className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                         </svg>
-                        <span>Copy JSON</span>
+                        <span>{t('Copy JSON', 'Salin JSON')}</span>
                       </>
                     )}
                   </button>
