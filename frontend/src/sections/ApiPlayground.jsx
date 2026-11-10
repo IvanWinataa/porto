@@ -325,7 +325,7 @@ export default function ApiPlayground() {
                 ) : responseMeta ? (
                   <>
                     {responseMeta.isSimulated && (
-                      <div role="status" className="mb-4 flex items-start gap-3 rounded-xl border border-amber-400/20 bg-amber-400/[0.06] px-3.5 py-3 font-sans">
+                      <div role="status" className="mb-4 flex items-start gap-3 rounded-xl border border-amber-400/20 bg-amber-400/[0.06] px-3.5 py-3 font-sans animate-fadeIn">
                         <span aria-hidden="true" className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-amber-400/20 bg-amber-400/10 text-amber-300">
                           <Icon name="triangle" className="h-3.5 w-3.5" />
                         </span>
@@ -337,7 +337,7 @@ export default function ApiPlayground() {
                         </span>
                       </div>
                     )}
-                    <pre className={`whitespace-pre-wrap break-words ${
+                    <pre className={`whitespace-pre-wrap break-words animate-fadeIn ${
                       responseMeta.isSimulated
                         ? 'text-amber-200/85'
                         : responseMeta.ok
