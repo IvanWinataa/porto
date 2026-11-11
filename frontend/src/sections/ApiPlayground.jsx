@@ -181,7 +181,11 @@ export default function ApiPlayground() {
         />
 
         {/* Preset Endpoint Selector Tabs */}
-        <div className="flex flex-wrap gap-2 mb-8">
+        <div
+          role="group"
+          aria-label={t('Choose an API endpoint', 'Pilih endpoint API')}
+          className="mb-8 flex flex-wrap gap-2"
+        >
           {PRESET_ENDPOINTS.map((preset) => {
             const isSelected = preset.id === selectedPreset.id;
             return (
@@ -189,10 +193,11 @@ export default function ApiPlayground() {
                 key={preset.id}
                 type="button"
                 onClick={() => handleSelectPreset(preset)}
-                className={`flex items-center gap-2.5 px-4 py-2.5 rounded-xl text-xs font-mono transition-all border cursor-pointer ${
+                aria-pressed={isSelected}
+                className={`flex cursor-pointer items-center gap-2.5 rounded-xl border px-4 py-2.5 font-mono text-xs transition-all duration-200 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${
                   isSelected
-                    ? 'bg-blue-600/30 text-white border-teal-400/60 shadow-[0_0_20px_rgba(20,184,166,0.3)]'
-                    : 'bg-white/5 text-slate-400 border-white/10 hover:border-white/25 hover:text-slate-200'
+                    ? 'scale-[1.01] border-teal-400/60 bg-blue-600/30 text-white shadow-[0_0_20px_rgba(20,184,166,0.3)]'
+                    : 'border-white/10 bg-white/5 text-slate-400 hover:-translate-y-0.5 hover:border-white/25 hover:text-slate-200'
                 }`}
               >
                 <span className={`px-1.5 py-0.5 rounded text-[10px] font-bold ${
