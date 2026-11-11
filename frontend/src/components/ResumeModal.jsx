@@ -6,9 +6,14 @@ import { experiences, getLocationLabel, getPeriodLabel } from '../data/experienc
 
 export default function ResumeModal({ isOpen, onClose }) {
   const { t, language } = useLanguage();
-  const [copiedLink, setCopiedLink] = useState(false);
+  const [copyLinkStatus, setCopyLinkStatus] = useState('idle');
+  const copyLinkTimer = useRef(null);
   const modalRef = useRef(null);
   const closeBtnRef = useRef(null);
+
+  useEffect(() => () => {
+    if (copyLinkTimer.current) window.clearTimeout(copyLinkTimer.current);
+  }, []);
 
   // Keyboard trap and ESC handling
   useEffect(() => {
@@ -62,11 +67,20 @@ export default function ResumeModal({ isOpen, onClose }) {
     window.print();
   };
 
-  const handleCopyLink = () => {
+  const handleCopyLink = async () => {
+    if (copyLinkTimer.current) window.clearTimeout(copyLinkTimer.current);
     const url = window.location.origin + window.location.pathname + '#experience';
-    navigator.clipboard.writeText(url);
-    setCopiedLink(true);
-    setTimeout(() => setCopiedLink(false), 2000);
+
+    try {
+      if (!navigator.clipboard?.writeText) throw new Error('Clipboard API unavailable');
+      await navigator.clipboard.writeText(url);
+      setCopyLinkStatus('copied');
+    } catch (error) {
+      console.warn('Copying the profile link failed:', error);
+      setCopyLinkStatus('failed');
+    }
+
+    copyLinkTimer.current = window.setTimeout(() => setCopyLinkStatus('idle'), 2000);
   };
 
   return (
@@ -110,15 +124,34 @@ export default function ResumeModal({ isOpen, onClose }) {
             <button
               type="button"
               onClick={handleCopyLink}
-              className="flex min-h-10 min-w-10 items-center justify-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-2 text-xs font-mono text-slate-300 transition-all hover:bg-white/10 hover:text-white sm:px-3"
+              className="flex min-h-10 min-w-10 items-center justify-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-2 text-xs font-mono text-slate-300 transition-all hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 sm:px-3"
               title={t('Copy Profile Link', 'Salin Tautan Profil')}
-              aria-label={copiedLink ? t('Profile link copied', 'Tautan profil tersalin') : t('Copy profile link', 'Salin tautan profil')}
+              aria-label={copyLinkStatus === 'copied'
+                ? t('Profile link copied', 'Tautan profil tersalin')
+                : copyLinkStatus === 'failed'
+                  ? t('Could not copy profile link', 'Tautan profil gagal disalin')
+                  : t('Copy profile link', 'Salin tautan profil')}
             >
-              {copiedLink ? (
-                <span className="text-emerald-400 font-semibold">✓ {t('Copied!', 'Tersalin!')}</span>
+              {copyLinkStatus === 'copied' ? (
+                <span aria-live="polite" className="inline-flex items-center gap-1 text-emerald-400 font-semibold animate-fadeIn">
+                  <svg aria-hidden="true" className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="m5 12 4 4L19 6" />
+                  </svg>
+                  <span className="hidden sm:inline">{t('Copied!', 'Tersalin!')}</span>
+                  <span className="sr-only">{t('Profile link copied', 'Tautan profil tersalin')}</span>
+                </span>
+              ) : copyLinkStatus === 'failed' ? (
+                <span aria-live="polite" className="inline-flex items-center gap-1 text-amber-300 font-semibold animate-fadeIn">
+                  <svg aria-hidden="true" className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="9" strokeWidth="2" />
+                    <path strokeLinecap="round" strokeWidth="2" d="M12 8v4m0 4h.01" />
+                  </svg>
+                  <span className="hidden sm:inline">{t('Copy failed', 'Gagal menyalin')}</span>
+                  <span className="sr-only">{t('Could not copy profile link', 'Tautan profil gagal disalin')}</span>
+                </span>
               ) : (
                 <>
-                  <svg aria-hidden="true" className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg aria-hidden="true" className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                   </svg>
                   <span className="hidden sm:inline">{t('Share', 'Bagikan')}</span>
