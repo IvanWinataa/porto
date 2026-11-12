@@ -5,7 +5,7 @@ export default function NeonButton({ children, onClick, className = '', href, va
     blue: "bg-gradient-to-r from-blue-600/30 to-teal-500/30 text-white border border-blue-500/40 hover:border-teal-300 shadow-[0_0_20px_rgba(59,130,246,0.25)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)]"
   };
 
-  const baseClasses = `relative group inline-flex items-center justify-center font-mono font-medium px-6 py-3 rounded-full transition-all duration-300 backdrop-blur-md overflow-hidden ${
+  const baseClasses = `relative group inline-flex items-center justify-center font-mono font-medium px-6 py-3 rounded-full transition-all duration-300 backdrop-blur-md overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 active:scale-[0.98] disabled:active:scale-100 ${
     disabled && !href ? 'cursor-not-allowed opacity-60 pointer-events-none' : 'cursor-pointer'
   } ${variants[variant] || variants.primary} ${className}`;
   
