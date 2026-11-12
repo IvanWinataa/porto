@@ -22,7 +22,7 @@ export default function Experience() {
         />
 
         {/* Timeline Container */}
-        <div className="relative border-l-2 border-white/10 ml-3 sm:ml-4 md:ml-36 space-y-8 sm:space-y-12 pl-5 sm:pl-6 md:pl-10">
+        <div className="experience-timeline relative ml-3 space-y-8 pl-5 sm:ml-4 sm:space-y-12 sm:pl-6 md:ml-36 md:pl-10">
           {experiences.map((exp, index) => (
             <ScrollReveal key={exp.id} delay={Math.min(index * 100, 300)} className="relative group">
               

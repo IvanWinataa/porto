@@ -660,6 +660,34 @@ html[data-theme='light'] .back-to-top:hover {
   color: #0f766e;
 }
 
+.experience-timeline::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  border-radius: 999px;
+  background: linear-gradient(
+    180deg,
+    rgba(59, 130, 246, 0.16),
+    rgba(45, 212, 191, 0.42) 38%,
+    rgba(59, 130, 246, 0.26) 72%,
+    rgba(45, 212, 191, 0.12)
+  );
+  content: '';
+  pointer-events: none;
+}
+
+html[data-theme='light'] .experience-timeline::before {
+  background: linear-gradient(
+    180deg,
+    rgba(37, 99, 235, 0.18),
+    rgba(13, 148, 136, 0.38) 38%,
+    rgba(37, 99, 235, 0.24) 72%,
+    rgba(13, 148, 136, 0.12)
+  );
+}
+
 @keyframes timeline-current-pulse {
   0% {
     opacity: 0.7;
