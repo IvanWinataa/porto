@@ -158,7 +158,7 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }) {
                   key={link.name}
                   href={link.href}
                   aria-current={isActive ? 'location' : undefined}
-                  className={`relative group rounded-lg border px-3.5 py-2 text-xs uppercase tracking-wider transition-all ${
+                  className={`relative group rounded-lg border px-3.5 py-2 text-xs uppercase tracking-wider transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${
                     isActive
                       ? 'border-teal-400/20 bg-teal-400/10 text-teal-100 shadow-[0_0_18px_rgba(20,184,166,0.08)]'
                       : 'border-transparent text-slate-300 hover:bg-white/5 hover:text-white'
@@ -278,7 +278,7 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }) {
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
                   aria-current={isActive ? 'location' : undefined}
-                  className={`flex min-h-11 items-center rounded-lg border px-3 py-2 font-mono text-sm transition-all ${
+                  className={`flex min-h-11 items-center rounded-lg border px-3 py-2 font-mono text-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${
                     isActive
                       ? 'border-teal-400/25 bg-teal-500/10 text-teal-100 shadow-[0_4px_16px_rgba(20,184,166,0.08)]'
                       : 'border-transparent text-slate-300 hover:bg-white/5 hover:text-white'
