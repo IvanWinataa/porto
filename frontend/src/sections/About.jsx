@@ -96,7 +96,8 @@ export default function About() {
               <div className="grid gap-3 sm:grid-cols-2">
                 {skillGroups.map((group, index) => (
                   <ScrollReveal key={group.id} delay={Math.min(index * 90, 270)} className="h-full">
-                    <section aria-labelledby={`skill-group-${group.id}`} className="h-full rounded-xl border border-white/10 bg-white/[0.03] p-3.5">
+                    <section aria-labelledby={`skill-group-${group.id}`} className="relative h-full overflow-hidden rounded-xl border border-white/10 bg-white/[0.03] p-3.5">
+                      <span aria-hidden="true" className="absolute inset-x-3.5 top-0 h-px bg-gradient-to-r from-blue-400/0 via-teal-300/55 to-blue-400/0" />
                       <div className="mb-3 flex items-center justify-between gap-2">
                         <h4 id={`skill-group-${group.id}`} className="font-mono text-[10px] font-semibold uppercase tracking-wider text-slate-400">
                           {group.label}
