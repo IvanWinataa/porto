@@ -128,9 +128,26 @@ export default function Projects() {
 
   const technologies = [...new Set(projects.flatMap((project) => project.tech_stack || []))]
     .sort((first, second) => first.localeCompare(second));
-  const hasActiveFilters = searchQuery.trim().length > 0
-    || activeCategory !== 'All'
-    || activeTechnology !== 'All';
+  const activeFilters = [
+    searchQuery.trim() && {
+      key: 'search',
+      label: `${t('Search', 'Cari')}: ${searchQuery.trim()}`,
+      ariaLabel: t(`Remove search filter ${searchQuery.trim()}`, `Hapus filter pencarian ${searchQuery.trim()}`),
+      onRemove: () => setSearchQuery('')
+    },
+    activeCategory !== 'All' && {
+      key: 'category',
+      label: `${t('Category', 'Kategori')}: ${activeCategory}`,
+      ariaLabel: t(`Remove category filter ${activeCategory}`, `Hapus filter kategori ${activeCategory}`),
+      onRemove: () => setActiveCategory('All')
+    },
+    activeTechnology !== 'All' && {
+      key: 'technology',
+      label: `${t('Technology', 'Teknologi')}: ${activeTechnology}`,
+      ariaLabel: t(`Remove technology filter ${activeTechnology}`, `Hapus filter teknologi ${activeTechnology}`),
+      onRemove: () => setActiveTechnology('All')
+    }
+  ].filter(Boolean);
 
   function clearFilters() {
     setSearchQuery('');
@@ -274,14 +291,31 @@ export default function Projects() {
                 ? `Menampilkan ${filteredProjects.length} dari ${projects.length} proyek`
                 : `Showing ${filteredProjects.length} of ${projects.length} projects`}
             </p>
-            {hasActiveFilters && (
-              <button
-                type="button"
-                onClick={clearFilters}
-                className="rounded-lg px-2 py-1 font-mono text-[11px] text-teal-300 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
-              >
-                {t('Clear filters', 'Hapus filter')}
-              </button>
+            {activeFilters.length > 0 && (
+              <div role="group" aria-label={t('Active project filters', 'Filter proyek aktif')} className="flex min-w-0 flex-wrap items-center gap-2">
+                {activeFilters.map((filter) => (
+                  <button
+                    key={filter.key}
+                    type="button"
+                    onClick={filter.onRemove}
+                    aria-label={filter.ariaLabel}
+                    title={filter.ariaLabel}
+                    className="group inline-flex min-h-8 max-w-full items-center gap-1.5 rounded-full border border-teal-400/25 bg-teal-500/[0.07] px-2.5 py-1 font-mono text-[11px] text-teal-200 transition-[border-color,background-color,transform] duration-200 hover:border-teal-300/50 hover:bg-teal-500/15 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
+                  >
+                    <span className="max-w-40 truncate sm:max-w-52">{filter.label}</span>
+                    <svg aria-hidden="true" className="h-3 w-3 shrink-0 transition-transform duration-200 group-hover:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 6 18 18M18 6 6 18" />
+                    </svg>
+                  </button>
+                ))}
+                <button
+                  type="button"
+                  onClick={clearFilters}
+                  className="rounded-lg px-2 py-1 font-mono text-[11px] text-teal-300 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
+                >
+                  {t('Clear filters', 'Hapus filter')}
+                </button>
+              </div>
             )}
           </div>
         )}
