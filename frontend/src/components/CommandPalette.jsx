@@ -298,8 +298,19 @@ export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }
               );
             })
           ) : (
-            <div role="status" className="py-8 text-center font-mono text-xs text-slate-500">
-              {t(`No matching commands found for "${query}"`, `Tidak ada perintah yang cocok untuk "${query}"`)}
+            <div role="status" className="mx-1 my-2 rounded-xl border border-dashed border-white/10 bg-white/[0.03] px-5 py-8 text-center animate-fadeIn">
+              <span aria-hidden="true" className="mx-auto flex h-10 w-10 items-center justify-center rounded-xl border border-teal-400/20 bg-gradient-to-br from-blue-500/10 to-teal-500/10 text-teal-300">
+                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <circle cx="10.5" cy="10.5" r="6.5" strokeWidth="1.8" />
+                  <path d="m15.5 15.5 5 5" strokeLinecap="round" strokeWidth="1.8" />
+                </svg>
+              </span>
+              <p className="mt-3 font-sans text-sm font-semibold text-slate-200">
+                {t('No commands found', 'Perintah tidak ditemukan')}
+              </p>
+              <p className="mt-1 break-words font-mono text-xs leading-relaxed text-slate-400">
+                {t(`No results for "${query}". Try another keyword.`, `Tidak ada hasil untuk "${query}". Coba kata kunci lain.`)}
+              </p>
             </div>
           )}
         </div>
