@@ -114,6 +114,7 @@ export default function SkillRadar() {
       y: cy + r * Math.sin(angle)
     };
   };
+  const selectedPoint = getCoordinates(selectedSkillIndex, currentSkill.score);
 
   // Generate polygon points string for data overlay
   const polygonPoints = skills
@@ -219,6 +220,21 @@ export default function SkillRadar() {
                       <stop offset="100%" stopColor="rgba(20,184,166, 0.35)" />
                     </linearGradient>
                   </defs>
+
+                  <line
+                    key={currentSkill.id}
+                    aria-hidden="true"
+                    x1={cx}
+                    y1={cy}
+                    x2={selectedPoint.x}
+                    y2={selectedPoint.y}
+                    stroke="var(--radar-active-axis-color)"
+                    strokeOpacity="0.7"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeDasharray="3 6"
+                    className="animate-fadeIn"
+                  />
 
                   {/* Vertex Circles / Nodes */}
                   {skills.map((skill, idx) => {

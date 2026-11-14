@@ -255,6 +255,7 @@ html[data-theme='light'] .section-surface {
     color-scheme: dark;
     --radar-grid-color: rgba(255, 255, 255, 0.08);
     --radar-axis-color: rgba(255, 255, 255, 0.12);
+    --radar-active-axis-color: #5eead4;
     --radar-node-outline: #030712;
   }
   body {
@@ -295,6 +296,7 @@ html[data-theme='light'] {
   --focus-ring-color: #1d4ed8;
   --radar-grid-color: rgba(30, 64, 175, 0.14);
   --radar-axis-color: rgba(30, 64, 175, 0.2);
+  --radar-active-axis-color: #0f766e;
   --radar-node-outline: #f8fbff;
 }
 
