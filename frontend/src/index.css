@@ -428,6 +428,18 @@ html[data-theme='light'] textarea::placeholder {
   color: #64748b;
 }
 
+.contact-field label {
+  transition: color 200ms ease;
+}
+
+.contact-field:focus-within label {
+  color: #5eead4;
+}
+
+html[data-theme='light'] .contact-field:focus-within label {
+  color: #0f766e;
+}
+
 .scroll-reveal {
   opacity: 0;
   visibility: hidden;

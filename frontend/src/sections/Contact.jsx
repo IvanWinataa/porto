@@ -228,7 +228,7 @@ export default function Contact() {
               <form onSubmit={handleSubmit} aria-busy={loading} className="space-y-6">
                 
                 <div className="grid sm:grid-cols-2 gap-6">
-                  <div>
+                  <div className="contact-field">
                     <label htmlFor="name" className="block text-xs font-mono uppercase tracking-widest text-slate-400 mb-2">
                       {t('Your Name', 'Nama Anda')}
                     </label>
@@ -245,7 +245,7 @@ export default function Contact() {
                     />
                   </div>
 
-                  <div>
+                  <div className="contact-field">
                     <label htmlFor="email" className="block text-xs font-mono uppercase tracking-widest text-slate-400 mb-2">
                       {t('Your Email', 'Email Anda')}
                     </label>
@@ -263,7 +263,7 @@ export default function Contact() {
                   </div>
                 </div>
 
-                <div>
+                <div className="contact-field">
                   <div className="flex justify-between items-center mb-2">
                     <label htmlFor="message" className="block text-xs font-mono uppercase tracking-widest text-slate-400">
                       {t('Project Details / Message', 'Detail Proyek / Pesan')}
