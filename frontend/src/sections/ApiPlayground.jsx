@@ -338,7 +338,7 @@ export default function ApiPlayground() {
                       {t('Waiting for the API response from the selected endpoint.', 'Menunggu respons API dari endpoint yang dipilih.')}
                     </p>
                     <div aria-hidden="true" className="mt-5 h-1 w-36 overflow-hidden rounded-full bg-white/5">
-                      <div className="h-full w-1/2 animate-pulse rounded-full bg-gradient-to-r from-blue-400 to-teal-300" />
+                      <div className="api-request-progress h-full w-1/3 rounded-full bg-gradient-to-r from-blue-400 to-teal-300" />
                     </div>
                   </div>
                 ) : responseMeta ? (

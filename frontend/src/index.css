@@ -191,6 +191,15 @@ html[data-theme='light'] .footer-surface {
   to { transform: translateX(190%); }
 }
 
+@keyframes api-request-sweep {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(300%); }
+}
+
+.api-request-progress {
+  animation: api-request-sweep 1.5s ease-in-out infinite;
+}
+
 .skeleton-card {
   position: relative;
   overflow: hidden;
@@ -791,6 +800,12 @@ html[data-theme='light'] .experience-timeline-node.is-current::before {
 
   .skeleton-card::after {
     animation: none;
+  }
+
+  .api-request-progress {
+    animation: none;
+    transform: none;
+    width: 100%;
   }
 
   .theme-icon-change {
