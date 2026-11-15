@@ -169,7 +169,8 @@ export default function ProjectModal({ project, onClose }) {
                   </h4>
                   <ul className="grid gap-2 sm:grid-cols-2">
                     {highlights.map((highlight, idx) => (
-                      <li key={`${idx}-${highlight}`} className="flex items-start gap-2.5 rounded-xl border border-white/10 bg-white/[0.03] px-3.5 py-3 text-sm leading-relaxed text-slate-300">
+                      <li key={`${idx}-${highlight}`} className="relative flex items-start gap-2.5 overflow-hidden rounded-xl border border-white/10 bg-white/[0.03] px-3.5 py-3 text-sm leading-relaxed text-slate-300">
+                        <span aria-hidden="true" className="absolute inset-y-0 left-0 w-0.5 bg-gradient-to-b from-blue-400/25 to-teal-400/60" />
                         <span aria-hidden="true" className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-teal-300" />
                         <span>{highlight}</span>
                       </li>
@@ -181,7 +182,8 @@ export default function ProjectModal({ project, onClose }) {
               {storySections.length > 0 && (
                 <div className={`grid gap-3 sm:grid-cols-2 ${highlights.length > 0 ? 'mt-5' : ''}`}>
                   {storySections.map(({ key, label, value }) => (
-                    <article key={key} className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
+                    <article key={key} className="relative overflow-hidden rounded-xl border border-white/10 bg-white/[0.03] p-4">
+                      <span aria-hidden="true" className="absolute inset-y-0 left-0 w-0.5 bg-gradient-to-b from-blue-400/25 to-teal-400/60" />
                       <h4 className="mb-2 text-sm font-semibold text-slate-200">{label}</h4>
                       <p className="text-sm leading-relaxed text-slate-400">{value}</p>
                     </article>
