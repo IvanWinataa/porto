@@ -284,7 +284,8 @@ return result.rows;`
           {/* Detailed Inspector Panel (Right Column 5 cols) */}
           <div className="lg:col-span-5">
             
-            <GlassCard className="space-y-6">
+            <GlassCard>
+              <div key={currentNode.id} className="space-y-6 animate-fadeIn">
               
               {/* Header Inspector */}
               <div className="flex flex-wrap items-start justify-between gap-3 border-b border-white/10 pb-4">
@@ -340,7 +341,7 @@ return result.rows;`
                   <div className="text-blue-300 font-bold mt-0.5">{currentNode.protocol}</div>
                 </div>
               </div>
-
+              </div>
             </GlassCard>
 
           </div>
