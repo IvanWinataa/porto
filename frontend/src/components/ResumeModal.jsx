@@ -110,7 +110,7 @@ export default function ResumeModal({ isOpen, onClose }) {
             <button
               type="button"
               onClick={handlePrint}
-              className="flex min-h-10 min-w-10 items-center justify-center gap-1.5 rounded-lg border border-teal-500/30 bg-blue-600/20 px-2 text-xs font-mono text-teal-300 transition-all hover:bg-blue-600/30 sm:px-3"
+              className="flex min-h-10 min-w-10 items-center justify-center gap-1.5 rounded-lg border border-teal-500/30 bg-blue-600/20 px-2 text-xs font-mono text-teal-300 transition-all hover:bg-blue-600/30 active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 sm:px-3"
               title={t('Print or Save as PDF', 'Cetak atau Simpan sebagai PDF')}
               aria-label={t('Print or save as PDF', 'Cetak atau simpan sebagai PDF')}
             >
@@ -124,7 +124,7 @@ export default function ResumeModal({ isOpen, onClose }) {
             <button
               type="button"
               onClick={handleCopyLink}
-              className="flex min-h-10 min-w-10 items-center justify-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-2 text-xs font-mono text-slate-300 transition-all hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 sm:px-3"
+              className="flex min-h-10 min-w-10 items-center justify-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-2 text-xs font-mono text-slate-300 transition-all hover:bg-white/10 hover:text-white active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 sm:px-3"
               title={t('Copy Profile Link', 'Salin Tautan Profil')}
               aria-label={copyLinkStatus === 'copied'
                 ? t('Profile link copied', 'Tautan profil tersalin')
@@ -164,7 +164,7 @@ export default function ResumeModal({ isOpen, onClose }) {
               ref={closeBtnRef}
               type="button"
               onClick={onClose}
-              className="ml-1 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/10 hover:text-white"
+              className="ml-1 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-slate-400 transition-all hover:bg-white/10 hover:text-white active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
               aria-label={t('Close modal', 'Tutup')}
             >
               <svg aria-hidden="true" className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -317,7 +317,7 @@ export default function ResumeModal({ isOpen, onClose }) {
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-full border border-white/10 text-xs font-mono text-slate-400 hover:text-white hover:bg-white/5 transition-all cursor-pointer"
+              className="min-h-10 cursor-pointer rounded-full border border-white/10 px-4 py-2 font-mono text-xs text-slate-400 transition-all hover:bg-white/5 hover:text-white active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
             >
               {t('Close', 'Tutup')}
             </button>
