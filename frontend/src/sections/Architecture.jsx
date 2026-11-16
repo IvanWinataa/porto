@@ -137,6 +137,7 @@ return result.rows;`
   ];
 
   const currentNode = nodes.find((n) => n.id === selectedNodeId) || nodes[0];
+  const flowStatus = !simulating ? 'ready' : simulationStep === nodes.length ? 'complete' : 'running';
 
   const handleSimulatePulse = () => {
     if (simulating) return;
@@ -274,7 +275,23 @@ return result.rows;`
                   <span className="inline-flex items-center gap-1.5 text-blue-400"><Icon name="bolt" className="h-3.5 w-3.5" /> {t('Request Flow:', 'Alur Permintaan')}</span>{' '}
                   Client ➔ Router ➔ Guard ➔ DB
                 </span>
-                <span className="text-emerald-400 font-semibold">200 OK</span>
+                <span
+                  role="status"
+                  aria-live="polite"
+                  className={`inline-flex min-h-7 items-center rounded-full border px-2.5 py-1 font-mono text-[11px] font-semibold transition-colors ${
+                    flowStatus === 'complete'
+                      ? 'border-emerald-400/25 bg-emerald-400/10 text-emerald-300'
+                      : flowStatus === 'running'
+                        ? 'border-blue-400/25 bg-blue-500/10 text-blue-300'
+                        : 'border-white/10 bg-white/5 text-slate-400'
+                  }`}
+                >
+                  {flowStatus === 'complete'
+                    ? '200 OK'
+                    : flowStatus === 'running'
+                      ? t('Routing...', 'Memproses...')
+                      : t('Ready', 'Siap')}
+                </span>
               </div>
 
             </div>
