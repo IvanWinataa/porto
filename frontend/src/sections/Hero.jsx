@@ -112,16 +112,16 @@ export default function Hero({ onOpenResume }) {
             </div>
 
             {/* Quick Metrics */}
-            <div className="grid max-w-md grid-cols-3 gap-2 border-t border-white/10 pt-5 sm:gap-4 sm:pt-6">
-              <div>
+            <div className="grid max-w-md grid-cols-3 border-t border-white/10 pt-5 sm:pt-6">
+              <div className="min-w-0 pr-2 sm:pr-4">
                 <div className="font-mono text-2xl font-bold text-white sm:text-3xl">3+</div>
                 <div className="mt-0.5 font-mono text-[10px] uppercase leading-snug tracking-wide text-slate-400 sm:text-xs sm:tracking-wider">{t('Years Exp.', 'Tahun Pengalaman')}</div>
               </div>
-              <div>
+              <div className="min-w-0 border-l border-white/10 px-2 sm:px-4">
                 <div className="font-mono text-2xl font-bold text-teal-400 sm:text-3xl">20+</div>
                 <div className="mt-0.5 font-mono text-[10px] uppercase leading-snug tracking-wide text-slate-400 sm:text-xs sm:tracking-wider">{t('Projects', 'Proyek')}</div>
               </div>
-              <div>
+              <div className="min-w-0 border-l border-white/10 pl-2 sm:pl-4">
                 <div className="font-mono text-2xl font-bold text-blue-400 sm:text-3xl">99.9%</div>
                 <div className="mt-0.5 font-mono text-[10px] uppercase leading-snug tracking-wide text-slate-400 sm:text-xs sm:tracking-wider">{t('Uptime', 'Waktu Aktif')}</div>
               </div>
