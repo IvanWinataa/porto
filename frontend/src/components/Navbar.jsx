@@ -15,8 +15,10 @@ function LanguageToggle({ language, setLanguage, t }) {
           onClick={() => setLanguage(option)}
           aria-pressed={language === option}
           aria-label={option === 'en' ? t('Switch to English', 'Ganti ke bahasa Inggris') : t('Switch to Indonesian', 'Ganti ke bahasa Indonesia')}
-          className={`rounded-lg px-2 py-1.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${
-            language === option ? 'bg-blue-500/30 text-white' : 'text-slate-400 hover:text-white'
+          className={`rounded-lg border border-transparent px-2 py-1.5 transition-all duration-200 active:scale-[0.94] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${
+            language === option
+              ? 'border-teal-300/30 bg-gradient-to-r from-blue-500/25 to-teal-500/25 text-white shadow-[0_0_12px_rgba(20,184,166,0.12)]'
+              : 'text-slate-400 hover:bg-white/5 hover:text-white'
           }`}
         >
           {option.toUpperCase()}
