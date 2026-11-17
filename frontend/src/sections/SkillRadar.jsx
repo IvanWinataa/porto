@@ -300,10 +300,10 @@ export default function SkillRadar() {
                           <Icon name={skill.icon} className="h-4 w-4" />
                         </span>
                         <span className="min-w-0 flex-1">
-                          <span className={`block truncate font-mono text-[10px] font-semibold leading-tight sm:text-[11px] ${isSelected ? 'text-white' : 'text-slate-300'}`}>
+                          <span className={`block break-words font-mono text-[10px] font-semibold leading-tight sm:truncate sm:text-[11px] ${isSelected ? 'text-white' : 'text-slate-300'}`}>
                             {skill.label}
                           </span>
-                          <span className="mt-1 block truncate font-mono text-[9px] text-slate-500 sm:text-[10px]">
+                          <span className="mt-1 block break-words font-mono text-[9px] text-slate-500 sm:truncate sm:text-[10px]">
                             {skill.score}% · {t(skill.level, skill.levelId)}
                           </span>
                         </span>
