@@ -421,7 +421,9 @@ export default function SkillChatbot() {
                 </svg>
               </button>
             </div>
-            <p className="mt-1.5 text-right text-[10px] text-slate-500">Maks. 300 karakter · Enter untuk mengirim</p>
+            <p className="mt-1.5 text-right text-[10px] text-slate-500">
+              {t('Max. 300 characters · Press Enter to send', 'Maks. 300 karakter · Enter untuk mengirim')}
+            </p>
           </form>
       </section>
 
