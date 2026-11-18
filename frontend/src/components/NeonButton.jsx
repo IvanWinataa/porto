@@ -21,7 +21,7 @@ export default function NeonButton({ children, onClick, className = '', href, va
 
   if (href) {
     return (
-      <a href={href} className={baseClasses}>
+      <a href={href} onClick={onClick} className={baseClasses}>
         {content}
       </a>
     );
