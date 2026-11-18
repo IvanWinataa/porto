@@ -218,10 +218,10 @@ export default function ProjectModal({ project, onClose }) {
                 href={project.live_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-blue-500/50 bg-blue-600 px-4 text-xs font-semibold text-white transition-colors hover:bg-blue-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 sm:min-w-40"
+                className="group/demo inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-blue-500/50 bg-blue-600 px-4 text-xs font-semibold text-white transition-[transform,background-color,box-shadow] duration-200 hover:-translate-y-0.5 hover:bg-blue-500 hover:shadow-[0_8px_20px_rgba(37,99,235,0.2)] active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 sm:min-w-40"
               >
                 <span>{t('Live Demo', 'Demo Langsung')}</span>
-                <Icon name="externalLink" className="h-4 w-4" />
+                <Icon name="externalLink" className="h-4 w-4 transition-transform duration-200 group-hover/demo:-translate-y-0.5 group-hover/demo:translate-x-0.5" />
               </a>
             ) : (
               <span className="inline-flex min-h-11 items-center justify-center rounded-xl border border-white/5 bg-white/[0.03] px-4 text-center font-mono text-xs text-slate-500 sm:min-w-40">
@@ -234,9 +234,9 @@ export default function ProjectModal({ project, onClose }) {
                 href={project.github_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 text-xs font-semibold text-slate-200 transition-colors hover:border-white/20 hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 sm:min-w-40"
+                className="group/source inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 text-xs font-semibold text-slate-200 transition-[transform,border-color,background-color,color] duration-200 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/10 hover:text-white active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 sm:min-w-40"
               >
-                <Icon name="github" className="h-4 w-4" />
+                <Icon name="github" className="h-4 w-4 transition-transform duration-200 group-hover/source:scale-110" />
                 <span>{t('Source Code', 'Kode Sumber')}</span>
               </a>
             )}
