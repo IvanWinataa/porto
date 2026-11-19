@@ -133,12 +133,12 @@ export default function Hero({ onOpenResume }) {
             <div className="code-editor glass-card rounded-2xl border border-white/15 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-xl">
               
               {/* Terminal Titlebar */}
-              <div className="bg-[#0b0e17] px-4 py-3 border-b border-white/10 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-red-500/80 border border-red-600/50" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/80 border border-yellow-600/50" />
-                  <div className="w-3 h-3 rounded-full bg-green-500/80 border border-green-600/50" />
-                  <span className="ml-2 font-mono text-xs text-slate-400 font-medium">developer.config.ts</span>
+              <div className="flex items-center justify-between gap-2 border-b border-white/10 bg-[#0b0e17] px-4 py-3">
+                <div className="flex min-w-0 items-center gap-2">
+                  <div className="h-3 w-3 shrink-0 rounded-full border border-red-600/50 bg-red-500/80" />
+                  <div className="h-3 w-3 shrink-0 rounded-full border border-yellow-600/50 bg-yellow-500/80" />
+                  <div className="h-3 w-3 shrink-0 rounded-full border border-green-600/50 bg-green-500/80" />
+                  <span title="developer.config.ts" className="ml-2 min-w-0 truncate font-mono text-xs font-medium text-slate-400">developer.config.ts</span>
                 </div>
 
                 <button
@@ -149,7 +149,7 @@ export default function Hero({ onOpenResume }) {
                     : copyStatus === 'failed'
                       ? t('Could not copy code snippet', 'Cuplikan kode gagal disalin')
                       : t('Copy snippet', 'Salin cuplikan kode')}
-                  className="flex min-w-[5.5rem] items-center justify-center gap-1.5 rounded-md border border-white/10 bg-white/5 px-2.5 py-1 font-mono text-[11px] text-slate-400 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
+                  className="flex min-w-[5.5rem] shrink-0 items-center justify-center gap-1.5 rounded-md border border-white/10 bg-white/5 px-2.5 py-1 font-mono text-[11px] text-slate-400 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
                   title={t('Copy snippet', 'Salin cuplikan kode')}
                 >
                   {copyStatus === 'copied' ? (
