@@ -72,6 +72,28 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }) {
   }, []);
 
   useEffect(() => {
+    const desktopQuery = window.matchMedia('(min-width: 768px)');
+    const closeMenuOnDesktop = (event) => {
+      if (event.matches) setMobileMenuOpen(false);
+    };
+
+    closeMenuOnDesktop(desktopQuery);
+    if (desktopQuery.addEventListener) {
+      desktopQuery.addEventListener('change', closeMenuOnDesktop);
+    } else {
+      desktopQuery.addListener(closeMenuOnDesktop);
+    }
+
+    return () => {
+      if (desktopQuery.removeEventListener) {
+        desktopQuery.removeEventListener('change', closeMenuOnDesktop);
+      } else {
+        desktopQuery.removeListener(closeMenuOnDesktop);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
     const sections = SECTION_IDS
       .map((id) => document.getElementById(id))
       .filter(Boolean);
