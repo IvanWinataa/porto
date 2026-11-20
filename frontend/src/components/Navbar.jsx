@@ -162,7 +162,7 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }) {
       }`}>
         <div className="px-4 sm:px-6 flex items-center justify-between">
           {/* Logo Brand */}
-          <a href="#hero" className="flex items-center gap-3 group">
+          <a href="#hero" className="group flex items-center gap-3 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400">
             <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-teal-400 p-[1px] flex items-center justify-center shadow-[0_0_15px_rgba(59,130,246,0.4)] group-hover:shadow-[0_0_25px_rgba(59,130,246,0.7)] transition-all">
               <div className="w-full h-full bg-[#070A14] rounded-[11px] flex items-center justify-center font-mono font-bold text-sm text-teal-400">
                 {'</>'}
@@ -215,7 +215,7 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }) {
             <button
               type="button"
               onClick={onOpenResume}
-              className="flex items-center gap-1.5 font-mono text-xs text-teal-300 bg-blue-600/10 hover:bg-blue-600/20 hover:text-teal-200 border border-teal-500/30 px-3 py-2 rounded-xl transition-all cursor-pointer shadow-sm"
+              className="flex cursor-pointer items-center gap-1.5 rounded-xl border border-teal-500/30 bg-blue-600/10 px-3 py-2 font-mono text-xs text-teal-300 shadow-sm transition-all hover:bg-blue-600/20 hover:text-teal-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
               title={t('View Interactive CV & Printable Resume', 'Lihat CV Interaktif & Cetak Resume')}
             >
               <svg className="w-3.5 h-3.5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -228,7 +228,7 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }) {
             <button
               type="button"
               onClick={onOpenCommandPalette}
-              className="flex items-center gap-2 font-mono text-xs text-slate-300 bg-white/5 hover:bg-white/10 hover:text-white border border-white/10 hover:border-blue-500/40 px-3.5 py-2 rounded-xl transition-all cursor-pointer group shadow-sm"
+              className="group flex cursor-pointer items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3.5 py-2 font-mono text-xs text-slate-300 shadow-sm transition-all hover:border-blue-500/40 hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
               title={t('Open Command Palette (Ctrl+K)', 'Buka Command Palette (Ctrl+K)')}
               aria-label={t('Open search and command palette', 'Buka pencarian dan menu perintah')}
               aria-haspopup="dialog"
@@ -331,7 +331,7 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }) {
                 setMobileMenuOpen(false);
                 if (onOpenResume) onOpenResume();
               }}
-              className="w-full flex items-center justify-center gap-2 text-teal-300 hover:text-white font-mono text-xs py-2 px-3 rounded-lg bg-blue-600/10 border border-teal-500/20"
+              className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-teal-500/20 bg-blue-600/10 px-3 py-2 font-mono text-xs text-teal-300 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
             >
               <svg className="w-3.5 h-3.5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
