@@ -242,6 +242,9 @@ return result.rows;`
                               </span>
                             </span>
                             <span className="mt-0.5 block break-words font-mono text-xs text-slate-400">{t(node.subtitle, node.subtitleId)}</span>
+                            <span className="mt-2 inline-flex rounded-md border border-blue-400/20 bg-blue-500/10 px-2 py-0.5 font-mono text-[10px] text-blue-200 sm:hidden">
+                              {t('Latency', 'Latensi')}: {node.latency}
+                            </span>
                           </span>
                         </span>
 
