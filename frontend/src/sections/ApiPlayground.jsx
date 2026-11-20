@@ -255,15 +255,16 @@ export default function ApiPlayground() {
               {selectedPreset.method === 'POST' && (
                 <div>
                   <div className="flex items-center justify-between mb-1.5 font-mono text-[11px] text-slate-400">
-                    <span>JSON Payload</span>
+                    <label htmlFor="api-request-body">{t('JSON Payload', 'Payload JSON')}</label>
                     <span className="text-amber-400/80">application/json</span>
                   </div>
                   <textarea
+                    id="api-request-body"
                     value={requestBody}
                     onChange={(e) => setRequestBody(e.target.value)}
                     rows={6}
-                    className="w-full rounded-xl bg-black/60 border border-white/10 p-3 font-mono text-xs text-slate-200 focus:outline-none focus:border-teal-400/50 resize-none"
-                    placeholder="Enter JSON payload..."
+                    className="w-full resize-none rounded-xl border border-white/10 bg-black/60 p-3 font-mono text-xs text-slate-200 transition-[border-color,box-shadow] duration-200 focus:border-teal-400/50 focus:outline-none focus:ring-2 focus:ring-teal-400/20"
+                    placeholder={t('Enter JSON payload...', 'Masukkan payload JSON...')}
                   />
                 </div>
               )}
