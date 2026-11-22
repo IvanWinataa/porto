@@ -7,6 +7,7 @@ import { sendContactMessage } from '../services/api';
 import { useLanguage } from '../context/useLanguage';
 
 const MESSAGE_MAX_LENGTH = 5000;
+const SOCIAL_LINK_CLASSES = 'group/social inline-flex min-h-11 flex-1 items-center justify-center gap-2 rounded-xl border border-blue-400/20 bg-gradient-to-br from-blue-500/[0.08] to-teal-500/[0.04] px-4 py-2.5 text-center font-mono text-xs text-slate-300 transition-[transform,border-color,background-color,color,box-shadow] duration-200 hover:-translate-y-0.5 hover:border-teal-300/35 hover:from-blue-500/[0.15] hover:to-teal-500/[0.1] hover:text-white hover:shadow-[0_8px_24px_rgba(37,99,235,0.1)] active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400';
 
 export default function Contact() {
   const { t } = useLanguage();
@@ -197,10 +198,10 @@ export default function Contact() {
                     href="https://github.com/IvanWinataa"
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="flex-1 py-2.5 px-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/30 text-slate-300 hover:text-white font-mono text-xs text-center transition-all flex items-center justify-center gap-2"
+                    className={SOCIAL_LINK_CLASSES}
                   >
                     <span>GitHub</span>
-                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg aria-hidden="true" className="h-3.5 w-3.5 transition-transform duration-200 group-hover/social:-translate-y-0.5 group-hover/social:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
                   </a>
@@ -208,10 +209,10 @@ export default function Contact() {
                     href="https://www.linkedin.com/in/ivan-winata-33b15b286/"
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="flex-1 py-2.5 px-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/30 text-slate-300 hover:text-white font-mono text-xs text-center transition-all flex items-center justify-center gap-2"
+                    className={SOCIAL_LINK_CLASSES}
                   >
                     <span>LinkedIn</span>
-                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg aria-hidden="true" className="h-3.5 w-3.5 transition-transform duration-200 group-hover/social:-translate-y-0.5 group-hover/social:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
                   </a>
