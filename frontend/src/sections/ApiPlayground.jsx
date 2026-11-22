@@ -194,18 +194,18 @@ export default function ApiPlayground() {
                 type="button"
                 onClick={() => handleSelectPreset(preset)}
                 aria-pressed={isSelected}
-                className={`flex cursor-pointer items-center gap-2.5 rounded-xl border px-4 py-2.5 font-mono text-xs transition-all duration-200 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 ${
+                className={`flex min-w-0 w-full cursor-pointer items-center gap-2.5 rounded-xl border px-4 py-2.5 font-mono text-xs transition-all duration-200 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 sm:w-auto ${
                   isSelected
                     ? 'scale-[1.01] border-teal-400/60 bg-blue-600/30 text-white shadow-[0_0_20px_rgba(20,184,166,0.3)]'
                     : 'border-white/10 bg-white/5 text-slate-400 hover:-translate-y-0.5 hover:border-white/25 hover:text-slate-200'
                 }`}
               >
-                <span className={`px-1.5 py-0.5 rounded text-[10px] font-bold ${
+                <span className={`shrink-0 px-1.5 py-0.5 rounded text-[10px] font-bold ${
                   preset.method === 'GET' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
                 }`}>
                   {preset.method}
                 </span>
-                <span className="font-medium text-slate-200">{preset.path}</span>
+                <span className="min-w-0 break-all text-left font-medium text-slate-200 sm:break-normal">{preset.path}</span>
                 <span className="text-[10px] text-slate-500 hidden sm:inline">
                   • {t(preset.badge, preset.badgeId)}
                 </span>
