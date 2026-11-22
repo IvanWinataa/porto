@@ -252,17 +252,22 @@ export default function Projects() {
             <label htmlFor="project-technology-filter" className="mb-2 block font-mono text-[11px] uppercase tracking-wider text-slate-400">
               {t('Filter by technology', 'Filter teknologi')}
             </label>
-            <select
-              id="project-technology-filter"
-              value={activeTechnology}
-              onChange={(event) => setActiveTechnology(event.target.value)}
-              className="w-full rounded-xl border border-white/10 bg-[#0D111D] px-3 py-3 text-sm text-slate-200 transition-[border-color,box-shadow] duration-200 focus:border-teal-400/50 focus:outline-none focus:ring-2 focus:ring-teal-400/20"
-            >
-              <option value="All">{t('All technologies', 'Semua teknologi')}</option>
-              {technologies.map((technology) => (
-                <option key={technology} value={technology}>{technology}</option>
-              ))}
-            </select>
+            <div className="relative">
+              <select
+                id="project-technology-filter"
+                value={activeTechnology}
+                onChange={(event) => setActiveTechnology(event.target.value)}
+                className="w-full appearance-none rounded-xl border border-white/10 bg-[#0D111D] px-3 py-3 pr-10 text-sm text-slate-200 transition-[border-color,box-shadow] duration-200 focus:border-teal-400/50 focus:outline-none focus:ring-2 focus:ring-teal-400/20"
+              >
+                <option value="All">{t('All technologies', 'Semua teknologi')}</option>
+                {technologies.map((technology) => (
+                  <option key={technology} value={technology}>{technology}</option>
+                ))}
+              </select>
+              <svg aria-hidden="true" className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m6 9 6 6 6-6" />
+              </svg>
+            </div>
           </div>
         </div>
 
