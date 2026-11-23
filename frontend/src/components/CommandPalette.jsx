@@ -108,9 +108,10 @@ export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }
     }
   ];
 
+  const normalizedQuery = query.trim().toLocaleLowerCase();
   const filteredCommands = commands.filter((cmd) =>
-    cmd.label.toLowerCase().includes(query.toLowerCase()) ||
-    cmd.category.toLowerCase().includes(query.toLowerCase())
+    cmd.label.toLocaleLowerCase().includes(normalizedQuery) ||
+    cmd.category.toLocaleLowerCase().includes(normalizedQuery)
   );
 
   const scrollToSection = (id) => {
@@ -273,6 +274,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }
           {filteredCommands.length > 0 ? (
             filteredCommands.map((cmd, idx) => {
               const isSelected = idx === selectedIndex;
+              const matchIndex = normalizedQuery ? cmd.label.toLocaleLowerCase().indexOf(normalizedQuery) : -1;
               return (
                 <div
                   key={cmd.id}
@@ -289,7 +291,15 @@ export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }
                 >
                   <div className="flex items-center gap-3">
                     <Icon name={cmd.icon} className="h-4 w-4 shrink-0 text-teal-300" />
-                    <span className="font-sans text-xs sm:text-sm font-medium">{cmd.label}</span>
+                    <span className="font-sans text-xs font-medium sm:text-sm">
+                      {matchIndex < 0 ? cmd.label : (
+                        <>
+                          {cmd.label.slice(0, matchIndex)}
+                          <mark className="rounded-sm bg-teal-400/20 text-teal-100">{cmd.label.slice(matchIndex, matchIndex + normalizedQuery.length)}</mark>
+                          {cmd.label.slice(matchIndex + normalizedQuery.length)}
+                        </>
+                      )}
+                    </span>
                   </div>
                   <span aria-hidden="true" className="font-mono text-[10px] text-teal-300 bg-teal-500/10 border border-teal-500/20 px-2 py-0.5 rounded">
                     {cmd.shortcut}
