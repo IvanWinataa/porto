@@ -377,7 +377,7 @@ export default function Projects() {
                         <span className="rounded-full border border-white/10 bg-black/50 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-teal-300 backdrop-blur-md">
                           {project.category}
                         </span>
-                        <h4 className="mt-3 text-lg font-bold text-white transition-colors group-hover:text-teal-300 sm:text-xl">
+                        <h4 className="mt-3 break-words text-balance text-lg font-bold text-white transition-colors group-hover:text-teal-300 sm:text-xl">
                           {project.title}
                         </h4>
                       </div>

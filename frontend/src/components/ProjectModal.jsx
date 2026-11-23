@@ -140,7 +140,7 @@ export default function ProjectModal({ project, onClose }) {
 
           <div className="z-10 text-center px-4">
             <div className="mb-2 font-mono text-[10px] uppercase tracking-wider text-slate-400 sm:text-xs sm:tracking-widest">// {t('SYSTEM PREVIEW ARCHITECTURE', 'PRATINJAU SISTEM')}</div>
-            <div className="break-words text-lg font-bold text-gradient sm:text-2xl">{project.title}</div>
+            <div className="break-words text-balance text-lg font-bold text-gradient sm:text-2xl">{project.title}</div>
           </div>
         </div>
 
