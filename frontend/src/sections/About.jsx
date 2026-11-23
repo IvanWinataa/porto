@@ -49,9 +49,9 @@ export default function About() {
           {/* Bio Column */}
           <div className="lg:col-span-7 space-y-6">
             <GlassCard className="space-y-4">
-              <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                <span>{t('Passionate Developer & Problem Solver', 'Developer yang Antusias & Pemecah Masalah')}</span>
-                <span className="text-xs font-mono text-blue-400 bg-blue-500/10 border border-blue-500/20 px-2.5 py-1 rounded-full">Fullstack</span>
+              <h3 className="flex flex-wrap items-start gap-2 text-xl font-bold leading-tight text-white sm:items-center">
+                <span className="min-w-0 text-balance">{t('Passionate Developer & Problem Solver', 'Developer yang Antusias & Pemecah Masalah')}</span>
+                <span className="shrink-0 rounded-full border border-blue-500/20 bg-blue-500/10 px-2.5 py-1 font-mono text-xs text-blue-400">Fullstack</span>
               </h3>
               
               <p className="text-slate-300 leading-relaxed text-sm sm:text-base">
