@@ -321,15 +321,15 @@ export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }
                   aria-selected={isSelected}
                   onClick={() => cmd.action()}
                   onMouseEnter={() => setSelectedIndex(idx)}
-                  className={`flex items-center justify-between px-4 py-3 rounded-xl transition-all cursor-pointer ${
+                  className={`flex min-w-0 items-center justify-between gap-3 px-3 py-3 rounded-xl transition-all cursor-pointer sm:px-4 ${
                     isSelected 
                       ? 'bg-blue-600/30 border border-blue-500/40 text-white shadow-[0_0_15px_rgba(59,130,246,0.25)]'
                       : 'text-slate-300 hover:bg-white/5 border border-transparent'
                   }`}
                 >
-                  <div className="flex items-center gap-3">
+                  <div className="flex min-w-0 flex-1 items-center gap-3">
                     <Icon name={cmd.icon} className="h-4 w-4 shrink-0 text-teal-300" />
-                    <span className="font-sans text-xs font-medium sm:text-sm">
+                    <span className="min-w-0 break-words font-sans text-xs font-medium leading-snug sm:text-sm">
                       {matchIndex < 0 ? cmd.label : (
                         <>
                           {cmd.label.slice(0, matchIndex)}
@@ -339,7 +339,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }
                       )}
                     </span>
                   </div>
-                  <span aria-hidden="true" className="font-mono text-[10px] text-teal-300 bg-teal-500/10 border border-teal-500/20 px-2 py-0.5 rounded">
+                  <span aria-hidden="true" className="shrink-0 font-mono text-[10px] text-teal-300 bg-teal-500/10 border border-teal-500/20 px-2 py-0.5 rounded">
                     {cmd.shortcut}
                   </span>
                 </div>
