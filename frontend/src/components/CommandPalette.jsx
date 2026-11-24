@@ -6,10 +6,12 @@ export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }
   const { t } = useLanguage();
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [toastMessage, setToastMessage] = useState('');
+  const [toast, setToast] = useState(null);
   const inputRef = useRef(null);
   const dialogRef = useRef(null);
   const previousFocusRef = useRef(null);
+  const toastTimerRef = useRef(null);
+  const closeTimerRef = useRef(null);
 
   const commands = [
     {
@@ -123,16 +125,36 @@ export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }
     }
   };
 
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText('ivanwinata1972@gmail.com');
-    showToast(t('✓ Email copied to clipboard!', '✓ Email berhasil disalin!'));
-    setTimeout(() => onClose(), 1200);
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText('ivanwinata1972@gmail.com');
+      showToast(t('✓ Email copied to clipboard!', '✓ Email berhasil disalin!'), 'success');
+      window.clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = window.setTimeout(onClose, 1200);
+    } catch {
+      window.clearTimeout(closeTimerRef.current);
+      showToast(t('Could not copy email. Try again.', 'Gagal menyalin email. Coba lagi.'), 'error');
+    }
   };
 
-  const showToast = (msg) => {
-    setToastMessage(msg);
-    setTimeout(() => setToastMessage(''), 2500);
+  const showToast = (message, type) => {
+    window.clearTimeout(toastTimerRef.current);
+    setToast({ message, type });
+    toastTimerRef.current = window.setTimeout(() => setToast(null), 2500);
   };
+
+  useEffect(() => {
+    if (!isOpen) {
+      window.clearTimeout(toastTimerRef.current);
+      window.clearTimeout(closeTimerRef.current);
+      setToast(null);
+    }
+
+    return () => {
+      window.clearTimeout(toastTimerRef.current);
+      window.clearTimeout(closeTimerRef.current);
+    };
+  }, [isOpen]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -332,8 +354,14 @@ export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }
             <span><kbd className="text-slate-300 bg-white/10 px-1 rounded">↵</kbd> {t('select', 'pilih')}</span>
           </div>
 
-          {toastMessage ? (
-            <span role="status" aria-live="polite" className="text-emerald-400 font-semibold animate-pulse">{toastMessage}</span>
+          {toast ? (
+            <span
+              role={toast.type === 'error' ? 'alert' : 'status'}
+              aria-live={toast.type === 'error' ? 'assertive' : 'polite'}
+              className={`max-w-[55%] text-right leading-relaxed font-semibold animate-fadeIn ${toast.type === 'error' ? 'text-amber-300' : 'text-emerald-400'}`}
+            >
+              {toast.message}
+            </span>
           ) : (
             <span>Portfolio CLI v2.0</span>
           )}
