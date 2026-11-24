@@ -274,8 +274,24 @@ export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }
             aria-controls="command-palette-results"
             aria-activedescendant={filteredCommands[selectedIndex] ? `command-option-${filteredCommands[selectedIndex].id}` : undefined}
             placeholder={t('Type a command or section name... (e.g. Projects, Copy)', 'Ketik perintah atau nama bagian... (mis. Proyek, Salin)')}
-            className="w-full bg-transparent text-white placeholder-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 rounded font-mono text-xs sm:text-sm"
+            className="min-w-0 flex-1 bg-transparent text-white placeholder-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 rounded font-mono text-xs sm:text-sm"
           />
+          {query && (
+            <button
+              type="button"
+              onClick={() => {
+                setQuery('');
+                inputRef.current?.focus();
+              }}
+              aria-label={t('Clear command search', 'Hapus pencarian perintah')}
+              title={t('Clear search', 'Hapus pencarian')}
+              className="ml-2 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 animate-fadeIn"
+            >
+              <svg aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m6 6 12 12M18 6 6 18" />
+              </svg>
+            </button>
+          )}
           <kbd className="hidden sm:inline-block font-mono text-[10px] text-slate-400 bg-white/10 px-2 py-0.5 rounded border border-white/10">
             ESC
           </kbd>
