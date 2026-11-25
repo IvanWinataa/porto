@@ -9,6 +9,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }
   const [toast, setToast] = useState(null);
   const inputRef = useRef(null);
   const dialogRef = useRef(null);
+  const resultsRef = useRef(null);
   const previousFocusRef = useRef(null);
   const toastTimerRef = useRef(null);
   const closeTimerRef = useRef(null);
@@ -242,6 +243,22 @@ export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }
     setSelectedIndex(0);
   }, [query]);
 
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const results = resultsRef.current;
+    const selectedOption = results?.querySelector('[aria-selected="true"]');
+    if (!selectedOption) return;
+
+    const resultsBounds = results.getBoundingClientRect();
+    const optionBounds = selectedOption.getBoundingClientRect();
+    if (optionBounds.top < resultsBounds.top) {
+      results.scrollTop += optionBounds.top - resultsBounds.top;
+    } else if (optionBounds.bottom > resultsBounds.bottom) {
+      results.scrollTop += optionBounds.bottom - resultsBounds.bottom;
+    }
+  }, [isOpen, selectedIndex, normalizedQuery]);
+
   if (!isOpen) return null;
 
   return (
@@ -308,7 +325,7 @@ export default function CommandPalette({ isOpen, onClose, onOpen, onOpenResume }
         </div>
 
         {/* Command Results */}
-        <div id="command-palette-results" role="listbox" aria-label={t('Commands', 'Perintah')} className="max-h-80 overflow-y-auto p-2 space-y-1">
+        <div ref={resultsRef} id="command-palette-results" role="listbox" aria-label={t('Commands', 'Perintah')} className="max-h-80 overflow-y-auto p-2 space-y-1">
           {filteredCommands.length > 0 ? (
             filteredCommands.map((cmd, idx) => {
               const isSelected = idx === selectedIndex;
