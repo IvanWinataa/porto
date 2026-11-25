@@ -278,7 +278,7 @@ export default function Contact() {
                     maxLength={MESSAGE_MAX_LENGTH}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full resize-none rounded-xl border border-white/10 bg-black/40 px-4 py-3 font-sans text-sm text-white placeholder-slate-600 outline-none transition-[border-color,box-shadow,background-color] duration-200 focus:border-teal-400/60 focus:shadow-[0_0_20px_rgba(20,184,166,0.18)] focus-visible:ring-2 focus-visible:ring-teal-400/25"
+                    className="min-h-32 max-h-96 w-full resize-y rounded-xl border border-white/10 bg-black/40 px-4 py-3 font-sans text-sm text-white placeholder-slate-600 outline-none transition-[border-color,box-shadow,background-color] duration-200 focus:border-teal-400/60 focus:shadow-[0_0_20px_rgba(20,184,166,0.18)] focus-visible:ring-2 focus-visible:ring-teal-400/25"
                     placeholder={t('Describe your project, timeline, or inquiry...', 'Jelaskan proyek, linimasa, atau pertanyaan Anda...')}
                   />
                   <div className="mt-2 flex items-center justify-between gap-3 font-mono text-[10px]">
