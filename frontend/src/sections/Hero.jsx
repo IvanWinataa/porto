@@ -9,11 +9,11 @@ export default function Hero({ onOpenResume }) {
 
   const codeSnippet = `const developer = {
   name: 'Ivan Winata',
-  title: 'Fullstack Software Engineer',
+  title: 'Fullstack Engineer',
   location: 'Indonesia (Remote)',
-  coreStack: ['React', 'Next.js', 'Node.js', 'PostgreSQL', 'TailwindCSS'],
-  status: 'Open to high-impact projects & opportunities',
-  codeQuote: "Clean code is its own best documentation."
+  coreStack: ['React', 'Node.js', 'Postgres'],
+  status: 'Open for hire',
+  codeQuote: "Build with passion"
 };`;
 
   useEffect(() => () => {
