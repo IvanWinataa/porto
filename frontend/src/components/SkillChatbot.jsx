@@ -272,6 +272,14 @@ export default function SkillChatbot() {
   }, [isOpen]);
 
   useEffect(() => {
+    const composer = inputRef.current;
+    if (!composer) return;
+
+    composer.style.height = 'auto';
+    composer.style.height = `${Math.min(composer.scrollHeight, 112)}px`;
+  }, [input]);
+
+  useEffect(() => {
     const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
     endOfMessagesRef.current?.scrollIntoView({ behavior, block: 'nearest' });
   }, [messages, isOpen]);
@@ -400,15 +408,21 @@ export default function SkillChatbot() {
           >
             <label className="sr-only" htmlFor="skill-chatbot-input">{t('Ask about skills or experience', 'Tulis pertanyaan tentang skill atau pengalaman')}</label>
             <div className="flex items-center gap-2">
-              <input
+              <textarea
                 id="skill-chatbot-input"
                 ref={inputRef}
-                type="text"
+                rows={1}
                 value={input}
                 onChange={(event) => setInput(event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing) {
+                    event.preventDefault();
+                    submitQuestion();
+                  }
+                }}
                 maxLength={300}
                 placeholder={t('Ask about skills...', 'Tanyakan tentang skill...')}
-                className="min-w-0 flex-1 rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-xs text-white placeholder:text-slate-500 focus:border-teal-400/50 focus:outline-none focus:ring-2 focus:ring-teal-400/20"
+                className="max-h-28 min-w-0 flex-1 resize-none overflow-y-auto rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-xs leading-relaxed text-white placeholder:text-slate-500 focus:border-teal-400/50 focus:outline-none focus:ring-2 focus:ring-teal-400/20"
               />
               <button
                 type="submit"
@@ -421,8 +435,8 @@ export default function SkillChatbot() {
                 </svg>
               </button>
             </div>
-            <p className="mt-1.5 text-right text-[10px] text-slate-500">
-              {t('Max. 300 characters · Press Enter to send', 'Maks. 300 karakter · Enter untuk mengirim')}
+            <p className="mt-1.5 text-right text-[10px] leading-snug text-slate-500">
+              {t('Max. 300 characters · Enter: send · Shift+Enter: new line', 'Maks. 300 karakter · Enter: kirim · Shift+Enter: baris baru')}
             </p>
           </form>
       </section>
