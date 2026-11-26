@@ -349,8 +349,8 @@ export default function SkillChatbot() {
           <div className="flex-1 space-y-3 overflow-y-auto p-3" role="log" aria-label={t('Chat messages', 'Pesan chat')} aria-live="polite" aria-relevant="additions text">
             {messages.map((message) => (
               <div key={message.id} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`flex max-w-[90%] flex-col gap-2 ${message.role === 'user' ? 'items-end' : 'items-start'}`}>
-                  <p className={`whitespace-pre-wrap rounded-2xl px-3 py-2.5 text-xs leading-relaxed ${
+                <div className={`flex min-w-0 max-w-[90%] flex-col gap-2 ${message.role === 'user' ? 'items-end' : 'items-start'}`}>
+                  <p className={`max-w-full whitespace-pre-wrap [overflow-wrap:anywhere] rounded-2xl px-3 py-2.5 text-xs leading-relaxed ${
                     message.role === 'user'
                       ? 'rounded-br-md bg-blue-600/50 text-white'
                       : 'rounded-bl-md border border-white/10 bg-white/5 text-slate-200'
