@@ -293,7 +293,7 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }) {
           inert={!mobileMenuOpen}
           className={`mobile-menu-motion md:hidden ${mobileMenuOpen ? 'is-open' : ''}`}
         >
-          <div className="mobile-menu-content mt-3 max-h-[calc(100dvh_-_7rem)] overflow-y-auto overscroll-contain border-t border-white/10 px-4 pb-4 pt-3 space-y-2">
+          <div className="mobile-menu-content mt-3 max-h-[calc(100dvh_-_8rem)] overflow-y-auto overscroll-contain border-t border-white/10 px-4 pb-4 pt-3 space-y-2">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href.slice(1);
 
