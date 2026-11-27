@@ -73,7 +73,7 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }) {
   }, []);
 
   useEffect(() => {
-    const desktopQuery = window.matchMedia('(min-width: 768px)');
+    const desktopQuery = window.matchMedia('(min-width: 1360px)');
     const closeMenuOnDesktop = (event) => {
       if (event.matches) setMobileMenuOpen(false);
     };
@@ -155,7 +155,7 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }) {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 pt-4">
-      <nav aria-label={t('Main navigation', 'Navigasi utama')} className={`max-w-6xl mx-auto rounded-2xl transition-all duration-300 ${
+      <nav aria-label={t('Main navigation', 'Navigasi utama')} className={`max-w-7xl mx-auto rounded-2xl transition-all duration-300 ${
         scrolled 
           ? 'glass shadow-[0_8px_30px_rgba(0,0,0,0.5)] border-white/10 py-3' 
           : 'bg-black/30 backdrop-blur-md border border-white/5 py-4'
@@ -174,7 +174,7 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }) {
           </a>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden md:flex items-center space-x-1 font-mono text-sm">
+          <div className="hidden min-[1360px]:flex items-center space-x-1 font-mono text-sm">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href.slice(1);
 
@@ -207,7 +207,7 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }) {
           </div>
 
           {/* Right Actions: Command Palette & Status Badge */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden min-[1360px]:flex items-center gap-3">
             <LanguageToggle language={language} setLanguage={setLanguage} t={t} />
             <ThemeToggle t={t} />
 
@@ -248,7 +248,7 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }) {
           </div>
 
           {/* Mobile Menu Toggle */}
-          <div className="flex items-center gap-2 md:hidden">
+          <div className="flex items-center gap-2 min-[1360px]:hidden">
             <button
               type="button"
               onClick={() => {
@@ -291,7 +291,7 @@ export default function Navbar({ onOpenCommandPalette, onOpenResume }) {
           id="mobile-navigation-menu"
           aria-hidden={!mobileMenuOpen}
           inert={!mobileMenuOpen}
-          className={`mobile-menu-motion md:hidden ${mobileMenuOpen ? 'is-open' : ''}`}
+          className={`mobile-menu-motion min-[1360px]:hidden ${mobileMenuOpen ? 'is-open' : ''}`}
         >
           <div className="mobile-menu-content mt-3 max-h-[calc(100dvh_-_8rem)] overflow-y-auto overscroll-contain border-t border-white/10 px-4 pb-4 pt-3 space-y-2">
             {navLinks.map((link) => {
